@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.font_card{
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+/* Print */
+@media print {
+        @page {
+            size: 210mm 297mm;
+            margin: 0;
+        }
+
+        /* body * {
+            display: none !important;
+        } */
+        .print-table thead {
+            display: table-header-group;
+        }
+        .printHeader{
+            display:block !important;
+        }
+        /* Print A4 */
+        #printArea,
+        #printArea * {
+            display: block !important;
+        }
+
+        #printArea {
+            position: absolute;
+            left: 0;
+            top: 10mm;
+            width: 210mm 297mm;
+            padding: 5mm;
+            box-sizing: border-box;
+        }
+        /* print struk */
+        #printStruk,
+        #printStruk * {
+            display: clock !important;
+        }
+        #printStruk{
+            position: absolute;
+                left: 0;
+                top: 10mm;
+                width: 80mm 200mm;
+                padding: 5mm;
+                box-sizing: border-box;
+        }
+
+        .no-print {
+            display: none !important;
+        }
+}
+
