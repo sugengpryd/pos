@@ -89,123 +89,68 @@
             </div>
 
             {{-- COLUMN 2 --}}
-            <div class="bg-gray-200 flex flex-col  md:max-h-[550px] pt-0 pb-2 md:w-[96%] items-center text-xs">
-                <span class="flex flex-row md:w-80 md:min-w-40 justify-center gap-1 items-center py-2 px-2 mb-2">
+            {{-- <div class="bg-gray-200 flex flex-col  md:max-h-[550px] pt-0 pb-2 md:w-[96%] items-center text-xs"> --}}
+            <div class="bg-gray-200 w-full min-w-full pt-0 pb-2 md:w-full items-center text-xs">
+                    <div class="flex flex-row flex-wrap items-center p-2 gap-2 w-full">
 
-                    <span class="flex items-center text-xs mr-2 ml-auto
-                    bg-blue-700 py-2
-                    text-white
-                    md:text-sm
-                    px-2
-                    rounded
-                    shadow-lg
-                    shadow-slate-600
-                    hover:shadow-xl
-                    hover:shadow-teal-600"
-                    >
-                        <button
-                        wire:click="openModal('customer')"
-                        class="px-2 min-h-5 "
-                        >
-                        🧑‍🤝‍🧑Customer</button>
-                    </span>
-                    <span class="flex items-center text-xs mr-2
-                    bg-blue-700 py-2
-                    text-white
-                    md:text-sm
-                    px-2
-                    rounded
-                    shadow-lg
-                    shadow-slate-600
-                    hover:shadow-xl
-                    hover:shadow-teal-600"
-                    >
-                        <button
-                        wire:click="openmodaldelivery"
-                        class=" px-2  min-h-5 "
-                        >
-                        🛵Delivery</button>
-                    </span>
-                    <span class="flex flex-row text-xs mr-2
-                    bg-blue-700 py-2
-                    text-white
-                    md:text-sm
-                    px-2
-                    rounded
-                    shadow-lg
-                    shadow-slate-600
-                    hover:shadow-xl
-                    hover:shadow-teal-600"
-                    >
-                        <button
-                        wire:loading.attr="disabled"
-                        wire:click='save()'
-                        class="px-2 min-h-5 "
+                            {{-- Customer --}}
+                            <button
+                                wire:click="openModal('customer')"
+                                class="bg-blue-700 text-white text-xs md:text-sm
+                                    px-4 py-3 rounded shadow-lg
+                                    hover:shadow-xl hover:shadow-teal-600">
+                                🧑‍🤝‍🧑 Customer
+                            </button>
 
-                        >
-                        💾Simpan
-                        </button>
-                    </span>
-                    {{-- ================================================== --}}
-                    <span class="flex flex-row text-xs mr-2
-                    bg-blue-700 py-2
-                    text-white
-                    md:text-sm
-                    px-2
-                    rounded
-                    shadow-lg
-                    shadow-slate-600
-                    hover:shadow-xl
-                    hover:shadow-teal-600"
-                    >
-                        <button
-                        class="px-2 min-h-5"
-                        {{-- onclick="window.location.href='{{ route('Do', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid]) }}'" --}}
-                        onclick="window.open('{{ route('Do', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid]) }}','_blank')"
-                        >
-                            🖨️DO
-                        </button>
-                    </span>
-                    {{-- ================================================== --}}
-                    <span class="flex flex-row text-xs mr-2
-                    bg-blue-700 py-2
-                    text-white
-                    md:text-sm
-                    px-2
-                    rounded
-                    shadow-lg
-                    shadow-slate-600
-                    hover:shadow-xl
-                    hover:shadow-teal-600"
-                    >
-                        <button
-                        class="px-2 min-h-5"
-                        {{-- onclick="window.location.href='{{ route('Struk', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid]) }}'" --}}
-                        onclick="window.open('{{ route('Struk', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid]) }}', '_blank')"
-                        >
-                            🖨️Invoice
-                        </button>
-                    </span>
-                    <span class="flex flex-row text-xs mr-2
-                    bg-lime-700 py-2
-                    text-white
-                    md:text-sm
-                    px-2
-                    rounded
-                    shadow-lg
-                    shadow-slate-600
-                    hover:shadow-xl
-                    hover:shadow-lime-600"
-                    >
-                        <button
-                        wire:click="openformBayar()"
-                        class="px-4 min-h-5 "
-                        >
-                        💵Bayar
-                        </button>
-                    </span>
+                            {{-- Delivery --}}
+                            <button
+                                wire:click="openmodaldelivery"
+                                class="bg-blue-700 text-white text-xs md:text-sm
+                                    px-4 py-3 rounded shadow-lg
+                                    hover:shadow-xl hover:shadow-teal-600">
+                                🛵 Delivery
+                            </button>
 
-                </span>
+                            {{-- Simpan --}}
+                            <button
+                                wire:loading.attr="disabled"
+                                wire:click="save()"
+                                class="bg-blue-700 text-white text-xs md:text-sm
+                                    px-4 py-3 rounded shadow-lg
+                                    hover:shadow-xl hover:shadow-teal-600">
+                                💾 Simpan
+                            </button>
+
+                            {{-- DO --}}
+                            <button
+                                onclick="window.open('{{ route('Do', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid]) }}','_blank')"
+                                class="bg-blue-700 text-white text-xs md:text-sm
+                                    px-4 py-3 rounded shadow-lg
+                                    hover:shadow-xl hover:shadow-teal-600">
+                                🖨️ DO
+                            </button>
+
+                            {{-- Invoice --}}
+                            <button
+                                onclick="window.open('{{ route('Struk', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid]) }}','_blank')"
+                                class="bg-blue-700 text-white text-xs md:text-sm
+                                    px-4 py-3 rounded shadow-lg
+                                    hover:shadow-xl hover:shadow-teal-600">
+                                🖨️ Invoice
+                            </button>
+
+                            {{-- Bayar --}}
+                            <button
+                                wire:click="openformBayar()"
+                                class="bg-lime-700 text-white text-xs md:text-sm
+                                    px-4 py-3 rounded shadow-lg
+                                    hover:shadow-xl hover:shadow-lime-600">
+                                💵 Bayar
+                            </button>
+
+                        </div>
+
+
                     <div id="printableArea" class=" w-full top-0 mr-0 max-h-60 overflow-y-auto text-center">
                         Daftar Pesanan
 

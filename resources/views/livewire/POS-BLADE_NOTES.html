@@ -1,0 +1,114 @@
+<span class="flex flex-row flex-wrap md:w-80 md:min-w-40 justify-center gap-1 items-center py-1 px-1 mb-2">
+
+                    <span class="flex items-center text-xs mr-2 ml-auto
+                    bg-blue-700 py-2
+                    text-white
+                    md:text-sm
+                    px-2
+                    rounded
+                    shadow-lg
+                    shadow-slate-600
+                    hover:shadow-xl
+                    hover:shadow-teal-600"
+                    >
+                        <button
+                        wire:click="openModal('customer')"
+                        class="px-2 min-h-5 "
+                        >
+                        🧑‍🤝‍🧑Customer</button>
+                    </span>
+                    <span class="flex items-center text-xs mr-2
+                    bg-blue-700 py-2
+                    text-white
+                    md:text-sm
+                    px-2
+                    rounded
+                    shadow-lg
+                    shadow-slate-600
+                    hover:shadow-xl
+                    hover:shadow-teal-600"
+                    >
+                        <button
+                        wire:click="openmodaldelivery"
+                        class=" px-2  min-h-5 "
+                        >
+                        🛵Delivery</button>
+                    </span>
+                    <span class="flex flex-row text-xs mr-2
+                    bg-blue-700 py-2
+                    text-white
+                    md:text-sm
+                    px-2
+                    rounded
+                    shadow-lg
+                    shadow-slate-600
+                    hover:shadow-xl
+                    hover:shadow-teal-600"
+                    >
+                        <button
+                        wire:loading.attr="disabled"
+                        wire:click='save()'
+                        class="px-2 min-h-5 "
+
+                        >
+                        💾Simpan
+                        </button>
+                    </span>
+                    {{-- ================================================== --}}
+                    <span class="flex flex-row text-xs mr-2
+                    bg-blue-700 py-2
+                    text-white
+                    md:text-sm
+                    px-2
+                    rounded
+                    shadow-lg
+                    shadow-slate-600
+                    hover:shadow-xl
+                    hover:shadow-teal-600"
+                    >
+                        <button
+                        class="px-2 min-h-5"
+                        {{-- onclick="window.location.href='{{ route('Do', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid]) }}'" --}}
+                        onclick="window.open('{{ route('Do', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid]) }}','_blank')"
+                        >
+                            🖨️DO
+                        </button>
+                    </span>
+                    {{-- ================================================== --}}
+                    <span class="flex flex-row text-xs mr-2
+                    bg-blue-700 py-2
+                    text-white
+                    md:text-sm
+                    px-2
+                    rounded
+                    shadow-lg
+                    shadow-slate-600
+                    hover:shadow-xl
+                    hover:shadow-teal-600"
+                    >
+                        <button
+                        class="px-2 min-h-5"
+                        {{-- onclick="window.location.href='{{ route('Struk', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid]) }}'" --}}
+                        onclick="window.open('{{ route('Struk', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid]) }}', '_blank')"
+                        >
+                            🖨️Invoice
+                        </button>
+                    </span>
+                    <span class="flex flex-row text-xs mr-2
+                    bg-lime-700 py-2
+                    text-white
+                    md:text-sm
+                    px-2
+                    rounded
+                    shadow-lg
+                    shadow-slate-600
+                    hover:shadow-xl
+                    hover:shadow-lime-600"
+                    >
+                        <button
+                        wire:click="openformBayar()"
+                        class="px-4 min-h-5 "
+                        >
+                        💵Bayar
+                        </button>
+                    </span>
