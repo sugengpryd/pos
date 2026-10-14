@@ -79,7 +79,7 @@ class Pos extends Component
     //   $findPenerima = dbpengiriman::where('batch_id', $this->transaksiBatchId)->first();
 
             $update= dbpengiriman::where('batch_id', $this->transaksiBatchId)->update([
-                 'BiayaKirim' => $this->biayaKirim,
+                 'BiayaKirim' => (float) preg_replace('/\D/','',$this->biayaKirim),
             ]);
 
     }
@@ -88,7 +88,7 @@ class Pos extends Component
     //   dd($findbiayaKirim);
 
       $this->biayaKirim = $findbiayaKirim?->BiayaKirim ?? 0;
-      $this->biayakirim= $findbiayaKirim?->BiayaKirim ?? 0;
+    //   $this->biayakirim= $findbiayaKirim?->BiayaKirim ?? 0;
 
     }
     public function findpenerima(){
@@ -100,7 +100,7 @@ class Pos extends Component
       $this->alamatPenerima = $findPenerima->toAlamat;
       $this->kotaPenerima = $findPenerima->toKota;
       $this->teleponPenerima = $findPenerima->toNumber;
-      $this->biayaKirim = $findPenerima->BiayaKirim;
+      $this->biayaKirim = number_format((float) $findPenerima->BiayaKirim,0,'.','.');
       }else{
         // dd($this->transaksiBatchId);
       $this->namaPenerima =  '';
@@ -123,7 +123,7 @@ class Pos extends Component
             'toAlamat'=>$this->alamatPenerima,
             'toKota'=>$this->kotaPenerima,
             'toNumber'=>$this->teleponPenerima,
-            'BiayaKirim'=>$this->biayakirim,
+            'BiayaKirim'=> preg_replace('/\D/','',$this->biayaKirim),
 
 
 
@@ -146,7 +146,7 @@ class Pos extends Component
             'toAlamat'=>$this->alamatPenerima,
             'toKota'=>$this->kotaPenerima,
             'toNumber'=>$this->teleponPenerima,
-            'BiayaKirim'=>$this->biayakirim,
+            'BiayaKirim'=> preg_replace('/\D/','',$this->biayaKirim),
             'flaq'=>'1',
 
 
@@ -166,7 +166,7 @@ class Pos extends Component
         // dd([$this->totalTagihan,$this->biayakirim,$this->biayaKirim]);
         $totalTagihan = number_format(($this->totalSementara + $this->ppn) - $this->diskon,0,'.'.'.');
 
-        $this->totalTagihan= (float) $this->biayaKirim + (float) preg_replace('/\D/','',$totalTagihan);
+        $this->totalTagihan= (float) preg_replace('/\D/','',$this->biayaKirim) + (float) preg_replace('/\D/','',$totalTagihan);
 
     }
     public function Penerima(){
@@ -348,10 +348,14 @@ class Pos extends Component
             ];
             }
         $this->totalSementara += $menustransaksis->item_qty * $menustransaksis->sellingPrice;
+
         $this->total = number_format($this->totalSementara,0,'.'.'.');
 
-        $this->totalTagihan = number_format(($this->totalSementara + $this->ppn) - $this->diskon,0,'.'.'.');
+        $biayaKirim = (float) preg_replace('/\D/','',$this->biayaKirim);
+        // dd($biayaKirim);
 
+        $this->totalTagihan = number_format(($this->totalSementara +  $this->ppn + $biayaKirim) - $this->diskon,0,'.'.'.');
+        // $this->totalTagihan = ($this->totalTagihan + $biayaKirim);
         }
 
         $menuItems = Menu_item::where('menu_id', $id)->get();
@@ -375,7 +379,9 @@ class Pos extends Component
         $this->alamatPenerima=$findBatchId->toAlamat ?? '';
         $this->kotaPenerima=$findBatchId->toKota ??'';
         $this->teleponPenerima=$findBatchId->toNumber ?? '';
-        $this->biayakirim= $findBatchId->BiayaKirim ??'';
+        $biayaKirim= $findBatchId->BiayaKirim ??'';
+        $this->biayaKirim = number_format( (float) $biayaKirim,0,'.','.') ??'' ;
+        // dd($this->biayakirim);
 
         $this->openDelivery= true;
     }
@@ -494,7 +500,7 @@ class Pos extends Component
                 $this->findpenerima();
                 $this->cekbiayaKirim();
                 $this->total = number_format($this->totalSementara,0,'.'.'.');
-                $this->totalTagihan = number_format(($this->totalSementara + (float) $this->biayaKirim + $this->ppn) - $this->diskon,0,'.'.'.');
+                $this->totalTagihan = number_format(($this->totalSementara + (float) $this->biayaKirim + $this->ppn) - $this->diskon,0,'.','.');
                 $this->dispatch('notify', message: 'Opening Basket');
             }
 
@@ -523,7 +529,7 @@ public function removeItem($index,$item_id)
             $this->total = collect($this->menustransaksi)->sum(function ($item) {
                 return (float) $item['item_qty'] * (float) $item['sellingPrice'];
             });
-            $this->totalTagihan = ($this->total - $this->diskon) + $this->ppn;
+            $this->totalTagihan = ($this->total - $this->diskon) + $this->ppn + (float) preg_replace('/\D/','',$this->biayaKirim);
             $this->totalSementara =$this->total;
     }
 

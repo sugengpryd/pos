@@ -1,5 +1,5 @@
 {{-- <div class="py-2 bg-slate-300 h-[768px]"> --}}
-<div class="py-2 bg-slate-300 h-[800px]">
+<div class="py-2 bg-slate-300 h-[900px]">
     <div class="w-full max-w-1280 p-4 pl-8 bg-slate-500">
         <header class="ml-8">
             Point Of Sales
@@ -206,8 +206,8 @@
                     </span>
 
                 </span>
-                    <div id="printableArea" class=" w-full top-0 mr-5 max-h-60 overflow-y-auto text-center">
-                Daftar Pesanan
+                    <div id="printableArea" class=" w-full top-0 mr-0 max-h-60 overflow-y-auto text-center">
+                        Daftar Pesanan
 
                         <table class="w-full top-0 mt-0">
                             <thead>
@@ -224,19 +224,19 @@
 
                                 <tr
                                 wire:key="item-{{ $index }}"
-                                class="p-4"
+                                class="p-2"
                                 >
-                                    <td class="text-center border-b border-gray-400">{{ $index+1}}</td>
-                                    <td class="text-left border-b border-gray-400">{{ $menu['menu_id'] }}</td>
-                                    <td class="text-left border-b border-gray-400">{{ $menu['description'] }}</td>
-                                    <td class="text-center border-b border-gray-400">{{ $menu['item_qty'] }}</td>
-                                    <td class="text-right border-b border-gray-400">{{ $menu['sellingPrice'] }}</td>
-                                    <td class="text-right border-b border-gray-400">{{ $menu['total']}}</td>
+                                    <td class="text-center border-b border-gray-400 text-xs">{{ $index+1}}</td>
+                                    <td class="text-left border-b border-gray-400 text-xs">{{ $menu['menu_id'] }}</td>
+                                    <td class="text-left border-b border-gray-400 text-xs">{{ $menu['description'] }}</td>
+                                    <td class="text-center border-b border-gray-400 text-xs">{{ $menu['item_qty'] }}</td>
+                                    <td class="text-right border-b border-gray-400 text-xs">{{ $menu['sellingPrice'] }}</td>
+                                    <td class="text-right border-b border-gray-400 text-xs">{{ $menu['total']}}</td>
                                     {{-- <td class="text-right">{{ $menu['item_qty'] * $menu['sellingPrice']}}</td> --}}
                                     <td class="text-center py-2">
                                     <button
                                     wire:click="removeItem({{ $index }},'{{ $menu['menu_id'] }}')"
-                                    class="text-right bg-red-400 py-2 px-2 rounded-xl "
+                                    class="text-right bg-red-400 py-2 px-2 rounded-xl text-xs"
                                     >
                                         Remove
                                         </button>
@@ -254,7 +254,7 @@
 
                             <div
                                  wire:model="selectCustomer"
-                                 class="p-4 "
+                                 class="p-2 "
                                 >
                                 Customer : <br>
                                 <span class="flex-col p-4 text-gray-600" >#{{ $customerid }}
@@ -277,7 +277,7 @@
                             </div>
 
                                 {{-- <div class=" flex flex-row justify-end items-center py-2 text-[12px] mr-2 border-t-2 border-gray-900"> --}}
-                              <div class="py-4 pl-10 items-end justify-end text-[12px] mr-2 border-t-2 border-gray-900">
+                              <div class="py-2 pl-10 items-end justify-end text-xs mr-2 border-t-2 border-gray-900">
                                 <span
                                 wire:model='total'
                                 class="p-2 text-right"
@@ -309,7 +309,7 @@
                                     <span
                                         class="p-2 text-right"
                                         >
-                                        Rp. {{ $biayaKirim }}
+                                        Rp. {{ number_format( (float) $biayaKirim,0,',','.') ?? '' }}
 
                                             <span
                                                 wire:model="totaTagihan"
@@ -318,7 +318,8 @@
                                                 <span>_______________________________________</span>
                                                 <span class="p-2 text-right">
                                                 Total Tagihan.
-                                                    Rp. {{ $totalTagihan }}
+                                                    {{-- Rp. {{ number_format( (float) $totalTagihan,0,',','.') ?? '' }} --}}
+                                                    {{ 'Rp '. $totalTagihan ?? '0' }}
                                                 </span>
                                             </span>
                                         </span><br>
@@ -326,7 +327,7 @@
                               </div>
                             {{-- ======================================= --}}
                                 @if(!empty($this->namaPenerima))
-                                    <div class="grid-cols-1 pl-5">
+                                    <div class="grid-cols-1 pl-5 text-xs">
                                         Tujuan Pengiriman:
                                         <div>
 
