@@ -1,5 +1,5 @@
 {{-- <div class="py-2 bg-slate-300 h-[768px]"> --}}
-<div class="py-2 bg-slate-300 h-[900px]">
+<div class="py-2 w-full max-w-full bg-slate-300 h-[900px]">
     <div class="w-full p-4 pl-8 bg-slate-500">
         <header class="ml-8">
             Point Of Sales
@@ -65,7 +65,7 @@
         </div>
     </div>
 
-        <div class="grid  md:grid-cols-2 md:max-h-[500px] gap-4 p-2 ">
+        <div class="grid md:grid-cols-2 md:max-h-[500px] gap-4 p-2 ">
 
             {{-- COLUMN 1 --}}
             <div class="px-2 ml-5 md:h-[600px] ">
@@ -89,7 +89,7 @@
             </div>
 
             {{-- COLUMN 2 --}}
-            <div class="bg-gray-200 flex flex-col  max-h-[550px] pt-0 pb-2 md:w-[96%] items-center text-xs">
+            <div class="bg-gray-200 flex flex-col  md:max-h-[550px] pt-0 pb-2 md:w-[96%] items-center text-xs">
                 <span class="flex flex-row md:w-80 md:min-w-40 justify-center gap-1 items-center py-2 px-2 mb-2">
 
                     <span class="flex items-center text-xs mr-2 ml-auto
