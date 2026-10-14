@@ -1,6 +1,6 @@
 {{-- <div class="py-2 bg-slate-300 h-[768px]"> --}}
 <div class="py-2 bg-slate-300 h-[900px]">
-    <div class="w-full max-w-1280 p-4 pl-8 bg-slate-500">
+    <div class="w-full p-4 pl-8 bg-slate-500">
         <header class="ml-8">
             Point Of Sales
         </header>

@@ -21,6 +21,6 @@ class Customer extends Model
         // dd($value);
         $customerName = customer::where('id',$value)->first();
 
-        return $customerName->nama;
+        return $customerName->nama ?? '';
     }
 }
