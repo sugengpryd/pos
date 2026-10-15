@@ -8,6 +8,7 @@ use App\Models\Menu;
 use App\Models\Menu_item;
 use App\Models\Customer;
 use App\Models\pengiriman;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class StrukController extends Controller
 {
