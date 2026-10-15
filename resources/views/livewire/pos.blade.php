@@ -1,6 +1,6 @@
 {{-- <div class="py-2 bg-slate-300 h-[768px]"> --}}
-<div class="py-2 w-full max-w-full bg-slate-300 h-[900px]">
-    <div class="w-full p-4 pl-8 bg-slate-500">
+<div class="pb-4 w-full max-w-full h-full bg-transparent">
+    <div class="w-full p-4 mt-0 pl-8 bg-slate-500">
         <header class="ml-8">
             Point Of Sales
         </header>
@@ -45,7 +45,7 @@
 
             @foreach ($kategori as $index => $kategoris )
             <div class="flex flex-row ml-4" >
-              <div class="p-2 bg-blue-400 text-center rounded-xl">
+              <div class="p-2 bg-blue-400 text-center rounded-xl text-xs">
                 <button
                     type="button"
                     wire:model.live='btnKategori.{{ $kategoris->id }}'
@@ -68,19 +68,35 @@
         <div class="grid md:grid-cols-2 md:max-h-[500px] gap-4 p-2 ">
 
             {{-- COLUMN 1 --}}
+            {{-- <div class="px-2 ml-5 md:h-[600px] "> --}}
             <div class="px-2 ml-5 md:h-[600px] ">
-                <div class="grid grid-cols-4 py-2 pr-2 gap-2 max-h-[450px] overflow-y-auto">
+                {{-- <div class="grid grid-cols-4 py-2 pr-2 gap-2 max-h-[450px] overflow-y-auto"> --}}
+                {{-- <div class="flex flex-row py-2 pr-2 gap-2"> --}}
+                <div class="w-full flex flex-row flex-wrap py-2 items-start pr-2 gap-2">
 
                     @foreach ($menus as $index => $menu)
-                        <div class="px-2 p-3 bg-gray-400 rounded-xl text-black text-center text-xs drop-shadow-xl">
-                        <button
-                            type="button"
-                            wire:model="btnItem.{{ $menu['menu_id'] }}"
-                            wire:click="btnadd('{{ $menu['menu_id'] }}', '{{ $menu['description'] }}')"
-                            class="w-full h-[100px] bg-yellow-700 flex items-center justify-center text-center p-2 mb-2 rounded-xl text-white"
-                        >
-                        </button>
-                            {{ $menu['description'] }}
+                        <div class="flex flex-col items-center gap-3
+                                     w-[120px] h-[160px] mb-2 px-2 py-2 bg-gray-400 rounded-xl
+                                    text-black text-center text-xs shadow-xl">
+
+                            <button
+                                type="button"
+                                wire:click="btnadd(
+                                    {{ Js::from($menu['menu_id']) }},
+                                    {{ Js::from($menu['description']) }}
+                                )"
+                                class="shrink-0
+                                    h-[100px] w-[100px] bg-yellow-700
+                                    items-center justify-center text-center
+                                    p-2 rounded-xl text-xs text-white"
+                                >
+                                +
+                            </button>
+
+                            <span class="w-[120px] px-2 text-center text-xs
+                                   text-black whitespace-normal break-words">
+                             {{ $menu['description'] }}
+                            </span>
 
                         </div>
                     @endforeach
@@ -90,14 +106,14 @@
 
             {{-- COLUMN 2 --}}
             {{-- <div class="bg-gray-200 flex flex-col  md:max-h-[550px] pt-0 pb-2 md:w-[96%] items-center text-xs"> --}}
-            <div class="bg-gray-200 w-full min-w-full pt-0 pb-2 md:w-full items-center text-xs">
+            <div class="bg-gray-200 w-full min-w-full md:max-h-[900px] pt-0 pb-2 md:w-full items-center text-xs">
                     <div class="flex flex-row flex-wrap items-center p-2 gap-2 w-full">
 
                             {{-- Customer --}}
                             <button
                                 wire:click="openModal('customer')"
                                 class="bg-blue-700 text-white text-xs md:text-sm
-                                    px-4 py-3 rounded shadow-lg
+                                    px-2 py-3 rounded shadow-lg
                                     hover:shadow-xl hover:shadow-teal-600">
                                 🧑‍🤝‍🧑 Customer
                             </button>
@@ -106,7 +122,7 @@
                             <button
                                 wire:click="openmodaldelivery"
                                 class="bg-blue-700 text-white text-xs md:text-sm
-                                    px-4 py-3 rounded shadow-lg
+                                    px-2 py-3 rounded shadow-lg
                                     hover:shadow-xl hover:shadow-teal-600">
                                 🛵 Delivery
                             </button>
@@ -116,7 +132,7 @@
                                 wire:loading.attr="disabled"
                                 wire:click="save()"
                                 class="bg-blue-700 text-white text-xs md:text-sm
-                                    px-4 py-3 rounded shadow-lg
+                                    px-2 py-3 rounded shadow-lg
                                     hover:shadow-xl hover:shadow-teal-600">
                                 💾 Simpan
                             </button>
@@ -125,7 +141,7 @@
                             <button
                                 onclick="window.open('{{ route('Do', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid]) }}','_blank')"
                                 class="bg-blue-700 text-white text-xs md:text-sm
-                                    px-4 py-3 rounded shadow-lg
+                                    px-2 py-3 rounded shadow-lg
                                     hover:shadow-xl hover:shadow-teal-600">
                                 🖨️ DO
                             </button>
@@ -135,7 +151,7 @@
                             onclick="window.open('{{ route('Struk', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid,'biayaKirim'=>$this->biayaKirim,'totalTagihan'=>$this->totalTagihan])}}','_blank')"
 
                                 class="bg-blue-700 text-white text-xs md:text-sm
-                                    px-4 py-3 rounded shadow-lg
+                                    px-2 py-3 rounded shadow-lg
                                     hover:shadow-xl hover:shadow-teal-600">
                                 🖨️ Invoice
                             </button>
@@ -144,7 +160,7 @@
                             <button
                                 wire:click="openformBayar()"
                                 class="bg-lime-700 text-white text-xs md:text-sm
-                                    px-4 py-3 rounded shadow-lg
+                                    px-2 py-3 rounded shadow-lg
                                     hover:shadow-xl hover:shadow-lime-600">
                                 💵 Bayar
                             </button>
@@ -226,43 +242,44 @@
                               <div class="py-2 pl-10 items-end justify-end text-xs mr-2 border-t-2 border-gray-900">
                                 <span
                                 wire:model='total'
-                                class="p-2 text-right"
+                                class="md:p-2 text-right"
                                     >
-                                    Total.
-                                    <span class="p-2 py-4 text-right">Rp. {{$total}}</span>
+                                Total.
+                                    <span class="p-2 py-4 text-right"> {{'Rp.' . $total}}</span>
                                 </span><br>
 
                                 <span
                                 wire:model='ppn'
-                                class="p-2 text-right"
+                                class="md:p-2 text-right"
                                 >
                                 Tax.
-                                <span class="p-2 text-right" >Rp. {{ $ppn }} </span>
+                                <span class="p-2 text-right" > {{'Rp.' . $ppn }} </span>
                                 </span><br>
 
                                 <span
                                 wire:model='diskon'
-                                class="p-2 text-right"
+                                class="md:p-2 text-right"
                                 >
                                 Discount.
-                                <span class="p-2 text-right"> Rp. {{ $diskon }}</span>
+                                <span class="p-2 text-right">  {{'Rp.' . $diskon }}</span>
                                 </span><br>
 
                                 <span
                                 wire:model.live="biayaKirim"
-                                class="px-2 text-right">
+                                class="md:p-2 text-right">
                                 Delivery
                                     <span
                                         class="p-2 text-right"
                                         >
-                                        Rp. {{ number_format( (float) $biayaKirim,0,',','.') ?? '' }}
+                                         {{ 'Rp.' . number_format( (float) $biayaKirim,0,',','.') ?? '' }}
 
                                             <span
                                                 wire:model="totaTagihan"
                                                 class="p-2 text-right"
                                                 >
-                                                <span class="text-right">______________________</span><br>
-                                                <span class="p-2 text-right">
+                                                {{-- <span class="w-full h-px bg-blacks"></span><br> --}}
+                                                <hr class="border-gray-400 my-2">
+                                                <span class="md:p-2 text-right">
                                                 Total Tagihan.
                                                     {{-- Rp. {{ number_format( (float) $totalTagihan,0,',','.') ?? '' }} --}}
                                                     {{ 'Rp '. $totalTagihan ?? '0' }}
@@ -273,9 +290,8 @@
                               </div>
                             {{-- ======================================= --}}
                                 @if(!empty($this->namaPenerima))
-                                    <div class="grid-cols-1 pl-5 text-xs">
+                                    <div class="grid-cols-1 p-2 text-xs -mt-5">
                                         Tujuan Pengiriman:
-                                        <div>
 
                                         <div class="pl-3">
                                             <label>Nama.</label>

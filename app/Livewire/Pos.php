@@ -371,6 +371,8 @@ class Pos extends Component
 
         ];
         }
+        $this->dispatch('notify', message: 'Item added');
+
     }
     public function openmodaldelivery(){
         $findBatchId = dbpengiriman::where('batch_id',$this->transaksiBatchId)->first();

@@ -14,7 +14,7 @@
 
     </style>
 </head>
-<div id="divId" class="w-full flex flex-row bg-white py-2 border-2 ml-5 ">
+<div id="divId" class="w-full flex flex-row bg-white py-2 ml-5 ">
         <div class=" w-auto p-1  pl-4">
             <div class="text-left border-b-2 text-sm py-2  mr-['65%']">
 
