@@ -63,7 +63,7 @@ class StrukController extends Controller
                 ->where('transaksi.batch_id',$batch_id)
                 ->get();
 
-    return view('Struk',compact('customer','transaksi','menu','sumtotal','totalQty'));
+    return view('struk',compact('customer','transaksi','menu','sumtotal','totalQty'));
             }
 
     }
