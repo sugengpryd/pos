@@ -14,7 +14,7 @@
 
     </style>
 </head>
-<div id="divId" class="w-full flex flex-row bg-white py-2 border-2 ml-5 ">
+<div id="divId" class="w-full flex flex-row bg-white py-2 ml-5 ">
         <div class=" w-auto p-1  pl-4">
             <div class="text-left border-b-2 text-sm py-2  mr-['65%']">
 
@@ -24,17 +24,17 @@
 
                 <span class="text-xl text-left text-lime-600">Nazta Pudding</span>
             </div>
-            <span class="text-sm"> Penerima </span>
+            <span class="text-sm"> Customer </span>
 
                 <div>
                     <span class="text-xs">
-                <label>Customer Name :</label>
+                <label>Name :</label>
                         {{ $customer->nama ?? ""}}
                     </span>
                 </div>
                 <div class="max-w-[200px] break-words whitespace-normal">
                     <span class="text-xs">
-                <label>Customer Alamat :</label>
+                <label>Alamat :</label>
                         {{ $customer->Alamat  ?? ""}}
                     </span>
                 </div>
@@ -87,21 +87,43 @@
 
                         <tr class="py-8">
                             {{-- <td class="px-4 py-2 text-right text-xs">{{ $index+1 }}</td> --}}
-                            <td class="px-4 py-2 text-left text-xs">{{ $menus->menu_id }}</td>
+                            <td class="px-2 py-2 text-left text-xs">{{ $menus->menu_id }}</td>
                             <tr>
-                            <td class="px-4 py-2 text-left text-xs">{{ $menus->description }}</td>
-                            <td class="px-4 py-2 text-right text-xs">{{ $menus->qty }}</td>
+                            <td class="px-2 py-2 text-left text-xs">{{ $menus->description }}</td>
+                            <td class="px-2 py-2 text-center text-xs">{{ $menus->qty }}</td>
                             <td class="px-2 py-2 text-right text-xs">{{ number_format($menus->total,0,'.'.'.') }}</td>
                         </tr>
                         </tr>
                         @endforeach
+
                         <tr class="text-right">
                             <td></td>
                             {{-- <td></td> --}}
                             {{-- <td></td> --}}
-                            <td>Total:</td>
-                            <td class="px-2 py-2 text-right text-xs"> {{ number_format($sumtotal,0,'.'.'.') }}</td>
+                            <td class="text-xs">Total:</td>
+                            <td class="px-2 text-right text-xs"> {{ number_format($sumtotal,0,'.'.'.') ?? '' }}</td>
+                        </tr>
+                        <tr class="text-right">
+                            <td></td>
+                            {{-- <td></td> --}}
+                            {{-- <td></td> --}}
+                            <td class="text-xs">Ppn:</td>
+                            <td class="px-2 text-right text-xs"> {{ number_format($Ppn,0,'.'.'.') ?? '' }}</td>
+                        </tr>
 
+                         <tr class="text-right">
+                            <td></td>
+                            {{-- <td></td> --}}
+                            {{-- <td></td> --}}
+                            <td class="text-xs">Biaya Kirim:</td>
+                            <td class="px-2 text-right text-xs"> {{ number_format($biayaKirim,0,'.'.'.') ?? '' }}</td>
+                        </tr>
+                         <tr class="text-right">
+                            <td></td>
+                            {{-- <td></td> --}}
+                            {{-- <td></td> --}}
+                            <td class="text-xs">Total Tagihan:</td>
+                            <td class="px-2 text-right text-xs underline decoration-2 underline-offset-4"> {{ $totalTagihan }}</td>
                         </tr>
 
 

@@ -54,6 +54,15 @@ class StrukController extends Controller
         $transaksi = Transaksi::where('batch_id',$batch_id)->first();
         $sumtotal = Transaksi::where('batch_id',$batch_id)->sum('total');
         $totalQty = Transaksi::where('batch_id',$batch_id)->sum('qty');
+        $biayaKirim = $request->biayaKirim;
+        $totalTagihan = $request->totalTagihan;
+        $Ppn= ($sumtotal * 0.11)*0;
+    // dd($Ppn);
+
+
+        // dd($biayaKirim);
+
+        // dd(this->biayaKirim);
 
 
         $menu = menu::query()
@@ -63,7 +72,7 @@ class StrukController extends Controller
                 ->where('transaksi.batch_id',$batch_id)
                 ->get();
 
-    return view('struk',compact('customer','transaksi','menu','sumtotal','totalQty'));
+    return view('struk',compact('customer','transaksi','menu','sumtotal','totalQty','biayaKirim','totalTagihan','Ppn'));
             }
 
     }

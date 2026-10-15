@@ -132,7 +132,8 @@
 
                             {{-- Invoice --}}
                             <button
-                                onclick="window.open('{{ route('Struk', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid]) }}','_blank')"
+                            onclick="window.open('{{ route('Struk', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid,'biayaKirim'=>$this->biayaKirim,'totalTagihan'=>$this->totalTagihan])}}','_blank')"
+
                                 class="bg-blue-700 text-white text-xs md:text-sm
                                     px-4 py-3 rounded shadow-lg
                                     hover:shadow-xl hover:shadow-teal-600">
@@ -260,7 +261,7 @@
                                                 wire:model="totaTagihan"
                                                 class="p-2 text-right"
                                                 >
-                                                <span>_______________________________________</span>
+                                                <span class="text-right">______________________</span><br>
                                                 <span class="p-2 text-right">
                                                 Total Tagihan.
                                                     {{-- Rp. {{ number_format( (float) $totalTagihan,0,',','.') ?? '' }} --}}
