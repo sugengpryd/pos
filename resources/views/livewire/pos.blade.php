@@ -466,11 +466,11 @@
         {{-- class="cursor-move select-none fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50" --}}
                 {{-- style="left:50%; top:50%; transform:translate(-50%,-50%);" --}}
                 >
-            <div class="bg-white rounded-lg max-h-[90vh] shadow-lg w-1/2 min-w-[600px] max-w-[900px] p-4 overflow-y-auto ">
+            <div class=" flex flex-col w-60 justify-start items-start bg-white rounded-lg max-h-[90vh] shadow-lg min-w-[300px] max-w-[900px] p-4 overflow-y-auto ">
               <div class="h-full">
 
                 <form wire:submit.prevent="bayar" enctype="multipart/form-data">
-                <div>
+                <div class="flex flex-col">
                     <select
                     wire:model.live='pengirim'
                     class="p-2 text-xs rounded px-8 mx-auto m-2"
@@ -529,7 +529,7 @@
 
 
                 </div>
-                <div>
+                <div class="flex flex-col">
                     <select
                     wire:model.live='penerima'
                     wire:change='Penerima()'

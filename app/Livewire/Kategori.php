@@ -5,7 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\kategori as kategories;
 use Livewire\Attributes\Layout;
-#[Layout('Layouts.app')]
+#[Layout('layouts.app')]
 
 class Kategori extends Component
 {
