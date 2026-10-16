@@ -65,17 +65,16 @@
 
                     <td
                     wire:model.live="harga"
-                    class="p-2 text-sm border-b-2 text-right">{{ $menus->sellingPrice}}</td>
+                    class="p-2 text-sm border-b-2 text-right">{{ $menus->sellingPrice}}
+                    </td>
 
-                    @if($menus->flaq == "1")
-                        <?php $flaq = "Show" ?>
-
-                    @else
-                        <?php $flaq = "hidden" ?>
-                    @endif
                     <td
                     wire:model="menu_visibility"
-                    class="p-2 text-sm border-b-2 text-center ">{{ $flaq}}</td>
+                    class="p-2 text-sm border-b-2 text-center "
+                    >
+                    {{ $menus->flaq == '1' ? 'Show' : 'Hidden' }}
+
+                   </td>
                     <td class="p-2 text-sm border-b-2 text-center ">
                         <button
                             wire:click="editMenu({{ $menus->id }})"
