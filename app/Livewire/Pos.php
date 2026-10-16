@@ -67,6 +67,7 @@ class Pos extends Component
     public $teleponPenerima='';
     public $namaPengirim='';
     public $alamatPengirim='';
+    public $itemQty=0;
 
 
 
@@ -350,7 +351,7 @@ class Pos extends Component
         $this->totalSementara += $menustransaksis->item_qty * $menustransaksis->sellingPrice;
 
         $this->total = number_format($this->totalSementara,0,'.'.'.');
-
+        $this->itemQty += 1;
         $biayaKirim = (float) preg_replace('/\D/','',$this->biayaKirim);
         // dd($biayaKirim);
 
@@ -403,6 +404,7 @@ class Pos extends Component
         $this->total='0';
         $this->totalTagihan ='0';
         $this->biayaKirim ='0';
+        $this->itemQty = 0;
 
 
         // dd($this->selectedcustomer);
@@ -460,6 +462,9 @@ class Pos extends Component
             // dd($cekTransaksi);
 
             // $this->menustransaksi[]=$cekTransaksi;
+            $sumQty= $cekTransaksi->sum('qty') ?? '0';
+            // dd($sumQty);
+
 
             if($cekTransaksi->isEmpty()){
                 // dd("create BatchId");
@@ -503,6 +508,7 @@ class Pos extends Component
                 $this->cekbiayaKirim();
                 $this->total = number_format($this->totalSementara,0,'.'.'.');
                 $this->totalTagihan = number_format(($this->totalSementara + (float) $this->biayaKirim + $this->ppn) - $this->diskon,0,'.','.');
+                $this->itemQty= $sumQty;
                 $this->dispatch('notify', message: 'Opening Basket');
             }
 

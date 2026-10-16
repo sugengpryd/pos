@@ -176,7 +176,10 @@
                                 <th class="bg-white top-0 sticky z-20 text-center p-2 border-b-2 border-gray-700">Id</th>
                                 <th class="bg-white top-0 sticky z-20 text-center p-2 border-b-2 border-gray-700">Menu Id </th>
                                 <th class="bg-white top-0 sticky z-20 text-left p-2 border-b-2 border-gray-700">Description</th>
-                                <th class="bg-white top-0 sticky z-20 text-center p-2 border-b-2 border-gray-700">Qty</th>
+                                <th class="bg-white top-0 sticky z-20 text-center p-2 border-b-2 border-gray-700">
+                                    Qty<br>
+                                {{-- <span class="text-[10px] text-gray-700">{{ $this->itemQty ?? '0' }}</span> --}}
+                                </th>
                                 <th class="bg-white top-0 sticky z-20 text-center p-2 border-b-2 border-gray-700">Price</th>
                                 <th class="bg-white top-0 sticky z-20 text-center p-2 border-b-2 border-gray-700">Total</th>
                                 <th class="bg-white top-0 sticky z-20 text-center p-2 border-b-2 border-gray-700">Action</th>
@@ -239,7 +242,18 @@
                             </div>
 
                                 {{-- <div class=" flex flex-row justify-end items-center py-2 text-[12px] mr-2 border-t-2 border-gray-900"> --}}
-                              <div class="py-2 pl-10 items-end justify-end text-xs mr-2 border-t-2 border-gray-900">
+
+                              {{-- {{ $this->itemQty ?? '0' }} --}}
+                               <div class="py-2 pl-10 items-end justify-end text-xs mr-2 border-t-2 border-gray-900">
+                                <span
+                                wire:model='itemQty'
+                                class="md:p-2 text-right"
+                                    >
+                                Qty.
+                                    <span class="p-2 py-4 text-right"> {{ $this->itemQty}}</span>
+                                </span><br>
+
+                               {{-- <div class="py-2 pl-10 items-end justify-end text-xs mr-2 "> --}}
                                 <span
                                 wire:model='total'
                                 class="md:p-2 text-right"
