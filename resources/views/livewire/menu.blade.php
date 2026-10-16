@@ -96,7 +96,7 @@
     @if($showModal)
     <div class="fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50">
 
-        <div class="bg-white rounded-lg shadow-lg w-full min-w-[600px] max-w-[900px] p-6 max-h-screen overflow-y-auto">
+        <div class=" flex flex-row justify-start items-center bg-white rounded-lg shadow-lg w-full md:min-w-[600px] md:max-w-[900px] p-6 max-h-screen overflow-y-auto">
 
             <h3 class="text-lg font-semibold mb-4">
                 {{ $editMode ? 'Edit Menu' : 'Create New Menu' }}
@@ -105,7 +105,7 @@
             <form wire:submit.prevent="save" enctype="multipart/form-data">
                 {{-- form fields --}}
 
-                <div class="py-2 w-full gap-8">
+                <div class=" flex flex-row py-2 w-full gap-8">
                     <label  class="w-16">Menu ID</label>
                     <input
                     wire:model="menuId"
@@ -120,7 +120,7 @@
                 </div>
 
 
-                <div class="py-2 w-full gap-8">
+                <div class=" flex flex-row py-2 w-full gap-8">
                     <label  class="w-16">Menu Description</label>
                     <input
                     wire:model="menu_description"
@@ -130,7 +130,7 @@
                     >
                 </div>
 
-                <div class="py-2 w-full gap-8">
+                <div class=" flex flex-row py-2 w-full gap-8">
                     <label  class="w-16">Menu Kategori</label>
                     <select
                     wire:model.live="menu_kategori"
@@ -151,7 +151,7 @@
 
                 </div>
 
-                <div class="py-2 w-full gap-8">
+                <div class=" flex flex-row py-2 w-full gap-8">
                     <label class="w-16">Uom</label>
                     <select
                     wire:model="menu_uom"
@@ -167,7 +167,7 @@
                     </select>
                 </div>
 
-                <div class="py-2 w-full gap-8">
+                <div class=" flex flex-row py-2 w-full gap-8">
                     <label class="w-16">Qty</label>
                     <input
                     type="text"
@@ -178,7 +178,7 @@
                 </div>
 
 
-                <div class="py-2 w-full gap-8" >
+                <div class=" flex flex-row py-2 w-full gap-8" >
                     <label class="w-16"> Selling Price</label>
                     <input
                     type="text"
