@@ -1,18 +1,28 @@
 <div class="py-4 w-full max-w-[1080px] mx-auto">
-    <div class="flex flex-row px-4 ml-[5px] gap-12">
-        <div clas="flex-col w-auto justify-left">
-            <button
+    <div class="flex flex-row px-4 ml-[5px] gap-3">
+        <div clas="flex-row w-full justify-between items-center">
+            {{-- <button
             wire:click="openModal"
-            class=" text-sm bg-blue-300 p-2 hover:bg-blue-500 rounded-xl border border-spacing-2 border-blue-400">New Product</button>
+            class=" text-sm bg-blue-300 p-2 hover:bg-blue-500 rounded-xl border border-spacing-2 border-blue-400">New Product</button> --}}
         </div>
-        <div class="flex flex-row w-full justify-end items-end gap-8">
+        <div class="flex flex-col md:flex-row w-full justify-start items-start md:justify-end md:items-start gap-2 text-xs mb-2">
+
+            <div class="flex flex-1">
+             <button
+            wire:click="openModal"
+            class=" text-xs bg-blue-300 p-2 hover:bg-blue-500 rounded-lg border border-spacing-2 border-blue-400">
+            New Product
+            </button>
+            </div>
+
+
             <input type="text" placeholder="Search Produk"
                 wire:model.live="filterSearch"
-                class="p-2 rounded-xl">
+                class="p-2 rounded-lg text-xs">
 
             <select
                 wire:model.live="filterUom"
-                class="rounded-xl"
+                class="rounded-lg text-xs"
             >
 
                 <option value="">Filter UOM </option>
@@ -20,7 +30,7 @@
                 <option value="{{ $uoms->uom }}">{{ $uoms->uom }}</option>
                 @endforeach
             </select>
-            <select class="rounded-xl"
+            <select class="rounded-lg text-xs"
                 wire:model.live="filterPricing"
             >
                 <option value="">Filter Pricing </option>
@@ -32,7 +42,7 @@
 
             <select
                 wire:model.live="filterFlaq"
-                class="rounded-xl"
+                class="rounded-lg text-xs"
             >
                 <option value="">Filter Flaq</option>
                 <option value="1">1.Show</option>
@@ -44,17 +54,22 @@
 
 
     </div>
+    <div class="px-6" >
+       Total: {{ $produk->count() }}
+    </div>
     <div class="w-full max-w-[1080px] top-0 h-screen mx-auto mt-2 px-4 justify-start overflow-auto">
-        <table class=" px-4 py-2 w-full">
-            <p>Total: {{ $produk->count() }}</p>
-                <thead class="sticky py-0 top-0 bg-gray-300 z-55">
+
+        <div class="flex flex-row justify-start items-center p-2">
+
+        <table class=" py-2 w-full">
+                <thead class="sticky py-0 top-0 bg-gray-400 z-55">
                     <tr>
-                        <th class=" sticky top-0 z-50 p-4 text-left">Id</th>
-                        <th class=" sticky top-0 z-50 p-4 text-left">Description</th>
-                        <th class=" sticky top-0 z-50 p-4 text-left">Uom</th>
-                        <th class=" sticky top-0 z-50 p-4 text-left">Base Price</th>
-                        <th class=" sticky top-0 z-50 p-4 text-center">Flaq</th>
-                        <th class=" sticky top-0 z-50 p-4 text-center">Action</th>
+                        <th class="text-xs sticky top-0 z-50 p-4 text-left">Id</th>
+                        <th class="text-xs sticky top-0 z-50 p-4 text-left">Description</th>
+                        <th class="text-xs sticky top-0 z-50 p-4 text-left">Uom</th>
+                        <th class="text-xs sticky top-0 z-50 p-4 text-left">Base Price</th>
+                        <th class="text-xs sticky top-0 z-50 p-4 text-center">Flaq</th>
+                        <th class="text-xs sticky top-0 z-50 p-4 text-center">Action</th>
                     </tr>
 
                 </thead>
@@ -64,19 +79,19 @@
                 ?>
                 @foreach ($produk as $produks )
 
-                <tr>
+                <tr class="border border-b-black">
                     <td
                     wire:model.live="id"
-                    class="p-2 text-sm ">{{ $produks->id }}</td>
+                    class="p-2 text-xs ">{{ $produks->id }}</td>
                     <td
                     wire:model.live="description"
-                    class="p-2 text-sm ">{{ $produks->description}}</td>
+                    class="p-2 text-xs ">{{ $produks->description}}</td>
                     <td
                     wire:model.live="uom"
-                    class="p-2 text-sm ">{{ $produks->uom}}</td>
+                    class="p-2 text-xs ">{{ $produks->uom}}</td>
                     <td
                     wire:model.live="harga"
-                    class="p-2 text-sm ">{{ $produks->harga}}</td>
+                    class="p-2 text-xs ">{{ $produks->harga}}</td>
 
                      @if($produks->flaq == "1")
                         <?php $flaq = "Show" ?>
@@ -84,12 +99,12 @@
                     @else
                         <?php $flaq = "hidden" ?>
                     @endif
-                    <td class="p-2 text-sm text-center ">{{ $flaq}}</td>
-                    <td class="p-2 text-sm text-center ">
+                    <td class="p-2 text-xs text-center ">{{ $flaq}}</td>
+                    <td class="p-2 text-xs text-center ">
                         <button
                             wire:click="editProduk({{ $produks->id }})"
-                            class=" rounded-xl py-2  px-4 bg-yellow-700">Edit</button>
-                        <button class=" rounded-xl py-2 px-4 bg-red-700">Delete</button>
+                            class=" rounded-lg py-2  px-4 bg-blue-300 text-xs">Edit</button>
+                        <button class=" rounded-lg py-2 px-4 bg-red-400 text-xs">Delete</button>
 
                     </td>
 
@@ -99,6 +114,7 @@
             </tbody>
 
         </table>
+        </div>
 
 
     </div>
