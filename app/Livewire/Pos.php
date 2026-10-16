@@ -383,7 +383,7 @@ class Pos extends Component
         $this->kotaPenerima=$findBatchId->toKota ??'';
         $this->teleponPenerima=$findBatchId->toNumber ?? '';
         $biayaKirim= $findBatchId->BiayaKirim ??'';
-        $this->biayaKirim = number_format( (float) $biayaKirim,0,'.','.') ??'' ;
+        $this->biayaKirim = preg_replace('/\D/','', $biayaKirim) ??'' ;
         // dd($this->biayakirim);
 
         $this->openDelivery= true;
