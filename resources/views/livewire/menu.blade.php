@@ -14,10 +14,10 @@
             </div>
         </div>
     </div>
-    <div class="w-full max-w-[1080px] top-0 h-screen mx-auto mt-2 px-4 justify-start overflow-auto">
+    <div class="w-full max-w-[1080px] top-0 h-screen mx-auto mt-2 px-2 bg-gray-300 rounded-xl justify-start overflow-auto">
         <table class=" px-4 py-2 w-full">
             <p>Total: {{ $menu?->count() ?? '0' }}</p>
-                <thead class="sticky py-0 top-0 bg-gray-300 z-55">
+                <thead class="sticky py-0 top-0 bg-gray-400 z-55">
                     <tr>
                         <th class=" sticky top-0 z-50 p-4 text-left">Id</th>
                         {{-- <th class=" sticky top-0 z-50 p-4 text-left">Menu Id</th> --}}
@@ -32,20 +32,20 @@
                     </tr>
 
                 </thead>
-            <tbody>
+            <tbody class="bg-white">
                 <?php
                 $flaq='';
                 ?>
                 @foreach ($menu as $menus )
 
-                <tr>
+                <tr class="border-b-black border">
                     <td
                     wire:model.live="id"
-                    class="p-2 text-sm border-b-2 ">{{ $menus->id }}</td>
+                    class="p-2 text-sm ">{{ $menus->id }}</td>
 
                     <td
                     wire:model.live="description"
-                    class="p-2 text-sm border-b-2 ">{{ $menus->description}}</td>
+                    class="p-2 text-sm ">{{ $menus->description}}</td>
 
                     {{-- <td
                     wire:model.live="uom"
@@ -53,33 +53,33 @@
 
                     <td
                     wire:model.live="item_qty"
-                    class="p-2 text-sm  border-b-2text-center ">{{ $menus->item_qty}}</td>
+                    class="p-2 text-sm  text-center ">{{ $menus->item_qty}}</td>
 
                     <td
                     wire:model.live="uom"
-                    class="p-2 text-sm  border-b-2text-xl-center ">{{ $menus->uom}}</td>
+                    class="p-2 text-sm  text-xl-center ">{{ $menus->uom}}</td>
 
                     <td
                     wire:model.live="kategori"
-                    class="p-2 text-sm border-b-2 text-xl-center ">{{ $menus->kategori}}</td>
+                    class="p-2 text-sm text-xl-center ">{{ $menus->kategori}}</td>
 
                     <td
                     wire:model.live="harga"
-                    class="p-2 text-sm border-b-2 text-right">{{ $menus->sellingPrice}}
+                    class="p-2 text-sm text-right">{{ $menus->sellingPrice}}
                     </td>
 
                     <td
                     wire:model="menu_visibility"
-                    class="p-2 text-sm border-b-2 text-center "
+                    class="p-2 text-sm text-center "
                     >
                     {{ $menus->flaq == '1' ? 'Show' : 'Hidden' }}
 
                    </td>
-                    <td class="p-2 text-sm border-b-2 text-center ">
+                    <td class="p-2 text-sm text-center ">
                         <button
                             wire:click="editMenu({{ $menus->id }})"
-                            class=" rounded-xl py-2  px-4 bg-yellow-700">Edit</button>
-                        <button class=" rounded-xl py-2 px-4 bg-red-700">Delete</button>
+                            class=" rounded-xl py-2  px-4 bg-blue-300">Edit</button>
+                        <button class=" rounded-xl py-2 px-4 bg-red-300">Delete</button>
 
                     </td>
 
