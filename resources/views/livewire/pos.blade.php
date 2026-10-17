@@ -347,7 +347,7 @@
      @if($showModal)
     <div class="fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50">
 
-        <div class="bg-white rounded-lg shadow-lg w-1/2 min-w-[600px] max-w-[900px] p-6 max-h-[400px] overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-lg w-1/2 min-w-[360px] max-w-[900px] p-6 max-h-[400px] overflow-y-auto">
 
             <h3 class="text-lg font-semibold mb-4">
                 {{ $customerMode ? 'Customer List' : 'Customer List' }}
