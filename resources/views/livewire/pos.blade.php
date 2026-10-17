@@ -126,6 +126,15 @@
                                     hover:shadow-xl hover:shadow-teal-600">
                                 🛵 Delivery
                             </button>
+                            {{-- Discount --}}
+                            <button
+                                {{-- wire:modal.live="showmodalDiscount" --}}
+                                wire:click="openmodaldiscount"
+                                class="bg-blue-700 text-white text-xs md:text-sm
+                                    px-2 py-3 rounded shadow-lg
+                                    hover:shadow-xl hover:shadow-teal-600">
+                                🏷️ Discount
+                            </button>
 
                             {{-- Simpan --}}
                             <button
@@ -677,6 +686,119 @@
         </div>
 
 
+    @endif
+
+    @if($showmodalDiscount)
+    <div class="fixed inset-0 z-50 w-full h-screen flex items-center justify-center bg-black bg-opacity-50">
+
+        <div class="bg-white rounded-lg shadow-lg w-1/2 min-w-[300px] max-w-[900px] p-6 max-h-[600px] overflow-y-auto">
+
+            <h3 class="text-lg font-semibold mb-4">
+                {{ $discountMode ? 'Discount' : '' }}
+            </h3>
+            <div class="flex flex-row w-full min-w-[350px] justify-between items-center md:justify-between md:items-start ">
+                <form wire:submit.prevent="save_discount" enctype="multipart/form-data">
+                    {{-- <div class="flex flex-row justify-start items-start p-2 mt-2"> --}}
+                        <div class="flex-col p-2 gap-1 text-xs">
+                                <label class="text-bold" for="batchId">BatchId</label>
+                                    <input
+                                    wire:model.live="batchidDiscount"
+                                    id="batchId" type="text"
+                                    class="flex flex-col flex-wrap rounded-lg text-xs p-2"
+                                    >
+
+                                <label class=" text-bold" for="customer">Customer</label>
+                                    <input
+                                    wire:model.live="customerDiscount"
+                                    id="customer" type="text"
+                                    class="flex flex-col flex-wrap rounded-lg text-xs p-2"
+                                    >
+
+
+                                <label class=" text-bold" for="totalTagihan">Total Tagihan</label>
+                                    <input
+                                    wire:model.live="totaltagihanDiscount"
+                                    id="totalTagihan" type="text"
+                                    class="flex flex-col flex-wrap rounded-lg text-xs p-2"
+                                    >
+                        </div>
+                            <div class="flex flex-col gap-2 mt-1 p-2 text-xs">
+                                <label for="discountPersen">Discount %</label>
+                                    <input
+                                        {{-- wire:model.live="discountpersenDiscount" --}}
+                                        {{-- wire:click="discount({{$this->discountpersenDiscount}})" --}}
+                                        id="discountPersen"
+                                        type="radio"
+                                        wire:model.live="discounttype"
+                                        value="persen"
+
+                                        >
+                                @if($divPersen)
+
+                                <div wire:model.live="divPersen" class="">
+                                <input type="text"
+                                    wire:model.live="discountPersen"
+                                    class=" p-2 rounded-lg text-xs"
+                                    @focus="$el.select()"
+                                    placeholder="Masukan persen Discount"
+                                    >&nbsp%
+                                </div>
+                                @endif
+                                <label for="discountNominal">Discount Rp</label>
+                                    <input
+                                    {{-- wire:model.live="discountnominalDiscount" --}}
+                                    {{-- wire:click="discount({{$this->discountnominalDiscount}})" --}}
+                                    id="discountNominal"
+                                    type="radio"
+                                    wire:model.live="discounttype"
+                                    value="nominal"
+                                    >
+                                @if($divNominal)
+                                <div wire:model.live="divNominal" class="">
+                                    <input type="text"
+                                    wire:model.live="discountNominal"
+                                    class=" p-2 rounded-lg text-xs"
+                                    @focus="$el.select()"
+                                    placeholder="Masukan Nominal Discount"
+                                    >&nbsprupiah
+                                </div>
+                                @endif
+
+                            </div>
+
+                                <div class="flex flex-col justify-start items-start">
+                                <label for="discountAmount">Total Amount</label>
+                                    <input
+                                        wire:model.live="discountAmount"
+                                        id="discountAmount"
+                                        type="text"
+                                        class="rounded-lg text-right"
+
+
+                                >
+                                </div>
+                                 <div
+                                    class="flex flex-row p-2 gap-4"
+                                    >
+                                    <button
+                                    type="button"
+                                    wire:click="closemodalDiscount"
+                                    class="bg-slate-400 rounded-lg flex flex-col mt-2 w-1/4 text-xs text-center hover:bg-blue-700 p-2"
+                                    >
+                                        Exit
+                                    </button>
+                                    <button
+                                    wire:click="applyDiscount"
+                                    type="button"
+                                    class="bg-blue-400 rounded-lg flex flex-col mt-2 w-1/4 text-xs text-center hover:bg-blue-700 p-2"
+                                    >
+                                        Apply
+                                    </button>
+                                </div>
+                    {{-- </div> --}}
+                </form>
+        </div>
+    </div>
     @endif
 
 <script>

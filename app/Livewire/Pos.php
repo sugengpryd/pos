@@ -7,7 +7,7 @@ use App\Models\Menu as Menu;
 use App\Models\Menu_item as Menu_item;
 use App\Models\Produk as Produk;
 use App\Models\Payment as Payment;
-use App\Models\Discount as Discount;
+use App\Models\Discount as dbDiscount;
 use App\Models\kategori as Kategori ;
 use App\Models\PPn as Ppn;
 use App\Models\Customer as DBCustomer;
@@ -68,6 +68,21 @@ class Pos extends Component
     public $namaPengirim='';
     public $alamatPengirim='';
     public $itemQty=0;
+    public $showmodalDiscount=false;
+    public $discountMode =true;
+    // public $discountAmount='0';
+    public $discounttype='';
+    public $batchidDiscount='0';
+    public $customerDiscount='0';
+    public $totaltagihanDiscount='0';
+    public $discountPersen='0';
+    public $discountNominal='0';
+    public $divNominal=false;
+    public $divPersen=false;
+    public $discountAmount='0';
+    public $totalDiscount='0';
+
+
 
 
 
@@ -163,12 +178,17 @@ class Pos extends Component
         dd("pengirim");
     }
     public function biayakirim(){
+        // dd([
+        //     $this->totalSementara,
+        //      $this->ppn,
+        //      $this->diskon,
+        // ]);
         $totalTagihan= '0';
         // dd([$this->totalTagihan,$this->biayakirim,$this->biayaKirim]);
-        $totalTagihan = number_format(($this->totalSementara + $this->ppn) - $this->diskon,0,'.'.'.');
+        $totalTagihan = number_format(($this->totalSementara + $this->ppn) - (float) preg_replace('/\D/','',$this->diskon));
 
-        $this->totalTagihan= (float) preg_replace('/\D/','',$this->biayaKirim) + (float) preg_replace('/\D/','',$totalTagihan);
-
+        $formattotalTagihan= (float) preg_replace('/\D/','',$this->biayaKirim) + (float) preg_replace('/\D/','',$totalTagihan);
+        $this->totalTagihan = number_format($formattotalTagihan,0,".",".");
     }
     public function Penerima(){
         $param =$this->penerima;
@@ -405,6 +425,7 @@ class Pos extends Component
         $this->totalTagihan ='0';
         $this->biayaKirim ='0';
         $this->itemQty = 0;
+        $this->diskon = 0;
 
 
         // dd($this->selectedcustomer);
@@ -505,9 +526,17 @@ class Pos extends Component
                 }
 
                 $this->findpenerima();
+                $this->cekDiskon();
                 $this->cekbiayaKirim();
                 $this->total = number_format($this->totalSementara,0,'.'.'.');
-                $this->totalTagihan = number_format(($this->totalSementara + (float) $this->biayaKirim + $this->ppn) - $this->diskon,0,'.','.');
+                $total = preg_replace('/\D/','', $this->totalSementara);
+                $ppn= preg_replace('/\D/','', $this->ppn);
+                $diskon = preg_replace('/\D/','', $this->diskon);
+                $delivery = preg_replace('/\D/','', $this->biayaKirim);
+
+
+                $this->totalTagihan =  number_format(($total - $diskon)+$ppn+$delivery,0,".",".");
+                // $this->totalTagihan = number_format(($this->totalSementara + (float) $this->biayaKirim + $this->ppn) - $this->diskon,0,'.','.');
                 $this->itemQty= $sumQty;
                 $this->dispatch('notify', message: 'Opening Basket');
             }
@@ -634,6 +663,7 @@ public function removeItem($index,$item_id)
                 ]);
 
         }
+        $this->simpanDiscount($this->transaksiBatchId);
         $this->simpanbiayakirim();
         $this->dispatch('notify', message: 'Transaction Saved');
     }
@@ -698,6 +728,119 @@ public function removeItem($index,$item_id)
 
 
     }
+    public function openmodaldiscount(){
+
+    $this->batchidDiscount='0';
+    $this->customerDiscount='0';
+    $this->totaltagihanDiscount='0';
+    $this->discountPersenDiscount='0';
+    $this->discountnominalDiscount='0';
+    $this->discountAmount='0';
+// dd(DBCustomer::getCustomer($this->customerid));
+    $this->batchidDiscount=$this->transaksiBatchId ?? '';
+    $this->customerDiscount= DBCustomer::getCustomer($this->customerid);
+    $this->totaltagihanDiscount=$this->total ??'';
+    $this->discountPersenDiscount='0' ?? '';
+    $this->discountnominalDiscount='0' ?? '';
+    $this->discountAmount='0' ?? '';
+    $this->showmodalDiscount= true;
+    $this->discountMode= true;
+
+    }
+    public function closemodalDiscount(){
+        $this->discountMode= false;
+        $this->showmodalDiscount= false;
+
+    }
+
+    public function save_discount(){
+        dd('discount');
+    }
+
+    public function UpdatedDiscountType($value){
+        if($value=="persen"){
+            $this->discountPersen ='0';
+            $this->divPersen =true;
+            $this->divNominal =false;
+
+
+        }else{
+            $this->discountNominal ='0';
+            $this->divNominal =true;
+            $this->divPersen =false;
+
+
+
+        }
+    }
+    public function updatedDiscountNominal($value){
+
+    $totalDiscount = (float) preg_replace('/\D/','',$value);
+    $totaltagihanDiscount=(float) preg_replace('/\D/','',$this->totaltagihanDiscount);
+    $totalAmount = (float) preg_replace('/\D/','',$this->totaltagihanDiscount);
+    $biayaKirim = (float) preg_replace('/\D/','',$this->biayaKirim);
+    $this->totalDiscount= number_format($totalDiscount,0,".",".");
+    $this->discountAmount = number_format( $totaltagihanDiscount -  $totalDiscount);
+    $ppn = (float) preg_replace('/\D/','',$this->ppn) ?? '0';
+    $totalTagihan = (($totalAmount+ $ppn)-$totalDiscount) + $biayaKirim;
+    $this->totalTagihan = number_format($totalTagihan,0,".",".");
+
+
+
+
+    }
+    public function updatedDiscountPersen($value){
+        $value = (float) preg_replace('/\D/','',$value);
+        $totalAmount = (float) preg_replace('/\D/','',$this->totaltagihanDiscount);
+        $totalDiscount = ($totalAmount * $value)/100;
+        $totalAfter = $totalAmount - $totalDiscount;
+        $this->discountAmount = number_format($totalAfter,0,".",".");
+        $this->totalDiscount= number_format($totalDiscount,0,".",".");
+        $ppn = (float) preg_replace('/\D/','',$this->ppn) ?? '0';
+        $biayaKirim = (float) preg_replace('/\D/','',$this->biayaKirim);
+        $totalTagihan = (($totalAmount+ $ppn)-$totalDiscount) + $biayaKirim;
+        $this->totalTagihan = number_format($totalTagihan,0,".",".");
+    }
+    public function applyDiscount(){
+        // dd("apply");
+        $this->diskon = $this->totalDiscount;
+    }
+
+    public function cekDiskon(){
+        $value = $this->transaksiBatchId ?? '';
+        $findData = dbDiscount::where('batch_id',$value)->first();
+        if($findData){
+            $this->diskon = number_format($findData->discount,0,".",".");
+        }
+
+    }
+
+    public function simpanDiscount($value){
+        $findData = dbDiscount::where('batch_id',$value)->first();
+        // dd($this->total);
+        if(!$findData){
+                $simpan =dbDiscount::create([
+
+                'batch_id'=> $this->transaksiBatchId,
+                'sellingPrice'=> (float) preg_replace('/\D/','',$this->total),
+                'discount'=> (float) preg_replace('/\D/','',$this->diskon),
+                'flaq'=> '1',
+
+
+                ]);
+        }else{
+
+                $update= dbDiscount::where('batch_id',$value)->update([
+                'batch_id'=> $this->transaksiBatchId,
+                'sellingPrice'=> (float) preg_replace('/\D/','',$this->total),
+                'discount'=> (float) preg_replace('/\D/','',$this->diskon),
+                'flaq'=> '1',
+
+                ]);
+        }
+
+    }
+
     public function resetform(){
             // $this->transaksiBatchId ='';
             // $this->total='';
