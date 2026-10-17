@@ -93,13 +93,9 @@
                     wire:model.live="harga"
                     class="p-2 text-xs ">{{ $produks->harga}}</td>
 
-                     @if($produks->flaq == "1")
-                        <?php $flaq = "Show" ?>
-
-                    @else
-                        <?php $flaq = "hidden" ?>
-                    @endif
-                    <td class="p-2 text-xs text-center ">{{ $flaq}}</td>
+                    <td class="p-2 text-xs text-center ">
+                        {{ $produks->flaq == '1' ? 'Show':'Hidden' }}
+                    </td>
                     <td class="p-2 text-xs text-center ">
                         <button
                             wire:click="editProduk({{ $produks->id }})"
