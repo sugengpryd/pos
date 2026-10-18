@@ -1,8 +1,8 @@
 <div class="py-4">
-    <div class="w-full mx-auto px-20 ">
-        <div class="flex flex-row justify-wrap items-center gap-3 ">
+    <div class="w-full flex-col p-2 ">
+        <div class="flex flex-col md:flex-row w-full justify-center items-start gap-2 ">
 
-            <div class="w-1/4">
+            <div class="flex flex-col w-25 justify-center items-center">
                 <select
                 wire:model.live="FilterBatchId"
                 class="w-full rounded-xl text-xs">
@@ -14,7 +14,7 @@
                 </select>
             </div>
 
-            <div class="w-1/4">
+            <div class="flex flex-col w-25 justify-center items-center">
                 <select
                 wire:model.live="FilterMenu"
                 class="w-full rounded-xl text-xs"
@@ -27,7 +27,7 @@
                 </select>
             </div>
 
-            <div class="w-1/4">
+            <div class="flex flex-col w-25 justify-center items-center">
                 <select
                 wire:model.live="FilterCustomer"
                 class="w-full rounded-xl text-xs">
@@ -38,7 +38,7 @@
                     @endforeach
                 </select>
             </div>
-            <div class="w-1/4">
+            <div class="flex flex-col w-25 justify-center items-center">
                 <select
                 wire:model.live="FilterStatus"
                 class="w-full rounded-xl text-xs">
@@ -49,7 +49,7 @@
                     @endforeach
                 </select>
             </div>
-            <div class="w-1/4">
+            <div class="flex flex-col w-25 justify-center items-center">
                 <select
                 wire:model.live="FilterDate"
                 class="w-full rounded-xl text-xs">
@@ -60,54 +60,56 @@
                     @endforeach
                 </select>
             </div>
-            <div>
-                <button
-                onclick="printDiv('printArea')"
-                class="bg-blue-400 p-2 text-xs px-4 rounded-lg shadow-lg shadow-blue-400"
-                >Print
-            </button>
+            <div class="flex flex-col w-20 justify-end items-wrap" >
+                    <button
+                    onclick="printDiv('printArea')"
+                    class="bg-blue-400  p-2 text-xs px-4 rounded-lg shadow-lg shadow-blue-400"
+                    >Print
+                </button>
             </div>
-        </div>
-    </div>
-    <div id="printArea" class="w-full md:w-full flex h-full justify-center items-center px-4 mx-auto pt-5 pb-10">
-        <div class="printHeader flex flex-row ml-6" style="display: none">Data Trasaksi
 
         </div>
-        <table class="h-600 overflow-auto">
-            <thead>
-                <th class="sticky top-0 bg-slate-300 py-1 px-4 text-sm">Id</th>
-                <th class="sticky top-0 bg-slate-300 py-1 px-4 text-sm">Batch_id</th>
-                <th class="sticky top-0 bg-slate-300 py-1 px-4 text-sm">Menu_id</th>
-                <th class="sticky top-0 bg-slate-300 py-1 px-4 text-sm text-center">Qty
-                    <br>
-                    <span class="text-gray-500"> {{ $qty}}</span>
-                </th>
-                <th class="sticky top-0 bg-slate-300 py-1 px-4 text-sm">Selling Price</th>
-                <th class="sticky top-0 bg-slate-300 py-1 px-4 text-right text-sm">Total
-                    <br>
-                    <span class="text-gray-500"> {{ number_format($total),0,'.'.'.' }}</span>
-                </th>
-                <th class="sticky top-0 bg-slate-300 py-1 px-4 text-sm">Customer Id</th>
-                <th class="sticky top-0 bg-slate-300 py-1 px-4 text-sm">Status</th>
-                <th class="sticky top-0 bg-slate-300 py-1 px-4 text-sm">Created At</th>
-            </thead>
-            <tbody>
-                @foreach($transaksi as $index => $transaksis)
-                <tr>
-                    <td class="py-2 border-b-2 px-8 text-xs">{{ $index+1 }}</td>
-                    <td class="py-2 border-b-2 px-8 text-xs">{{ $transaksis->batch_id }}</td>
-                    <td class="py-2 border-b-2 px-8 text-xs">{{ App\Models\Menu::get_name($transaksis->menu_id) }}</td>
-                    <td class="py-2 border-b-2 px-8 text-xs" text-center>{{ $transaksis->qty }}</td>
-                    <td class="py-2 border-b-2 px-8 text-xs text-right">{{ $transaksis->sellingPrice }}</td>
-                    <td class="py-2 border-b-2 px-8 text-xs text-right">{{ $transaksis->total }}</td>
-                    <td class="py-2 border-b-2 px-8 text-xs">{{ App\Models\Customer::getCustomer($transaksis->customer_Id) }}</td>
-                    <td class="py-2 border-b-2 px-8 text-xs">{{ $transaksis->flaq }}</td>
-                    <td class="py-2 border-b-2 px-8 text-xs">{{ $transaksis->created_at }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+
     </div>
+
+    <div id="printArea" class="w-full p-2">
+                <div class="flex flex-row min-w-[350px] top-0 md:flex-row h-screen justify-start items-start md:justify-center md:items-center px-2 mt-2 pb-10 overflow-auto">
+                    <table class="h-[600px] px-2 py-2 w-auto ">
+                        <thead class="sticky py-0 top-0 bg-gray-400 z-55">
+                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Id</th>
+                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Batch_id</th>
+                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Menu_id</th>
+                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm text-center">Qty
+                                <br>
+                                <span class="text-gray-500"> {{ $qty}}</span>
+                            </th>
+                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Selling Price</th>
+                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-right text-sm">Total
+                                <br>
+                                <span class="text-gray-500"> {{ number_format($total),0,'.'.'.' }}</span>
+                            </th>
+                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Customer Id</th>
+                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Status</th>
+                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Created At</th>
+                        </thead>
+                        <tbody>
+                            @foreach($transaksi as $index => $transaksis)
+                            <tr class="border border-b-black">
+                                <td class="py-2 px-2 text-xs">{{ $index+1 }}</td>
+                                <td class="py-2 px-2 text-xs">{{ $transaksis->batch_id }}</td>
+                                <td class="py-2 px-2 text-xs">{{ App\Models\Menu::get_name($transaksis->menu_id) }}</td>
+                                <td class="py-2 px-2 text-xs text-center">{{ $transaksis->qty }}</td>
+                                <td class="py-2 px-2 text-xs text-right">{{ $transaksis->sellingPrice }}</td>
+                                <td class="py-2 px-2 text-xs text-right">{{ $transaksis->total }}</td>
+                                <td class="py-2 px-2 text-xs">{{ App\Models\Customer::getCustomer($transaksis->customer_Id) }}</td>
+                                <td class="py-2 px-2 text-xs">{{ $transaksis->flaq }}</td>
+                                <td class="py-2 px-2 text-xs">{{ $transaksis->created_at }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
 
     <script>
         function printDiv(divId) {

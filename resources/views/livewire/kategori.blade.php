@@ -1,9 +1,9 @@
 <div class="py-4">
-    <div class="ml-12">
+    <div class="px-4">
         <header>Kategori Menu</header>
     </div>
     <div class= "w-full " >
-        <div class= "flex justify-between items-center p-4 ml-8">
+        <div class= "flex-col md:flex-row flex-start justify-between items-center mb-2 p-4 ">
             <input
              type="text"
              wire:model.live="filterSearch"
@@ -13,7 +13,7 @@
 
             <select
              wire:model.live="filterFlaq"
-             class="border hover:border-blue-400 py-2 px-8 rounded-xl mr-10"
+             class="border hover:border-blue-400 py-2 px-4 w-44 rounded-xl mr-10"
             >
             <option value="">Filter Status</option>
             <option value="0">Hidden</option>
@@ -21,33 +21,36 @@
             </select>
 
         </div>
+        <div class="flex flex-col px-3 justify-start items-center w-44">
         <button
         wire:click='openModal'
-        class="bg-blue-400 ml-12 py-2 px-4 rounded-xl"
+        class="bg-blue-400 py-2 px-4 rounded-lg"
         >
-        Add New Kategori
+        Add Category
 
         </button>
-        <div class="flex h-screen mt-0 mx-auto py-4 px-12 ">
-            <div class="w-full mx-auto bg-white rounded-lg justify-center items-center overflow-y-auto">
+        </div>
+        <div class="flex h-screen mt-0 mx-auto py-4 px-4 ">
+            <div class="w-full mx-auto h-screen bg-white rounded-lg justify-center items-center overflow-y-auto">
         {{-- {{-- <div class="flex mt-0 mx-auto py-4 px-12"> --}}
             {{-- <div class="w-full bg-white rounded-lg max-h-[calc(100vh-2rem)] overflow-y-auto">  --}}
-
-                <table class="w-full border mx-auto">
+             <div class="h-[600px] w-full" >
+                <table class="w-full border mx-auto ">
                     <thead>
-                        <th class="top-0 text-white bg-gray-600 sticky py-2 px-6 text-left">Id</th>
-                        <th class="top-0 text-white bg-gray-600 sticky py-2 px-6 text-left">Description</th>
-                        <th class="top-0 text-white bg-gray-600 sticky py-2 px-6 text-left">Flag</th>
-                        <th class="top-0 text-white bg-gray-600 sticky py-2 px-6 text-center">Action</th>
+                        <th class="top-0 text-white bg-gray-600 sticky py-2 px-2  text-left">Id</th>
+                        <th class="top-0 text-white bg-gray-600 sticky py-2 px-2  text-left">Description</th>
+                        <th class="top-0 text-white bg-gray-600 sticky py-2 px-2 text-left">Flag</th>
+                        <th class="top-0 text-white bg-gray-600 sticky py-2 px-2 text-center">Action</th>
                     </thead>
                     <tbody>
                         @foreach ($kategories as $index =>$kategories )
 
-                        <tr class="odd:bg-gray-200 even:''">
-                            <td class="py-2 pl-4 text-xs">{{ $index+1 }}</td>
-                            <td class="py-2 pl-4 text-xs">{{ $kategories->description }}</td>
-                            <td class="py-2 pl-4 text-xs">{{ $kategories->flaq == 1 ? 'Show' : 'Hidden' }}</td>
-                            <td class="py-2 pl-4 text-xs text-center">
+                        {{-- <tr class="odd:bg-gray-200 even:''"> --}}
+                        <tr class="border border-b-black">
+                            <td class="py-2 px-2 text-xs">{{ $index+1 }}</td>
+                            <td class="py-2 px-2 text-xs">{{ $kategories->description }}</td>
+                            <td class="py-2 px-2 text-xs">{{ $kategories->flaq == 1 ? 'Show' : 'Hidden' }}</td>
+                            <td class="py-2 px-2 text-xs text-center">
                                 <button
                                 wire:click="editKategori('{{ $kategories->id }}')"
                                 class="bg-blue-400 py-2 px-4 rounded-xl text-xs"
@@ -64,6 +67,7 @@
 
                     </tbody>
                 </table>
+              </div>
 
             </div>
 
@@ -74,7 +78,7 @@
      @if($showModal)
         <div class="fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50">
 
-            <div class=" flex flex-col ml-2 bg-white rounded-lg justify-start items-center shadow-lg w-1/2 p-2 max-h-screen overflow-y-auto ">
+            <div class=" flex flex-col m-2 bg-white rounded-lg justify-start items-center shadow-lg w-full p-2 max-h-screen overflow-y-auto ">
 
                     <h3 class="text-lg font-semibold mb-4">
                         {{ $editMode ? 'Edit Kategori' : 'Create New Kategori' }}

@@ -17,12 +17,18 @@ class Customer extends Component
     public $pilihKota='';
     public $telepon1='';
     public $telepon2='';
+    public $filterSearch='';
+
 
 
 
     public function render()
     {
-        $customer= Customers::all();
+        // $customer= Customers::all()
+        $customer = Customers::query()
+        ->when($this->filterSearch, function ($query) {
+        $query->where('nama', "like", "%" . $this->filterSearch. "%");
+        })->get();
         return view('livewire.customer',compact('customer'));
     }
     public function save(){

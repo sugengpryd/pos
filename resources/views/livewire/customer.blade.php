@@ -11,7 +11,9 @@
             </button>
         </div>
         <div class="flex flex-row ">
-           <input class="rounded-xl" placeholder="Search Customer" type="text">
+           <input
+           wire:model.live="filterSearch"
+           class="rounded-xl" placeholder="Search Customer" type="text">
         </div>
     </div>
 
