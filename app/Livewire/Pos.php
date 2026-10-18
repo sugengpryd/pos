@@ -274,7 +274,8 @@ class Pos extends Component
         // dd($value);
          $this->menus=[];
         // $menu = Menu::where('kategori', trim($value))->get();
-        $menu = Menu::where('kategori', 'like', '%' . trim($value) . '%')->get();
+        $menu = Menu::where('kategori', 'like', '%' . trim($value) . '%')
+                      ->where('flaq','1',)->get();
 //     dd(
 //     Menu::where('kategori', 'like', '%Air%')
 //         ->select('id', 'kategori')
