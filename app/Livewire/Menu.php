@@ -39,6 +39,7 @@ class Menu extends Component
     public $selectProduk;
     public $items=[];
     public $menu_image='';
+    public $menuImages='';
 
 
 
