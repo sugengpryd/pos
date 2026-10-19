@@ -27,6 +27,7 @@
                         <th class=" sticky top-0 z-50  text-center">Uom</th>
                         <th class=" sticky top-0 z-50  text-center">Kategori</th>
                         <th class=" sticky top-0 z-50 p-4 text-right">Selling Price</th>
+                        <th class=" sticky top-0 z-50 p-4 text-center">Image</th>
                         <th class=" sticky top-0 z-50 p-4 text-center">flaq</th>
                         <th class=" sticky top-0 z-50 p-4 text-center">Action</th>
                     </tr>
@@ -69,6 +70,14 @@
                     </td>
 
                     <td
+                    wire:model.live="menuImages"
+                    class="p-2 text-sm text-right">
+                    @if(!empty($menus->image))
+                     <a href ="{{ 'storage/'.$menus->image }}" target="_blank" >1</a>
+                     @endif
+                    </td>
+
+                    <td
                     wire:model="menu_visibility"
                     class="p-2 text-sm text-center "
                     >
@@ -96,7 +105,7 @@
     @if($showModal)
     <div class="fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50">
 
-        <div class=" flex flex-row justify-start items-center bg-white rounded-lg shadow-lg w-full md:min-w-[600px] md:max-w-[900px] p-6 max-h-screen overflow-y-auto">
+        <div class=" flex flex-col justify-start items-center bg-white rounded-lg shadow-lg w-full md:min-w-[600px] md:max-w-[900px] p-6 max-h-screen overflow-y-auto">
 
             <h3 class="text-lg font-semibold mb-4">
                 {{ $editMode ? 'Edit Menu' : 'Create New Menu' }}
@@ -228,7 +237,11 @@
 
                                >
 
-                                    <td class="text-center text-sm">{{ $item['produk_id'] }}</td>
+                                    <td class="text-center text-sm"
+                                        wire:model.live="produk_id"
+                                    >
+                                    {{ $item['produk_id'] }}
+                                    </td>
                                     <td class="text-center text-sm">{{ $item['description'] }}</td>
                                     <td class="text-center text-sm">{{ $item['uom'] }}</td>
                                     <td
@@ -269,6 +282,35 @@
                 </div>
 
                 <div class="py-2 w-full gap-8 mt-auto">
+                    <label class="w-16"> Menu Image</label>
+                    <input
+                    type="file"
+                    wire:model.live="menu_image"
+                    accept="image/*"
+                    class=" text-sm rounded-xl py-2 px-4 "
+                    >
+                    @error('file')
+                        <p class="text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                    {{-- Preview gambar --}}
+                    @if ($menu_image && str_starts_with($menu_image->getMimeType(), 'image/'))
+                        <div class="mt-4">
+                            <p class="text-sm font-semibold mb-2">
+                                Image Preview
+                            </p>
+
+                            <img
+                                src="{{ $menu_image->temporaryUrl() }}"
+                                alt="Preview file"
+                                class="max-w-full max-h-28 object-contain
+                                    rounded-lg border p-1"
+                            >
+                        </div>
+                    @endif
+                </div>
+
+
+                <div class="py-2 w-full gap-8 mt-auto">
                     <label class="w-16"> Visibility</label>
                     <select
                     wire:model.live="menu_visibility"
@@ -278,6 +320,7 @@
                     <option value="0">Hidden</option>
                 </select>
                 </div>
+
 
                 <div class="flex justify-end gap-2 mt-4">
                     <button

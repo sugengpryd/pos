@@ -20,6 +20,7 @@ class Menu extends Model
         'item_qty',
         'uom',
         'sellingPrice',
+        'image',
         'flaq',
     ];
 

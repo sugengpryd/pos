@@ -10,10 +10,14 @@ use App\Models\kategori as kategoris;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
+use Livewire\WithFileUploads;
+
 #[Layout('layouts.app')]
 
 class Menu extends Component
 {
+     use WithFileUploads;
+
     public $showModal='';
     public $menuId= '';
     public $menu_description='';
@@ -34,6 +38,7 @@ class Menu extends Component
 
     public $selectProduk;
     public $items=[];
+    public $menu_image;
 
 
 
@@ -59,6 +64,30 @@ class Menu extends Component
         $this->editMode = false;
         $this->addMode = false;
 
+    }
+    public function upload_image($produk_id){
+        {
+            // dd($produk_id);
+            // $produkId =
+        $this->validate([
+            'menu_image' => 'required|file|max:20480',
+        ]);
+
+        $path=$this->menu_image->store('image', 'public');
+
+        // $get = Menus::where('menu_id',$produk_id)->first();
+        $updateMenu=Menus::where('menu_id',$produk_id)->update([
+            'image' => $path,
+        ]);
+        // dd($get);
+
+
+        // session()->flash('success', 'File berhasil diupload.');
+        $this->dispatch('notify', message: 'Image upload success');
+
+
+        $this->reset('menu_image');
+    }
     }
     public function save(){
         // dd($this->items->id);
@@ -160,6 +189,7 @@ class Menu extends Component
         $this->showModal=false;
         $this->editMode= false;
         $this->addMode= false;
+        $this->upload_image($this->menuId);
     }
     public function resetform(){
 // dd("reset");
