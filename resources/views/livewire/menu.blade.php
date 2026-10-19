@@ -73,7 +73,7 @@
                     wire:model.live="menuImages"
                     class="p-2 text-sm text-right">
                     @if(!empty($menus->image))
-                     <a href ="{{ 'storage/'.$menus->image }}" target="_blank" >1</a>
+                     <a href ="{{ 'storage/'.$menus->image }}" target="_blank" >link</a>
                      @endif
                     </td>
 
