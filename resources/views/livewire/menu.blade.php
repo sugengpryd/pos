@@ -283,7 +283,7 @@
                     <label class="w-16"> Menu Image</label>
                     <input
                     type="file"
-                    wire:model.live="menu_imagxs
+                    wire:model.live="menu_image"
                     accept="image/*"
                     class=" text-sm rounded-xl py-2 px-4 "
                     >
