@@ -1,11 +1,11 @@
-<div class="py-4 w-full max-w-[1080px] mx-auto">
-    <div class="flex flex-row px-2 ml-[5px] gap-8">
-        <div class="flex-col w-full justify-left">
+<div class="py-4 w-full mx-auto max-w-[1280px]">
+    <div class="flex flex-row justify-start items-start px-2 ml-[5px] gap-4">
+        <div class="flex-col w-full justify-between items-center">
             <button
             wire:click="openModal"
             class="text-sm bg-blue-300 w-24 p-2 hover:bg-blue-500 rounded-xl border border-spacing-2 border-blue-400">New Menu</button>
         </div>
-        <div class="flex w-full gap-8">
+        <div class="flex w-full gap-4">
             <div class="flex flex-row w-full justify-end items-end">
                 <input type="text" placeholder="Search Produk"
                     wire:model.live="filterSearch"
@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-    <div class="w-full max-w-[1080px] top-0 h-screen mx-auto mt-2 px-2 bg-gray-300 rounded-xl justify-start overflow-auto">
+    <div class="w-full max-w-[1280px] top-0 h-screen mx-auto mt-2 px-2 bg-gray-300 rounded-xl justify-start overflow-auto">
         <table class=" px-4 py-2 w-full">
             <p>Total: {{ $menu?->count() ?? '0' }}</p>
                 <thead class="sticky py-0 top-0 bg-gray-400 z-55">
@@ -103,9 +103,8 @@
     </div>
 
     @if($showModal)
-    <div class="fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50">
-
-        <div class=" flex flex-col justify-start items-center bg-white rounded-lg shadow-lg w-full md:min-w-[600px] md:max-w-[900px] p-6 max-h-screen overflow-y-auto">
+    <div class="fixed w-full flex justify-center  items-center inset-0 z-50 p-2 md:p-8 h-auto bg-black bg-opacity-50">
+        <div class=" flex flex-col min-w-[360px] border-2 border-red-900 md:max-w-[1280px] w-[900px] justify-start items-start mt-4 mb-4 p-2 bg-white rounded-lg shadow-lg  md:justify-center md:items-center max-h-screen overflow-y-auto">
 
             <h3 class="text-lg font-semibold mb-4">
                 {{ $editMode ? 'Edit Menu' : 'Create New Menu' }}
@@ -114,37 +113,36 @@
             <form wire:submit.prevent="save" enctype="multipart/form-data">
                 {{-- form fields --}}
 
-                <div class=" flex flex-row py-2 w-full gap-8">
-                    <label  class="w-16">Menu ID</label>
+                <div class="flex flex-row py-2 w-full min-w-16 border">
+                    <label  class="w-full text-xs border-2">Menu ID</label>
                     <input
                     wire:model="menuId"
                     x-on:dblclick="$wire.getRandomId()"
                     type="text"
                     placeholder="Click here to get Menu Id"
-                    class="w-full text-sm rounded-xl p-2 {{ $editMode ? 'bg-gray-200' : '' }}"
-
+                    class="w-full text-xs rounded-xl  border-red-900 p-2 {{ $editMode ? 'bg-gray-200' : '' }}"
                      @disabled($menuId != '')
                     {{-- {{ $menuId ? 'disabled:disabled' : '' }}))" --}}
                     >
                 </div>
 
 
-                <div class=" flex flex-row py-2 w-full gap-8">
-                    <label  class="w-16">Menu Description</label>
+                <div class=" flex flex-row py-2 w-full min-w-16">
+                    <label  class="w-full text-xs">Menu Description</label>
                     <input
                     wire:model="menu_description"
                     type="text"
-                    class="w-full text-sm
+                    class="w-full text-xs
                      rounded-xl p-2"
                     >
                 </div>
 
-                <div class=" flex flex-row py-2 w-full gap-8">
-                    <label  class="w-16">Menu Kategori</label>
+                <div class=" flex flex-row py-2 w-full min-w-16">
+                    <label  class="w-full text-xs">Menu Kategori</label>
                     <select
                     wire:model.live="menu_kategori"
                     type="text"
-                    class="w-full text-sm
+                    class="w-full text-xs
                      rounded-xl p-2"
                      required
                     >
@@ -160,11 +158,11 @@
 
                 </div>
 
-                <div class=" flex flex-row py-2 w-full gap-8">
-                    <label class="w-16">Uom</label>
+                <div class=" flex flex-row py-2 w-full min-w-16">
+                    <label class="w-full text-xs">Uom</label>
                     <select
                     wire:model="menu_uom"
-                    class="w-full text-sm
+                    class="w-full text-xs
                      rounded-xl p-2"
                     >
                         <option value="">Select Uom</option>
@@ -176,33 +174,33 @@
                     </select>
                 </div>
 
-                <div class=" flex flex-row py-2 w-full gap-8">
-                    <label class="w-16">Qty</label>
+                <div class=" flex flex-row py-2 w-full min-w-16">
+                    <label class="w-full text-xs">Qty</label>
                     <input
                     type="text"
                     wire:model.live="menu_qty"
-                    class="w-full text-sm
+                    class="w-full text-xs
                      rounded-xl p-2"
                     >
                 </div>
 
 
-                <div class=" flex flex-row py-2 w-full gap-8" >
-                    <label class="w-16"> Selling Price</label>
+                <div class=" flex flex-row py-2 w-full" >
+                    <label class="w-full text-xs"> Selling Price</label>
                     <input
                     type="text"
                     wire:model="menu_harga"
-                    class="w-full text-sm
+                    class="w-full text-xs
                      rounded-xl p-2"
                     >
                 </div>
 
-                <div class="flex gap-4">
-                    <div class="flex flex-row justify-start items-start">
+                <div class="w-full">
+                    <div class="flex flex-row min-w-[350px] justify-start items-start">
                         <select
                         wire:model.live="selectProduk"
                         wire:change="selectedProduk"
-                        class="p-2 rpunded-xl border-blue-400 rounded-xl"
+                        class="p-2 text-xs border-blue-400 rounded-xl"
                         >
                             <option value=""> Pilih Produk</option>
                             @foreach ($produk as $produks )
@@ -216,18 +214,18 @@
                         <table class="w-full">
                             <thead class="bg-gray-400">
                                 {{-- <th class="p-2 ">id</th> --}}
-                                <th class="bg-gray-400 p-2 text-sm">ProdukID</th>
-                                <th class="bg-gray-400 p-2 text-sm ">Description</th>
-                                <th class="bg-gray-400 p-2 text-sm">Uom</th>
-                                <th class="bg-gray-400 p-2 text-sm">Qty</th>
-                                <th class="bg-gray-400 p-2 text-sm">Base Price</th>
-                                <th class="bg-gray-400 p-2 text-sm">Action</th>
+                                <th class="bg-gray-400 p-2 text-xs">ProdukID</th>
+                                <th class="bg-gray-400 p-2 text-xs ">Description</th>
+                                <th class="bg-gray-400 p-2 text-xs">Uom</th>
+                                <th class="bg-gray-400 p-2 text-xs">Qty</th>
+                                <th class="bg-gray-400 p-2 text-xs">Base Price</th>
+                                <th class="bg-gray-400 p-2 text-xs">Action</th>
                             </thead>
                             <tbody>
                                 @if (empty($items))
                                     <tr>
                                         <td colspan="6"
-                                        class="w-full text-center p-4"
+                                        class="w-full text-center p-4 text-xs"
                                         >Belum ada item</td>
                                     </tr>
                                 @else
@@ -237,15 +235,15 @@
 
                                >
 
-                                    <td class="text-center text-sm"
+                                    <td class="text-center text-xs"
                                         wire:model.live="produk_id"
                                     >
                                     {{ $item['produk_id'] }}
                                     </td>
-                                    <td class="text-center text-sm">{{ $item['description'] }}</td>
-                                    <td class="text-center text-sm">{{ $item['uom'] }}</td>
+                                    <td class="text-center text-xs">{{ $item['description'] }}</td>
+                                    <td class="text-center text-xs">{{ $item['uom'] }}</td>
                                     <td
-                                        class="text-center text-sm"
+                                        class="text-center text-xs"
                                         >
                                         <select
                                         wire:model="itemQty.{{ $index }}"
@@ -259,8 +257,8 @@
                                         </select>
 
                                     </td>
-                                    <td class="border-2 text-center text-sm">{{ $item['harga'] }}</td>
-                                    <td class="text-center text-sm">
+                                    <td class="border-2 text-center text-xs">{{ $item['harga'] }}</td>
+                                    <td class="text-center text-xs">
                                         <button
                                         wire:click="removeItem({{ $index }},{{ $item['produk_id'] }})"
                                         type="button"
@@ -285,7 +283,7 @@
                     <label class="w-16"> Menu Image</label>
                     <input
                     type="file"
-                    wire:model.live="menu_image"
+                    wire:model.live="menu_imagxs
                     accept="image/*"
                     class=" text-sm rounded-xl py-2 px-4 "
                     >
@@ -295,7 +293,7 @@
                     {{-- Preview gambar --}}
                     @if ($menu_image && str_starts_with($menu_image->getMimeType(), 'image/'))
                         <div class="mt-4">
-                            <p class="text-sm font-semibold mb-2">
+                            <p class="text-xs font-semibold mb-2">
                                 Image Preview
                             </p>
 
@@ -322,7 +320,7 @@
                 </div>
 
 
-                <div class="flex justify-end gap-2 mt-4">
+                <div class="flex justify-start items-start gap-2 mt-4">
                     <button
                         type="button"
                         wire:click="closeOpenModal"
