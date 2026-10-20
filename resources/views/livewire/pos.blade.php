@@ -49,7 +49,6 @@
                 <button
                     type="button"
                     style="background-image: url({{ asset('storage/' . $kategoris->image) }});"
-
                     wire:model.live='btnKategori.{{ $kategoris->id }}'
                     wire:click="getMenu('{{ trim($kategoris->description) }}')"
                     {{-- class="{{ $this->getItemColor($kategoris->id) }} w-[250px] h-[150px] p-4 text-white mx-auto rounded-xl" --}}
