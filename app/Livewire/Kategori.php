@@ -5,10 +5,16 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\kategori as kategories;
 use Livewire\Attributes\Layout;
+use Livewire\WithFileUploads;
+
+
 #[Layout('layouts.app')]
 
 class Kategori extends Component
 {
+     use WithFileUploads;
+
+
     public $showModal='';
     public $editMode=false;
     public $kategoriId = '';
@@ -16,6 +22,7 @@ class Kategori extends Component
     public $kategoriFlaq='';
     public $filterSearch='';
     public $filterFlaq = '';
+    public $kategori_image='';
 
     public function render()
     {
@@ -47,6 +54,32 @@ class Kategori extends Component
 
 
     }
+
+    public function upload_image($kategori_id){
+
+            // dd($produk_id);
+            // $produkId =
+        $this->validate([
+            'kategori_image' => 'required|file|max:20480',
+        ]);
+
+        $path=$this->kategori_image->store('image', 'public');
+
+        // $get = Menus::where('menu_id',$produk_id)->first();
+        $updateMenu=kategories::where('id',$kategori_id)->update([
+            'image' => $path,
+        ]);
+        // dd($get);
+
+
+        // session()->flash('success', 'File berhasil diupload.');
+        $this->dispatch('notify', message: 'Image upload success');
+
+
+        $this->reset('kategori_image');
+
+    }
+
     public function save(){
 
     //  dd([
@@ -79,7 +112,7 @@ class Kategori extends Component
 
                 ]);
             }
-
+        $this->upload_image($this->kategoriId);
         $this->closeopenModal();
 
 

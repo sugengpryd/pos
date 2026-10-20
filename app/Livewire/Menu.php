@@ -67,7 +67,7 @@ class Menu extends Component
 
     }
     public function upload_image($produk_id){
-        {
+
             // dd($produk_id);
             // $produkId =
         $this->validate([
@@ -88,7 +88,7 @@ class Menu extends Component
 
 
         $this->reset('menu_image');
-    }
+
     }
     public function save(){
         // dd($this->items->id);

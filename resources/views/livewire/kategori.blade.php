@@ -35,11 +35,12 @@
         {{-- {{-- <div class="flex mt-0 mx-auto py-4 px-12"> --}}
             {{-- <div class="w-full bg-white rounded-lg max-h-[calc(100vh-2rem)] overflow-y-auto">  --}}
              <div class="h-[600px] w-full" >
-                <table class="w-full border mx-auto ">
+                <table class="md:w-full border mx-auto ">
                     <thead>
                         <th class="top-0 text-white bg-gray-600 sticky py-2 px-2  text-left">Id</th>
                         <th class="top-0 text-white bg-gray-600 sticky py-2 px-2  text-left">Description</th>
                         <th class="top-0 text-white bg-gray-600 sticky py-2 px-2 text-left">Flag</th>
+                        <th class="top-0 text-white bg-gray-600 sticky py-2 px-2 text-left">Image</th>
                         <th class="top-0 text-white bg-gray-600 sticky py-2 px-2 text-center">Action</th>
                     </thead>
                     <tbody>
@@ -50,6 +51,16 @@
                             <td class="py-2 px-2 text-xs">{{ $index+1 }}</td>
                             <td class="py-2 px-2 text-xs">{{ $kategories->description }}</td>
                             <td class="py-2 px-2 text-xs">{{ $kategories->flaq == 1 ? 'Show' : 'Hidden' }}</td>
+                            <td
+                                wire:model.live="menuImages"
+                                class="p-2 text-sm text-left"
+                            >
+                                @if(!empty($kategories->image))
+                                <a href ="{{ 'storage/'.$kategories->image }}" target="_blank" >link</a>
+                                @endif
+
+                            </td>
+
                             <td class="py-2 px-2 text-xs text-center">
                                 <button
                                 wire:click="editKategori('{{ $kategories->id }}')"
@@ -96,7 +107,6 @@
                                 >
                             </div>
 
-
                             <div class=" min-w-40 max-w-full md:w-full flex flex-wrap justify-start items-center mt-2 text-xs gap-2" >
                                 <label>Status</label>
                                 <select
@@ -108,6 +118,34 @@
                                 <option value="1">Show</option>
                                 </select>
                             </div>
+
+                            <div class="py-2 w-full gap-8 mt-auto">
+                                    <label class="w-16"> Image</label>
+                                    <input
+                                    type="file"
+                                    wire:model.live="kategori_image"
+                                    accept="image/*"
+                                    class=" text-sm rounded-xl py-2 px-4 "
+                                    >
+                                    @error('file')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                    {{-- Preview gambar --}}
+                                    @if ($kategori_image && str_starts_with($kategori_image->getMimeType(), 'image/'))
+                                        <div class="mt-4">
+                                            <p class="text-xs font-semibold mb-2">
+                                                Image Preview
+                                            </p>
+
+                                            <img
+                                                src="{{ $kategori_image->temporaryUrl() }}"
+                                                alt="Preview file"
+                                                class="max-w-full max-h-28 object-contain
+                                                    rounded-lg border p-1"
+                                            >
+                                        </div>
+                                    @endif
+                                </div>
 
                             <div class="flex flex-wrap gap-4 mt-4 justify-start items-start">
                                 <button
