@@ -52,7 +52,7 @@
                     wire:model.live='btnKategori.{{ $kategoris->id }}'
                     wire:click="getMenu('{{ trim($kategoris->description) }}')"
                     {{-- class="{{ $this->getItemColor($kategoris->id) }} w-[250px] h-[150px] p-4 text-white mx-auto rounded-xl" --}}
-                    class="bg-gray-600 w-[130px] min-h-[130px] p-2 text-white mx-auto rounded-xl break-words"
+                    class="bg-center bg-cover bg-gray-600 w-[130px] min-h-[130px] p-2 text-white mx-auto rounded-xl break-words"
                     >
                 </button>
                 <br>
