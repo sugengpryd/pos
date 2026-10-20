@@ -85,13 +85,13 @@
                     <tbody>
                         @foreach ($menu as $index =>$menus )
 
-                        <tr class="py-8">
+                        <tr class="py-2">
                             {{-- <td class="px-4 py-2 text-right text-xs">{{ $index+1 }}</td> --}}
-                            <td class="px-2 py-2 text-left text-xs">{{ $menus->menu_id }}</td>
+                            <td class="px-2 text-left text-xs">{{ $menus->menu_id }}</td>
                             <tr>
-                            <td class="px-2 py-2 text-left text-xs">{{ $menus->description }}</td>
-                            <td class="px-2 py-2 text-center text-xs">{{ $menus->qty }}</td>
-                            <td class="px-2 py-2 text-right text-xs">{{ number_format($menus->total,0,'.'.'.') }}</td>
+                            <td class="px-2 text-left text-xs">{{ $menus->description }}</td>
+                            <td class="px-2 text-center text-xs">{{ $menus->qty }}</td>
+                            <td class="px-2 text-right text-xs">{{ number_format($menus->total,0,'.'.'.') }}</td>
                         </tr>
                         </tr>
                         @endforeach
