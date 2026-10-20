@@ -9,6 +9,7 @@ class kategori extends Model
     protected $table='kategoris';
     protected $fillable= [
         'description',
+        'image',
         'flaq',
     ];
 }
