@@ -297,6 +297,7 @@ class Pos extends Component
                 'item_qty'=>$menus->item_qty,
                 'uom'=>$menus->uom,
                 'sellingPrice'=> $menus->sellingPrice,
+                'image'=> $menus->image,
             ];
         }
     }

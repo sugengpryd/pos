@@ -14,7 +14,7 @@
 
     </style>
 </head>
-<div id="divId" class="w-full flex flex-row bg-white py-2 ml-5 ">
+<div id="divId" class="w-full flex flex-row bg-white py-2 ml-2 ">
         <div class=" w-auto p-1  pl-4">
             <div class="text-left border-b-2 text-sm py-2  mr-['65%']">
 
@@ -61,26 +61,26 @@
 
 
         </div>
-        <div class="w-1/4 pl-8  text-sm m-0">
+        {{-- <div class="w-1/4 pl-8  text-sm m-0"> --}}
 
 
             {{-- <div class="text-left text-sm py-2  mr-['65%']">
 
                 <span class="text-lg text-left text-lime-600">Nazta Pudding</span>
             </div> --}}
-        </div>
+        {{-- </div> --}}
 </div>
 <div>
         {{-- @foreach ($menu as $index =>$menus ) --}}
-        <div class="w-full ml-5 bg-white px-2 py-1 ">
+        <div class="w-full ml-2 bg-white px-2 py-1 ">
             <div class="bg-white">
                 <table class="border-0" >
                     <thead>
                         {{-- <th class="px-4 py-2 text-xs">id.</th> --}}
-                        <th class="px-4 py-2 text-xs text-left">Item</th>
+                        <th class="px-2 py-2 text-xs text-left">Item</th>
                         {{-- <th class="px-4 py-2 text-xs">Description</th> --}}
-                        <th class="px-4 py-2 text-xs">Qty</th>
-                        <th class="px-4 py-2 text-xs">Total</th>
+                        <th class="px-2 py-2 text-xs">Qty</th>
+                        <th class="px-2 py-2 text-xs">Total</th>
                     </thead>
                     <tbody>
                         @foreach ($menu as $index =>$menus )

@@ -48,6 +48,8 @@
               <div class="p-2 bg-blue-400 text-center rounded-xl text-xs">
                 <button
                     type="button"
+                    style="background-image: url({{ asset('storage/' . $kategoris->image) }});"
+
                     wire:model.live='btnKategori.{{ $kategoris->id }}'
                     wire:click="getMenu('{{ trim($kategoris->description) }}')"
                     {{-- class="{{ $this->getItemColor($kategoris->id) }} w-[250px] h-[150px] p-4 text-white mx-auto rounded-xl" --}}
@@ -81,6 +83,7 @@
 
                             <button
                                 type="button"
+                                style="background-image: url({{ asset('storage/' . $menu['image']) }});"
                                 wire:click="btnadd(
                                     {{ Js::from($menu['menu_id']) }},
                                     {{ Js::from($menu['description']) }}
@@ -88,7 +91,7 @@
                                 class="shrink-0
                                     h-[100px] w-[100px] bg-yellow-700
                                     items-center justify-center text-center
-                                    p-2 rounded-xl text-xs text-white"
+                                    p-2 rounded-xl text-xs text-white bg-center bg-cover"
                                 >
                                 +
                             </button>

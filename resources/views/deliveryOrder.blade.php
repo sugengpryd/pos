@@ -14,19 +14,19 @@
 
     </style>
 </head>
-<div id="divId" class="w-full flex flex-row bg-white py-2 ml-5 ">
+<div id="divId" class="w-full flex flex-row bg-white py-2 mx-auto ">
         <div class=" w-auto p-1  pl-4">
             <div class="text-left border-b-2 text-sm py-2  mr-['65%']">
 
-                <span class="text-xl text-left">Delivery Orders</span>
+                <span class="text-2xl text-left">Delivery Orders</span>
             </div>
-            <div class="text-left border-b-2 text-sm py-2  mr-['65%']">
+            <div class="text-left border-b-2  mr-['65%']">
 
                 <span class="text-xl text-left text-lime-600">Nazta Pudding</span>
             </div>
             <span class="text-sm font-bold"> Customer : </span>
                 <div>
-                    <span class="text-xs">
+                    <span class="text-xl">
                         <label>BatchId :</label>
                         #{{ $transaksi->batch_id ?? "" }}
                     </span>
@@ -69,7 +69,7 @@
                 @if($pengiriman)
 
                     <div class="text-xs mt-2">
-                        <span class="text-sm font-bold">Penerima :</span><br>
+                        <span class="text-xs font-bold">Penerima :</span><br>
                         Nama:{{ $pengiriman->toName }}<br>
                         Alamat:{{ $pengiriman->toAlamat }}<br>
                         Kota: {{ $pengiriman->toKota }}<br>
@@ -85,18 +85,18 @@
                 @endif
 
         </div>
-        <div class="w-1/4 pl-8  text-sm m-0">
+        {{-- <div class="w-1/4 pl-8  text-sm m-0"> --}}
 
 
             {{-- <div class="text-left text-sm py-2  mr-['65%']">
 
                 <span class="text-lg text-left text-lime-600">Nazta Pudding</span>
             </div> --}}
-        </div>
+        {{-- </div> --}}
 </div>
 <div>
         {{-- @foreach ($menu as $index =>$menus ) --}}
-        <div class="w-full bg-white  px-2 py-1 ml-5 ">
+        <div class="w-full bg-white  px-2 py-1 mx-auto h-full ">
             <div class=" bg-white border-b-2">
                 <table class="border-0" >
                     <thead>
@@ -109,12 +109,12 @@
                     <tbody>
                         @foreach ($menu as $index =>$menus )
 
-                        <tr class="px-2 py-4 ">
+                        <tr class="px-2 py-2 ">
                             {{-- <td class="px-4 py-2 text-right text-xs">{{ $index+1 }}</td> --}}
-                            <td class="px-4 text-left text-xs">{{ $index+1 }}.{{ $menus->menu_id }}</td>
+                            <td class="px-2 text-left text-xs">{{ $index+1 }}.{{ $menus->menu_id }}</td>
                                 <tr class="border-b border-gray-400">
-                                    <td class="px-4 text-left text-xs">{{ $menus->description }}</td>
-                                    <td class="px-4 text-right text-xs">{{ $menus->qty }}</td>
+                                    <td class="px-2 text-left text-xs">{{ $menus->description }}</td>
+                                    <td class="px-2 text-right text-xs">{{ $menus->qty }}</td>
                             {{-- <td class="px-2 py-2 text-right text-xs">{{ number_format($menus->total,0,'.'.'.') }}</td> --}}
                                 </tr>
                         </tr>
