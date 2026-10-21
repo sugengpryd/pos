@@ -21,7 +21,7 @@
 
                 <div class="flex flex-col flex-wrap py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
                     <div class="bg-white rounded-xl flex flex-col flex-shrink-0 min-w-20 min-h-20 md:w-52 md:h-52 ">
-                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/produk.jpg">
+                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/9.png">
 
 
                     </div>
@@ -32,7 +32,7 @@
 
                 <div class="flex flex-col flex-wrap py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
                     <div class="bg-white rounded-xl flex flex-col min-w-20 min-h-20 md:w-52 md:h-52 ">
-                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/produk.jpg">
+                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/2.png">
 
                     </div>
                     <span class="font_card text-center text-xs p-2">Menu Kategori</span>
@@ -44,6 +44,7 @@
 
                 <div class="flex flex-col flex-wrap py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
                     <div class="bg-white  rounded-xl flex flex-col min-w-20 min-h-20 md:w-52 md:h-52  ">
+                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/10.png">
 
                     </div>
                     <span class="font_card text-center text-xs p-2">Menu</span>
@@ -65,6 +66,7 @@
 
                 <div class="flex flex-col flex-wrap py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
                     <div class="bg-white  rounded-xl flex flex-col min-w-20 min-h-20 md:w-52 md:h-52 ">
+                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/4.png">
 
                     </div>
                     <span class="font_card text-center text-xs p-2">Transaksi</span>
@@ -80,6 +82,7 @@
 
                 <div class="flex flex-col md:flex-col py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
                     <div class="bg-white  rounded-xl flex flex-col min-w-20 min-h-20 md:w-52 md:h-52 ">
+                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/5.png">
 
                     </div>
                     <span class="font_card text-center text-xs p-2">Discount</span>
@@ -91,6 +94,7 @@
 
                 <div class="flex flex-col md:flex-col py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
                     <div class="bg-white  rounded-xl flex flex-col min-w-20 min-h-20 md:w-52 md:h-52 ">
+                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/6.png">
 
                     </div>
                     <span class="font_card text-center text-xs p-2">Ppn</span>
@@ -101,6 +105,7 @@
 
                 <div class="flex flex-col md:flex-col py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
                     <div class="bg-white  rounded-xl flex flex-col min-w-20 min-h-20 md:w-52 md:h-52 ">
+                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/7.png">
 
                     </div>
                     <span class="font_card text-center text-xs p-2">Payment</span>
@@ -111,6 +116,7 @@
 
                 <div class="flex flex-col md:flex-col py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
                     <div class="bg-white  rounded-xl flex flex-col min-w-20 min-h-20 md:w-52 md:h-52">
+                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/8.png">
 
                     </div>
                     <span class="font_card text-center text-xs p-2">Customer</span>
