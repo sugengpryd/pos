@@ -73,23 +73,24 @@
     </div>
 
     <div id="printArea" class="w-full p-2">
-                <div class="flex flex-row min-w-[350px] top-0 md:flex-row h-screen justify-start items-start md:justify-center md:items-center px-2 mt-2 pb-10 overflow-auto">
-                    <table class="h-[600px] px-2 py-2 w-auto ">
+                {{-- <div class="flex flex-col min-w-[350px] top-0 md:flex-col h-screen justify-start items-start md:justify-center md:items-center px-2 mt-2 pb-10 overflow-auto"> --}}
+                <div class="flex flex-col h-[600px] px-8 min-w-[350px] top-0 overflow-auto">
+                    <table class="w-full ">
                         <thead class="sticky py-0 top-0 bg-gray-400 z-55">
                             <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Id</th>
                             <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Batch_id</th>
-                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Menu_id</th>
+                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm text-left">Menu Description</th>
                             <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm text-center">Qty
                                 <br>
                                 <span class="text-gray-500"> {{ $qty}}</span>
                             </th>
-                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Selling Price</th>
+                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm text-right">Selling Price</th>
                             <th class="sticky top-0 bg-gray-400 py-1 px-4 text-right text-sm">Total
                                 <br>
                                 <span class="text-gray-500"> {{ number_format($total),0,'.'.'.' }}</span>
                             </th>
-                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Customer Id</th>
-                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Status</th>
+                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm text-left">Customer</th>
+                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm text-center">Status</th>
                             <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Created At</th>
                         </thead>
                         <tbody>
@@ -101,15 +102,15 @@
                                 <td class="py-2 px-2 text-xs text-center">{{ $transaksis->qty }}</td>
                                 <td class="py-2 px-2 text-xs text-right">{{ $transaksis->sellingPrice }}</td>
                                 <td class="py-2 px-2 text-xs text-right">{{ $transaksis->total }}</td>
-                                <td class="py-2 px-2 text-xs">{{ App\Models\Customer::getCustomer($transaksis->customer_Id) }}</td>
-                                <td class="py-2 px-2 text-xs">{{ $transaksis->flaq }}</td>
-                                <td class="py-2 px-2 text-xs">{{ $transaksis->created_at }}</td>
+                                <td class="py-2 px-2 text-xs text-left">{{ App\Models\Customer::getCustomer($transaksis->customer_Id) }}</td>
+                                <td class="py-2 px-2 text-xs text-center">{{ $transaksis->flaq }}</td>
+                                <td class="py-2 px-2 text-xs text-center">{{ $transaksis->created_at }}</td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    </div>
                 </div>
+        </div>
 
     <script>
         function printDiv(divId) {
