@@ -11,7 +11,7 @@
             x-on:notify.window="
                 message = $event.detail.message;
                 show = true;
-                setTimeout(() => show = false, 3000);
+                setTimeout(() => show = false, 2000);
             "
             >
             <div

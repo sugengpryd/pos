@@ -597,9 +597,13 @@ public function removeItem($index,$item_id)
     public function save(){
         if(!$this->menustransaksi){
         $this->dispatch('notify', message: 'No transaction !, Nothing to save !');
+        return;
+            };
 
-            return;
-        }
+        if (!$this->transaksiBatchId) {
+            $this->dispatch('notify', message: 'Transaction Batch ID is empty!');
+        return;
+            };
         // dd($this->customerid);
         // dd(DB::select('PRAGMA foreign_key_list(transaksi)'));
         $findCustomer = dbTransaksi::where('customer_id',$this->customerid)
