@@ -176,6 +176,14 @@
                                 💵 Bayar
                             </button>
 
+                            {{-- Void --}}
+                            <button
+                                wire:click="openformVoid()"
+                                class=" hidden bg-lime-700 text-white text-xs md:text-sm
+                                    px-2 py-3 rounded shadow-lg
+                                    hover:shadow-xl hover:shadow-lime-600">
+                                🧾❌ Void
+                            </button>
                         </div>
 
 
@@ -210,12 +218,23 @@
                                     <td class="text-right border-b border-gray-400 text-xs">{{ $menu['total']}}</td>
                                     {{-- <td class="text-right">{{ $menu['item_qty'] * $menu['sellingPrice']}}</td> --}}
                                     <td class="text-center py-2">
+                                    @if(!$voidMode)
                                     <button
-                                    wire:click="removeItem({{ $index }},'{{ $menu['menu_id'] }}')"
-                                    class="text-right bg-red-400 py-2 px-2 rounded-xl text-xs"
-                                    >
-                                        Remove
-                                        </button>
+                                        wire:click="removeItem({{ $index }},'{{ $menu['menu_id'] }}')"
+                                        class="text-right bg-red-400 py-2 px-2 rounded-xl text-xs"
+                                        >
+                                            Remove
+                                    </button>
+                                    @else
+                                    <button
+                                        wire:click="voidItem({{ $index }},'{{ $menu['menu_id'] }}','{{$this->transaksiBatchId}}')"
+                                        class="text-right bg-red-400 py-2 px-2 rounded-xl text-xs"
+                                        >
+                                            Void
+                                    </button>
+
+
+                                    @endif
                                     </td>
                                 </tr>
                                 @endforeach
@@ -414,13 +433,16 @@
     @endif
 
     @if($formBayar)
+
         <div class="py-4 fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50"
         {{-- <div  wire:ignore id="dragDiv" --}}
         {{-- class="cursor-move select-none fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50" --}}
                 {{-- style="left:50%; top:50%; transform:translate(-50%,-50%);" --}}
                 >
-            <div class="bg-white rounded-lg  shadow-lg w-1/2 min-w-[600px] max-w-[900px] p-4 overflow-y-auto">
-              <form wire:submit.prevent="bayar" enctype="multipart/form-data">
+
+            <div class="bg-white rounded-lg  shadow-lg w-1/2 min-w-[300px] max-w-[900px] p-4 overflow-y-auto">
+              <div class="text-xl text-center underline">Pembayaran</div>
+                <form wire:submit.prevent="bayar" enctype="multipart/form-data">
                 <div>
                     <div  class="flex gap-4 py-2 border-b-red-400">
                         <Label class="w-[200px] mb-2">BatchID</Label><br>
@@ -447,6 +469,7 @@
                             "
                             class="w-full rounded-lg p-2 text-right"
                             placeholder="0"
+                            value="{{ $totalTagihan }}"
                             >
                         </span>
                     </div>
@@ -468,7 +491,7 @@
                     <div class="mt-2">
                         <button
                             type="button"
-                            wire:click="closeformBayar()" class="bg-gray-200 rounded-lg p-4"
+                            wire:click="closeformBayar()" class="bg-gray-300 rounded-lg p-4"
                             >
                             Close
                         </button>
@@ -491,11 +514,12 @@
         {{-- class="cursor-move select-none fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50" --}}
                 {{-- style="left:50%; top:50%; transform:translate(-50%,-50%);" --}}
                 >
-            <div class=" flex flex-col w-60 justify-start items-start bg-white rounded-lg max-h-[90vh] shadow-lg min-w-[300px] max-w-[900px] p-4 overflow-y-auto ">
-              <div class="h-full">
+            <div class=" flex flex-col w-96 justify-center items-center  bg-white rounded-lg max-h-[90vh] shadow-lg min-w-[300px] max-w-[900px] p-2 overflow-y-auto ">
+              <div class="h-full w-full bg-slate-300 p-4 ">
 
-                <form wire:submit.prevent="bayar" enctype="multipart/form-data">
-                <div class="flex flex-col">
+                {{-- <form wire:submit.prevent="bayar" enctype="multipart/form-data"> --}}
+                <form enctype="multipart/form-data">
+                {{-- <div class="flex flex-col">
                     <select
                     wire:model.live='pengirim'
                     class="p-2 text-xs rounded px-8 mx-auto m-2"
@@ -553,8 +577,8 @@
                         @endif
 
 
-                </div>
-                <div class="flex flex-col">
+                </div> --}}
+                <div class="flex flex-col w-full justify-center items-center p-4">
                     <select
                     wire:model.live='penerima'
                     wire:change='Penerima()'
@@ -571,7 +595,7 @@
                                         <div class="w-full">
                                             <label for="namaPenerima"
                                                 class="mb-1 block font-semibold text-gray-700 text-xs">
-                                                >Nama Penerima
+                                                ->Nama Penerima
                                             </label>
 
                                             <input
@@ -588,7 +612,7 @@
                                         <div class="w-full">
                                             <label for="alamatPenerima"
                                                 class="mb-1 block font-semibold text-gray-700 text-xs">
-                                                >Alamat Penerima
+                                                ->Alamat Penerima
                                             </label>
 
                                             <input
@@ -605,7 +629,7 @@
                                         <div class="w-full">
                                             <label for="KotaPenerima"
                                                 class="mb-1 block font-semibold text-gray-700 text-xs">
-                                                >Kota Penerima
+                                                ->Kota Penerima
                                             </label>
 
                                             <select
@@ -633,7 +657,7 @@
                                                 <label for="teleponPenerima"
                                                 class="mb-1 block font-semibold text-gray-700 text-xs">
 
-                                                >Telepon Pengirim
+                                                ->Telepon Pengirim
                                                 </label>
                                                 <input
                                                 id="teleponPenerima"
@@ -656,6 +680,7 @@
 
                             </div>
                         @else
+
                         @endif
 
                 </div>
@@ -712,7 +737,7 @@
                                 <label class=" text-bold" for="customer">Customer</label>
                                     <input
                                     wire:model.live="customerDiscount"
-                                    id="customer" type="text"
+                                    id="diskon" type="text"
                                     class="flex flex-col flex-wrap rounded-lg text-xs p-2"
                                     >
 
@@ -802,6 +827,37 @@
         </div>
     </div>
     @endif
+@if($showmodalVoid)
+    <div class="fixed inset-0 z-50 w-full h-screen flex items-center justify-center bg-black bg-opacity-50">
+
+        <div class="bg-white rounded-lg shadow-lg w-1/2 min-w-[300px] max-w-[900px] p-6 max-h-[600px] overflow-y-auto">
+
+            <h3 class="text-lg font-semibold mb-4">
+                {{ $voidMode ? 'Void Paid Transaksi' : '' }}
+            </h3>
+            <div class="flex flex-row w-full min-w-[350px] justify-between items-center md:justify-between md:items-start ">
+                <form wire:submit.prevent="save_discount" enctype="multipart/form-data">
+                    <div class="flex flex-col w-full h-1/2">
+                        <select
+                        wire:change="select_voidBatchId()"
+                        wire:model="selectedBatchId"
+                        >
+                            <option value="">Pilih Batch Id</option>
+                            @foreach($this->voidBatchId as $batchid)
+                            <option>{{ $batchid->batch_id }}</option>
+                            @endforeach
+                        </select>
+
+
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+@endif
+
 
 <script>
         function printDiv(divId) {

@@ -103,6 +103,15 @@
                             <td class="text-xs">Total:</td>
                             <td class="px-2 text-right text-xs"> {{ number_format($sumtotal,0,'.'.'.') ?? '' }}</td>
                         </tr>
+
+                        <tr class="text-right">
+                            <td></td>
+                            {{-- <td></td> --}}
+                            {{-- <td></td> --}}
+                            <td class="text-xs">Discount:</td>
+                            <td class="px-2 text-right text-xs"> {{ number_format($diskon,0,'.'.'.') ?? '' }}</td>
+                        </tr>
+
                         <tr class="text-right">
                             <td></td>
                             {{-- <td></td> --}}

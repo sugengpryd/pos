@@ -50,14 +50,26 @@ class Transaksi extends Component
 
         })
         ->when($this->FilterDate, function ($query) {
-            $query->where('created_at', "like" , "%" . $this->FilterDate . "%");
+            // $query->where('created_at', "like" , "%" . $this->FilterDate . "%");
+            $query->whereDate('created_at', $this->FilterDate );
 
         })
         ->get();
+        // dd($this->FilterDate);
 
-        $total = $transaksi->sum('total');
+        // $total = $transaksi->where('batch_id', '!=','')->where('flaq','paid')->sum('total');
+        $total = $transaksi->where('batch_id', '!=','')->sum('total');
+        // $total = $transaksi->sum('total');
         $qty = $transaksi->sum('qty');
 
         return view('livewire.transaksi',compact('transaksi','batchId','menuId','customerId','total','qty','status','created_at'));
+    }
+
+    public function updatedFilterDate(){
+        // dd($this->FilterDate);
+
+        // $result= Transaksis::whereDate('created_at', "like", "%" . $this->FilterDate)->get();
+        // dd($result);
+
     }
 }

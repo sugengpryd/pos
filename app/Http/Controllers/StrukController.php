@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Transaksi;
+use App\Models\Discount as discount;
 use App\Models\Menu;
 use App\Models\Menu_item;
 use App\Models\Customer;
@@ -43,6 +44,7 @@ class StrukController extends Controller
     }
 
     public function show(Request $request){
+        // dd($request);
      if(!$request){
         // return;
      }else{
@@ -54,6 +56,12 @@ class StrukController extends Controller
         $customer = Customer::where('id',$customer_id)->first();
         $transaksi = Transaksi::where('batch_id',$batch_id)->first();
         $sumtotal = Transaksi::where('batch_id',$batch_id)->sum('total');
+        // $diskon = discount::select('discount')->where('batch_id',$batch_id)->first('discount') ?? 0;
+        // $diskon = (float) $diskon->discount;
+        $diskon = (float) (
+            discount::where('batch_id', $batch_id)
+        ->value('discount') ?? 0
+            );
         $totalQty = Transaksi::where('batch_id',$batch_id)->sum('qty');
         $biayaKirim = $request->biayaKirim;
         $totalTagihan = $request->totalTagihan;
@@ -73,7 +81,7 @@ class StrukController extends Controller
                 ->where('transaksi.batch_id',$batch_id)
                 ->get();
 
-    return view('struk',compact('customer','transaksi','menu','sumtotal','totalQty','biayaKirim','totalTagihan','Ppn'));
+    return view('struk',compact('customer','transaksi','menu','sumtotal','totalQty','biayaKirim','totalTagihan','Ppn','diskon'));
             }
 
     }
