@@ -40,13 +40,17 @@ class Menu extends Component
     public $items=[];
     public $menu_image='';
     public $menuImages='';
+    public $filterSearch='';
 
 
 
 
     public function render()
     {
-        $menu= Menus::all();
+        $menu= Menus::query()
+        ->when($this->filterSearch, function($query){
+        $query->where('description', 'like', '%' . $this->filterSearch .'%');
+        })->get();
         $produk= Produk::where('flaq','!=','0')->get();
         $master_uom = Uoms::all();
         $kategori = kategoris::all();
