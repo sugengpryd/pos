@@ -42,4 +42,10 @@ class Transaksi extends Model
         return $result;
 
     }
+    static function get_batchId($value){
+        // dd($value);
+        $result = Transaksi::select('batch_id')->where('flaq','basket')->where('customer_Id',$value)->value('batch_id');
+        // dd($result);
+        return $result;
+    }
 }

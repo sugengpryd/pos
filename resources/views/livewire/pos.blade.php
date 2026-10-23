@@ -7,16 +7,27 @@
     </div>
     {{-- notifikasi --}}
         <div
-            x-data="{ show: false, message: '' }"
+            x-data="{ show: false, message: '',type:'success',timer:null }"
+
             x-on:notify.window="
                 message = $event.detail.message;
+                type = $event.detail.type || 'success';
+                {{-- bgColor = $event.detail.color ?? 'bg-green-500'; --}}
                 show = true;
-                setTimeout(() => show = false, 2000);
+                clearTimeout(timer);
+                timer = setTimeout(() => show = false, 2000);
+                {{-- setTimeout(() => show = false, 2000); --}}
             "
             >
             <div
                 x-show="show"
                 x-transition
+                :class="{
+                    'bg-green-500': type === 'success',
+                    'bg-red-600': type === 'error',
+                    'bg-yellow-500': type === 'warning',
+                    'bg-blue-500': type === 'info'
+                }"
                 class="fixed top-5 right-5 z-50 bg-green-500 text-white px-5 py-3 rounded-lg shadow-lg"
             >
                 <span x-text="message"></span>
@@ -113,6 +124,7 @@
 
                             {{-- Customer --}}
                             <button
+                                wire:loading.attr="disabled"
                                 wire:click="openModal('customer')"
                                 class="bg-blue-700 text-white text-xs md:text-sm
                                     px-2 py-3 rounded shadow-lg
@@ -122,18 +134,26 @@
 
                             {{-- Delivery --}}
                             <button
+                                wire:loading.attr="disabled"
                                 wire:click="openmodaldelivery"
+                                @disabled($voidMode)
                                 class="bg-blue-700 text-white text-xs md:text-sm
                                     px-2 py-3 rounded shadow-lg
+                                    disabled:opacity-50 disabled:cursor-not-allowed
+                                    disabled:hover:shadow-none
                                     hover:shadow-xl hover:shadow-teal-600">
                                 🛵 Delivery
                             </button>
                             {{-- Discount --}}
                             <button
                                 {{-- wire:modal.live="showmodalDiscount" --}}
+                                wire:loading.attr="disabled"
                                 wire:click="openmodaldiscount"
+                                @disabled($voidMode)
                                 class="bg-blue-700 text-white text-xs md:text-sm
                                     px-2 py-3 rounded shadow-lg
+                                    disabled:opacity-50 disabled:cursor-not-allowed
+                                    disabled:hover:shadow-none
                                     hover:shadow-xl hover:shadow-teal-600">
                                 🏷️ Discount
                             </button>
@@ -142,8 +162,11 @@
                             <button
                                 wire:loading.attr="disabled"
                                 wire:click="save()"
+                                @disabled($voidMode)
                                 class="bg-blue-700 text-white text-xs md:text-sm
                                     px-2 py-3 rounded shadow-lg
+                                    disabled:opacity-50 disabled:cursor-not-allowed
+                                    disabled:hover:shadow-none
                                     hover:shadow-xl hover:shadow-teal-600">
                                 💾 Simpan
                             </button>
@@ -151,8 +174,11 @@
                             {{-- DO --}}
                             <button
                                 onclick="window.open('{{ route('Do', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid]) }}','_blank')"
+                                 @disabled($voidMode)
                                 class="bg-blue-700 text-white text-xs md:text-sm
                                     px-2 py-3 rounded shadow-lg
+                                    disabled:opacity-50 disabled:cursor-not-allowed
+                                    disabled:hover:shadow-none
                                     hover:shadow-xl hover:shadow-teal-600">
                                 🖨️ DO
                             </button>
@@ -160,18 +186,24 @@
                             {{-- Invoice --}}
                             <button
                             onclick="window.open('{{ route('Struk', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid,'biayaKirim'=>$this->biayaKirim,'totalTagihan'=>$this->totalTagihan])}}','_blank')"
-
+                                 @disabled($voidMode)
                                 class="bg-blue-700 text-white text-xs md:text-sm
                                     px-2 py-3 rounded shadow-lg
+                                    disabled:opacity-50 disabled:cursor-not-allowed
+                                    disabled:hover:shadow-none
                                     hover:shadow-xl hover:shadow-teal-600">
                                 🖨️ Invoice
                             </button>
 
                             {{-- Bayar --}}
                             <button
+                                wire:loading.attr="disabled"
                                 wire:click="openformBayar()"
+                                 @disabled($voidMode)
                                 class="bg-lime-700 text-white text-xs md:text-sm
                                     px-2 py-3 rounded shadow-lg
+                                    disabled:opacity-50 disabled:cursor-not-allowed
+                                    disabled:hover:shadow-none
                                     hover:shadow-xl hover:shadow-lime-600">
                                 💵 Bayar
                             </button>
@@ -179,7 +211,7 @@
                             {{-- Void --}}
                             <button
                                 wire:click="openformVoid()"
-                                class=" hidden bg-lime-700 text-white text-xs md:text-sm
+                                class=" bg-lime-700 text-white text-xs md:text-sm
                                     px-2 py-3 rounded shadow-lg
                                     hover:shadow-xl hover:shadow-lime-600">
                                 🧾❌ Void
@@ -391,7 +423,7 @@
                              {{-- @if ( $Resultcustomer->id == $cekTransaksis->customer_Id) --}}
                     {{-- <option value="{{ $Resultcustomer->id }}">{{ $Resultcustomer->nama }} - {{ $cekTransaksis ? $cekTransaksis->count() :'' }}</option> --}}
                              {{-- @else --}}
-                    <option value="{{ $Resultcustomer->id }}">{{ $Resultcustomer->nama }} . 🛒 {{ App\Models\Transaksi::basket($Resultcustomer->id) }}
+                    <option value="{{ $Resultcustomer->id }}">{{ $Resultcustomer->id }}.{{ $Resultcustomer->nama }}.#{{App\Models\Transaksi::get_batchId($Resultcustomer->id)}} . 🛒 {{ App\Models\Transaksi::basket($Resultcustomer->id) }}
 
                     </option>
                             {{-- @endif --}}
@@ -836,7 +868,7 @@
                 {{ $voidMode ? 'Void Paid Transaksi' : '' }}
             </h3>
             <div class="flex flex-row w-full min-w-[350px] justify-between items-center md:justify-between md:items-start ">
-                <form wire:submit.prevent="save_discount" enctype="multipart/form-data">
+                <form wire:submit.prevent="" enctype="multipart/form-data">
                     <div class="flex flex-col w-full h-1/2">
                         <select
                         wire:change="select_voidBatchId()"
@@ -844,12 +876,19 @@
                         >
                             <option value="">Pilih Batch Id</option>
                             @foreach($this->voidBatchId as $batchid)
-                            <option>{{ $batchid->batch_id }}</option>
+                            <option value="{{ trim($batchid->batch_id) }}">{{ trim($batchid->batch_id) }}</option>
                             @endforeach
                         </select>
 
 
 
+                    </div>
+                    <div class="flex flex-1">
+                        <button
+                        type="button"
+                        wire:click="closeformVoid()"
+                        class="bg-blue-300 rounded-lg mt-2 p-2"
+                        > Exit</button>
                     </div>
 
                 </form>

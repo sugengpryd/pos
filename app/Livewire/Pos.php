@@ -14,6 +14,8 @@ use App\Models\Customer as DBCustomer;
 use App\Models\Transaksi as dbTransaksi;
 use App\Models\batchSequences as dbbatch;
 use App\Models\pengiriman as dbpengiriman;
+use App\Models\voidtransaksi as dbvoidtransaksi;
+
 use Illuminate\Support\Facades\DB;
 
 use Livewire\Attributes\Layout;
@@ -100,21 +102,24 @@ class Pos extends Component
         $this->diskon= 0;
         $this->biayakirim = 0;
 
-        $batchId = dbTransaksi::select('batch_id')->where('flaq', 'paid')->distinct()->orderBy('batch_id')->get();
+        $batchId = dbTransaksi::select('batch_id')->where('flaq', 'paid')->distinct()->orderBy('batch_id','desc')->get();
         // dd($batchId);
+
         $this->voidBatchId = $batchId;
         $this->voidMode=true;
         $this->showmodalVoid = true;
 
     }
     public function closeformVoid(){
-        // $this->voidMode=false;
+        $this->voidMode=false;
         $this->showmodalVoid = false;
     }
     public function select_voidBatchId(){
         // dd($this->selectedBatchId);
         // $data = dbTransaksi::where('batch_id',$this->selectedBatchId)->get();
         // dd($data);
+            $batchId = trim($this->selectedBatchId);
+            // dd($batchId);
 
             $cekTransaksi = dbTransaksi::rightJoin(
                 'menu',
@@ -123,7 +128,8 @@ class Pos extends Component
                 'menu.menu_id'
             )
             ->where('transaksi.flaq', 'paid')
-            ->where('transaksi.batch_id', $this->selectedBatchId)
+            // ->where('transaksi.batch_id','like', '%' . $this->selectedBatchId . '%')
+             ->where('transaksi.batch_id', $batchId)
             ->select(
                 'transaksi.*',
                 'menu.menu_id',
@@ -137,6 +143,7 @@ class Pos extends Component
             ->distinct()->get();
             // dd($this->menustransaksi);
             // dd($cekTransaksi);
+            // dd($this->selectedBatchId);
 
             // $this->menustransaksi[]=$cekTransaksi;
             $sumQty= $cekTransaksi->sum('qty') ?? '0';
@@ -174,7 +181,7 @@ class Pos extends Component
                     $this->totalSementara += $this->menustransaksi[$index]['item_qty'] * $this->menustransaksi[$index]['sellingPrice'];
 
                 }
-
+                $this->findCustomer($cekTransaksi[0]['customer_Id']);
                 $this->findpenerima();
                 $this->cekDiskon();
                 $this->cekbiayaKirim();
@@ -190,26 +197,58 @@ class Pos extends Component
                 $this->totalTagihan =  number_format(($total - $diskon)+$ppn+$delivery,0,".",".");
                 // $this->totalTagihan = number_format(($this->totalSementara + (float) $this->biayaKirim + $this->ppn) - $this->diskon,0,'.','.');
                 $this->itemQty= $sumQty;
-                $this->dispatch('notify', message: 'Opening Paid Trasaction');
+                $this->dispatch('notify', message: 'Opening Paid Trasaction',type:'success');
             }
 
-            $this->closeformVoid();
+
+        $this->showmodalVoid = false;
+
 
 
     }
     public function voidItem($index,$menuId,$batchId){
-        // dd($index,$MenuId,$batchId);
-         unset($this->menustransaksi[$index]);
+        // dd($this->menustransaksi[$index]['total']);
+        $batchId= trim($batchId);
 
-        $void = dbTransaksi::where('batch_id', $batchId)->where('menu_id',$menuId)->update([
-            'flaq' => "void",
+        // $void = dbTransaksi::where('batch_id', $batchId)->where('menu_id',$menuId)->update([
+        $void = dbTransaksi::where('batch_id',$batchId)->update([
+            'flaq' => "basket",
+        ]);
+        $this->itemQty = $this->itemQty - $this->menustransaksi[$index]['item_qty'];
 
+        unset($this->menustransaksi[$index]);
 
-
+        $addvoidtransaksi= dbvoidtransaksi::create([
+            'batch_Id'=> $batchId,
+            // 'menu_id'=>
+            // 'qty'=>
+            'total'=>preg_replace('/\D/','',$this->totalTagihan),
+            'flaq'=>"1"
 
 
         ]);
-                $this->dispatch('notify', message: 'Item Void');
+
+            // $deleteVoid =dbTransaksi::where('batch_id', $batchId)->where('menu_id',$menuId)->delete();
+            $deletePayment = Payment::where('batch_id', $batchId)->delete();
+
+            // $itemQty = dbTransaksi::where('batch_id', $batchId)->sum('qty');
+            // $this->itemQty = $itemQty;
+
+            // $totalVoid = $this->menustransaksi[$index]['total'];
+            // $total = (float)preg_replace('/\D/','',$this->total) - $totalVoid;
+            // $this->total = $total;
+
+            // $totaldiskon =
+            // $totalTagihan = (float)preg_replace('/\D/','',$this->totalTagihan);
+
+            // $this->totalTagihan = $total +
+            // dd($itemQty);
+
+
+
+
+
+                $this->dispatch('notify', message: 'Item Void',type:'success');
 
     }
 
@@ -232,6 +271,21 @@ class Pos extends Component
     //   $this->biayakirim= $findbiayaKirim?->BiayaKirim ?? 0;
 
     }
+    public function findCustomer($customerId){
+        // dd($customerId);
+        $getCustomer= DBCustomer::where('id',$customerId)->first();
+        // dd($getCustomer);
+        $this->customerid = $customerId;
+        $this->selectCustomer = $getCustomer->nama;
+        $this->alamat= $getCustomer->Alamat;
+        $this->kota=$getCustomer->kota;
+        $this->telepon1=$getCustomer->telepon1;
+        $this->telepon2=$getCustomer->telepon2;
+
+
+    }
+
+
     public function findpenerima(){
       $findPenerima = dbpengiriman::where('batch_id', $this->transaksiBatchId)->first();
     //   dd($this->transaksiBatchId);
@@ -446,7 +500,14 @@ class Pos extends Component
         // dd([$id,$desc]);
         //  $this->menus=[];
         // $this->menustransaksi = $this->menustransaksi;
+        $batchId = $this->transaksiBatchId;
+        $cekTransaksi = payment::where('batch_id',$batchId)->where('flaq','1')->first();
+            if($cekTransaksi){
+                $this->dispatch('notify', message: 'Cannot Add Item to Paid Transaction',type:'error');
 
+            return;
+
+            }
         $menustransaksi = Menu::where('menu_id', $id)->get();
 
         // dd([$menustransaksi,$this->menustransaksi]);
@@ -520,7 +581,7 @@ class Pos extends Component
 
         ];
         }
-        $this->dispatch('notify', message: 'Item added');
+        $this->dispatch('notify', message: 'Item added',type:'success');
 
     }
     public function openmodaldelivery(){
@@ -543,6 +604,7 @@ class Pos extends Component
 
     }
     public function closeopenModal(){
+        $this->pilihCustomer();
         $this->showModal = false;
 
     }
@@ -555,7 +617,8 @@ class Pos extends Component
         $this->itemQty = 0;
         $this->diskon = 0;
         $this->selectedBatchId="";
-
+        $this->voidMode=false;
+            // dd($this->voidMode);
 
         // dd($this->selectedcustomer);
 
@@ -577,6 +640,12 @@ class Pos extends Component
         $selected = DBCustomer::where('id',$this->selectedcustomer)->first();
 
         // dd($selected);
+        if(!$selected){
+                $this->dispatch('notify', message: 'Please Select Customer', type:'warning');
+
+
+            return;
+        };
         $this->customerid =$selected->id;
         $this->selectCustomer = $selected->nama;
         $this->alamat = $selected->Alamat;
@@ -670,7 +739,7 @@ class Pos extends Component
                 $this->totalTagihan =  number_format(($total - $diskon)+$ppn+$delivery,0,".",".");
                 // $this->totalTagihan = number_format(($this->totalSementara + (float) $this->biayaKirim + $this->ppn) - $this->diskon,0,'.','.');
                 $this->itemQty= $sumQty;
-                $this->dispatch('notify', message: 'Opening Basket');
+                $this->dispatch('notify', message: 'Opening Basket', type:'success');
             }
 
             // dd($this->menustransaksi);
@@ -680,17 +749,25 @@ public function removeItem($index,$item_id)
     {
         // dd($this->menuId);
         // dd([$index,$item_id,$menu_id]);
-         unset($this->menustransaksi[$index]);
+        //  unset($this->menustransaksi[$index]);
         //  dd([$item_id,$this->menuId]);
         //  $delete = menu_item::where('produk_id',$item_id)
                             //   ->where('menu_id',$this->menuId)->delete();
         // dd($delete);
     // rapikan kembali index array
-        $this->menustransaksi = array_values($this->menustransaksi);
+        // $this->menustransaksi = array_values($this->menustransaksi);
         // Recalculate total
+        $this->itemQty = $this->itemQty - $this->menustransaksi[$index]['item_qty'];
+        // dd($this->itemQty);
+
+         unset($this->menustransaksi[$index]);
+        $this->menustransaksi = array_values($this->menustransaksi);
+
+
+
         $this->calculateTotal();
 
-        $this->dispatch('notify', message: 'Item Transaction removed');
+        $this->dispatch('notify', message: 'Item Removed',type:'success');
 
     }
     public function calculateTotal()
@@ -721,17 +798,23 @@ public function removeItem($index,$item_id)
         // dd($batchId);
         $this->transaksiBatchId=$batchId;
         $this->menustransaksi=[];
-         $this->dispatch('notify', message: 'New Transaction');
+         $this->dispatch('notify', message: 'New Transaction', type:'success');
     }
 
     public function save(){
+        if($this->voidMode){
+         $this->dispatch('notify', message: 'Save not Available in Void Mode, Nothing to save ! ', type:'error');
+
+        return;
+
+        }
         if(!$this->menustransaksi){
-        $this->dispatch('notify', message: 'No transaction !, Nothing to save !');
+        $this->dispatch('notify', message: 'No transaction Listed !, Nothing to save !', type: 'error');
         return;
             };
 
         if (!$this->transaksiBatchId) {
-            $this->dispatch('notify', message: 'Transaction Batch ID is empty!');
+            $this->dispatch('notify', message: 'No Customer Selected!',type: 'error');
         return;
             };
         // dd($this->customerid);
@@ -823,14 +906,26 @@ public function removeItem($index,$item_id)
             // $this->tipePembayaran;
             // dd($this->transaksiBatchId);
         $exists = Payment::where('batch_id', $this->transaksiBatchId)->exists();
+        $cekTransaksi = dbTransaksi::where('batch_id',$this->transaksiBatchId)->exists();
+
+        if(!$cekTransaksi){
+            $this->dispatch('notify',
+            message:'No Transaction Listed In Basket, Please Save The Transaction..!',
+            type:'error'
+        );
+            return;
+        }
 
         if ($exists) {
         $this->dispatch('notify',
-            message: 'Transaction has been paid, Please make new transaction'
+            message: 'Transaction has been paid, Please make new transaction',
+            type:'error'
         );
 
-        return;
-    }
+            return;
+        }
+        $this->save();
+
         $createBayar = Payment::create([
             'batch_id' => $this->transaksiBatchId,
             'total'=> $this->total,
@@ -851,7 +946,7 @@ public function removeItem($index,$item_id)
         $this->menustransaksi =[];
         // $this->formBayar=false;
         $this->closeformBayar();
-        $this->dispatch('notify', message: 'Pembayaran Berhasil');
+        $this->dispatch('notify', message: 'Pembayaran Berhasil', type:'success');
 
 
 
