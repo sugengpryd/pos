@@ -87,6 +87,8 @@ class Pos extends Component
     public $voidMode = false;
     public $voidBatchId = [];
     public $selectedBatchId = '';
+    public $openTransaksi=false;
+
 
 
 
@@ -101,12 +103,16 @@ class Pos extends Component
         $this->totalSementara=0;
         $this->diskon= 0;
         $this->biayakirim = 0;
+        $today = now();
+        // dd($today)->format('Y-m-d');
 
-        $batchId = dbTransaksi::select('batch_id')->where('flaq', 'paid')->distinct()->orderBy('batch_id','desc')->get();
+        $batchId = dbTransaksi::select('batch_id')->where('flaq', 'paid')
+        ->whereDate('created_at',$today)->distinct()->orderBy('batch_id','desc')->get();
         // dd($batchId);
 
         $this->voidBatchId = $batchId;
         $this->voidMode=true;
+        $this->openTransaksi=false;
         $this->showmodalVoid = true;
 
     }
@@ -214,6 +220,7 @@ class Pos extends Component
         $void = dbTransaksi::where('batch_id',$batchId)->update([
             'flaq' => "basket",
         ]);
+        $this->flaqTransaksi ="basket";
         $this->itemQty = $this->itemQty - $this->menustransaksi[$index]['item_qty'];
 
         unset($this->menustransaksi[$index]);
@@ -599,7 +606,6 @@ class Pos extends Component
     }
     public function openModal($value){
         // dd($value);
-
         $this->showModal = true;
 
     }
@@ -610,6 +616,8 @@ class Pos extends Component
     }
     public function pilihCustomer(){
         // dd($value);
+        $this->openTransaksi=true;
+
         $this->totalSementara='0';
         $this->total='0';
         $this->totalTagihan ='0';
@@ -802,6 +810,7 @@ public function removeItem($index,$item_id)
     }
 
     public function save(){
+        // dd("save");
         if($this->voidMode){
          $this->dispatch('notify', message: 'Save not Available in Void Mode, Nothing to save ! ', type:'error');
 
@@ -945,6 +954,7 @@ public function removeItem($index,$item_id)
         $this->flaqTransaksi = 'paid';
         $this->menustransaksi =[];
         // $this->formBayar=false;
+        $this->openTransaksi=false;
         $this->closeformBayar();
         $this->dispatch('notify', message: 'Pembayaran Berhasil', type:'success');
 

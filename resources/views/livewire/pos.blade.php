@@ -128,7 +128,9 @@
                                 wire:click="openModal('customer')"
                                 class="bg-blue-700 text-white text-xs md:text-sm
                                     px-2 py-3 rounded shadow-lg
-                                    hover:shadow-xl hover:shadow-teal-600">
+                                    hover:shadow-xl hover:shadow-teal-600
+                                    {{ $openTransaksi ? 'underline decoration-white decoration-2 underline-offset-8' : '' }}
+                                    ">
                                 🧑‍🤝‍🧑 Customer
                             </button>
 
@@ -137,6 +139,7 @@
                                 wire:loading.attr="disabled"
                                 wire:click="openmodaldelivery"
                                 @disabled($voidMode)
+                                @disabled(!$openTransaksi)
                                 class="bg-blue-700 text-white text-xs md:text-sm
                                     px-2 py-3 rounded shadow-lg
                                     disabled:opacity-50 disabled:cursor-not-allowed
@@ -150,6 +153,8 @@
                                 wire:loading.attr="disabled"
                                 wire:click="openmodaldiscount"
                                 @disabled($voidMode)
+                                @disabled(!$openTransaksi)
+
                                 class="bg-blue-700 text-white text-xs md:text-sm
                                     px-2 py-3 rounded shadow-lg
                                     disabled:opacity-50 disabled:cursor-not-allowed
@@ -163,6 +168,8 @@
                                 wire:loading.attr="disabled"
                                 wire:click="save()"
                                 @disabled($voidMode)
+                                @disabled(!$openTransaksi)
+
                                 class="bg-blue-700 text-white text-xs md:text-sm
                                     px-2 py-3 rounded shadow-lg
                                     disabled:opacity-50 disabled:cursor-not-allowed
@@ -175,6 +182,8 @@
                             <button
                                 onclick="window.open('{{ route('Do', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid]) }}','_blank')"
                                  @disabled($voidMode)
+                                 @disabled(!$openTransaksi)
+
                                 class="bg-blue-700 text-white text-xs md:text-sm
                                     px-2 py-3 rounded shadow-lg
                                     disabled:opacity-50 disabled:cursor-not-allowed
@@ -187,6 +196,8 @@
                             <button
                             onclick="window.open('{{ route('Struk', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid,'biayaKirim'=>$this->biayaKirim,'totalTagihan'=>$this->totalTagihan])}}','_blank')"
                                  @disabled($voidMode)
+                                 @disabled(!$openTransaksi)
+
                                 class="bg-blue-700 text-white text-xs md:text-sm
                                     px-2 py-3 rounded shadow-lg
                                     disabled:opacity-50 disabled:cursor-not-allowed
@@ -200,6 +211,8 @@
                                 wire:loading.attr="disabled"
                                 wire:click="openformBayar()"
                                  @disabled($voidMode)
+                                @disabled(!$openTransaksi)
+
                                 class="bg-lime-700 text-white text-xs md:text-sm
                                     px-2 py-3 rounded shadow-lg
                                     disabled:opacity-50 disabled:cursor-not-allowed
@@ -213,7 +226,8 @@
                                 wire:click="openformVoid()"
                                 class=" bg-lime-700 text-white text-xs md:text-sm
                                     px-2 py-3 rounded shadow-lg
-                                    hover:shadow-xl hover:shadow-lime-600">
+                                    hover:shadow-xl hover:shadow-lime-600
+                                    {{ $voidMode ? 'underline decoration-white decoration-2 underline-offset-8' : '' }}">
                                 🧾❌ Void
                             </button>
                         </div>
@@ -415,9 +429,9 @@
                     wire:model="selectedcustomer"
                     wire:change='pilihCustomer'
                     placeholder="Click here to get Menu Id"
-                    class="w-full text-sm rounded-xl p-2"
+                    class="w-full rounded-xl p-2 text-xs"
                     >
-                    <option>Pilih Customer Name</option>
+                    <option">Pilih Customer Name</option>
                     @foreach ($Resultcustomers as $index => $Resultcustomer )
                         {{-- @foreach ($cekTransaksi as $key => $cekTransaksis ) --}}
                              {{-- @if ( $Resultcustomer->id == $cekTransaksis->customer_Id) --}}
@@ -546,8 +560,10 @@
         {{-- class="cursor-move select-none fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50" --}}
                 {{-- style="left:50%; top:50%; transform:translate(-50%,-50%);" --}}
                 >
-            <div class=" flex flex-col w-96 justify-center items-center  bg-white rounded-lg max-h-[90vh] shadow-lg min-w-[300px] max-w-[900px] p-2 overflow-y-auto ">
-              <div class="h-full w-full bg-slate-300 p-4 ">
+            <div class=" flex flex-col w-96 justify-start items-start text-left bg-white rounded-lg max-h-[90vh] shadow-lg min-w-[300px] max-w-[900px] p-2 overflow-y-auto ">
+                <h3 class="text-lg font-semibold mb-4">Delivery</h3>
+
+                <div class="h-full w-full bg-slate-300 p-4 ">
 
                 {{-- <form wire:submit.prevent="bayar" enctype="multipart/form-data"> --}}
                 <form enctype="multipart/form-data">
@@ -750,27 +766,26 @@
     @if($showmodalDiscount)
     <div class="fixed inset-0 z-50 w-full h-screen flex items-center justify-center bg-black bg-opacity-50">
 
-        <div class="bg-white rounded-lg shadow-lg w-1/2 min-w-[300px] max-w-[900px] p-6 max-h-[600px] overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-lg w-1/2 min-w-[300px] max-w-[400px] p-4 max-h-[600px] overflow-y-auto">
 
             <h3 class="text-lg font-semibold mb-4">
                 {{ $discountMode ? 'Discount' : '' }}
             </h3>
-            <div class="flex flex-row w-full min-w-[350px] justify-between items-center md:justify-between md:items-start ">
+            <div class="flex flex-row w-full bg-slate-300 p-6 min-w-[350px] justify-between items-center md:justify-between md:items-start ">
                 <form wire:submit.prevent="save_discount" enctype="multipart/form-data">
-                    {{-- <div class="flex flex-row justify-start items-start p-2 mt-2"> --}}
-                        <div class="flex-col p-2 gap-1 text-xs">
+                        <div class="flex-col w-full p-2 gap-1 text-xs">
                                 <label class="text-bold" for="batchId">BatchId</label>
                                     <input
                                     wire:model.live="batchidDiscount"
                                     id="batchId" type="text"
-                                    class="flex flex-col flex-wrap rounded-lg text-xs p-2"
+                                    class="flex flex-col w-full flex-wrap rounded-lg text-xs p-2"
                                     >
 
                                 <label class=" text-bold" for="customer">Customer</label>
                                     <input
                                     wire:model.live="customerDiscount"
                                     id="diskon" type="text"
-                                    class="flex flex-col flex-wrap rounded-lg text-xs p-2"
+                                    class="flex flex-col w-full flex-wrap rounded-lg text-xs p-2"
                                     >
 
 
@@ -778,7 +793,7 @@
                                     <input
                                     wire:model.live="totaltagihanDiscount"
                                     id="totalTagihan" type="text"
-                                    class="flex flex-col flex-wrap rounded-lg text-xs p-2"
+                                    class="flex flex-col w-full flex-wrap rounded-lg text-xs p-2"
                                     >
                         </div>
                             <div class="flex flex-col gap-2 mt-1 p-2 text-xs">
@@ -854,7 +869,6 @@
                                         Apply
                                     </button>
                                 </div>
-                    {{-- </div> --}}
                 </form>
         </div>
     </div>
