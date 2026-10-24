@@ -431,13 +431,13 @@
                     placeholder="Click here to get Menu Id"
                     class="w-full rounded-xl p-2 text-xs"
                     >
-                    <option">Pilih Customer Name</option>
+                    <option value="">Pilih Customer Name</option>
                     @foreach ($Resultcustomers as $index => $Resultcustomer )
                         {{-- @foreach ($cekTransaksi as $key => $cekTransaksis ) --}}
                              {{-- @if ( $Resultcustomer->id == $cekTransaksis->customer_Id) --}}
                     {{-- <option value="{{ $Resultcustomer->id }}">{{ $Resultcustomer->nama }} - {{ $cekTransaksis ? $cekTransaksis->count() :'' }}</option> --}}
                              {{-- @else --}}
-                    <option value="{{ $Resultcustomer->id }}">{{ $Resultcustomer->id }}.{{ $Resultcustomer->nama }}.#{{App\Models\Transaksi::get_batchId($Resultcustomer->id)}} . 🛒 {{ App\Models\Transaksi::basket($Resultcustomer->id) }}
+                    <option class="text-xs" value="{{ $Resultcustomer->id }}">{{ $Resultcustomer->id }}.{{ $Resultcustomer->nama }}.#{{App\Models\Transaksi::get_batchId($Resultcustomer->id)}} . 🛒 {{ App\Models\Transaksi::basket($Resultcustomer->id) }}
 
                     </option>
                             {{-- @endif --}}
