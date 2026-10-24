@@ -766,12 +766,12 @@
     @if($showmodalDiscount)
     <div class="fixed inset-0 z-50 w-full h-screen flex items-center justify-center bg-black bg-opacity-50">
 
-        <div class="bg-white rounded-lg shadow-lg w-1/2 min-w-[300px] max-w-[400px] p-4 max-h-[600px] overflow-y-auto">
+        <div class="bg-white w-full rounded-lg shadow-lg min-w-[350px] md:max-w-[400px] p-2 max-h-[600px]">
 
             <h3 class="text-lg font-semibold mb-4">
                 {{ $discountMode ? 'Discount' : '' }}
             </h3>
-            <div class="flex flex-row w-full bg-slate-300 p-6 min-w-[350px] justify-between items-center md:justify-between md:items-start ">
+            <div class="flex flex-row w-full bg-slate-300 p-4 min-w-[350px] justify-start items-center md:justify-between md:items-start ">
                 <form wire:submit.prevent="save_discount" enctype="multipart/form-data">
                         <div class="flex-col w-full p-2 gap-1 text-xs">
                                 <label class="text-bold" for="batchId">BatchId</label>
