@@ -7,10 +7,15 @@ use App\Models\Produk as Produk;
 use App\Models\Menu_item as menu_item;
 use App\Models\Uom as Uoms;
 use App\Models\kategori as kategoris;
+use App\Models\Dbcreated as Dbcreated;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
+
 
 #[Layout('layouts.app')]
 
@@ -41,19 +46,47 @@ class Menu extends Component
     public $menu_image='';
     public $menuImages='';
     public $filterSearch='';
+    public $UsersId = '';
+    public $dbconnection = '';
 
+    public function mount()
+    {
+    $this->UsersId = Auth::id();
+    $this->createnewConnection();
+    }
 
-
+    public function createnewConnection(){
+    // dd($this->UsersId);
+        $this->dbconnection = 'customer_sqlite';
+        $result = Dbcreated::where('users_id', $this->UsersId)->first();
+        // dd($result);
+        $path = $result->path;
+        $dbname = $result->db_name;
+            // Register connection dynamically
+        Config::set('database.connections.customer_sqlite', [
+        'driver' => 'sqlite',
+        'database' => $path,
+        'prefix' => '',
+        'foreign_key_constraints' => true,
+        ]);
+        // Connect to the new database
+        DB::purge('customer_sqlite');
+        DB::connection('customer_sqlite')->getPdo();
+    }
 
     public function render()
     {
-        $menu= Menus::query()
+        $this->createnewConnection();
+        // $menu= Menus::query()
+        $menu=Menus::on('customer_sqlite')
         ->when($this->filterSearch, function($query){
         $query->where('description', 'like', '%' . $this->filterSearch .'%');
         })->get();
-        $produk= Produk::where('flaq','!=','0')->get();
-        $master_uom = Uoms::all();
-        $kategori = kategoris::all();
+
+        $produk= Produk::on('customer_sqlite')
+        ->where('flaq','!=','0')->get();
+        $master_uom = Uoms::on('customer_sqlite')->get();
+        $kategori = kategoris::on('customer_sqlite')->get();
         // dd($menu);
 
         return view('livewire.menu',compact('menu','produk','master_uom','kategori'));
@@ -71,6 +104,8 @@ class Menu extends Component
 
     }
     public function upload_image($produk_id){
+        $this->createnewConnection();
+
 
             // dd($produk_id);
             // $produkId =
@@ -81,7 +116,7 @@ class Menu extends Component
         $path=$this->menu_image->store('image', 'public');
 
         // $get = Menus::where('menu_id',$produk_id)->first();
-        $updateMenu=Menus::where('menu_id',$produk_id)->update([
+        $updateMenu=Menus::on('customer_sqlite')->where('menu_id',$produk_id)->update([
             'image' => $path,
         ]);
         // dd($get);
@@ -95,6 +130,8 @@ class Menu extends Component
 
     }
     public function save(){
+        $this->createnewConnection();
+
         // dd($this->items->id);
         // dd([$this->items,
         //     $this->menu_description,
@@ -102,7 +139,7 @@ class Menu extends Component
         //     $this->menu_harga,
         //     $this->menu_visibility]);
 
-        $results=Menus::where("menu_id",$this->menuId)->first();
+        $results=Menus::on('customer_sqlite')->where("menu_id",$this->menuId)->first();
         if(!$results){
             // $itemcount = count($this->items) ?? '0';
             // dd($this->items);
@@ -112,7 +149,7 @@ class Menu extends Component
             // dd($this->itemQty[$index] ?? 0);
             // dd($this->items);
 
-                $create_items = menu_item::create([
+                $create_items = menu_item::on('customer_sqlite')->create([
                     'menu_id'=> $this->menuId,
                     'description' => $item['description'],
                     'produk_id' => $item['produk_id'],
@@ -126,7 +163,7 @@ class Menu extends Component
             }
 
 
-            $create = Menus::create([
+            $create = Menus::on('customer_sqlite')->create([
             'menu_id'=>$this->menuId,
             'description' => $this->menu_description,
             'kategori' => $this->menu_kategori,
@@ -171,12 +208,12 @@ class Menu extends Component
             // }else{
                 // dd($this->items);
 
-            $deleteallitem = menu_item::where('menu_id',$this->menuId)->delete();
+            $deleteallitem = menu_item::on('customer_sqlite')->where('menu_id',$this->menuId)->delete();
             foreach ($this->items as $index => $item) {
             // dd($this->itemQty[$index] ?? 0);
                 // dd($this->items);
                 // dd($item['uom']);
-                $create_items = menu_item::create([
+                $create_items = menu_item::on('customer_sqlite')->create([
                     'menu_id'=> $this->menuId,
                     'produk_id' => $item['produk_id'],
                     'description' => $item['description'],
@@ -206,16 +243,18 @@ class Menu extends Component
     }
 
     public function editMenu($value){
+        $this->createnewConnection();
+
         $this->editMode= true;
         $this->addMode= false;
         $this->resetform();
         // dd($value);
-        $editmenu = Menus::where('id',$value)->first();
+        $editmenu = Menus::on('customer_sqlite')->where('id',$value)->first();
         // dd($editmenu);
         $menuid = $editmenu->menu_id;
 
 
-        $editMenuItems= menu_item::where('menu_id',$menuid)->get();
+        $editMenuItems= menu_item::on('customer_sqlite')->where('menu_id',$menuid)->get();
 
         // dd($editMenuItems);
 
@@ -262,9 +301,10 @@ class Menu extends Component
     }
     public function selectedProduk(){
         // dd($this->selectProduk);
+        $this->createnewConnection();
 
         if($this->selectProduk != ""){
-        $produk = Produk::find($this->selectProduk);
+        $produk = Produk::on('customer_sqlite')->find($this->selectProduk);
         $this->items[]=
         [
             'produk_id'=> $produk->id,
@@ -278,11 +318,12 @@ class Menu extends Component
     }
     public function removeItem($index,$item_id)
     {
+        $this->createnewConnection();
         // dd($this->menuId);
         // dd([$index,$item_id,$menu_id]);
          unset($this->items[$index]);
         //  dd([$item_id,$this->menuId]);
-         $delete = menu_item::where('produk_id',$item_id)
+         $delete = menu_item::on('customer_sqlite')->where('produk_id',$item_id)
                               ->where('menu_id',$this->menuId)->delete();
         // dd($delete);
     // rapikan kembali index array

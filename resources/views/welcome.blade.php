@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>POS Management</title>
+        <title>Point - POS Management</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -14,7 +14,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="antialiased font-sans">
-        <div class=" w-full py-2 bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
+        <div class=" w-full py-2 bg-[#661414] text-white dark:bg-black dark:text-white/50">
             <img id="background" class="absolute -left-[60] top-0 max-h-[220px] max-w-[250px] md:max-w-[200px] md:-left-20" src="https://laravel.com/assets/img/welcome/background.svg" />
 
             <div class="min-h-screen flex flex-col items-center justify-center">
@@ -29,16 +29,16 @@
                     </header>
 
                     <main class="mt-0">
-                        <div class="grid grid-cols-1 w-full ">
-                            <img class="w-full h-full" src="storage/logo/logo.png">
+                        <div class="flex flex-1 px-4 max-w-full justify-center items-center ">
+                            <img class="h-full py-4 w-[75%] " src="storage/logo/logo.png">
 
                         </div>
                     </main>
 
-                    <footer class="py-16 text-center text-sm text-black dark:text-white/70">
+                    <footer class="py-16 text-center text-sm text-gray-300 dark:text-white/70">
                         {{ 'Jakarta, '}}  {{now()->format('d-m-Y') }}
                         <br>
-                        Develope with Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+                        {{-- Develope with Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }}) --}}
                     </footer>
                 </div>
             </div>

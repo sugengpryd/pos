@@ -37,14 +37,14 @@ class Transaksi extends Model
     }
     static function basket($value){
         // dd($value);
-        $result = Transaksi::where('flaq','basket')->where('customer_Id',$value)->count();
+        $result = Transaksi::on('customer_sqlite')->where('flaq','basket')->where('customer_Id',$value)->count();
         // dd($result);
         return $result;
 
     }
     static function get_batchId($value){
         // dd($value);
-        $result = Transaksi::select('batch_id')->where('flaq','basket')->where('customer_Id',$value)->value('batch_id');
+        $result = Transaksi::on('customer_sqlite')->select('batch_id')->where('flaq','basket')->where('customer_Id',$value)->value('batch_id');
         // dd($result);
         return $result;
     }

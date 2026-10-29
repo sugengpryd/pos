@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\User as dbUser;
+use illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -10,6 +11,7 @@ use Livewire\Attributes\Layout;
 
 class Menu extends Model
 {
+    protected $connection = 'customer_sqlite';
     protected $table = 'menu';
 
     protected $fillable = [
@@ -46,7 +48,7 @@ class Menu extends Model
     static function get_name($value){
         // dd($value);
 
-        $name = menu::select('menu_id','description')->where('menu_id','=',$value)->pluck('description');
+        $name = menu::on('customer_sqlite')->select('menu_id','description')->where('menu_id','=',$value)->pluck('description');
         // $name = menu::all();
 
         return $name[0];

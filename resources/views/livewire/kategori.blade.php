@@ -89,9 +89,9 @@
      @if($showModal)
         <div class="fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50">
 
-            <div class=" flex flex-col m-2 bg-white rounded-lg justify-start items-center shadow-lg w-full p-2 max-h-screen overflow-y-auto ">
+            <div class=" flex flex-col m-2 bg-slate-300 rounded-lg justify-start items-center shadow-lg w-1/2 p-2 max-h-screen overflow-y-auto ">
 
-                    <h3 class="text-lg font-semibold mb-4">
+                    <h3 class="text-lg font-semibold mb-6">
                         {{ $editMode ? 'Edit Kategori' : 'Create New Kategori' }}
                     </h3>
 
@@ -101,7 +101,7 @@
                                 <label>Description</label>
                                 <input
                                 wire:model='kategoriDescription'
-                                placeholder="Input Description"
+                                placeholder="Kategori description"
                                 type="text"
                                 class=" w-full p-2 mt-2 rounded"
                                 >
@@ -114,8 +114,8 @@
                                 class=" w-full p-2 mt-2 rounded"
                                 >
                                 <option value="">Select Status</option>
-                                <option value="0">Hidden</option>
-                                <option value="1">Show</option>
+                                <option value="0">Hidden/Sembunyikan</option>
+                                <option value="1">Show/Tampilkan </option>
                                 </select>
                             </div>
 
@@ -150,15 +150,17 @@
                             <div class="flex flex-wrap gap-4 mt-4 justify-start items-start">
                                 <button
                                 wire:click='closeopenModal'
+                                wire:loading.attr="disabled"
                                 type="button"
-                                class="bg-red-400 py-2 px-4 rounded-xl text-xs">Cancel
+                                class="bg-red-400 py-2 px-4 rounded-xl text-xs disabled:opacity-50 disabled:cursor-not-allowed">Cancel
 
                                 </button>
 
                                 <button
                                 {{-- wire:click='save' --}}
+                                wire:loading.attr="disabled"
                                 type="submit"
-                                class="bg-blue-400 py-2 px-4 rounded-xl text-xs "
+                                class="bg-blue-400 py-2 px-4 rounded-xl text-xs disabled:opacity-50 disabled:cursor-not-allowed "
                                 >
                                 Save</button>
                             </div>

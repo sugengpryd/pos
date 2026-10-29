@@ -102,7 +102,9 @@
                                 <td class="py-2 px-2 text-xs text-center">{{ $transaksis->qty }}</td>
                                 <td class="py-2 px-2 text-xs text-right">{{ $transaksis->sellingPrice }}</td>
                                 <td class="py-2 px-2 text-xs text-right">{{ $transaksis->total }}</td>
-                                <td class="py-2 px-2 text-xs text-left">{{ App\Models\Customer::getCustomer($transaksis->customer_Id) }}</td>
+                                <td class="py-2 px-2 text-xs text-left">
+                                    {{ App\Models\Customer::getCustomer($transaksis->customer_Id,'customer_sqlite') }}
+                                </td>
                                 <td class="py-2 px-2 text-xs text-center">{{ $transaksis->flaq }}</td>
                                 <td class="py-2 px-2 text-xs text-center">{{ $transaksis->created_at }}</td>
                             </tr>

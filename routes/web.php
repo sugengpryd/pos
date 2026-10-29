@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Produk;
 use App\Http\Controllers\StrukController;
+use App\Http\Controllers\createdbController;
 
 Route::view('/', 'welcome');
 
@@ -57,6 +58,14 @@ Route::get('struk/{batch_id?/customer_id?}', [StrukController::class,'show'])
 Route::get('deliveryOrder/{batch_id?/customer_id?}', [StrukController::class,'do'])
     ->middleware(['auth'])
     ->name('Do');
+
+Route::get('/createdDb', [createdbController::class,'create'])
+    ->middleware(['auth'])
+    ->name('CreatedbPage');
+
+Route::get('/createdDB/{dbname}', [createdbController::class, 'createdDB'])
+    ->name('createdDB');
+
 
 
 

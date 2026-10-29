@@ -4,6 +4,12 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Transaksi as Transaksis;
+use App\Models\Dbcreated as Dbcreated;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schema;
 use Livewire\Attributes\Layout;
 #[Layout('layouts.app')]
 
@@ -15,16 +21,44 @@ class Transaksi extends Component
     public $FilterCustomer = '';
     public $FilterStatus = '';
     public $FilterDate = '';
+    public $UsersId='';
 
+
+
+    public function mount()
+    {
+    $this->UsersId = Auth::id();
+    $this->createnewConnection();
+    }
+
+    public function createnewConnection(){
+    // dd($this->UsersId);
+        $this->dbconnection = 'customer_sqlite';
+        $result = Dbcreated::where('users_id', $this->UsersId)->first();
+        // dd($result);
+        $path = $result->path;
+        $dbname = $result->db_name;
+            // Register connection dynamically
+        Config::set('database.connections.customer_sqlite', [
+        'driver' => 'sqlite',
+        'database' => $path,
+        'prefix' => '',
+        'foreign_key_constraints' => true,
+        ]);
+        // Connect to the new database
+        DB::purge('customer_sqlite');
+        DB::connection('customer_sqlite')->getPdo();
+    }
     public function render()
     {
+        $this->createnewConnection();
         // $batchId = Transaksis::select('batch_id')->distinct()->get();
-        $batchId = Transaksis::distinct()->pluck('batch_id');
-        $menuId = Transaksis::distinct()->pluck('menu_id');
-        $customerId = Transaksis::distinct()->pluck('customer_Id');
-        $status = Transaksis::distinct()->pluck('flaq');
+        $batchId = Transaksis::on('customer_sqlite')->distinct()->pluck('batch_id');
+        $menuId = Transaksis::on('customer_sqlite')->distinct()->pluck('menu_id');
+        $customerId = Transaksis::on('customer_sqlite')->distinct()->pluck('customer_Id');
+        $status = Transaksis::on('customer_sqlite')->distinct()->pluck('flaq');
         // $created_at = Transaksis::distinct()->pluck('created_at');
-        $created_at = Transaksis::query()
+        $created_at = Transaksis::on('customer_sqlite')
             ->selectRaw('DATE(created_at) as created_date')
             ->distinct()
             ->pluck('created_date');
@@ -32,7 +66,7 @@ class Transaksi extends Component
 
         // dd($batchId);
 
-        $transaksi= Transaksis::query()
+        $transaksi= Transaksis::on('customer_sqlite')
         ->when($this->FilterBatchId, function ($query) {
             $query->where('batch_id','like', "%" . $this->FilterBatchId. "%");
 

@@ -19,7 +19,7 @@ class Customer extends Model
     static function getCustomer($value){
 
         // dd($value);
-        $customerName = customer::where('id',$value)->first();
+        $customerName = customer::on('customer_sqlite')->where('id',$value)->first();
 
 
         return $customerName->nama ?? '';

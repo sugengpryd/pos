@@ -4,6 +4,7 @@ use App\Livewire\Forms\LoginForm;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
+use App\Models\Dbcreated;
 
 new #[Layout('layouts.guest')] class extends Component
 {
@@ -20,6 +21,21 @@ new #[Layout('layouts.guest')] class extends Component
 
         Session::regenerate();
 
+        // dd(Auth::user()->id);
+        // $dbCreated= Dbcreated::where('user_id','=',Auth::user()->id);
+        // $dbCreated = Dbcreated::all();
+        $dbCreated = Dbcreated::where('users_id', Auth::user()->id)->first();
+        // dd($dbCreated->flaq);
+        if(is_null($dbCreated)||$dbCreated->flaq != '1'){
+
+        // $result = $this->redirectIntended(default: route('CreateDB', absolute: false), navigate: true);
+            // dd($result);
+             $this->redirect(route('CreatedbPage'), navigate: true);
+        return;
+        }
+
+        // dd($dbCreated);
+
         $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
     }
 }; ?>
@@ -27,6 +43,15 @@ new #[Layout('layouts.guest')] class extends Component
 <div>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
+
+        <div class="flex flex-col pt-2 pb-6 justify-center items-center text-2xl">
+            <h3 class="bg-slate-300 text-white p-2 rounded">Login</h3>
+        </div>
+
+        <div class="flex flex-1 justify-center items-center font-bold text-lg">
+             <div class="text-center text-wrap w-full">Please Login with your registered email and password below</div>
+        </div>
+
 
     <form wire:submit="login">
         <!-- Email Address -->

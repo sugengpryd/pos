@@ -449,17 +449,16 @@
                 </div>
                 <div class="flex flex-row gap-4 justify-center items-center">
                 {{-- //====================this if customerAlamat --}}
-                @if(filled($this->alamat))
-                <button
-                    type="button"
-                    {{-- wire:click='closeopenModal' --}}
-                    onclick="window.location.href='{{ route('Do', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid]) }}'"
+                {{-- @if(filled($this->alamat)) --}}
+                {{-- <button --}}
+                    {{-- type="button" --}}
+                    {{-- onclick=" hidden window.location.href='{{ route('Do', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid]) }}'" --}}
 
-                    class="bg-blue-400 px-4 py-2 shadow-lg hoevr:shadow-red-400 rounded-lg"
-                    >
-                    Print Delivery Order
-                </button>
-                @endif
+                    {{-- class="bg-blue-400 px-4 py-2 shadow-lg hoevr:shadow-red-400 rounded-lg" --}}
+                    {{-- > --}}
+                    {{-- Print Delivery Order --}}
+                {{-- </button> --}}
+                {{-- @endif --}}
 
 
 

@@ -2,7 +2,13 @@
 
 namespace App\Livewire;
 use App\Models\Customer as Customers;
+use App\Models\Dbcreated as Dbcreated;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schema;
 use Livewire\Attributes\Layout;
 #[Layout('layouts.app')]
 
@@ -18,24 +24,49 @@ class Customer extends Component
     public $telepon1='';
     public $telepon2='';
     public $filterSearch='';
+    public $UsersId='';
 
+    public function mount()
+    {
+    $this->UsersId = Auth::id();
+    $this->createnewConnection();
+    }
 
-
+    public function createnewConnection(){
+    // dd($this->UsersId);
+        $this->dbconnection = 'customer_sqlite';
+        $result = Dbcreated::where('users_id', $this->UsersId)->first();
+        // dd($result);
+        $path = $result->path;
+        $dbname = $result->db_name;
+            // Register connection dynamically
+        Config::set('database.connections.customer_sqlite', [
+        'driver' => 'sqlite',
+        'database' => $path,
+        'prefix' => '',
+        'foreign_key_constraints' => true,
+        ]);
+        // Connect to the new database
+        DB::purge('customer_sqlite');
+        DB::connection('customer_sqlite')->getPdo();
+    }
 
     public function render()
     {
+        $this->createnewConnection();
         // $customer= Customers::all()
-        $customer = Customers::query()
+        $customer = Customers::on('customer_sqlite')
         ->when($this->filterSearch, function ($query) {
         $query->where('nama', "like", "%" . $this->filterSearch. "%");
         })->get();
         return view('livewire.customer',compact('customer'));
     }
     public function save(){
+        $this->createnewConnection();
         // dd("saved");
         if(!$this->editMode){
         //Create
-        $addcustomer=Customers::create([
+        $addcustomer=Customers::on('customer_sqlite')->create([
             'nama'=> $this->namaCustomer,
             'Alamat' => $this->alamatCustomer,
             'kota' => $this->pilihKota,
@@ -45,7 +76,7 @@ class Customer extends Component
         $this->dispatch('notify', message: 'New Customer has been Saved!');
 
         }else{
-            $updatecustomer= Customers::where('id',$this->customerId)->update([
+            $updatecustomer= Customers::on('customer_sqlite')->where('id',$this->customerId)->update([
                 'nama'=> $this->namaCustomer,
                 'Alamat' => $this->alamatCustomer,
                 'kota' => $this->pilihKota,
@@ -80,9 +111,10 @@ class Customer extends Component
 
     }
     public function editCustomer($value){
+        $this->createnewConnection();
         // dd($value);
         $this->customerId= $value;
-        $editCustomer= Customers::where('id',$value)->first();
+        $editCustomer= Customers::on('customer_sqlite')->where('id',$value)->first();
         // dd($editCustomer);
         $this->namaCustomer=$editCustomer->nama;
         $this->alamatCustomer=$editCustomer->Alamat;

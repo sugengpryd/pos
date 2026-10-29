@@ -20,10 +20,10 @@ class Payment extends Model
     ];
 
     protected $casts = [
-        'total' => 'decimal:0',
-        'discount' => 'decimal:0',
-        'pph' => 'decimal:0',
-        'grandtotal' => 'decimal:0',
+        // 'total' => 'decimal:0',
+        // 'discount' => 'decimal:0',
+        // 'pph' => 'decimal:0',
+        // 'grandtotal' => 'decimal:0',
         // 'flaq' => 'boolean',
     ];
 }

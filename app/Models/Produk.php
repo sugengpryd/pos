@@ -26,7 +26,7 @@ class Produk extends Model
         return $this->hasMany(Menu::class, 'produk_id');
     }
     static function getprodukName($value){
-        $produkname= Produk::where('id',$value)->first() ;
+        $produkname= Produk::on('customer_sqlite')->where('id',$value)->first() ;
         // dd($produkname->description);
         return $produkname->description ?? '';
 

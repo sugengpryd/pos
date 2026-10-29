@@ -20,7 +20,7 @@
                 <a href="{{ route('Produk') }}">
 
                 <div class="flex flex-col flex-wrap py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white rounded-xl flex flex-col flex-shrink-0 min-w-20 min-h-20 md:w-52 md:h-52 ">
+                    <div class="bg-white rounded-xl flex flex-row flex-shrink-0 min-w-20 min-h-20 md:w-52 md:h-52 ">
                         <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/9.png">
 
 
@@ -31,7 +31,7 @@
                 <a href="{{ route('Kategori') }}">
 
                 <div class="flex flex-col flex-wrap py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white rounded-xl flex flex-col min-w-20 min-h-20 md:w-52 md:h-52 ">
+                    <div class="bg-white rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 ">
                         <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/2.png">
 
                     </div>
@@ -43,7 +43,7 @@
                 <a href="{{ route('Menu') }}">
 
                 <div class="flex flex-col flex-wrap py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white  rounded-xl flex flex-col min-w-20 min-h-20 md:w-52 md:h-52  ">
+                    <div class="bg-white  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52  ">
                         <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/10.png">
 
                     </div>
@@ -54,7 +54,7 @@
                 <a href="{{ route('Pos') }}">
 
                 <div class="flex flex-col flex-wrap py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white  rounded-xl flex flex-col min-w-20 min-h-20 md:w-52 md:h-52 ">
+                    <div class="bg-white  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 ">
                         <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/pos.png">
 
                     </div>
@@ -65,7 +65,7 @@
                 <a href="{{ route('Transaksi') }}">
 
                 <div class="flex flex-col flex-wrap py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white  rounded-xl flex flex-col min-w-20 min-h-20 md:w-52 md:h-52 ">
+                    <div class="bg-white  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 ">
                         <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/4.png">
 
                     </div>
@@ -81,7 +81,7 @@
                 <a href="{{ route('Discount') }}">
 
                 <div class="flex flex-col md:flex-col py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white  rounded-xl flex flex-col min-w-20 min-h-20 md:w-52 md:h-52 ">
+                    <div class="bg-white  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 ">
                         <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/5.png">
 
                     </div>
@@ -93,7 +93,7 @@
                 <a href="{{ route('Ppn') }}">
 
                 <div class="flex flex-col md:flex-col py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white  rounded-xl flex flex-col min-w-20 min-h-20 md:w-52 md:h-52 ">
+                    <div class="bg-white  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 ">
                         <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/6.png">
 
                     </div>
@@ -104,7 +104,7 @@
                 <a href="{{ route('Payment') }}">
 
                 <div class="flex flex-col md:flex-col py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white  rounded-xl flex flex-col min-w-20 min-h-20 md:w-52 md:h-52 ">
+                    <div class="bg-white  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 ">
                         <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/7.png">
 
                     </div>
@@ -115,7 +115,7 @@
                 <a href="{{ route('Customer') }}">
 
                 <div class="flex flex-col md:flex-col py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white  rounded-xl flex flex-col min-w-20 min-h-20 md:w-52 md:h-52">
+                    <div class="bg-white  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52">
                         <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/8.png">
 
                     </div>

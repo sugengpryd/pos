@@ -1,17 +1,46 @@
 <div class="py-4 w-full max-w-[1080px] mx-auto">
     <div class="flex flex-row px-4 ml-[5px] gap-3">
         <div clas="flex-row w-full justify-between items-center">
+            <div
+                x-data="{
+                    show: false,
+                    message: '',
+                    type: 'success'
+                }"
+                x-on:notify.window="
+                    message = $event.detail.message;
+                    type = $event.detail.type ?? 'success';
+                    show = true;
+                    setTimeout(() => show = false, 3000);
+                "
+            >
+                <div
+                    x-show="show"
+                    x-transition
+                    x-cloak
+                    class="fixed top-5 right-5 z-50 rounded-lg px-4 py-3 text-white shadow-lg"
+                    :class="type === 'success' ? 'bg-green-600' : 'bg-red-600'"
+                >
+                    <span x-text="message"></span>
+                </div>
+            </div>
             {{-- <button
             wire:click="openModal"
             class=" text-sm bg-blue-300 p-2 hover:bg-blue-500 rounded-xl border border-spacing-2 border-blue-400">New Product</button> --}}
         </div>
         <div class="flex flex-col md:flex-row w-full justify-start items-start md:justify-end md:items-start gap-2 text-xs mb-2">
 
-            <div class="flex flex-1">
+            <div class="flex flex-1 gap-4">
              <button
             wire:click="openModal"
             class=" text-xs bg-blue-300 p-2 hover:bg-blue-500 rounded-lg border border-spacing-2 border-blue-400">
             New Product
+            </button>
+            <button
+            wire:click="openModalImport"
+            wire:model="btnImport"
+            class=" text-xs bg-blue-300 p-2 hover:bg-blue-500 rounded-lg border border-spacing-2 border-blue-400">
+            Import Produk From excel
             </button>
             </div>
 
@@ -218,7 +247,61 @@
             </div>
         </div>
     @endif
+
+@if($modalImport)
+    <div class="fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50">
+
+        <div class="bg-white rounded-lg shadow-lg w-full max-w-[700px] p-6 max-h-screen overflow-y-auto">
+
+            <h3 class="text-lg font-semibold mb-4">
+                 Import Data Produk
+            </h3>
+
+            <form wire:submit.prevent="importProduk" enctype="multipart/form-data">
+                <input type="file"
+                wire:model=file
+                accept=".xlsx,.xls,.csv"
+                class="block w-full border rounded p-2"
+                >
+                @error('file')
+                <p class="text-red-600 text-sm">
+                {{ $message }}
+                </p>
+                @enderror
+                <div wire:loading wire:target="file">
+                Uploading file...
+                </div>
+                <button
+                    type="submit"
+                    wire:loading.attr="disabled"
+                    wire:target="import"
+                    class="bg-blue-600 text-white px-4 py-2 rounded
+                   disabled:opacity-50"
+                >
+                   <span wire:loading.remove wire:target="import">
+                    Import Excel
+                   </span>
+
+                    <span wire:loading wire:target="import">
+                    Importing...
+                    </span>
+                </button>
+
+
+                <div class="mt-2">
+                    <button
+                    type="button"
+                    wire:click="closeModalImport"
+                    class="rounded-lg p-2 bg-red-300"
+                    >Exit</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+@endif
 </div>
+
 
 <script>
 document.addEventListener('livewire:init', () => {

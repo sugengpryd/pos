@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Menu as Menu;
+use App\Models\Dbcreated as Dbcreated;
 use App\Models\Menu_item as Menu_item;
 use App\Models\Produk as Produk;
 use App\Models\Payment as Payment;
@@ -15,8 +16,11 @@ use App\Models\Transaksi as dbTransaksi;
 use App\Models\batchSequences as dbbatch;
 use App\Models\pengiriman as dbpengiriman;
 use App\Models\voidtransaksi as dbvoidtransaksi;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schema;
 
 use Livewire\Attributes\Layout;
 #[Layout('layouts.app')]
@@ -88,17 +92,37 @@ class Pos extends Component
     public $voidBatchId = [];
     public $selectedBatchId = '';
     public $openTransaksi=false;
-
-
-
-
-
-
-
+    public $UsersId='';
 
     // public $Resultcustomers= [];
 
+    public function mount()
+    {
+    $this->UsersId = Auth::id();
+    $this->createnewConnection();
+    }
+
+    public function createnewConnection(){
+    // dd($this->UsersId);
+        $this->dbconnection = 'customer_sqlite';
+        $result = Dbcreated::where('users_id', $this->UsersId)->first();
+        // dd($result);
+        $path = $result->path;
+        $dbname = $result->db_name;
+            // Register connection dynamically
+        Config::set('database.connections.customer_sqlite', [
+        'driver' => 'sqlite',
+        'database' => $path,
+        'prefix' => '',
+        'foreign_key_constraints' => true,
+        ]);
+        // Connect to the new database
+        DB::purge('customer_sqlite');
+        DB::connection('customer_sqlite')->getPdo();
+    }
+
     public function openformVoid(){
+        $this->createnewConnection();
         $this->selectedBatchId='';
         $this->totalSementara=0;
         $this->diskon= 0;
@@ -106,7 +130,7 @@ class Pos extends Component
         $today = now();
         // dd($today)->format('Y-m-d');
 
-        $batchId = dbTransaksi::select('batch_id')->where('flaq', 'paid')
+        $batchId = dbTransaksi::on('customer_sqlite')->select('batch_id')->where('flaq', 'paid')
         ->whereDate('created_at',$today)->distinct()->orderBy('batch_id','desc')->get();
         // dd($batchId);
 
@@ -121,13 +145,14 @@ class Pos extends Component
         $this->showmodalVoid = false;
     }
     public function select_voidBatchId(){
+        $this->createnewConnection();
         // dd($this->selectedBatchId);
         // $data = dbTransaksi::where('batch_id',$this->selectedBatchId)->get();
         // dd($data);
             $batchId = trim($this->selectedBatchId);
             // dd($batchId);
 
-            $cekTransaksi = dbTransaksi::rightJoin(
+            $cekTransaksi = dbTransaksi::on('customer_sqlite')->rightJoin(
                 'menu',
                 'transaksi.menu_Id',
                 '=',
@@ -213,11 +238,12 @@ class Pos extends Component
 
     }
     public function voidItem($index,$menuId,$batchId){
+        $this->createnewConnection();
         // dd($this->menustransaksi[$index]['total']);
         $batchId= trim($batchId);
 
         // $void = dbTransaksi::where('batch_id', $batchId)->where('menu_id',$menuId)->update([
-        $void = dbTransaksi::where('batch_id',$batchId)->update([
+        $void = dbTransaksi::on('customer_sqlite')->where('batch_id',$batchId)->update([
             'flaq' => "basket",
         ]);
         $this->flaqTransaksi ="basket";
@@ -225,7 +251,7 @@ class Pos extends Component
 
         unset($this->menustransaksi[$index]);
 
-        $addvoidtransaksi= dbvoidtransaksi::create([
+        $addvoidtransaksi= dbvoidtransaksi::on('customer_sqlite')->create([
             'batch_Id'=> $batchId,
             // 'menu_id'=>
             // 'qty'=>
@@ -236,7 +262,7 @@ class Pos extends Component
         ]);
 
             // $deleteVoid =dbTransaksi::where('batch_id', $batchId)->where('menu_id',$menuId)->delete();
-            $deletePayment = Payment::where('batch_id', $batchId)->delete();
+            $deletePayment = Payment::on('customer_sqlite')->where('batch_id', $batchId)->delete();
 
             // $itemQty = dbTransaksi::where('batch_id', $batchId)->sum('qty');
             // $this->itemQty = $itemQty;
@@ -263,15 +289,18 @@ class Pos extends Component
 
     }
     public function simpanbiayakirim(){
+        $this->createnewConnection();
     //   $findPenerima = dbpengiriman::where('batch_id', $this->transaksiBatchId)->first();
 
-            $update= dbpengiriman::where('batch_id', $this->transaksiBatchId)->update([
+            $update= dbpengiriman::on('customer_sqlite')->where('batch_id', $this->transaksiBatchId)->update([
                  'BiayaKirim' => (float) preg_replace('/\D/','',$this->biayaKirim),
             ]);
 
     }
     public function cekbiayaKirim(){
-      $findbiayaKirim = dbpengiriman::select('BiayaKirim')->where('batch_id', $this->transaksiBatchId)->first();
+        $this->createnewConnection();
+
+      $findbiayaKirim = dbpengiriman::on('customer_sqlite')->select('BiayaKirim')->where('batch_id', $this->transaksiBatchId)->first();
     //   dd($findbiayaKirim);
 
       $this->biayaKirim = $findbiayaKirim?->BiayaKirim ?? 0;
@@ -280,7 +309,8 @@ class Pos extends Component
     }
     public function findCustomer($customerId){
         // dd($customerId);
-        $getCustomer= DBCustomer::where('id',$customerId)->first();
+        $this->createnewConnection();
+        $getCustomer= DBCustomer::on('customer_sqlite')->where('id',$customerId)->first();
         // dd($getCustomer);
         $this->customerid = $customerId;
         $this->selectCustomer = $getCustomer->nama;
@@ -294,7 +324,8 @@ class Pos extends Component
 
 
     public function findpenerima(){
-      $findPenerima = dbpengiriman::where('batch_id', $this->transaksiBatchId)->first();
+        $this->createnewConnection();
+      $findPenerima = dbpengiriman::on('customer_sqlite')->where('batch_id', $this->transaksiBatchId)->first();
     //   dd($this->transaksiBatchId);
       if($findPenerima){
         // dump($findPenerima);
@@ -314,14 +345,17 @@ class Pos extends Component
 
     }
     public function simpanPenerima(){
-        $findBatchid = dbpengiriman::where('batch_id', $this->transaksiBatchId)->get();
+        $this->createnewConnection();
+        $findBatchid = dbpengiriman::on('customer_sqlite')->where('batch_id', $this->transaksiBatchId)->get();
 
     if ($findBatchid->isNotEmpty()) {
     $update = dbpengiriman::where(
         'batch_id',
         $this->transaksiBatchId
         )->update([
-         'toName'=>$this->namaPenerima,
+            'fromName'=>$this->selectCustomer,
+            'fromAlamat'=>$this->alamat,
+            'toName'=>$this->namaPenerima,
             'toAlamat'=>$this->alamatPenerima,
             'toKota'=>$this->kotaPenerima,
             'toNumber'=>$this->teleponPenerima,
@@ -340,10 +374,12 @@ class Pos extends Component
 
             ]);
             }else{
-        $createPengiriman = dbpengiriman::create([
+        $this->createnewConnection();
+
+        $createPengiriman = dbpengiriman::on('customer_sqlite')->create([
             'batch_Id'=>$this->transaksiBatchId,
-            // 'fromName'=>
-            // 'fromAlamat'=>
+            'fromName'=>$this->selectCustomer,
+            'fromAlamat'=>$this->alamat,
             'toName'=>$this->namaPenerima,
             'toAlamat'=>$this->alamatPenerima,
             'toKota'=>$this->kotaPenerima,
@@ -401,12 +437,13 @@ class Pos extends Component
 
     public function render()
     {
-        $kategori = Kategori::where('flaq','1')->orderBy('description')->get();
-        $menu = Menu::where('flaq', '1')->orderBy('kategori')->get();
-        $Resultcustomers = DBCustomer::all();
+        $this->createnewConnection();
+        $kategori = Kategori::on('customer_sqlite')->where('flaq','1')->orderBy('description')->get();
+        $menu = Menu::on('customer_sqlite')->where('flaq', '1')->orderBy('kategori')->get();
+        $Resultcustomers = DBCustomer::on('customer_sqlite')->get();
         // dd($Resultcustomers);
         // $cektransaksi = dbTransaksi::where('customer_Id',this)
-        $cekTransaksi = dbTransaksi::rightJoin(
+        $cekTransaksi = dbTransaksi::on('customer_sqlite')->rightJoin(
                 'customer',
                 'transaksi.customer_Id',
                 '=',
@@ -458,11 +495,14 @@ class Pos extends Component
     }
 
     public function getMenu($value){
+        $this->createnewConnection();
         // dd($value);
          $this->menus=[];
         // $menu = Menu::where('kategori', trim($value))->get();
-        $menu = Menu::where('kategori', 'like', '%' . trim($value) . '%')
-                      ->where('flaq','1',)->get();
+        $menu = Menu::on('customer_sqlite')->where('kategori', 'like', '%' . trim($value) . '%')
+                    // ->orderBy('id')
+                    ->orderBy('description')
+                    ->where('flaq','1',)->get();
 //     dd(
 //     Menu::where('kategori', 'like', '%Air%')
 //         ->select('id', 'kategori')
@@ -489,8 +529,8 @@ class Pos extends Component
         }
     }
     public function getItem($value){
-
-        $menuItem = Menu_item::where('menu_id',$value)->get();
+        $this->createnewConnection();
+        $menuItem = Menu_item::on('customer_sqlite')->where('menu_id',$value)->get();
         // dd($menuItem);
         foreach ($menuItem as $index => $menuItems) {
             # code...
@@ -504,18 +544,19 @@ class Pos extends Component
         }
     }
     public function btnadd($id,$desc){
+        $this->createnewConnection();
         // dd([$id,$desc]);
         //  $this->menus=[];
         // $this->menustransaksi = $this->menustransaksi;
         $batchId = $this->transaksiBatchId;
-        $cekTransaksi = payment::where('batch_id',$batchId)->where('flaq','1')->first();
+        $cekTransaksi = payment::on('customer_sqlite')->where('batch_id',$batchId)->where('flaq','1')->first();
             if($cekTransaksi){
                 $this->dispatch('notify', message: 'Cannot Add Item to Paid Transaction',type:'error');
 
             return;
 
             }
-        $menustransaksi = Menu::where('menu_id', $id)->get();
+        $menustransaksi = Menu::on('customer_sqlite')->where('menu_id', $id)->get();
 
         // dd([$menustransaksi,$this->menustransaksi]);
 
@@ -575,7 +616,7 @@ class Pos extends Component
         // $this->totalTagihan = ($this->totalTagihan + $biayaKirim);
         }
 
-        $menuItems = Menu_item::where('menu_id', $id)->get();
+        $menuItems = Menu_item::on('customer_sqlite')->where('menu_id', $id)->get();
 
         foreach ($menuItems as $index =>$itemtransaksis){
 
@@ -592,7 +633,8 @@ class Pos extends Component
 
     }
     public function openmodaldelivery(){
-        $findBatchId = dbpengiriman::where('batch_id',$this->transaksiBatchId)->first();
+        $this->createnewConnection();
+        $findBatchId = dbpengiriman::on('customer_sqlite')->where('batch_id',$this->transaksiBatchId)->first();
         // dd($findBatchId);
         $this->namaPenerima = $findBatchId->toName ?? '';
         $this->alamatPenerima=$findBatchId->toAlamat ?? '';
@@ -616,6 +658,7 @@ class Pos extends Component
     }
     public function pilihCustomer(){
         // dd($value);
+        $this->createnewConnection();
         $this->openTransaksi=true;
 
         $this->totalSementara='0';
@@ -645,7 +688,7 @@ class Pos extends Component
         //     )
         //     ->count();
 
-        $selected = DBCustomer::where('id',$this->selectedcustomer)->first();
+        $selected = DBCustomer::on('customer_sqlite')->where('id',$this->selectedcustomer)->first();
 
         // dd($selected);
         if(!$selected){
@@ -664,7 +707,7 @@ class Pos extends Component
 
         // $this->createbatchId();
 
-        $cekTransaksi = dbTransaksi::rightJoin(
+        $cekTransaksi = dbTransaksi::on('customer_sqlite')->rightJoin(
                 'menu',
                 'transaksi.menu_Id',
                 '=',
@@ -811,6 +854,7 @@ public function removeItem($index,$item_id)
 
     public function save(){
         // dd("save");
+        $this->createnewConnection();
         if($this->voidMode){
          $this->dispatch('notify', message: 'Save not Available in Void Mode, Nothing to save ! ', type:'error');
 
@@ -828,7 +872,7 @@ public function removeItem($index,$item_id)
             };
         // dd($this->customerid);
         // dd(DB::select('PRAGMA foreign_key_list(transaksi)'));
-        $findCustomer = dbTransaksi::where('customer_id',$this->customerid)
+        $findCustomer = dbTransaksi::on('customer_sqlite')->where('customer_id',$this->customerid)
             ->where('flaq', '!=', 'paid')->get();
         //  dd($findCustomer);
         if(!$findCustomer){
@@ -836,7 +880,7 @@ public function removeItem($index,$item_id)
             // dd($this->menustransaksi[1]['menu_id']);
             // dd($this->transaksiBatchId);
             foreach($this->menustransaksi as $index =>$itemTransaksi){
-            $createtransaksi = dbTransaksi::create([
+            $createtransaksi = dbTransaksi::on('customer_sqlite')->create([
             // id
             'batch_id'=>$this->transaksiBatchId,
             'menu_id'=> $itemTransaksi['menu_id'],
@@ -856,7 +900,7 @@ public function removeItem($index,$item_id)
                     $item->delete();
                 }
                 foreach($this->menustransaksi as $index =>$itemTransaksi){
-                    $createtransaksi = dbTransaksi::create([
+                    $createtransaksi = dbTransaksi::on('customer_sqlite')->create([
                      // id
                     'batch_id'=>$this->transaksiBatchId,
                     'menu_id'=> $itemTransaksi['menu_id'],
@@ -882,7 +926,7 @@ public function removeItem($index,$item_id)
                     // ]);
                 }
                 // add to Batch Sequences Table
-                $findBatch= dbbatch::where('batch_id', $this->transaksiBatchId)->first();
+                $findBatch= dbbatch::on('customer_sqlite')-> where('batch_id', $this->transaksiBatchId)->first();
                 if($findBatch){
                     $findBatch->delete();
                 }
@@ -907,6 +951,7 @@ public function removeItem($index,$item_id)
 
     }
     public function bayar(){
+        $this->createnewConnection();
         // dd("bayar");
             // $this->$transaksiBatchId;
             // $this->total;
@@ -914,8 +959,8 @@ public function removeItem($index,$item_id)
             // $this->nominalPembayaran;
             // $this->tipePembayaran;
             // dd($this->transaksiBatchId);
-        $exists = Payment::where('batch_id', $this->transaksiBatchId)->exists();
-        $cekTransaksi = dbTransaksi::where('batch_id',$this->transaksiBatchId)->exists();
+        $exists = Payment::on('customer_sqlite')->where('batch_id', $this->transaksiBatchId)->exists();
+        $cekTransaksi = dbTransaksi::on('customer_sqlite')->where('batch_id',$this->transaksiBatchId)->exists();
 
         if(!$cekTransaksi){
             $this->dispatch('notify',
@@ -933,9 +978,10 @@ public function removeItem($index,$item_id)
 
             return;
         }
+        //save to basket
         $this->save();
 
-        $createBayar = Payment::create([
+        $createBayar = Payment::on('customer_sqlite')->create([
             'batch_id' => $this->transaksiBatchId,
             'total'=> $this->total,
             'discount' => '0',
@@ -946,7 +992,7 @@ public function removeItem($index,$item_id)
         ]);
         // dd($createBayar);
         if($createBayar){
-            $ubahflaq= dbTransaksi::where('batch_id','=', $this->transaksiBatchId)
+            $ubahflaq= dbTransaksi::on('customer_sqlite')->where('batch_id','=', $this->transaksiBatchId)
             ->update([
                 'flaq'=>'paid',
             ]);
@@ -960,14 +1006,20 @@ public function removeItem($index,$item_id)
 
 
 
-        // $this->resetform();
 
-        // $this->items = [];
+        // return redirect('Struk',['batch_Id'=>$this->transaksiBatchId,'customer_id'=>$this->customerid,'biayaKirim'=>$this->biayaKirim,'totalTagihan'=>$this->totalTagihan])}}','_blank'));
 
+        $url = route('Struk', [
+        'batch_Id'     => $this->transaksiBatchId,
+        'customer_id'  => $this->customerid,
+        'biayaKirim'   => $this->biayaKirim,
+        'totalTagihan' => $this->totalTagihan,
+        ]);
 
-
+            $this->js("window.open(" . json_encode($url) . ", '_blank')");
 
     }
+
     public function updatedflaqTransaksi($value){
 
 
@@ -1052,8 +1104,9 @@ public function removeItem($index,$item_id)
     }
 
     public function cekDiskon(){
+        $this->createnewConnection();
         $value = $this->transaksiBatchId ?? '';
-        $findData = dbDiscount::where('batch_id',$value)->first();
+        $findData = dbDiscount::on('customer_sqlite')->where('batch_id',$value)->first();
         if($findData){
             $this->diskon = number_format($findData->discount,0,".",".");
         }
@@ -1061,10 +1114,11 @@ public function removeItem($index,$item_id)
     }
 
     public function simpanDiscount($value){
-        $findData = dbDiscount::where('batch_id',$value)->first();
+        $this->createnewConnection();
+        $findData = dbDiscount::on('customer_sqlite')->where('batch_id',$value)->first();
         // dd($this->total);
         if(!$findData){
-                $simpan =dbDiscount::create([
+                $simpan =dbDiscount::on('customer_sqlite')->create([
 
                 'batch_id'=> $this->transaksiBatchId,
                 'sellingPrice'=> (float) preg_replace('/\D/','',$this->total),
@@ -1075,7 +1129,7 @@ public function removeItem($index,$item_id)
                 ]);
         }else{
 
-                $update= dbDiscount::where('batch_id',$value)->update([
+                $update= dbDiscount::on('customer_sqlite')->where('batch_id',$value)->update([
                 'batch_id'=> $this->transaksiBatchId,
                 'sellingPrice'=> (float) preg_replace('/\D/','',$this->total),
                 'discount'=> (float) preg_replace('/\D/','',$this->diskon),
