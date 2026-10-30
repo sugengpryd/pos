@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('menu_id')->uniqid();
             $table->string('description');
             $table->string('kategori');
-            $table->string('item_qty');
-            $table->string('uom');
-            $table->string('sellingPrice');
+            $table->string('item_qty')->default('1');
+            $table->string('uom')->default('pkg');
+            $table->string('sellingPrice')->default('0');
             $table->string('flaq');
             $table->timestamps();
 

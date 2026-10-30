@@ -36,12 +36,12 @@
             class=" text-xs bg-blue-300 p-2 hover:bg-blue-500 rounded-lg border border-spacing-2 border-blue-400">
             New Product
             </button>
-            <button
-            wire:click="openModalImport"
-            wire:model="btnImport"
-            class=" text-xs bg-blue-300 p-2 hover:bg-blue-500 rounded-lg border border-spacing-2 border-blue-400">
-            Import Produk From excel
-            </button>
+                <button
+                wire:click="openModalImport"
+                wire:model="btnImport"
+                class=" text-xs bg-blue-300 p-2 hover:bg-blue-500 rounded-lg border border-spacing-2 border-blue-400">
+                Import Produk From excel
+                </button>
             </div>
 
 
@@ -256,6 +256,8 @@
             <h3 class="text-lg font-semibold mb-4">
                  Import Data Produk
             </h3>
+                <div class="mb-8"><a class="underline text-blue-700 " href="./storage/template/produk_contoh.xlsx"> Click here to download template upload File </a></div>
+
 
             <form wire:submit.prevent="importProduk" enctype="multipart/form-data">
                 <input type="file"

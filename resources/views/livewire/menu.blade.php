@@ -191,8 +191,14 @@
                     type="text"
                     wire:model="menu_harga"
                     class="w-full text-xs
-                     rounded-xl p-2"
-                    >
+                    rounded-xl p-2"
+                    required
+
+                     >
+                     @error('menu_harga')
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
+                    @enderror
+
                 </div>
 
                 <div class="w-full">
