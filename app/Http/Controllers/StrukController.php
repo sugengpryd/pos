@@ -9,6 +9,7 @@ use App\Models\Menu;
 use App\Models\Menu_item;
 use App\Models\Customer;
 use App\Models\pengiriman;
+use App\Models\CompanyProfile as Compro;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\User;
 use App\Models\Dbcreated;
@@ -71,7 +72,11 @@ class StrukController extends Controller
                         ->where('transaksi.batch_id',$batch_id)
                         ->get();
                         // dd([$customer,$transaksi,$sumtotal,$menu,]);
-                return view('deliveryOrder',compact('customer','transaksi','menu','sumtotal','totalQty','pengiriman'));
+
+                $toko =  Compro::on('customer_sqlite')->where('userId',Auth::user()->id)->first();
+
+                // dd($toko);
+                return view('deliveryOrder',compact('toko','customer','transaksi','menu','sumtotal','totalQty','pengiriman'));
 
 
 
@@ -118,8 +123,10 @@ class StrukController extends Controller
                     'menu.*','transaksi.*')
                 ->where('transaksi.batch_id',$batch_id)
                 ->get();
+        $toko =  Compro::on('customer_sqlite')->where('userId',Auth::user()->id)->first();
 
-    return view('struk',compact('customer','transaksi','menu','sumtotal','totalQty','biayaKirim','totalTagihan','Ppn','diskon'));
+
+    return view('struk',compact('toko','customer','transaksi','menu','sumtotal','totalQty','biayaKirim','totalTagihan','Ppn','diskon'));
             }
 
     }

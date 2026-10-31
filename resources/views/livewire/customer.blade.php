@@ -44,6 +44,7 @@
                     <th class=" text-xs sticky top-0 bg-gray-400 w-80 mx-auto p-2">Kota </th>
                     <th class=" text-xs sticky top-0 bg-gray-400 w-80 mx-auto p-2">Telpon-1</th>
                     <th class=" text-xs sticky top-0 bg-gray-400 w-80 mx-auto p-2">Telpon-2</th>
+                    <th class=" text-xs sticky top-0 bg-gray-400 w-80 mx-auto p-2">Status</th>
                     <th class=" text-xs sticky top-0 bg-gray-400 w-80 mx-auto p-2">Action</th>
                 </thead>
                 <tbody>
@@ -56,6 +57,7 @@
                         <td class="p-2 text-xs">{{ $customers->kota }}</td>
                         <td class="p-2 text-xs">{{ $customers->telepon1 }}</td>
                         <td class="p-2 text-xs">{{ $customers->telepon2 }}</td>
+                        <td class="p-2 text-xs">{{ $customers->flaq ? 'Show':'hidden' }}
                         <td
                         wire:click='editCustomer({{$customers->id}})'
                         class="p-2"
@@ -138,6 +140,19 @@
                                 type="text"
                                 class="w-full px-2  rounded"
                                 >
+                        </div>
+                        <div class="w-80  flex flex-wrap justify-start items-start mt-2  gap-2 text-xs">
+                                <label class="text-left" for="flaq">Status</label>
+                                <select
+                                    id="flaq"
+                                    wire:Model='flaq'
+                                    placeholder=""
+                                    class="w-full px-2 rounded"
+                                >
+                                <option value="1">Show</option>
+                                <option value="0">Hidden</option>
+                                </select>
+
                         </div>
 
 

@@ -25,6 +25,7 @@ class Customer extends Component
     public $telepon2='';
     public $filterSearch='';
     public $UsersId='';
+    public $flaq = [];
 
     public function mount()
     {
@@ -62,6 +63,8 @@ class Customer extends Component
         return view('livewire.customer',compact('customer'));
     }
     public function save(){
+
+    // dd($this->flaq);
         $this->createnewConnection();
         // dd("saved");
         if(!$this->editMode){
@@ -72,6 +75,7 @@ class Customer extends Component
             'kota' => $this->pilihKota,
             'telepon1' => $this->telepon1,
             'telepon2' => $this->telepon2,
+            'flaq' => $this->flaq,
         ]);
         $this->dispatch('notify', message: 'New Customer has been Saved!');
 
@@ -82,6 +86,8 @@ class Customer extends Component
                 'kota' => $this->pilihKota,
                 'telepon1' => $this->telepon1,
                 'telepon2' => $this->telepon2,
+                'flaq' => $this->flaq,
+
 
             ]);
         $this->dispatch('notify', message: 'Customer Updated!');

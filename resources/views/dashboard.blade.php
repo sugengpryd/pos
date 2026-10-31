@@ -123,6 +123,17 @@
 
                 </div>
                 </a>
+                <a href="{{ route('settings') }}">
+
+                <div class="flex flex-col md:flex-col py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
+                    <div class="bg-white  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52">
+                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/settings.png">
+
+                    </div>
+                    <span class="font_card text-center text-xs p-2">Settings</span>
+
+                </div>
+                </a>
 
 
     </div>

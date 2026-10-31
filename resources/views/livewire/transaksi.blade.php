@@ -34,7 +34,7 @@
                     <option value="">Filter Customer</option>
                     @foreach ($customerId as $customerids )
 
-                    <option value="{{ $customerids }}">{{ App\Models\Customer::getCustomer($customerids) }}</option>
+                    <option value="{{ $customerids }}">{{ App\Models\Customer::getCustomer($customerids,Auth::id()) }}</option>
                     @endforeach
                 </select>
             </div>
@@ -103,7 +103,8 @@
                                 <td class="py-2 px-2 text-xs text-right">{{ $transaksis->sellingPrice }}</td>
                                 <td class="py-2 px-2 text-xs text-right">{{ $transaksis->total }}</td>
                                 <td class="py-2 px-2 text-xs text-left">
-                                    {{ App\Models\Customer::getCustomer($transaksis->customer_Id,'customer_sqlite') }}
+                                    {{ App\Models\Customer::getCustomer($transaksis->customer_Id,Auth::id()) }}
+
                                 </td>
                                 <td class="py-2 px-2 text-xs text-center">{{ $transaksis->flaq }}</td>
                                 <td class="py-2 px-2 text-xs text-center">{{ $transaksis->created_at }}</td>

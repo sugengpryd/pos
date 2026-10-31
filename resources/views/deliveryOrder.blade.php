@@ -16,13 +16,15 @@
 </head>
 <div id="divId" class="w-full flex flex-row bg-white py-2 mx-auto ">
         <div class=" w-auto p-1  pl-4">
-            <div class="text-left border-b-2 text-sm py-2  mr-['65%']">
+            <div class="border-b-2 text-sm py-2  mr-['65%'] text-center">
 
                 <span class="text-2xl text-left">Delivery Orders</span>
             </div>
-            <div class="text-left border-b-2  mr-['65%']">
+            <div class="border-b-2  mr-['65%'] text-center">
 
-                <span class="text-xl text-left text-lime-600">Nazta Pudding</span>
+                <div class="text-4xl text-center text-lime-600">{{ $toko->namaToko }}</div>
+                <div class="text-xl text-center text-lime-600">{{ $toko->alamattoko }}</div>
+                <div class="text-sm text-center text-lime-600">{{ $toko->telepon }}</div>
             </div>
             <span class="text-sm font-bold"> Customer : </span>
                 <div>

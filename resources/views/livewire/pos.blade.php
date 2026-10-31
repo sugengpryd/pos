@@ -437,7 +437,7 @@
                              {{-- @if ( $Resultcustomer->id == $cekTransaksis->customer_Id) --}}
                     {{-- <option value="{{ $Resultcustomer->id }}">{{ $Resultcustomer->nama }} - {{ $cekTransaksis ? $cekTransaksis->count() :'' }}</option> --}}
                              {{-- @else --}}
-                    <option class="text-xs" value="{{ $Resultcustomer->id }}">{{ $Resultcustomer->id }}.{{ $Resultcustomer->nama }}.#{{App\Models\Transaksi::get_batchId($Resultcustomer->id)}} . 🛒 {{ App\Models\Transaksi::basket($Resultcustomer->id) }}
+                    <option class="text-xs" value="{{ $Resultcustomer->id }}">{{ $Resultcustomer->nama }}.#{{App\Models\Transaksi::get_batchId($Resultcustomer->id)}} . 🛒 {{ App\Models\Transaksi::basket($Resultcustomer->id) }}
 
                     </option>
                             {{-- @endif --}}
@@ -788,7 +788,7 @@
                                     >
 
 
-                                <label class=" text-bold" for="totalTagihan">Total Tagihan</label>
+                                <label class=" text-bold" for="totalTagihan">Total Belanja</label>
                                     <input
                                     wire:model.live="totaltagihanDiscount"
                                     id="totalTagihan" type="text"

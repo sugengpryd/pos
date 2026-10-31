@@ -14,17 +14,21 @@
 
     </style>
 </head>
-<div id="divId" class="w-full bg-white py-2 ml-2 ">
-        <div class=" w-auto px-2 py-1 flex-col">
-            <div class="text-left border-b-2 text-sm py-2  mr-['65%']">
+<div id="divId" class="w-full flex flex-col justify-center items-center bg-white py-2 ">
+        <div class="w-full p-1 pl-4 mx-auto">
+            <div class="text-center border-b-2 text-sm py-2  mx-auto">
 
-                <span class="text-2xl text-left">Invoice</span>
+                <span class="text-2xl text-center">Invoice</span>
             </div>
-            <div class="text-left border-b-2 text-sm py-2  mr-['65%']">
+            <div class="text-center border-b-2 text-sm py-2  mx-auto">
 
-                <span class="text-xl text-left text-lime-600">Nazta Pudding</span>
+                <div class="text-4xl text-center text-lime-600">{{ $toko->namaToko }}</div>
+                <div class="text-xl text-center text-lime-600">{{ $toko->alamattoko }}</div>
+                <div class="text-sm text-center text-lime-600">{{ $toko->telepon }}</div>
+
             </div>
-            <span class="text-sm"> Customer </span>
+            <div class="w-auto flex flex-col justify-start items-center">
+                <span class="text-sm"> Customer </span>
 
                 <div>
                     <span class="text-sm">
@@ -57,16 +61,16 @@
 
                     </span>
                 </div>
+            </div>
 
 
 
         </div>
 
-{{-- </div> --}}
-{{-- <div> --}}
-        {{-- @foreach ($menu as $index =>$menus ) --}}
-        <div class="w-full flex flex-col bg-white px-2 py-1 ">
-            <div class="bg-white">
+
+        <div class="flex flex-col w-full p-4">
+
+            <div class="flex flex-col bg-white px-4 justify-center items-center border-b-2">
                 <table class="border-0" >
                     <thead>
                         {{-- <th class="px-4 py-2 text-sm">id.</th> --}}

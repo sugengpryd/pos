@@ -67,6 +67,15 @@ Route::get('/createdDB/{dbname}', [createdbController::class, 'createdDB'])
     ->name('createdDB');
 
 
+Route::get('/companyprofile', App\Livewire\CompanyProfiles::class)
+    ->middleware(['auth'])
+    ->name('companyProfile');
+
+Route::get('/settings', App\Livewire\Settings::class)
+    ->middleware(['auth'])
+    ->name('settings');
+
+
 
 
 

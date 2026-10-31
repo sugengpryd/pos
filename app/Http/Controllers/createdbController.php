@@ -211,6 +211,9 @@ class createdbController extends Controller
             'flaq'=>$Dbcreated->flaq,
 
         ]);
+        session()->flash('success', 'Database created successfully!');
+
+
         };
 
 
@@ -225,8 +228,24 @@ class createdbController extends Controller
     );
     // $this->redirect(route('CreatedbPage'), navigate: true);
 
-    return redirect()->route('dashboard');
+    // return redirect()->route('dashboard');
+
+
+        // return view('livewire.company-profile',[
+
+            // 'Dbcreated' => $Dbcreated,
+        // ]);
+        // if($Dbcreated){
+        //     $status = '1';
+        // };
+         if(session()->has('success')){
+             $status = '1';
+
+         };
+         
+
     // return "Database {$dbname}.sqlite created successfully.";
+    return view('userDb.createdDb',compact('dbname','status'));
 
 
     }

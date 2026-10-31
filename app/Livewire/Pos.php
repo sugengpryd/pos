@@ -440,7 +440,7 @@ class Pos extends Component
         $this->createnewConnection();
         $kategori = Kategori::on('customer_sqlite')->where('flaq','1')->orderBy('description')->get();
         $menu = Menu::on('customer_sqlite')->where('flaq', '1')->orderBy('kategori')->get();
-        $Resultcustomers = DBCustomer::on('customer_sqlite')->get();
+        $Resultcustomers = DBCustomer::on('customer_sqlite')->where('flaq','1')->orderBy('nama')->get();
         // dd($Resultcustomers);
         // $cektransaksi = dbTransaksi::where('customer_Id',this)
         $cekTransaksi = dbTransaksi::on('customer_sqlite')->rightJoin(
@@ -1034,7 +1034,8 @@ public function removeItem($index,$item_id)
     $this->discountAmount='0';
 // dd(DBCustomer::getCustomer($this->customerid));
     $this->batchidDiscount=$this->transaksiBatchId ?? '';
-    $this->customerDiscount= DBCustomer::getCustomer($this->customerid);
+    $this->customerDiscount= DBCustomer::getCustomer($this->customerid,Auth::id());
+    // {{ App\Models\Customer::getCustomer($transaksis->customer_Id, Auth::id()) }}
     $this->totaltagihanDiscount=$this->total ??'';
     $this->discountPersenDiscount='0' ?? '';
     $this->discountnominalDiscount='0' ?? '';
