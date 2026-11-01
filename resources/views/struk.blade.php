@@ -75,7 +75,7 @@
                         {{-- <th class="px-4 py-2 text-sm">id.</th> --}}
                         <th class="px-2 py-2 text-sm text-left">Item</th>
                         {{-- <th class="px-4 py-2 text-sm">Description</th> --}}
-                        <th class="px-2 py-2 text-sm">Qty</th>
+                        {{-- <th class="px-2 py-2 text-sm">Qty</th> --}}
                         <th class="px-2 py-2 text-sm">Total</th>
                     </thead>
                     <tbody>
@@ -83,17 +83,17 @@
 
                         <tr class="py-2">
                             {{-- <td class="px-4 py-2 text-right text-sm">{{ $index+1 }}</td> --}}
-                            <td class="px-2 text-left text-sm">{{ $menus->menu_id }}</td>
+                            {{-- <td class="px-2 text-left text-sm">{{ $menus->menu_id }}</td> --}}
                             <tr>
-                            <td class="px-2 text-left text-sm">{{ $menus->description }}</td>
-                            <td class="px-2 text-center text-sm">{{ $menus->qty }}</td>
-                            <td class="px-2 text-right text-sm">{{ number_format($menus->total,0,'.'.'.') }}</td>
-                        </tr>
+                                <td class="px-2 text-left text-sm">{{ $menus->qty }} x {{ $menus->description }}</td>
+                            {{-- <td class="px-2 text-center text-sm">{{ $menus->qty }}</td> --}}
+                                <td class="px-2 text-right text-sm">{{ number_format($menus->total,0,'.'.'.') }}</td>
+                            </tr>
                         </tr>
                         @endforeach
 
                         <tr class="text-right">
-                            <td></td>
+                            {{-- <td></td> --}}
                             {{-- <td></td> --}}
                             {{-- <td></td> --}}
                             <td class="text-sm">Total:</td>
@@ -101,7 +101,7 @@
                         </tr>
 
                         <tr class="text-right">
-                            <td></td>
+                            {{-- <td></td> --}}
                             {{-- <td></td> --}}
                             {{-- <td></td> --}}
                             <td class="text-sm">Discount:</td>
@@ -109,7 +109,7 @@
                         </tr>
 
                         <tr class="text-right">
-                            <td></td>
+                            {{-- <td></td> --}}
                             {{-- <td></td> --}}
                             {{-- <td></td> --}}
                             <td class="text-sm">Ppn:</td>
@@ -117,14 +117,14 @@
                         </tr>
 
                          <tr class="text-right">
-                            <td></td>
+                            {{-- <td></td> --}}
                             {{-- <td></td> --}}
                             {{-- <td></td> --}}
                             <td class="text-sm">Biaya Kirim:</td>
                             <td class="px-2 text-right text-sm"> {{ number_format($biayaKirim,0,'.'.'.') ?? '' }}</td>
                         </tr>
                          <tr class="text-right">
-                            <td></td>
+                            {{-- <td></td> --}}
                             {{-- <td></td> --}}
                             {{-- <td></td> --}}
                             <td class="text-sm">Total Tagihan:</td>
