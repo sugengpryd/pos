@@ -135,11 +135,17 @@
                     </tbody>
                 </table>
             </div>
-            <div class="w-full flex-row justify-center text-center items-center mx-auto" >
+            <div class="w-full flex-row justify-center text-center items-center mx-auto mt-2" >
                 <button
                 onclick="printDiv('divId');"
                 class="no-print bg-blue-400 py-2 px-6 rounded-lg">
                 Print
+
+                </button>
+                <button
+                onclick="printDiv('divId');"
+                class="no-print bg-blue-400 py-2 px-6 rounded-lg">
+                Send To
 
                 </button>
             </div>
