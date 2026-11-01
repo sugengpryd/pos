@@ -15,7 +15,7 @@
     </style>
 </head>
 {{-- <div id="divId" class="w-full flex flex-col justify-center items-center bg-white py-2 "> --}}
-    <div id="divId" class="w-full flex flex-col items-stretch bg-white p-0 m-0">
+    <div id="divId" class="w-full flex flex-col items-stretch bg-white p-0 m-0 printStruk">
         <div class="w-full p-0 pl-0 mx-auto">
             <div class="text-center border-b-2 text-sm py-2  mx-auto">
 
@@ -37,7 +37,7 @@
                         {{ $customer->nama ?? ""}}
                     </span>
                 </div>
-                <div class="max-w-[200px] break-words whitespace-normal">
+                <div class="max-w-[200px] text-center break-words whitespace-normal">
                     <span class="text-sm">
                 <label>Alamat :</label>
                         {{ $customer->Alamat  ?? ""}}
@@ -135,7 +135,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="w-1/2 flex-row justify-center items-center" >
+            <div class="w-full flex-row justify-center text-center items-center mx-auto" >
                 <button
                 onclick="printDiv('divId');"
                 class="no-print bg-blue-400 py-2 px-6 rounded-lg">

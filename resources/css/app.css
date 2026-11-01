@@ -44,7 +44,8 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             position: absolute;
                 left: 0;
                 top: 10mm;
-                width: 80mm 200mm;
+                width: 58mm 210mm;
+                height:auto !important;
                 padding: 5mm;
                 box-sizing: border-box;
         }
