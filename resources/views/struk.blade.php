@@ -14,8 +14,9 @@
 
     </style>
 </head>
-<div id="divId" class="w-full flex flex-col justify-center items-center bg-white py-2 ">
-        <div class="w-full p-1 pl-4 mx-auto">
+{{-- <div id="divId" class="w-full flex flex-col justify-center items-center bg-white py-2 "> --}}
+    <div id="divId" class="w-full flex flex-col items-stretch bg-white p-0 m-0">
+        <div class="w-full p-0 pl-0 mx-auto">
             <div class="text-center border-b-2 text-sm py-2  mx-auto">
 
                 <span class="text-2xl text-center">Invoice</span>
