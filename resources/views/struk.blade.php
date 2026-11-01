@@ -63,14 +63,12 @@
                 </div>
             </div>
 
-
-
         </div>
 
 
-        <div class="flex flex-col w-full p-4">
+        <div class="flex flex-col w-full">
 
-            <div class="flex flex-col bg-white px-4 justify-center items-center border-b-2">
+            <div class="flex flex-col bg-white  justify-center items-center border-b-2">
                 <table class="border-0" >
                     <thead>
                         {{-- <th class="px-4 py-2 text-sm">id.</th> --}}
