@@ -44,7 +44,7 @@
     }
     .watermark {
     position: fixed;
-    top: 38%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
 
