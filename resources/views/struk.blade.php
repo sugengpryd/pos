@@ -142,12 +142,19 @@
                 Print
 
                 </button>
-                <button
-                onclick="printDiv('divId');"
-                class="no-print bg-blue-400 py-2 px-6 rounded-lg">
-                Send To
+                <a
+                    href="{{ route('downloadPdf', ['batch_Id' => $transaksi->batch_id,'customer_id'=>$customer->id,'totalTagihan'=>$totalTagihan,'biayaKirim'=>$biayaKirim]) }}"
+                    class="no-print inline-block bg-blue-500 px-6 py-2 rounded-lg">
+                    Download pdf
+                </a>
+                {{-- <button --}}
+                {{-- onclick={{ route('downloadPdf') }} --}}
+                {{-- wire:loading.attr="disabled" --}}
+                {{-- class="no-print bg-blue-500 text-white px-6 py-2 rounded-lg"> --}}
+                {{-- class="no-print bg-blue-400 py-2 px-6 rounded-lg"> --}}
+                {{-- Send To --}}
 
-                </button>
+                {{-- </button> --}}
             </div>
         </div>
 

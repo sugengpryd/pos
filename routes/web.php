@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Produk;
 use App\Http\Controllers\StrukController;
 use App\Http\Controllers\createdbController;
+use App\Http\Controllers\downloadPdfController;
+
 
 Route::view('/', 'welcome');
 
@@ -74,6 +76,14 @@ Route::get('/companyprofile', App\Livewire\CompanyProfiles::class)
 Route::get('/settings', App\Livewire\Settings::class)
     ->middleware(['auth'])
     ->name('settings');
+
+Route::get('/downloadpdf', [downloadPdfController::class,'create'])
+    ->middleware(['auth'])
+    ->name('downloadPdf');
+
+
+
+
 
 
 
