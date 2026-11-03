@@ -11,7 +11,12 @@
         width: 210mm;
 
     }
-
+    text-xs{
+        font-size: 12px;
+    }
+    text-sm{
+        font-size: 14px;
+    }
 
     .no-print {
         display: none;
@@ -67,10 +72,10 @@
         {{ $toko->namaToko }}
     </div>
 
-    <div class="text-sm text-center text-lime-600">
+    <div class="text-xs text-center text-lime-600">
                     {{ $toko->alamattoko }}
     </div>
-    <div class="text-sm text-center text-lime-600">
+    <div class="text-xs text-center text-lime-600">
                     {{ $toko->telepon }}
     </div>
 
@@ -80,25 +85,25 @@
             Customer
     </div>
 
-    <div>
+    <div class="text-xs">
                 <label>Name :</label>
                 {{ $customer->nama ?? ""}}
     </div>
-    <div>
+    <div class="text-xs">
             <label>Alamat :</label>
                 {{ $customer->Alamat  ?? ""}}
     </div>
-    <div>
+    <div class="text-xs">
                 <label>Telepon :</label>
                         {{ $customer->telepon1  ?? ""}}
     </div>
 
 
-    <div>
+    <div class="text-xs">
                 <label>BatchId :</label>
                         #{{ $transaksi->batch_id ?? "" }}
     </div>
-    <div>
+    <div class="text-xs">
                 <label>Total Qty:</label>
                         #{{ $totalQty }}
     </div>
@@ -119,10 +124,10 @@
             <div class="watermark">Invoice</div>
             @foreach ($menu as $menus)
                 <tr">
-                    <td class="straight-line" style="text-align: left">
+                    <td class=" text-xs straight-line" style="text-align: left">
                         {{ $menus->qty }} x {{ $menus->description }}
                     </td>
-                    <td style="text-align: right">
+                    <td class="text-xs" style="text-align: right">
                         {{ number_format($menus->total, 0, ',', '.') }}
                     </td>
 
@@ -136,41 +141,41 @@
             </tr>
 
                     <tr>
-                <td style="text-align: right">Total:</td>
-                <td style="text-align: right">
+                <td class="text-xs" style="text-align: right">Total:</td>
+                <td class="text-xs" style="text-align: right">
                     {{ number_format($sumtotal, 0, ',', '.') }}
                 </td>
 
             </tr>
 
             <tr>
-                <td style="text-align: right">Discount:</td>
-                <td style="text-align: right">
+                <td class="text-xs" style="text-align: right">Discount:</td>
+                <td class="text-xs" style="text-align: right">
                     {{ number_format($diskon ?? 0, 0, ',', '.') }}
                 </td>
 
             </tr>
 
-             <td style="text-align: right">PPN:</td>
-             <td style="text-align: right">
+             <td class="text-xs" style="text-align: right">PPN:</td>
+             <td class="text-xs" style="text-align: right">
                     {{ number_format($Ppn ?? 0, 0, ',', '.') }}
                 </td>
 
             </tr>
 
             <tr>
-                <td style="text-align: right">Biaya Kirim:</td>
-                <td style="text-align: right">
+                <td class="text-xs" style="text-align: right">Biaya Kirim:</td>
+                <td class="text-xs" style="text-align: right">
                     {{ number_format($biayaKirim ?? 0, 0, ',', '.') }}
                 </td>
 
             </tr>
 
             <tr>
-                <td style="text-align: right">
+                <td class="text-xs" style="text-align: right">
                     Total Tagihan:
                 </td>
-                <td style="text-align: right">
+                <td class="text-xs" style="text-align: right">
                     {{ $totalTagihan }}
                 </td>
 
