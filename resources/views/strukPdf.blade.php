@@ -47,20 +47,29 @@
     .divTable{
         width:100%;
     }
+
     .watermark {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
-
     font-size: 60px;
     font-weight: bold;
     color: rgba(128, 128, 128, 0.15);
-
     white-space: nowrap;
     z-index: -1;
 }
-
+/* @media print {
+    .watermark {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        z-index: -1;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+} */
 
     </style>
 </head>

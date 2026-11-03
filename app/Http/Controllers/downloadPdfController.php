@@ -129,9 +129,9 @@ class downloadPdfController extends Controller
         $height = 250 + ($menu->count() * 50);
 
         $pdf = Pdf::loadView('strukPdf',compact('toko','customer','transaksi','menu','sumtotal','totalQty','biayaKirim','totalTagihan','Ppn','diskon'))
-        // [lower-left X, lower-left Y, upper-right X, upper-right Y]
+        // [lower-left X, lower-left Y, upper-right X, uppser-right Y]
         // ->setPaper([0, 0, 164.4, 1000], 'portrait');
-        ->setPaper([0, 0, 600, $height], 'portrait');
+        ->setPaper([0, 0, 400, $height], 'portrait');
 
 
         // $destinationPath= storage_path("logo/" . $customer->nama . now() . '.pdf');
