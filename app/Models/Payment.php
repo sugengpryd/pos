@@ -16,6 +16,7 @@ class Payment extends Model
         'grandtotal',
         'nominal',
         'tipe_payment',
+        'invoice_path',
         'flaq',
     ];
 

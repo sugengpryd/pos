@@ -27,6 +27,7 @@
                     <th class="py-2">Tax</th>
                     <th class="py-2">Grand Total</th>
                     <th class="py-2">Payment Type</th>
+                    <th class="py-2">Invoice</th>
                     <th class="py-2">flaq</th>
                     <th>Created At</th>
                 </thead>
@@ -41,6 +42,13 @@
                         <td class="px-2 py-2 text-center">{{ $payments->pph }}</td>
                         <td class="px-2 py-2 text-center">{{ $payments->grandtotal }}</td>
                         <td class="px-2 py-2 text-center">{{ $payments->tipe_payment }}</td>
+                        <td class="px-2 py-2 text-center">
+                        @if(!empty($payments->invoice_path))
+                         <a href="{{ asset("storage/" .$payments->invoice_path) }}" target="_blank" class="text-blue-600 hover:underline">View</a>
+                        @else
+                             <span class="text-gray-400 italic">No Invoice</span>
+                         @endif
+                        </td>
                         <td class="px-2 py-2 text-center">{{ $payments->flaq }}</td>
                         <td class="px-2 py-2 text-center">{{ $payments->created_at }}</td>
 

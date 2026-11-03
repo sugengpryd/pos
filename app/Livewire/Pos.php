@@ -959,7 +959,8 @@ public function removeItem($index,$item_id)
             // $this->nominalPembayaran;
             // $this->tipePembayaran;
             // dd($this->transaksiBatchId);
-        $exists = Payment::on('customer_sqlite')->where('batch_id', $this->transaksiBatchId)->exists();
+        $exists = Payment::on('customer_sqlite')->where('batch_id', $this->transaksiBatchId)
+        ->where('flaq','1')->exists();
         $cekTransaksi = dbTransaksi::on('customer_sqlite')->where('batch_id',$this->transaksiBatchId)->exists();
 
         if(!$cekTransaksi){
@@ -981,7 +982,9 @@ public function removeItem($index,$item_id)
         //save to basket
         $this->save();
 
-        $createBayar = Payment::on('customer_sqlite')->create([
+        $createBayar = Payment::on('customer_sqlite')->updateOrCreate(
+            ['batch_id' => $this->transaksiBatchId],
+            [
             'batch_id' => $this->transaksiBatchId,
             'total'=> $this->total,
             'discount' => '0',

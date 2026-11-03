@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Transaksi;
 use App\Models\Discount as discount;
 use App\Models\Menu;
+use App\Models\Payment as payment;
 use App\Models\Menu_item;
 use App\Models\Customer;
 use App\Models\pengiriman;
@@ -136,7 +137,39 @@ class downloadPdfController extends Controller
         // $destinationPath= storage_path("logo/" . $customer->nama . now() . '.pdf');
         $filename = $customer->nama . '_' . now()->format('dmY_His') . '.pdf';
 
-        $destinationPath = storage_path('invoices/' . $filename);
+        // $destinationPath = storage_path('invoices/' . $filename);
+        $destinationPath = storage_path('app/public/invoices/' . $filename);
+        $invoicePath = 'invoices/'. $filename;
+        // dd($invoicePath);
+
+
+        $cekPayment =payment::on('customer_sqlite')->where('batch_id', $batch_id)->exists();
+            if($cekPayment){
+                $updatePayment= payment::on('customer_sqlite')->where('batch_id', $batch_id)->update([
+                    'invoice_path'=> $invoicePath,
+
+                   ]);
+                // dd($updatePayment);
+
+            }else{
+                $addPayment= payment::on('customer_sqlite')->where('batch_id', $batch_id)->create([
+                    'batch_id'=>$batch_id,
+                    'total'=> '0',
+                    'discount'=> '0',
+                    'pph'=> '0',
+                    'grandtotal'=> '0',
+                    'nominal'=>'0',
+                    'tipe_payment'=> 'outstanding',
+                    'invoice_path'=> $invoicePath,
+                    'flaq' =>0,
+                ]);
+
+
+
+
+            }
+
+
 
         if (!file_exists(dirname($destinationPath))) {
           mkdir(dirname($destinationPath), 0755, true);
