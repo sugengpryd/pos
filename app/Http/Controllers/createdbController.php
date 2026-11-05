@@ -57,6 +57,8 @@ class createdbController extends Controller
             'db_name' => $dbname,
             'path' => $path,
             'flaq' =>'1',
+            'update_at' => now(),
+
 
             ]);
         };
@@ -64,6 +66,8 @@ class createdbController extends Controller
         $updateUsers= User::where('id',$userId)->update([
             'dbconnection' =>"customer_sqlite",
             'dbcreated' => "1",
+
+
 
         ]);
 
@@ -220,12 +224,20 @@ class createdbController extends Controller
 
 
 
+
+
     // session()->flash('message', 'User copied successfully!');
 
     session()->flash(
     'success',
     "Database {$dbname}.sqlite created successfully."
     );
+
+    $user = User::where('id',$userId)->update([
+            'updateFlaq'=>'0',
+            'updated_at'=>now(),
+        ]);
+
     // $this->redirect(route('CreatedbPage'), navigate: true);
 
     // return redirect()->route('dashboard');
@@ -242,7 +254,7 @@ class createdbController extends Controller
              $status = '1';
 
          };
-         
+
 
     // return "Database {$dbname}.sqlite created successfully.";
     return view('userDb.createdDb',compact('dbname','status'));

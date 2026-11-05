@@ -82,6 +82,11 @@ Route::get('/downloadpdf', [downloadPdfController::class,'create'])
     ->name('downloadPdf');
 
 
+Route::get('/adminpage', App\Livewire\AdminPage::class)
+    ->middleware(['auth'])
+    ->name('adminPage');
+
+
 
 
 

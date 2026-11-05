@@ -7,10 +7,14 @@
 
     <div class="py-6">
         <div class="w-full mx-auto">
-            <div class="bg-transparent overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-2 text-gray-900">
+            <div class=" flex flex-row justify-between items-center bg-transparent overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="flex flex-col justify-start items-start p-2 text-gray-900">
                     {{ __("You're logged in!") }}
                 </div>
+                <div class="flex flex-col justify-end items-end p-2 text-gray-900">
+                    {{-- {{ $notif == '1' ? 'New Updates Available' : ''  }} --}}
+                </div>
+
             </div>
         </div>
     </div>
@@ -134,6 +138,19 @@
 
                 </div>
                 </a>
+                @if(Auth::id()== '1')
+                <a href="{{ route('adminPage') }}">
+
+                <div class="flex flex-col md:flex-col py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
+                    <div class="bg-white  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52">
+                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/settings.png">
+
+                    </div>
+                    <span class="font_card text-center text-xs p-2">Admin Page</span>
+
+                </div>
+                </a>
+                @endif
 
 
     </div>

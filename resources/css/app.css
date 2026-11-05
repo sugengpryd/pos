@@ -6,6 +6,24 @@
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 /* Print */
+
+@theme {
+    --animate-blink: blink 1s steps(1, start) infinite;
+
+    @keyframes blink {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0;
+        }
+    }
+}
+
+
 @media print {
         @page {
             size: 210mm 297mm;

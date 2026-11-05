@@ -126,7 +126,7 @@ class downloadPdfController extends Controller
         $toko =  Compro::on('customer_sqlite')->where('userId',Auth::user()->id)->first();
 
 
-        $height = 250 + ($menu->count() * 50);
+        $height = 500 + ($menu->count() * 50);
 
         $pdf = Pdf::loadView('strukPdf',compact('toko','customer','transaksi','menu','sumtotal','totalQty','biayaKirim','totalTagihan','Ppn','diskon'))
         // [lower-left X, lower-left Y, upper-right X, uppser-right Y]

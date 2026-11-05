@@ -88,8 +88,8 @@
 
                     @foreach ($menus as $index => $menu)
                         <div class="flex flex-col items-center gap-3
-                                     w-[120px] h-[160px] mb-2 px-2 py-2 bg-gray-400 rounded-xl
-                                    text-black text-center text-xs shadow-xl">
+                                     w-[140px] h-[160px] mb-2 px-2 py-2 bg-gray-400 rounded-xl
+                                    text-black text-center text-xs shadow-xl hover:shadow-lg hover:shadow-lime-600">
 
                             <button
                                 type="button"
@@ -99,7 +99,7 @@
                                     {{ Js::from($menu['description']) }}
                                 )"
                                 class="shrink-0
-                                    h-[100px] w-[100px] bg-yellow-700
+                                    h-[120px] w-[120px] bg-yellow-700
                                     items-center justify-center text-center
                                     p-2 rounded-xl text-xs text-white bg-center bg-cover"
                                 >

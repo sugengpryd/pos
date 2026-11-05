@@ -8,9 +8,19 @@
                        👉 Setup Profile Toko
                     </a>
                 </div>
-                    <div class="bg-gray-400 py-4 px-4 rounded-lg hover:shadow-xl hover:underline underline-offset-8 shadow-gray-700" >
+                    <div
+
+                    {{-- class="bg-gray-400 py-4 px-4 rounded-lg hover:shadow-xl hover:underline underline-offset-8 shadow-gray-700" --}}
+
+                    @class([
+                        'bg-gray-400 px-4 py-4 text-center rounded rounded-lg hover:shadow-xl hover:underline underline-offset-8 shadow-gray-700',
+                        'animate-pulse' => $notif,
+                        'bg-green-600' => $notif,
+                        'bg-red-600' => $notif,
+                    ])
+                    >
                     <a href="{{ route('CreatedbPage') }}">
-                       👉 Repair Database
+                       👉 New Updates
                     </a>
 
                     {{-- http://localhost:8000/createdDb --}}
