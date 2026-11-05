@@ -88,7 +88,7 @@
 
                     @foreach ($menus as $index => $menu)
                         <div class="flex flex-col items-center gap-3
-                                     w-[140px] h-[160px] mb-2 px-2 py-2 bg-gray-400 rounded-xl
+                                     w-[140px] h-[170px] mb-2 px-2 py-2 bg-gray-400 rounded-xl
                                     text-black text-center text-xs shadow-xl hover:shadow-lg hover:shadow-lime-600">
 
                             <button
