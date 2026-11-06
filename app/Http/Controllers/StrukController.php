@@ -124,9 +124,9 @@ class StrukController extends Controller
                 ->where('transaksi.batch_id',$batch_id)
                 ->get();
         $toko =  Compro::on('customer_sqlite')->where('userId',Auth::user()->id)->first();
+        // batch_Id=20261106-025&customer_id=2&biayaKirim=0&totalTagihan=
 
-
-    return view('struk',compact('toko','customer','transaksi','menu','sumtotal','totalQty','biayaKirim','totalTagihan','Ppn','diskon'));
+             return view('struk',compact('toko','customer','transaksi','menu','sumtotal','totalQty','biayaKirim','totalTagihan','Ppn','diskon'));
             }
 
     }
