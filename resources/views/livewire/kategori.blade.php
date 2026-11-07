@@ -92,12 +92,12 @@
                     {{-- <h3 class="text-lg font-semibold mb-6">
                         {{ $editMode ? 'Edit Kategori' : 'Create New Kategori' }}
                     </h3> --}}
-                        <div class="flex flex-col w-screen min-h-screen md:w-[600px] p-4 mt-2 rounded-lg justify-center items-center gap-2 bg-gray-300">
+                        <div class="flex flex-col w-auto min-h-screen md:w-[600px] p-4 mt-2 rounded-lg justify-center items-center gap-2 bg-gray-300">
                             <h3 class="text-lg font-semibold mb-6">
                                 {{ $editMode ? 'Edit Kategori' : 'Create New Kategori' }}
                             </h3>
                             <form wire:submit.prevent="save" enctype="multipart/form-data">
-                                <div class=" min-w-40 max-w-full md:w-full flex flex-wrap justify-start items-center text-sm gap-2" >
+                                <div class=" max-w-full md:w-full flex flex-wrap justify-start items-center text-sm gap-2" >
                                     <label>Description</label>
                                     <input
                                     wire:model='kategoriDescription'
@@ -107,7 +107,7 @@
                                     >
                                 </div>
 
-                                <div class=" min-w-40 max-w-full md:w-full flex flex-wrap justify-start items-center mt-2 text-sm gap-2" >
+                                <div class="max-w-full md:w-full flex flex-wrap justify-start items-center mt-2 text-sm gap-2" >
                                     <label>Status</label>
                                     <select
                                     wire:model='kategoriFlaq'
@@ -119,7 +119,7 @@
                                     </select>
                                 </div>
 
-                                <div class="py-2 w-full gap-8 mt-auto">
+                                <div class="py-2 max-w-full gap-8 mt-auto">
                                         <label class="w-16"> Image</label>
                                         <input
                                         type="file"
