@@ -85,14 +85,14 @@
 
     </div>
      @if($showModal)
-        <div class="fixed inset-0 z-50 w-full h-auto items-center justify-center bg-black bg-opacity-50">
+        <div class="fixed inset-0 z-50 w-full min-h-screen items-center justify-center bg-black bg-opacity-50">
 
-            <div class=" flex flex-col max-w-[full] mt-8 bg-transparent rounded-lg justify-center items-center shadow-lg p-2 max-h-screen overflow-y-auto ">
+            <div class=" flex flex-col max-w-screen min-h-screen bg-transparent rounded-lg justify-center items-center shadow-lg p-2 overflow-y-auto ">
 
                     {{-- <h3 class="text-lg font-semibold mb-6">
                         {{ $editMode ? 'Edit Kategori' : 'Create New Kategori' }}
                     </h3> --}}
-                        <div class="flex flex-col w-screen md:w-[600px] p-4 mt-auto rounded-lg justify-center items-center gap-2 bg-gray-300">
+                        <div class="flex flex-col w-screen min-h-screen md:w-[600px] p-4 mt-2 rounded-lg justify-center items-center gap-2 bg-gray-300">
                             <h3 class="text-lg font-semibold mb-6">
                                 {{ $editMode ? 'Edit Kategori' : 'Create New Kategori' }}
                             </h3>
