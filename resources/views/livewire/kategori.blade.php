@@ -97,7 +97,7 @@
                                 {{ $editMode ? 'Edit Kategori' : 'Create New Kategori' }}
                             </h3>
                             <form wire:submit.prevent="save" enctype="multipart/form-data">
-                                <div class=" max-w-full md:w-full flex flex-wrap justify-start items-center text-sm gap-2" >
+                                <div class=" w-full md:w-full flex flex-wrap justify-start items-center text-sm gap-2" >
                                     <label>Description</label>
                                     <input
                                     wire:model='kategoriDescription'
@@ -107,7 +107,7 @@
                                     >
                                 </div>
 
-                                <div class="max-w-full md:w-full flex flex-wrap justify-start items-center mt-2 text-sm gap-2" >
+                                <div class="w-full md:w-full flex flex-wrap justify-start items-center mt-2 text-sm gap-2" >
                                     <label>Status</label>
                                     <select
                                     wire:model='kategoriFlaq'
@@ -119,13 +119,13 @@
                                     </select>
                                 </div>
 
-                                <div class="py-2 max-w-full gap-8 mt-auto">
+                                <div class="py-2 w-full gap-8 mt-auto">
                                         <label class="w-16"> Image</label>
                                         <input
                                         type="file"
                                         wire:model.live="kategori_image"
                                         accept="image/*"
-                                        class=" text-sm rounded-xl py-2 px-4 "
+                                        class=" w-full text-sm rounded-xl py-2 px-4 "
                                         >
                                         @error('file')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -147,7 +147,7 @@
                                         @endif
                                     </div>
 
-                                <div class="flex flex-wrap gap-4 mt-4 justify-start items-start">
+                                <div class="flex w-full flex-wrap gap-4 mt-4 justify-start items-start">
                                     <button
                                     wire:click='closeopenModal'
                                     wire:loading.attr="disabled"
