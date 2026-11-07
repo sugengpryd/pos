@@ -924,7 +924,7 @@
             location.reload();
         }
 </script>
-<script>
+{{-- <script>
 document.addEventListener('DOMContentLoaded', () => {
 
     const box = document.getElementById('dragDiv');
@@ -963,5 +963,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
-</script>
+</script> --}}
 </div>

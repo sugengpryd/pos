@@ -164,6 +164,12 @@ class Kategori extends Component
 
     }
     public function deleteKategori($value){
+        $this->createnewConnection();
+
+        // dd($value);
         $deleteKategori = kategories::on('customer_sqlite')->where('id',$value)->delete();
+                $this->dispatch('notify', message: 'Delete Kategori Success',type:'success');
+
+        // dd($deleteKategori);
     }
 }

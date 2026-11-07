@@ -1,4 +1,31 @@
 <div class="py-4">
+    <div
+            x-data="{ show: false, message: '',type:'success',timer:null }"
+
+            x-on:notify.window="
+                message = $event.detail.message;
+                type = $event.detail.type || 'success';
+                {{-- bgColor = $event.detail.color ?? 'bg-green-500'; --}}
+                show = true;
+                clearTimeout(timer);
+                timer = setTimeout(() => show = false, 2000);
+                {{-- setTimeout(() => show = false, 2000); --}}
+            "
+            >
+            <div
+                x-show="show"
+                x-transition
+                :class="{
+                    'bg-green-500': type === 'success',
+                    'bg-red-600': type === 'error',
+                    'bg-yellow-500': type === 'warning',
+                    'bg-blue-500': type === 'info'
+                }"
+                class="fixed top-5 right-5 z-50 bg-green-500 text-white px-5 py-3 rounded-lg shadow-lg"
+            >
+                <span x-text="message"></span>
+            </div>
+        </div>
     <div class="px-4">
         <header>Kategori Menu</header>
     </div>
