@@ -161,7 +161,7 @@
                             <button
                             type="button"
                             wire:click='closeOpenModal'
-                            class="bg-gray-600 py-2 px-4 rounded-xl"
+                            class="bg-gray-300 py-2 px-4 rounded-xl"
                             >Cancel</button>
 
                             <button
