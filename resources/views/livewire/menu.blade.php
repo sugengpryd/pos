@@ -327,7 +327,7 @@
                 </div>
 
 
-                <div class="flex justify-start items-start gap-2 mt-2 mb-2">
+                <div class="flex justify-start items-start gap-2 mt-2 mb-4">
                     <button
                         type="button"
                         wire:click="closeOpenModal"
