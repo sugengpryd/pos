@@ -35,7 +35,7 @@
             </div>
         </div>
 
-        <div class="w-full text-center max-h-screen px-2 pb-4 justify-center items-center overflow-y-auto">
+        <div class="w-full text-center min-h-screen px-2 pb-4 justify-center items-center overflow-y-auto">
             <table>
                 <thead>
                     <th class=" text-xs sticky top-0 bg-gray-400 w-80 mx-auto p-2">Id</th>
@@ -73,7 +73,7 @@
     @if($showModal)
         <div class="fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50">
 
-            <div class="flex flex-col bg-white rounded-lg justify-center items-center shadow-lg w-full min-w-[400px] max-w-[600px] p-6 max-h-screen overflow-y-auto ">
+            <div class="flex flex-col w-full bg-white min-h-screen rounded-lg justify-center items-center shadow-lg min-w-[400px] max-w-[600px] p-6 overflow-y-auto ">
 
                     <h3 class="text-lg font-semibold mb-4">
                         {{ $editMode ? 'Edit Customer' : 'Create New Customer' }}
