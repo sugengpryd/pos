@@ -1,4 +1,4 @@
-<div class="py-4 w-full mx-auto max-w-[1280px]">
+<div class="py-4 w-full mx-auto min-h-screen">
     <div class="flex flex-row justify-start items-start px-2 ml-[5px] gap-4">
         <div class="flex-col w-full justify-between items-center">
             <button
@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-    <div class="w-full max-w-[1280px] top-0 h-screen mx-auto mt-2 px-2 bg-gray-300 rounded-xl justify-start overflow-auto">
+    <div class="w-full top-0 min-h-screen mx-auto mt-2 px-2 bg-gray-300 rounded-xl justify-start overflow-auto">
         <table class=" px-4 py-2 w-full">
             <p>Total: {{ $menu?->count() ?? '0' }}</p>
                 <thead class="sticky py-0 top-0 bg-gray-400 z-55">
@@ -103,7 +103,7 @@
     </div>
 
     @if($showModal)
-    <div class="fixed w-full flex justify-center  items-center inset-0 z-50 p-2 md:p-8 h-auto bg-black bg-opacity-50">
+    <div class="fixed w-full min-h-screen flex justify-center  items-center inset-0 z-50 p-2 md:p-8 h-auto bg-black bg-opacity-50">
         <div class=" flex flex-col min-w-[360px]  md:max-w-[1280px] w-[600px] justify-start items-start mt-4 mb-4 p-2 bg-white rounded-lg shadow-lg  md:justify-center md:items-center max-h-screen overflow-y-auto">
 
             <h3 class="text-lg font-semibold mb-4">
