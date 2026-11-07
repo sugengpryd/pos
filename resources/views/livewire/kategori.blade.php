@@ -92,7 +92,7 @@
                     {{-- <h3 class="text-lg font-semibold mb-6">
                         {{ $editMode ? 'Edit Kategori' : 'Create New Kategori' }}
                     </h3> --}}
-                        <div class="flex flex-col w-auto min-h-screen md:w-[600px] p-4 mt-2 rounded-lg justify-center items-center gap-2 bg-gray-300">
+                        <div class="flex flex-col w-full min-h-screen md:w-[600px] p-4 mt-2 rounded-lg justify-center items-center gap-2 bg-gray-300">
                             <h3 class="text-lg font-semibold mb-6">
                                 {{ $editMode ? 'Edit Kategori' : 'Create New Kategori' }}
                             </h3>
