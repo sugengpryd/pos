@@ -86,7 +86,7 @@
     <div class="px-6 mt-4" >
        Total: {{ $produk->count() }}
     </div>
-    <div class="w-full max-w-[full] top-0 h-screen mx-auto mt-2 px-4 justify-start overflow-auto">
+    <div class="w-full max-w-[full] top-0 min-h-screen mx-auto mt-2 px-4 justify-start overflow-auto">
 
         <div class="flex flex-row justify-start items-center p-2">
 
