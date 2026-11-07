@@ -249,9 +249,9 @@
     @endif
 
 @if($modalImport)
-    <div class="fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50">
+    <div class="fixed inset-0 z-50 w-full min-h-scrren md:h-auto flex items-center justify-center bg-black bg-opacity-50">
 
-        <div class="bg-white rounded-lg shadow-lg w-full max-w-[700px] p-6 max-h-screen overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-lg w-full max-w-[700px] p-6 min-h-scrren max-h-screen overflow-y-auto">
 
             <h3 class="text-lg font-semibold mb-4">
                  Import Data Produk
