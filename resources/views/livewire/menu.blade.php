@@ -104,7 +104,7 @@
 
     @if($showModal)
     <div class="fixed w-full min-h-screen flex justify-center  items-center inset-0 z-50 p-2 md:p-8 h-auto bg-black bg-opacity-50">
-        <div class=" flex flex-col min-w-[360px] min-h-screen  md:max-w-[1280px] w-[600px] justify-start items-start mt-4 mb-4 p-2 bg-white rounded-lg shadow-lg  md:justify-center md:items-center overflow-y-auto">
+        <div class=" flex flex-col min-w-[340px] min-h-screen  md:max-w-full w-[600px] justify-start items-start mt-4 mb-4 p-2 bg-white rounded-lg shadow-lg  md:justify-center md:items-center overflow-y-auto">
 
             <h3 class="text-lg font-semibold mb-4">
                 {{ $editMode ? 'Edit Menu' : 'Create New Menu' }}
@@ -113,7 +113,7 @@
             <form wire:submit.prevent="save" enctype="multipart/form-data">
                 {{-- form fields --}}
 
-                <div class="flex flex-row py-2 w-full min-w-16 border">
+                <div class="flex flex-row py-2 w-full min-w-16 ">
                     <label  class="w-full text-xs">Menu ID</label>
                     <input
                     wire:model="menuId"
@@ -201,8 +201,8 @@
 
                 </div>
 
-                <div class="w-full">
-                    <div class="flex flex-row min-w-[350px] justify-start items-start">
+                <div class="w-full ">
+                    <div class="flex pb-1 flex-row min-w-[340px] justify-start items-start">
                         <select
                         wire:model.live="selectProduk"
                         wire:change="selectedProduk"
@@ -255,6 +255,7 @@
                                         wire:model="itemQty.{{ $index }}"
                                         wire:change='changeitemQty({{ $index }})'
                                         required
+                                        class="text-xs"
                                         >
                                             <option value="">qty</option>
                                             @for ($x=0;$x<=100;$x++)
@@ -268,7 +269,7 @@
                                         <button
                                         wire:click="removeItem({{ $index }},{{ $item['produk_id'] }})"
                                         type="button"
-                                        class="text-red-700 hover:text-red-900"
+                                        class="text-red-700 hover:text-red-900 text-xs"
                                         >
                                         Remove
                                         </button>
@@ -286,12 +287,12 @@
                 </div>
 
                 <div class="py-2 w-full gap-8 mt-auto">
-                    <label class="w-16"> Menu Image</label>
+                    <label class="w-16 text-xs"> Menu Image</label>
                     <input
                     type="file"
                     wire:model.live="menu_image"
                     accept="image/*"
-                    class=" text-sm rounded-xl py-2 px-4 "
+                    class=" text-xs rounded-xl py-2 px-4 "
                     >
                     @error('file')
                         <p class="text-sm text-red-600">{{ $message }}</p>
@@ -315,10 +316,10 @@
 
 
                 <div class="py-2 w-full gap-8 mt-auto">
-                    <label class="w-16"> Visibility</label>
+                    <label class="w-16 text-xs"> Visibility</label>
                     <select
                     wire:model.live="menu_visibility"
-                    class="  text-sm rounded-xl py-2 px-4 "
+                    class="text-xs rounded-xl py-2 px-4 "
                     >
                     <option value="1" selected>Show</option>
                     <option value="0">Hidden</option>
@@ -330,14 +331,14 @@
                     <button
                         type="button"
                         wire:click="closeOpenModal"
-                        class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+                        class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 text-xs rounded"
                     >
                         Cancel
                     </button>
 
                     <button
                         type="submit"
-                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 text-xs rounded"
                     >
                         Save
                     </button>
