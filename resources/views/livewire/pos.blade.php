@@ -194,7 +194,7 @@
 
                             {{-- Invoice --}}
                             <button
-                            onclick="window.open('{{ route('Struk', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid,'biayaKirim'=>$this->biayaKirim,'totalTagihan'=>$this->totalTagihan])}}')"
+                            onclick="window.open('{{ route('Struk', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid,'biayaKirim'=>$this->biayaKirim,'totalTagihan'=>$this->totalTagihan])}}','_self')"
                                  @disabled($voidMode)
                                  @disabled(!$openTransaksi)
 
