@@ -1,4 +1,4 @@
-<div class="py-4 w-full max-w-[1080px] mx-auto">
+<div class="py-4 w-full max-w-[full] mx-auto">
     <div class="flex flex-row px-4 ml-[5px] gap-3">
         <div clas="flex-row w-full justify-between items-center">
             <div
@@ -28,7 +28,7 @@
             wire:click="openModal"
             class=" text-sm bg-blue-300 p-2 hover:bg-blue-500 rounded-xl border border-spacing-2 border-blue-400">New Product</button> --}}
         </div>
-        <div class="flex flex-col md:flex-row w-full justify-start items-start md:justify-end md:items-start gap-2 text-xs mb-2">
+        <div class="flex flex-col md:flex-row w-full justify-start items-start md:justify-end md:items-start gap-2 text-xs mb-2 mr-8">
 
             <div class="flex flex-1 gap-4">
              <button
@@ -74,8 +74,8 @@
                 class="rounded-lg text-xs"
             >
                 <option value="">Filter Flaq</option>
-                <option value="1">1.Show</option>
-                <option value="0">0.Hidden</option>
+                <option value="1">Show</option>
+                <option value="0">Hidden</option>
 
 
             </select>
@@ -83,10 +83,10 @@
 
 
     </div>
-    <div class="px-6" >
+    <div class="px-6 mt-4" >
        Total: {{ $produk->count() }}
     </div>
-    <div class="w-full max-w-[1080px] top-0 h-screen mx-auto mt-2 px-4 justify-start overflow-auto">
+    <div class="w-full max-w-[full] top-0 h-screen mx-auto mt-2 px-4 justify-start overflow-auto">
 
         <div class="flex flex-row justify-start items-center p-2">
 
