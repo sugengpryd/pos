@@ -17,7 +17,7 @@
         <div class=" w-full py-2 h-full md:min-h-screen bg-transparent text-white dark:bg-black dark:text-white/50">
             <img id="background" class="absolute -left-[60] top-0 max-h-[220px] max-w-[250px] md:max-w-[200px] md:-left-20" src="https://laravel.com/assets/img/welcome/background.svg" />
 
-            <div class="min-h-screen flex flex-col items-center justify-center">
+            <div class="h-full flex flex-col items-center justify-center">
                 <div class="w-full h-full max-w-2xl px-6 lg:max-w-7xl">
                     <header class="grid grid-cols-2 mt-2 items-center gap-4 py-4 lg:grid-cols-3 z-55">
                         <div class="flex lg:justify-center py-2 lg:col-start-2">
