@@ -10,11 +10,27 @@
     <div class="flex flex-col justify-start items-start px-4  ">
         <div class="flex flex-row justify-start items-start mb-2 gap-4">
             <input type="text"
+             wire:model.live="searchFilter"
              class="rounded-lg text-xs"
             >
-            <select class="rounded-lg text-xs">
-                <option>Filter</option>
-                <option></option>
+            <select class="rounded-lg text-xs"
+            wire:model.live="selectPayment"
+            >
+                <option value="">Payment tipe</option>
+                @foreach ($tipePayment as $index => $tipePayments )
+                <option value="{{ $tipePayments->tipe_payment }}">{{$tipePayments->tipe_payment}}</option>
+
+                @endforeach
+            </select>
+
+            <select class="rounded-lg text-xs"
+            wire:model.live="dateFilter"
+            >
+                <option value="">Created At</option>
+                @foreach ($createdAt as $index => $createdat )
+                <option value="{{ $createdat }}">{{$createdat}}</option>
+
+                @endforeach
             </select>
         </div>
         <div class="flex w-full flex-row justify-start items-center">

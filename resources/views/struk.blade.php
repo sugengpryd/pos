@@ -19,7 +19,7 @@
         <div class="w-full p-0 pl-0 mx-auto">
             <div class="text-center border-b-2 text-sm py-2  mx-auto">
 
-                <span class="text-2xl text-center">Invoice</span>
+                <span class="text-2xl text-center">Payment Receipt</span>
             </div>
             <div class="text-center border-b-2 text-sm py-2  mx-auto">
 

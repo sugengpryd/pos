@@ -17,6 +17,9 @@ use Livewire\Attributes\Layout;
 class Payment extends Component
 {
     public $UsersId = '';
+    public $selectPayment=[];
+    public $searchFilter='';
+    public $dateFilter='';
 
     public function mount()
     {
@@ -47,9 +50,39 @@ class Payment extends Component
     {
         $this->createnewConnection();
 
-        $payment= Dbpayment::on('customer_sqlite')->get();
-        // dd($payment);
+        // $payment= Dbpayment::on('customer_sqlite')->get();
+         $payment = Dbpayment::on('customer_sqlite')
+        ->when($this->searchFilter, function ($query) {
+        $query->where('batch_id', "like", "%" . $this->searchFilter. "%");
+    })
+        ->when($this->selectPayment, function ($query){
+        $query->where('tipe_payment', $this->selectPayment);
+    })
+        ->when($this->dateFilter, function ($query) {
+        $query->where('created_at', "like", "%" . $this->dateFilter. "%");
+     }) ->get();
 
-        return view('livewire.payment',compact('payment'));
+        $tipePayment = Dbpayment::on('customer_sqlite')->select('tipe_payment')->distinct()->get();
+        // $createdAt = Dbpayment::on('customer_sqlite')->select('created_at')->distinct()->get();
+        $createdAt = Dbpayment::on('customer_sqlite')
+            ->selectRaw('DATE(created_at) as date')
+            ->distinct()
+             ->pluck('date');
+        // dd($createdAt);
+        // dd($tipePayment);
+        // $this->selectPayment = $tipePayment;
+
+        return view('livewire.payment',compact('payment','tipePayment','createdAt'));
+    }
+
+    public function updatedSelectPayment(){
+    // dd($this->selectPayment);
+    }
+    public function updatedSearchFilter(){
+        // dd($this->searchFilter);
+    }
+    public function updatedDateFilter(){
+        // dd($this->dateFilter);
+
     }
 }
