@@ -35,11 +35,12 @@
                         </div>
                     </main>
 
-                    <footer class="py-2 text-center text-xs text-gray-300 dark:text-white/70">
-                        {{ 'Jakarta, '}}  {{now()->format('d-m-Y') }}
+                    <footer class="py-2 text-center text-xs text-gray-300 dark:text-white/70 mt-auto">
+                       {{ 'Jakarta, '}}  {{now()->format('d-m-Y') }}
                         <br>
                         {{-- Develope with Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }}) --}}
                     </footer>
+
                 </div>
             </div>
         </div>
