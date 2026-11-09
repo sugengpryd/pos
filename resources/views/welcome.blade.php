@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,8 +13,8 @@
         <!-- Styles -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="antialiased w-full min-h-screen font-sans">
-        <div class=" w-full py-2 min-h-screen md:min-h-screen bg-[#661414] text-white dark:bg-black dark:text-white/50">
+    <body class="antialiased w-full h-full font-sans bg-[#661414]">
+        <div class=" w-full py-2 h-full md:min-h-screen bg-transparent text-white dark:bg-black dark:text-white/50">
             <img id="background" class="absolute -left-[60] top-0 max-h-[220px] max-w-[250px] md:max-w-[200px] md:-left-20" src="https://laravel.com/assets/img/welcome/background.svg" />
 
             <div class="min-h-screen flex flex-col items-center justify-center">
@@ -35,7 +35,7 @@
                         </div>
                     </main>
 
-                    <footer class="py-16 text-center text-xs text-gray-300 dark:text-white/70">
+                    <footer class="py-2 text-center text-xs text-gray-300 dark:text-white/70">
                         {{ 'Jakarta, '}}  {{now()->format('d-m-Y') }}
                         <br>
                         {{-- Develope with Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }}) --}}
