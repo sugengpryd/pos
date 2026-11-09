@@ -29,7 +29,7 @@
                     </header>
 
                     <main class="mt-0">
-                        <div class="flex flex-1 px-4 h-screen md:min-h-auto max-w-full justify-center items-center ">
+                        <div class="flex flex-1 px-4 min-screen md:min-h-auto max-w-full justify-center items-center ">
                             <img class="h-full py-4 w-[75%] " src="storage/logo/logo.png">
 
                         </div>
