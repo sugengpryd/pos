@@ -103,8 +103,8 @@
     </div>
 
     @if($showModal)
-    <div class="fixed w-full flex justify-center  items-center inset-0 z-50 mt-0 h-screen bg-black bg-opacity-50  ">
-        <div class=" flex flex-col min-w-[340px] h-full  md:max-w-full w-[600px] justify-start items-start mt-8 mb-8 p-2 bg-white rounded-lg shadow-lg  md:justify-center md:items-center md:overflow-auto ">
+    <div class="fixed w-full flex justify-center  items-center inset-0  mt-0 h-screen bg-black bg-opacity-50  ">
+        <div class=" flex flex-col min-w-[340px] h-full md:max-w-full z-50 w-[600px] justify-start items-start mt-8 mb-8 p-2 bg-white rounded-lg shadow-lg  md:justify-center md:items-center md:overflow-auto ">
             <h3 class="text-lg font-semibold mb-2 pt-6">
                 {{ $editMode ? 'Edit Menu' : 'Create New Menu' }}
             </h3>
