@@ -14,7 +14,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="antialiased font-sans">
-        <div class=" w-full py-2 min-h-screen bg-[#661414] text-white dark:bg-black dark:text-white/50">
+        <div class=" w-full py-2 min-h-full md:min-h-screen bg-[#661414] text-white dark:bg-black dark:text-white/50">
             <img id="background" class="absolute -left-[60] top-0 max-h-[220px] max-w-[250px] md:max-w-[200px] md:-left-20" src="https://laravel.com/assets/img/welcome/background.svg" />
 
             <div class="min-h-screen flex flex-col items-center justify-center">
