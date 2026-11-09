@@ -34,11 +34,19 @@ class createdbController extends Controller
         // $dbid = (string) random_int(100000, 999999);
         $dbid = Auth::user()->id;
         $dbname = $prefix . $dbid;
+        $finddata=Dbcreated::where('users_id',$dbid)->first();
+        if($finddata){
+            $status = '1';
+        }else{
+            $status = '0';
+        }
 
 
 
 
-        return view('userDb.createdDb',compact('dbname'));
+
+
+        return view('userDb.createdDb',compact('dbname','status'));
 
 
     }
@@ -58,17 +66,12 @@ class createdbController extends Controller
             'path' => $path,
             'flaq' =>'1',
             'update_at' => now(),
-
-
             ]);
         };
 
         $updateUsers= User::where('id',$userId)->update([
             'dbconnection' =>"customer_sqlite",
             'dbcreated' => "1",
-
-
-
         ]);
 
 
@@ -230,7 +233,8 @@ class createdbController extends Controller
 
     session()->flash(
     'success',
-    "Database {$dbname}.sqlite created successfully."
+    "Pos System Updated successfully."
+    // "Database {$dbname}.sqlite updated successfully."
     );
 
     $user = User::where('id',$userId)->update([
@@ -265,9 +269,39 @@ class createdbController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function updateDB($value)
     {
-        //
+        $userId= Auth::user()->id;
+        $dbname =trim($value);
+        $path = database_path($dbname .'.sqlite');
+
+        $finddata=Dbcreated::where('users_id',$userId)->first();
+        if($finddata){
+
+
+            // Register connection dynamically
+            Config::set('database.connections.customer_sqlite', [
+                'driver' => 'sqlite',
+                'database' => $path,
+                'prefix' => '',
+                'foreign_key_constraints' => true,
+                ]);
+
+
+            // Connect to the new database
+            DB::purge('customer_sqlite');
+            DB::connection('customer_sqlite')->getPdo();
+
+            // Run migrations on the dynamic SQLite database
+        $migrate = Artisan::call('migrate', [
+            '--database' => 'customer_sqlite',
+            '--path' => 'database/migrations/customers',
+            '--force' => true,
+            ]);
+
+
+
+            }
     }
 
     /**

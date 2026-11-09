@@ -22,13 +22,18 @@
 
             <div class="w-full flex flex-col justify-center items-center mt-8">
                 <div class="flex-col justify-center items-center mb-8" >
-                <label class="text-bold text-xl text-green-700">Let's Start with create database</label>
+                <label
+                class="text-bold text-xl text-green-700"
+                >
+                {{ $status ? "Update Pos System" : "Let's Start with Create Database" }}
+
+                </label>
                 </div>
                 <Button
                     type="button"
                     class="bg-blue-300 rounded-lg p-2 mb-8 hover:shadow-lg hover:shadow-white"
                     onclick="window.location.href='{{ route('createdDB', ['dbname' => $dbname ?? null]) }}'">
-                    Create Database - {{ $dbname }}
+                    {{ $status ? "Update Now" : "Create Database - $dbname" }}
 
                 </button>
                 @if(session()->has('success'))
