@@ -1,12 +1,6 @@
-<div class="py-2">
-    <div class="w-full h-screen p-2">
-         {{-- @if (session()->has('success'))
-                <div class="bg-green-500 text-white p-3 rounded">
-                 {{ session('success') }}
-                </div>
-            @endif --}}
-
-        <div class=" bg-slate-700 flex flex-col md:flex-row justify-center items-center px-2">
+<div class="py-2 overflow-hidden">
+    <div class="w-full h-screen p-2 ">
+        <div class=" bg-slate-700 flex z-55 flex-col md:flex-row justify-center items-center px-2 overflow-hidden">
 
             <div class="bg-transparent md:flex-col flex flex-row p-2">
                     <button
@@ -50,12 +44,16 @@
         </div>
 
 
-    </div>
+
 
         @if($showCustomer)
-        <div class="fixed inset-0 z-50 w-full h-screen items-center justify-center bg-black bg-opacity-50 p-4 overflow-auto">
+        <div class="fixed inset-0 w-full h-screen items-center top-0 mt-20 z-50 justify-center bg-black bg-opacity-50 p-4 overflow-auto">
 
-            <div class=" relative flex flex-col  max-w-[full] h-screen bg-transparent rounded-lg justify-center items-center shadow-lg p-6 overflow-auto ">
+            <div class=" relative flex flex-col  max-w-[full] h-screen bg-transparent rounded-lg justify-center items-center shadow-lg p-2 overflow-auto ">
+            {{-- <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-2 overflow-y-auto"> --}}
+            {{-- <div class="relative flex flex-col w-full h-[90%] max-w-[600px] px-4 md:p-0 md:px-4 max-h-[90%] bg-slate-300 rounded-lg shadow-lg overflow-y-auto"> --}}
+
+
                 <div class="text-lg text-white">Customer List</div>
             <form>
                     <table class="w-full border-collapse border mx-auto bg-white ">
@@ -107,6 +105,7 @@
                         </tbody>
                     </table>
             </form>
+            </div>
             </div>
 
         </div>
@@ -178,8 +177,5 @@
         </div>
 
         @endif
-
-
-
-
+        </div>
 </div>
