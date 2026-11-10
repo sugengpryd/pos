@@ -57,18 +57,18 @@
                     <table class="w-full h-[400px] justify-start items-start border-collapse border bg-white sticky top-0 z-50 overflow-y-auto">
                         <thead class="bg-gray-400">
                             <tr>
-                            <th class="p-2">id</th>
-                            <th class="p-2">users_id</th>
-                            <th class="p-2">name</th>
-                            <th class="p-2">email</th>
-                            <th class="p-2">email_verified_at</th>
+                            <th class="px-2">id</th>
+                            <th class="px-2">users_id</th>
+                            <th class="px-2">name</th>
+                            <th class="px-2">email</th>
+                            <th class="px-2">email_verified_at</th>
                             {{-- <th class="p-2">password</th> --}}
                             {{-- <th class="p-2">remember_token</th> --}}
-                            <th class="p-2">dbconnection</th>
-                            <th class="p-2">dbcreated</th>
-                            <th class="p-2">Notification Update</th>
-                            <th class="p-2">created_at</th>
-                            <th class="p-2">updated_at</th>
+                            <th class="px-2">dbconnection</th>
+                            <th class="px-2">dbcreated</th>
+                            <th class="px-2">Notification Update</th>
+                            <th class="px-2">created_at</th>
+                            <th class="px-2">updated_at</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -113,9 +113,11 @@
         @endif
 
         @if($DatabaseUpdate)
-        <div class="fixed inset-0 z-50 w-full h-auto mt-20 items-center justify-center bg-black bg-opacity-50">
+        <div class="fixed inset-0 z-50 w-full h-[95vh] items-center justify-center bg-black bg-opacity-50">
 
-            <div class=" flex flex-col max-w-[full] bg-transparent rounded-lg justify-center items-center shadow-lg p-6 max-h-screen overflow-auto ">
+            {{-- <div class=" flex flex-col max-w-[full] h-screen bg-transparent rounded-lg justify-center items-center shadow-lg p-6 max-h-screen overflow-auto "> --}}
+            <div class="w-full h-screen bg-gray-300 rounded-lg justify-center z-50 items-center shadow-lg px-2 overflow-auto">
+
                 <div class="text-lg text-white">Database Update</div>
 
             <form>
