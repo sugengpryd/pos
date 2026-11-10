@@ -30,7 +30,7 @@
         <header>Kategori Menu</header>
     </div>
     <div class= "w-full " >
-        <div class= "flex-col md:flex-row flex-start justify-between items-center mb-2 p-4 ">
+        <div class= "flex-col md:flex-row flex-start justify-between items-center gap-4 mb-2 p-4 ">
             <input
              type="text"
              wire:model.live="filterSearch"
@@ -51,17 +51,17 @@
         <div class="flex flex-col px-3 justify-start items-center w-44">
         <button
         wire:click='openModal'
-        class="bg-blue-400 py-2 px-4 rounded-lg"
+        class="bg-blue-400 py-2 px-4 rounded-lg mb-2"
         >
         Add Category
 
         </button>
         </div>
-        <div class="flex h-screen mt-0 mx-auto py-4 px-4 ">
+        <div class="flex  w-full h-screen mt-0 mx-auto py-0 px-4 ">
             <div class="w-full mx-auto h-[400px] bg-white rounded-lg justify-center items-center overflow-auto">
               <div class="h-[600px] w-full" >
-                <table class="md:w-full border mx-auto ">
-                    <thead class="sticky top-0 z-55">
+                <table class="w-full border mx-auto ">
+                    <thead class="sticky top-0 z-50 p-6">
                         <th class="top-0 text-white bg-gray-600 sticky py-2 px-2  text-left">Id</th>
                         <th class="top-0 text-white bg-gray-600 sticky py-2 px-2  text-left">Description</th>
                         <th class="top-0 text-white bg-gray-600 sticky py-2 px-2 text-left">Flag</th>
@@ -72,7 +72,7 @@
                         @foreach ($kategories as $index =>$kategories )
 
                         {{-- <tr class="odd:bg-gray-200 even:''"> --}}
-                        <tr class="border border-b-black">
+                        <tr class="border border-b">
                             <td class="py-2 px-2 text-xs">{{ $index+1 }}</td>
                             <td class="py-2 px-2 text-xs">{{ $kategories->description }}</td>
                             <td class="py-2 px-2 text-xs">{{ $kategories->flaq == 1 ? 'Show' : 'Hidden' }}</td>

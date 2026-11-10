@@ -24,8 +24,8 @@
                 <a href="{{ route('Produk') }}">
 
                 <div class="flex flex-col flex-wrap py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white rounded-xl flex flex-row flex-shrink-0 min-w-20 min-h-20 md:w-52 md:h-52 ">
-                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/9.png">
+                    <div class="bg-teal-400 rounded-xl flex flex-row flex-shrink-0 min-w-20 min-h-20 md:w-52 md:h-52  sm:w-32 sm:h-32">
+                        <img class="px-2 py-2 object-contain w-full h-full" src="storage/logo/9.png">
 
 
                     </div>
@@ -35,8 +35,8 @@
                 <a href="{{ route('Kategori') }}">
 
                 <div class="flex flex-col flex-wrap py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 ">
-                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/2.png">
+                    <div class="bg-teal-400 rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 sm:w-32 sm:h-32 ">
+                        <img class="px-2 py-2 object-contain w-full h-full" src="storage/logo/2.png">
 
                     </div>
                     <span class="font_card text-center text-xs p-2">Menu Kategori</span>
@@ -47,8 +47,8 @@
                 <a href="{{ route('Menu') }}">
 
                 <div class="flex flex-col flex-wrap py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52  ">
-                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/10.png">
+                    <div class="bg-teal-400  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 sm:w-32 sm:h-32  ">
+                        <img class="px-2 py-2 object-contain w-full h-full" src="storage/logo/10.png">
 
                     </div>
                     <span class="font_card text-center text-xs p-2">Menu</span>
@@ -58,8 +58,8 @@
                 <a href="{{ route('Pos') }}">
 
                 <div class="flex flex-col flex-wrap py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 ">
-                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/pos.png">
+                    <div class="bg-teal-400  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 sm:w-32 sm:h-32 ">
+                        <img class="px-2 py-2 object-contain w-full h-full" src="storage/logo/pos.png">
 
                     </div>
                     <span class="font_card text-center text-xs p-2">POS</span>
@@ -69,8 +69,8 @@
                 <a href="{{ route('Transaksi') }}">
 
                 <div class="flex flex-col flex-wrap py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 ">
-                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/4.png">
+                    <div class="bg-teal-400  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 sm:w-32 sm:h-32 ">
+                        <img class="px-2 py-2 object-contain w-full h-full" src="storage/logo/4.png">
 
                     </div>
                     <span class="font_card text-center text-xs p-2">Transaksi</span>
@@ -85,8 +85,8 @@
                 <a href="{{ route('Discount') }}">
 
                 <div class="flex flex-col md:flex-col py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 ">
-                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/5.png">
+                    <div class="bg-teal-400  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 sm:w-32 sm:h-32 ">
+                        <img class="px-2 py-2 object-contain w-full h-full" src="storage/logo/5.png">
 
                     </div>
                     <span class="font_card text-center text-xs p-2">Discount</span>
@@ -97,8 +97,8 @@
                 <a href="{{ route('Ppn') }}">
 
                 <div class="flex flex-col md:flex-col py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 ">
-                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/6.png">
+                    <div class="bg-teal-400  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 sm:w-32 sm:h-32 ">
+                        <img class="px-2 py-2 object-contain w-full h-full" src="storage/logo/6.png">
 
                     </div>
                     <span class="font_card text-center text-xs p-2">Ppn</span>
@@ -108,8 +108,8 @@
                 <a href="{{ route('Payment') }}">
 
                 <div class="flex flex-col md:flex-col py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 ">
-                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/7.png">
+                    <div class="bg-teal-400  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 sm:w-32 sm:h-32 ">
+                        <img class="px-2 py-2 object-contain w-full h-full" src="storage/logo/7.png">
 
                     </div>
                     <span class="font_card text-center text-xs p-2">Payment</span>
@@ -119,8 +119,8 @@
                 <a href="{{ route('Customer') }}">
 
                 <div class="flex flex-col md:flex-col py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52">
-                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/8.png">
+                    <div class="bg-teal-400  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 sm:w-32 sm:h-32">
+                        <img class="px-2 py-2 object-contain w-full h-full" src="storage/logo/8.png">
 
                     </div>
                     <span class="font_card text-center text-xs p-2">Customer</span>
@@ -130,8 +130,8 @@
                 <a href="{{ route('settings') }}">
 
                 <div class="flex flex-col md:flex-col py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52">
-                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/settings.png">
+                    <div class="bg-teal-400  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 sm:w-32 sm:h-32">
+                        <img class="px-2 py-2 object-contain w-full h-full" src="storage/logo/settings.png">
 
                     </div>
                     <span class="font_card text-center text-xs p-2">Settings</span>
@@ -142,8 +142,8 @@
                 <a href="{{ route('adminPage') }}">
 
                 <div class="flex flex-col md:flex-col py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
-                    <div class="bg-white  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52">
-                        <img class="px-2 py-2 object-cover w-full h-full" src="storage/logo/settings.png">
+                    <div class="bg-teal-400  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 sm:w-32 sm:h-32">
+                        <img class="px-2 py-2 object-contain w-full h-full" src="storage/logo/settings.png">
 
                     </div>
                     <span class="font_card text-center text-xs p-2">Admin Page</span>
