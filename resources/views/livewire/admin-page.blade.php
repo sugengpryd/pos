@@ -50,7 +50,7 @@
         <div class="fixed flex flex-col inset-0 w-full h-screen items-center z-55 md:mt-20 justify-center bg-black bg-opacity-50 overflow-auto">
 
             <div class="w-full h-screen bg-gray-300 rounded-lg justify-center items-center shadow-lg px-2">
-                <div class="text-lg text-white">Customer List</div>
+                {{-- <div class="text-lg text-white">Customer List</div> --}}
 
             <form>
                 <div class="flex-1 min-h-0 w-full overflow-auto overscroll-contain">
