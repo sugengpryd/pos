@@ -54,7 +54,7 @@
                 <div class="text-lg text-white">Customer List</div>
 
                 <form>
-                <div class="flex-1 min-h-0 w-full overflow-auto overscroll-contain">
+                {{-- <div class="flex-1 min-h-0 w-full overflow-auto overscroll-contain"> --}}
                     <table class="w-full justify-start items-start border-collapse border bg-white ">
                         <thead class="bg-gray-400 p-4">
                             <tr>
@@ -104,7 +104,7 @@
 
                         </tbody>
                     </table>
-                </div>
+                {{-- </div> --}}
                  </form>
 
             </div>
