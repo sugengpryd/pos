@@ -218,7 +218,7 @@
                         </select>
 
                     </div>
-                    <div class="flex flex-row w-full h-auto justify-center items-center">
+                    <div class="flex flex-row w-full p-4 h-auto justify-center items-center">
                         <table class="w-full flex-col">
                             <thead class="bg-gray-400">
                                 {{-- <th class="p-2 ">id</th> --}}
