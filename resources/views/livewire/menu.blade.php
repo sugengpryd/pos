@@ -106,7 +106,7 @@
     {{-- <div class="fixed w-full flex justify-center items-center inset-0 z-50 mt-0 h-screen bg-black bg-opacity-50  "> --}}
         {{-- <div class=" flex flex-col min-w-[340px] h-screen md:max-w-full w-[600px] justify-start items-start mt-8 mb-8 p-2 bg-slate-300 rounded-lg shadow-lg  md:justify-center md:items-center md:overflow-auto "> --}}
     <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-2 overflow-y-auto">
-        <div class="relative flex flex-col w-full h-[90%] max-w-[600px] p-0 md:p-0 md:px-4 max-h-[90%] bg-slate-300 rounded-lg shadow-lg overflow-y-auto">
+        <div class="relative flex flex-col w-full h-[90%] max-w-[600px] px-4 md:p-0 md:px-4 max-h-[90%] bg-slate-300 rounded-lg shadow-lg overflow-y-auto">
 
             <h3 class="text-lg font-semibold mb-2 pt-8 md:pt-8 bg-gray-300 top-0 z-50 sticky">
                 {{ $editMode ? 'Edit Menu' : 'Create New Menu' }}
