@@ -219,11 +219,11 @@
 
                     </div>
                     <div class="flex flex-row w-full h-auto justify-end">
-                        <table class="w-full">
+                        <table class="w-full flex">
                             <thead class="bg-gray-400">
                                 {{-- <th class="p-2 ">id</th> --}}
                                 <th class="bg-gray-400 p-2 text-xs">ProdukID</th>
-                                <th class="bg-gray-400 p-2 text-xs ">Description</th>
+                                <th class="bg-gray-400 p-2 text-xs">Description</th>
                                 <th class="bg-gray-400 p-2 text-xs">Uom</th>
                                 <th class="bg-gray-400 p-2 text-xs">Qty</th>
                                 <th class="bg-gray-400 p-2 text-xs">Base Price</th>
