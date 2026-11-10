@@ -305,6 +305,7 @@ class Menu extends Component
 
         if($this->selectProduk != ""){
         $produk = Produk::on('customer_sqlite')->find($this->selectProduk);
+        // dd($produk);
         $this->items[]=
         [
             'produk_id'=> $produk->id,

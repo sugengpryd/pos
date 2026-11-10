@@ -27,7 +27,7 @@ class Menu extends Model
     ];
 
     protected $casts = [
-        'sellingPrice' => 'decimal:2',
+        'sellingPrice' => 'integer',
         'flaq' => 'boolean',
     ];
 
