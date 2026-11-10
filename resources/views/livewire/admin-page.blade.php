@@ -1,6 +1,6 @@
 <div class="py-2">
     <div class="w-full h-screen p-2 ">
-        <div class=" bg-slate-700 flex flex-col md:flex-row justify-center items-center px-2 overflow-hidden">
+        <div class=" bg-slate-700 flex flex-col md:flex-row justify-center mt-76 items-center px-2 overflow-hidden">
 
             <div class="bg-transparent md:flex-col flex flex-row p-2">
                     <button
