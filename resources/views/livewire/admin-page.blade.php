@@ -113,14 +113,14 @@
         @endif
 
         @if($DatabaseUpdate)
-        <div class="fixed inset-0 z-50 w-full h-[95vh] items-center justify-center bg-black bg-opacity-50">
+        <div class="fixed inset-0 z-50 w-full h-[95vh] md:mt-20 items-center justify-center bg-black bg-opacity-50">
 
-            <div class=" flex flex-col max-w-[full] h-screen bg-gray-300 rounded-lg justify-center items-center shadow-lg p-6 max-h-screen overflow-auto ">
+            <div class=" flex flex-col max-w-[full] h-screen bg-gray-300 rounded-lg justify-center items-center shadow-lg p-2 overflow-auto ">
 
                 <div class="text-lg text-white">Database Update</div>
 
              <form>
-                <div class="flex flex-row justify-end items-end mb-2">
+                <div class="flex flex-row w-full justify-end items-end p-4 mt-4">
                                 <button
                                     type="button"
                                     wire:click="DataUpdate('alluser')"
@@ -128,7 +128,7 @@
                                     >Update All
                                 </button>
                 </div>
-                        <div class="w-full h-screen bg-gray-300 rounded-lg justify-center z-50 items-center shadow-lg px-2 overflow-auto">
+                        <div class="flex-1 min-h-0 w-full bg-gray-300 rounded-lg justify-center z-50 items-center shadow-lg px-2 overflow-auto">
 
                             <table class="w-full border-collapse border mx-auto bg-white  ">
 
