@@ -30,6 +30,7 @@ class Kategori extends Component
     public $filterFlaq = '';
     public $kategori_image='';
     public $UsersId='';
+    public $path='';
 
     public function mount()
     {
@@ -76,6 +77,7 @@ class Kategori extends Component
         $this->showModal=true;
     }
     public function closeopenModal(){
+        // dd("close modal");
         $this->showModal=false;
         $this->editMode=false;
         $this->kategoriId = null;
@@ -100,7 +102,7 @@ class Kategori extends Component
         $updateMenu=kategories::on('customer_sqlite')->where('id',$kategori_id)->update([
             'image' => $path,
         ]);
-        // dd($get);
+        // dd($updateMenu);
 
 
         // session()->flash('success', 'File berhasil diupload.');
@@ -128,11 +130,15 @@ class Kategori extends Component
 
             $update= kategories::on('customer_sqlite')->where('id',$this->kategoriId)->update([
                 'description'=> $this->kategoriDescription,
+                'image' => $this->kategori_image,
                 'flaq'=> $this->kategoriFlaq,
 
 
 
             ]);
+            $this->upload_image($this->kategoriId);
+            $this->closeopenModal();
+
 
             }else{
                 // dd($find);
@@ -143,9 +149,12 @@ class Kategori extends Component
 
 
                 ]);
+                $this->upload_image($this->kategoriId);
+                $this->closeopenModal();
+
             }
-        $this->upload_image($this->kategoriId);
-        $this->closeopenModal();
+        // $this->upload_image($this->kategoriId);
+        // $this->closeopenModal();
 
 
     }
