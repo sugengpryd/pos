@@ -47,7 +47,7 @@
 
 
         @if($showCustomer)
-        <div class="fixed flex flex-col inset-0 w-full h-screen items-center z-55 mt-52 md:mt-20 justify-center bg-black bg-opacity-50 overflow-auto">
+        <div class="fixed flex flex-col inset-0 w-full h-screen items-center z-55 md:mt-20 justify-center bg-black bg-opacity-50 overflow-auto">
 
             <div class="w-full h-screen bg-transparent rounded-lg justify-center items-center shadow-lg px-2">
             {{-- <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-2 overflow-y-auto"> --}}
