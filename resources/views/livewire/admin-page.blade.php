@@ -1,4 +1,4 @@
-<div class="py-2 overflow-hidden">
+<div class="py-2">
     <div class="w-full h-screen p-2 ">
         <div class=" bg-slate-700 flex z-55 flex-col md:flex-row justify-center items-center px-2 overflow-hidden">
 
