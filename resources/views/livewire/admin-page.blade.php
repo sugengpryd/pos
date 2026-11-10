@@ -53,9 +53,9 @@
     </div>
 
         @if($showCustomer)
-        <div class="fixed inset-0 z-50 w-full h-auto mt-20 items-center justify-center bg-black bg-opacity-50">
+        <div class="fixed inset-0 z-50 w-full h-screen mt-20 items-center justify-center bg-black bg-opacity-50">
 
-            <div class=" flex flex-col  max-w-[full] bg-transparent rounded-lg justify-center items-center shadow-lg p-6 max-h-screen overflow-auto ">
+            <div class=" relative flex flex-col  max-w-[full] bg-transparent rounded-lg justify-center items-center shadow-lg p-6 max-h-screen overflow-auto ">
                 <div class="text-lg text-white">Customer List</div>
             <form>
                     <table class="w-full border-collapse border mx-auto bg-white ">
