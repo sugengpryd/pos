@@ -26,11 +26,19 @@
                 <span x-text="message"></span>
             </div>
         </div>
-    <div class="px-4">
+    <div class="w-full flex justify-center items-center text-lg text-bold">
         <header>Kategori Menu</header>
     </div>
     <div class= "w-full " >
-        <div class= "flex-col md:flex-row flex-start justify-between items-center gap-4 mb-2 p-4 ">
+        <div class= "flex flex-col md:flex-row  justify-center items-center gap-4 mb-2 p-4 mx-auto ">
+             <button
+                wire:click='openModal'
+                class="bg-blue-400 py-2 px-4 rounded-lg"
+                >
+            Add Category
+
+            </button>
+
             <input
              type="text"
              wire:model.live="filterSearch"
@@ -47,18 +55,16 @@
             <option value="1">Show</option>
             </select>
 
-        </div>
-        <div class="flex flex-col px-3 justify-start items-center w-44">
-        <button
-        wire:click='openModal'
-        class="bg-blue-400 py-2 px-4 rounded-lg mb-2"
-        >
-        Add Category
 
-        </button>
+
+
+
+        </div>
+        <div class="flex flex-col px-3 ml-[415px] w-44">
+
         </div>
         <div class="flex  w-full h-screen mt-0 mx-auto py-0 px-4 ">
-            <div class="w-full mx-auto h-[400px] bg-white rounded-lg justify-center items-center overflow-auto">
+            <div class="w-full mx-auto h-[400px] md:w-[600px] bg-white rounded-lg justify-center items-center overflow-auto">
               <div class="h-[600px] w-full" >
                 <table class="w-full border mx-auto ">
                     <thead class="sticky top-0 z-50 p-6">
