@@ -5,7 +5,7 @@
             <div class="bg-transparent md:flex-col flex flex-row p-4">
                     <button
                     type="button"
-                    wire:click="btnDatabaseUpdate"
+                    wire:click="btnCustomer"
                     class="bg-lime-300 w-auto p-2 px-4 rounded-lg text-xs"
 
 
@@ -15,8 +15,7 @@
             <div class="bg-transparent md:flex-col flex flex-row p-2">
                      <button
                     type="button"
-                    {{-- wire:click="btnDatabaseUpdate" --}}
-                    wire:click="btnCustomer"
+                    wire:click="btnDatabaseUpdate"
                     class="bg-lime-300 w-auto p-2 px-4 rounded-lg text-xs"
 
 
