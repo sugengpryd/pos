@@ -48,7 +48,6 @@
 
         @if($showCustomer)
         <div class="fixed flex flex-col inset-0 w-full h-[95vh] items-center mt-40 md:mt-20 justify-center bg-black bg-opacity-50 overflow-auto">
-        {{-- <div class="w-full"> --}}
             <div class="w-full h-screen bg-gray-300 rounded-lg justify-center z-50 items-center shadow-lg px-2 ">
                 <div class="text-lg text-white">Customer List</div>
 
@@ -113,9 +112,8 @@
         @endif
 
         @if($DatabaseUpdate)
-        <div class="fixed inset-0 z-50 w-full h-[95vh] md:mt-20  items-center justify-center bg-black bg-opacity-50">
-
-            <div class=" flex flex-col w-full h-screen bg-gray-300 rounded-lg justify-center items-center shadow-lg p-2 overflow-auto ">
+        <div class="fixed flex flex-col inset-0 w-full h-[95vh] items-center mt-40 md:mt-20 justify-center bg-black bg-opacity-50 overflow-auto">
+            <div class="w-full h-screen bg-gray-300 rounded-lg justify-center z-50 items-center shadow-lg px-2 ">
                 <div class="text-lg text-white">Database Update</div>
 
              <form>
@@ -127,10 +125,11 @@
                                     >Update All
                                 </button>
                 </div>
-                        <div class="flex-1 min-h-0 w-full bg-gray-300 rounded-lg justify-center z-50 items-center shadow-lg px-2 overflow-auto">
+                        {{-- <div class="flex-1 min-h-0 w-full bg-gray-300 rounded-lg justify-center outline-red-900 z-50 items-center shadow-lg px-2 overflow-auto"> --}}
 
-                            <table class="w-full border-collapse border mx-auto bg-white  ">
-
+                            {{-- <table class="w-full border-collapse border mx-auto bg-white  "> --}}
+                        <div class="flex-1 min-h-0 w-full pb-14 overflow-auto">
+                            <table class="w-full h-[400px] justify-start items-start border-collapse border bg-white sticky top-0 z-50 overflow-y-auto">
                                 <thead class="bg-gray-400 p-4">
 
 
