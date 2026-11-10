@@ -118,14 +118,14 @@
 
     </div>
      @if($showModal)
-        <div class="fixed inset-0 z-50 w-full min-h-screen items-center justify-center bg-black bg-opacity-50">
+        <div class="fixed flex inset-0 z-50 w-full min-h-0 pt-20 justify-center item-center text-center bg-black bg-opacity-50">
 
-            <div class=" flex flex-col min-h-screen w-full text-center md:ml-80 md:mb-8 md:w-[600px] md:h-auto bg-transparent rounded-lg justify-center items-center shadow-lg p-4">
+            <div class=" flex flex-col w-full md:w-[400px] h-[400px] bg-gray-300 rounded-lg justify-center items-center shadow-lg p-4">
 
                     {{-- <h3 class="text-lg font-semibold mb-6">
                         {{ $editMode ? 'Edit Kategori' : 'Create New Kategori' }}
                     </h3> --}}
-                        <div class="flex flex-col w-full min-h-screen md:max-h-auto p-4 rounded-lg justify-center items-center gap-2 bg-gray-300">
+                        <div class="flex flex-col w-full h-600 p-4 rounded-lg justify-center items-center gap-2 bg-gray-300">
                             <h3 class="text-lg font-semibold mb-6">
                                 {{ $editMode ? 'Edit Kategori' : 'Create New Kategori' }}
                             </h3>
@@ -152,8 +152,10 @@
                                     </select>
                                 </div>
 
-                                <div class="py-2 w-full gap-8 mt-auto">
-                                        <label class="w-16"> Image</label>
+                                <div class="py-2 w-full gap-8 mt-auto text-left">
+                                        <label
+                                        class="w-16"
+                                        > Image</label>
                                         <input
                                         type="file"
                                         wire:model.live="kategori_image"
