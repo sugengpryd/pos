@@ -56,7 +56,7 @@
 
                 <div class="text-lg text-white">Customer List</div>
             <form>
-                    <table class="w-full border-collapse border mx-auto bg-white ">
+                    <table class="w-full flex-row border-collapse border mx-auto bg-white ">
                         <thead class="bg-gray-400 p-4">
                             <th class="p-2">id</th>
                             <th class="p-2">users_id</th>
