@@ -115,12 +115,11 @@
         @if($DatabaseUpdate)
         <div class="fixed inset-0 z-50 w-full h-[95vh] items-center justify-center bg-black bg-opacity-50">
 
-            {{-- <div class=" flex flex-col max-w-[full] h-screen bg-transparent rounded-lg justify-center items-center shadow-lg p-6 max-h-screen overflow-auto "> --}}
-            <div class="w-full h-screen bg-gray-300 rounded-lg justify-center z-50 items-center shadow-lg px-2">
+            <div class=" flex flex-col max-w-[full] h-screen bg-transparent rounded-lg justify-center items-center shadow-lg p-6 max-h-screen overflow-auto ">
 
                 <div class="text-lg text-white">Database Update</div>
 
-            <form>
+             <form>
                 <div class="flex flex-row justify-end items-end mb-2">
                                 <button
                                     type="button"
@@ -176,7 +175,7 @@
                                 </tbody>
                             </table>
                         </div>
-            </form>
+               </form>
             </div>
 
         </div>
