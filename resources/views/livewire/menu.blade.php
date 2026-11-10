@@ -108,7 +108,7 @@
     <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-2 overflow-y-auto">
         <div class="relative flex flex-col w-full h-[90%] max-w-[600px] md:p-0 md:px-4 max-h-[90%] bg-slate-300 rounded-lg shadow-lg overflow-y-auto p-2">
 
-            <h3 class="text-lg font-semibold mb-2 pt-6 md:pt-8 bg-gray-300 top-0 z-50 sticky">
+            <h3 class="text-lg font-semibold mb-2 pt-8 md:pt-8 bg-gray-300 top-0 z-50 sticky">
                 {{ $editMode ? 'Edit Menu' : 'Create New Menu' }}
             </h3>
 
