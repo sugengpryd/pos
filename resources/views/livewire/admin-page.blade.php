@@ -49,14 +49,14 @@
         @if($showCustomer)
         <div class="fixed inset-0 w-full h-screen items-center top-0 mt-20 z-50 justify-center bg-black bg-opacity-50 p-4 overflow-auto">
 
-            <div class=" relative flex flex-col  max-w-[full] h-screen bg-transparent rounded-lg justify-center items-center shadow-lg p-2 overflow-auto ">
+            <div class=" relative flex flex-col w-full h-screen bg-transparent rounded-lg justify-center items-center shadow-lg p-2 overflow-auto ">
             {{-- <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-2 overflow-y-auto"> --}}
             {{-- <div class="relative flex flex-col w-full h-[90%] max-w-[600px] px-4 md:p-0 md:px-4 max-h-[90%] bg-slate-300 rounded-lg shadow-lg overflow-y-auto"> --}}
 
 
                 <div class="text-lg text-white">Customer List</div>
             <form>
-                    <table class="w-full flex-row border-collapse border mx-auto bg-white ">
+                    <table class="w-auto flex-row border-collapse border mx-auto bg-white ">
                         <thead class="bg-gray-400 p-4">
                             <th class="p-2">id</th>
                             <th class="p-2">users_id</th>
