@@ -125,13 +125,11 @@
                                     >Update All
                                 </button>
                 </div>
-                        {{-- <div class="flex-1 min-h-0 w-full bg-gray-300 rounded-lg justify-center outline-red-900 z-50 items-center shadow-lg px-2 overflow-auto"> --}}
 
-                            {{-- <table class="w-full border-collapse border mx-auto bg-white  "> --}}
                         <div class="flex-1 min-h-0 w-full pb-14 overflow-auto">
                             <table class="w-full h-[400px] justify-start items-start border-collapse border bg-white sticky top-0 z-50 overflow-y-auto">
                                 <thead class="bg-gray-400 p-4">
-
+                                    <tr>
 
                                     <th class="p-2 ">id</th>
                                     <th class="p-2 ">users_id</th>
@@ -142,7 +140,7 @@
                                     <th class="p-2 ">created_at</th>
                                     <th class="p-2 ">updated_at</th>
                                     <th class="p-2 ">action</th>
-
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($dbcreateds as $index =>$dbcreated )
@@ -158,6 +156,7 @@
                                         <td class="p-2 text-xs border-b border-b-slate-600" >{{ $dbcreated->dbcreated }}</td>
                                         <td class="p-2 text-xs border-b border-b-slate-600" >{{ $dbcreated->updated_at }}</td>
                                         <td class="p-2 text-xs" >
+
                                         <button
                                             type="button"
                                             wire:click="DataUpdate('{{$dbcreated->users_id}}')"
