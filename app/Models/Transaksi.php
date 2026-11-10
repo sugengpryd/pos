@@ -20,9 +20,9 @@ class Transaksi extends Model
     ];
 
     protected $casts = [
-        'qty' => 'decimal:0',
-        'sellingPrice' => 'decimal:0',
-        'total' => 'decimal:0',
+        'qty' => 'integer',
+        'sellingPrice' => 'integer',
+        'total' => 'integer',
         'flaq' => 'string',
     ];
 

@@ -16,8 +16,8 @@ class Discount extends Model
     ];
 
     protected $casts = [
-        'sellingPrice' => 'decimal:2',
-        'discount' => 'decimal:2',
+        'sellingPrice' => 'integer',
+        'discount' => 'integer',
         'flaq' => 'boolean',
     ];
 }

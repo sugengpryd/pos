@@ -17,7 +17,7 @@ class Ppn extends Model
 
     protected $casts = [
         'sellingPrice' => 'decimal:2',
-        'ppn' => 'decimal:2',
+        'ppn' => 'integer',
         'flaq' => 'boolean',
     ];
 }

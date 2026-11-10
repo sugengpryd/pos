@@ -17,7 +17,7 @@ class Produk extends Model
     ];
 
     protected $casts = [
-        'harga' => 'decimal:2',
+        'harga' => 'integer',
         'flaq' => 'boolean',
     ];
 
