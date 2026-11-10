@@ -120,7 +120,7 @@
      @if($showModal)
         <div class="fixed flex inset-0 z-50 w-full min-h-0 pt-20 justify-center item-center text-center bg-black bg-opacity-50">
 
-            <div class=" flex flex-col w-full md:w-[400px] h-[400px] bg-gray-300 rounded-lg justify-center items-center shadow-lg p-4">
+            <div class=" flex flex-col w-full md:w-[400px] h-[400px] mt-14 bg-gray-300 rounded-lg justify-center items-center shadow-lg p-4">
 
                     {{-- <h3 class="text-lg font-semibold mb-6">
                         {{ $editMode ? 'Edit Kategori' : 'Create New Kategori' }}
