@@ -222,8 +222,8 @@
                         <table class="w-full flex-col">
                             <thead class="bg-gray-400">
                                 {{-- <th class="p-2 ">id</th> --}}
-                                <th class="bg-gray-400 p-2 text-xs">ProdukID</th>
-                                <th class="bg-gray-400 p-2 text-xs">Description</th>
+                                <th class="bg-gray-400 p-2 text-xs">Id</th>
+                                <th class="bg-gray-400 p-2 text-xs">Item</th>
                                 <th class="bg-gray-400 p-2 text-xs">Uom</th>
                                 <th class="bg-gray-400 p-2 text-xs">Qty</th>
                                 <th class="bg-gray-400 p-2 text-xs">Base Price</th>
