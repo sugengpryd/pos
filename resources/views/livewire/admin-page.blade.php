@@ -116,7 +116,7 @@
         <div class="fixed inset-0 z-50 w-full h-[95vh] items-center justify-center bg-black bg-opacity-50">
 
             {{-- <div class=" flex flex-col max-w-[full] h-screen bg-transparent rounded-lg justify-center items-center shadow-lg p-6 max-h-screen overflow-auto "> --}}
-            <div class="w-full h-screen bg-gray-300 rounded-lg justify-center z-50 items-center shadow-lg px-2 overflow-auto">
+            <div class="w-full h-screen bg-gray-300 rounded-lg justify-center z-50 items-center shadow-lg px-2">
 
                 <div class="text-lg text-white">Database Update</div>
 
@@ -129,50 +129,53 @@
                                     >Update All
                                 </button>
                 </div>
-                    <table class="w-full border-collapse border mx-auto bg-white  ">
+                        <div class="w-full h-screen bg-gray-300 rounded-lg justify-center z-50 items-center shadow-lg px-2 overflow-auto">
 
-                        <thead class="bg-gray-400 p-4">
+                            <table class="w-full border-collapse border mx-auto bg-white  ">
+
+                                <thead class="bg-gray-400 p-4">
 
 
-                            <th class="p-2 ">id</th>
-                            <th class="p-2 ">users_id</th>
-                            <th class="p-2 ">db_name</th>
-                            <th class="p-2 ">size</th>
-                            <th class="p-2 ">path</th>
-                            <th class="p-2 ">flaq</th>
-                            <th class="p-2 ">created_at</th>
-                            <th class="p-2 ">updated_at</th>
-                            <th class="p-2 ">action</th>
+                                    <th class="p-2 ">id</th>
+                                    <th class="p-2 ">users_id</th>
+                                    <th class="p-2 ">db_name</th>
+                                    <th class="p-2 ">size</th>
+                                    <th class="p-2 ">path</th>
+                                    <th class="p-2 ">flaq</th>
+                                    <th class="p-2 ">created_at</th>
+                                    <th class="p-2 ">updated_at</th>
+                                    <th class="p-2 ">action</th>
 
-                        </thead>
-                        <tbody>
-                            @foreach ($dbcreateds as $index =>$dbcreated )
+                                </thead>
+                                <tbody>
+                                    @foreach ($dbcreateds as $index =>$dbcreated )
 
-                            <tr>
+                                    <tr>
 
-                                <td class="p-2 text-xs border-b border-b-slate-600" >{{$index+1}}</td>
-                                <td class="p-2 text-xs border-b border-b-slate-600" >{{$dbcreated->users_id}}</td>
-                                <td class="p-2 text-xs border-b border-b-slate-600" >{{ $dbcreated->db_name }}</td>
-                                <td class="p-2 text-xs border-b border-b-slate-600" >{{ $dbcreated->size }}</td>
-                                <td class="p-2 text-xs border-b border-b-slate-600" >{{ $dbcreated->path }}</td>
-                                <td class="p-2 text-xs border-b border-b-slate-600" >{{ $dbcreated->flaq }}</td>
-                                <td class="p-2 text-xs border-b border-b-slate-600" >{{ $dbcreated->dbcreated }}</td>
-                                <td class="p-2 text-xs border-b border-b-slate-600" >{{ $dbcreated->updated_at }}</td>
-                                <td class="p-2 text-xs" >
-                                <button
-                                    type="button"
-                                    wire:click="DataUpdate('{{$dbcreated->users_id}}')"
-                                    class="bg-gray-400 p-2 shadow-lg shadow-black"
-                                    >
-                                    Update User
-                                </button>
+                                        <td class="p-2 text-xs border-b border-b-slate-600" >{{$index+1}}</td>
+                                        <td class="p-2 text-xs border-b border-b-slate-600" >{{$dbcreated->users_id}}</td>
+                                        <td class="p-2 text-xs border-b border-b-slate-600" >{{ $dbcreated->db_name }}</td>
+                                        <td class="p-2 text-xs border-b border-b-slate-600" >{{ $dbcreated->size }}</td>
+                                        <td class="p-2 text-xs border-b border-b-slate-600" >{{ $dbcreated->path }}</td>
+                                        <td class="p-2 text-xs border-b border-b-slate-600" >{{ $dbcreated->flaq }}</td>
+                                        <td class="p-2 text-xs border-b border-b-slate-600" >{{ $dbcreated->dbcreated }}</td>
+                                        <td class="p-2 text-xs border-b border-b-slate-600" >{{ $dbcreated->updated_at }}</td>
+                                        <td class="p-2 text-xs" >
+                                        <button
+                                            type="button"
+                                            wire:click="DataUpdate('{{$dbcreated->users_id}}')"
+                                            class="bg-gray-400 p-2 shadow-lg shadow-black"
+                                            >
+                                            Update User
+                                        </button>
 
-                                </td>
-                            </tr>
-                            @endforeach
+                                        </td>
+                                    </tr>
+                                    @endforeach
 
-                        </tbody>
-                    </table>
+                                </tbody>
+                            </table>
+                        </div>
             </form>
             </div>
 
