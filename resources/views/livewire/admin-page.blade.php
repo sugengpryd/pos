@@ -115,7 +115,7 @@
         @if($DatabaseUpdate)
         <div class="fixed inset-0 z-50 w-full h-[95vh] items-center justify-center bg-black bg-opacity-50">
 
-            <div class=" flex flex-col max-w-[full] h-screen bg-transparent rounded-lg justify-center items-center shadow-lg p-6 max-h-screen overflow-auto ">
+            <div class=" flex flex-col max-w-[full] h-screen bg-gray-300 rounded-lg justify-center items-center shadow-lg p-6 max-h-screen overflow-auto ">
 
                 <div class="text-lg text-white">Database Update</div>
 
