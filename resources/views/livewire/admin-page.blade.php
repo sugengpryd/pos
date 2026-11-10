@@ -1,8 +1,8 @@
 <div class="py-2">
     <div class="w-full h-screen p-2 ">
-        <div class=" bg-slate-700 flex flex-col md:flex-row justify-center items-center px-2 overflow-hidden">
+        <div class=" bg-slate-700 flex h-auto z-55 flex-col md:flex-row justify-center items-center px-2 overflow-hidden">
 
-            <div class="bg-transparent md:flex-col flex flex-row p-4">
+            <div class="bg-transparent md:flex-col flex flex-row md:p-2 p-1">
                     <button
                     type="button"
                     wire:click="btnCustomer"
@@ -12,7 +12,7 @@
                     >Customer List</button>
             </div>
 
-            <div class="bg-transparent md:flex-col flex flex-row p-2">
+            <div class="bg-transparent md:flex-col flex flex-row md:p-2 p-1">
                      <button
                     type="button"
                     wire:click="btnDatabaseUpdate"
@@ -22,11 +22,11 @@
                     >Database Update</button>
 
             </div>
-            <div class="bg-transparent md:flex-col flex flex-row p-2">
+            <div class="bg-transparent md:flex-col flex flex-row md:p-2 p-1">
                     <span class="bg-lime-300 w-auto p-2 px-4 rounded-lg text-xs">Database list</span>
 
             </div>
-            <div class="bg-transparent md:flex-col flex flex-row p-2">
+            <div class="bg-transparent md:flex-col flex flex-row md:p-2 p-1">
                     <span class="bg-lime-300 w-auto p-2 px-4 rounded-lg text-xs">User Admin</span>
 
             </div>
@@ -47,15 +47,15 @@
 
 
         @if($showCustomer)
-        <div class="fixed flex flex-col inset-0 w-full h-[95vh] items-center z-50 mt-40 md:mt-20 justify-center bg-black bg-opacity-50 overflow-auto">
+        <div class="fixed flex flex-col inset-0 w-full h-[95vh] items-center mt-40 md:mt-20 justify-center bg-black bg-opacity-50 overflow-auto">
         {{-- <div class="w-full"> --}}
-            <div class="w-full h-screen bg-gray-300 rounded-lg justify-center items-center shadow-lg px-2">
+            <div class="w-full h-screen bg-gray-300 rounded-lg justify-center  z-50 items-center shadow-lg px-2">
                 <div class="text-lg text-white">Customer List</div>
 
                 <form>
-                <div class="flex-1 min-h-0 w-full overflow-auto pb-8">
-                    <table class="w-full justify-start items-start border-collapse border bg-white ">
-                        <thead class="bg-gray-400 p-4">
+                <div class="flex-1 min-h-0 w-full pb-14 overflow-auto">
+                    <table class="w-full h-[400px] justify-start items-start border-collapse border bg-white sticky top-0 z-50 overflow-y-auto">
+                        <thead class="bg-gray-400">
                             <tr>
                             <th class="p-2">id</th>
                             <th class="p-2">users_id</th>
