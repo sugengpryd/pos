@@ -1,6 +1,6 @@
 <div class="py-2">
     <div class="w-full h-screen p-2 ">
-        <div class=" bg-slate-700 flex flex-col md:flex-row justify-center mt-76 items-center px-2 overflow-hidden">
+        <div class=" bg-slate-700 flex flex-col md:flex-row justify-center items-center px-2 overflow-hidden">
 
             <div class="bg-transparent md:flex-col flex flex-row p-2">
                     <button
@@ -47,7 +47,7 @@
 
 
         @if($showCustomer)
-        <div class="fixed flex flex-col inset-0 w-full h-screen items-center z-50 justify-center bg-black bg-opacity-50 mt-72 md:mt-40 overflow-auto">
+        <div class="fixed flex flex-col inset-0 w-full h-screen items-center z-50 justify-center bg-black bg-opacity-50 md:mt-40 overflow-auto">
 
             <div class="w-full h-screen bg-transparent rounded-lg justify-center items-center shadow-lg px-2">
             {{-- <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-2 overflow-y-auto"> --}}
