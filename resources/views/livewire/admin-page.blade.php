@@ -50,15 +50,13 @@
         <div class="fixed flex flex-col inset-0 w-full h-screen items-center z-55 md:mt-20 justify-center bg-black bg-opacity-50 overflow-auto">
 
             <div class="w-full h-screen bg-gray-300 rounded-lg justify-center items-center shadow-lg px-2">
-            {{-- <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-2 overflow-y-auto"> --}}
-            {{-- <div class="relative flex flex-col w-full h-[90%] max-w-[600px] px-4 md:p-0 md:px-4 max-h-[90%] bg-slate-300 rounded-lg shadow-lg overflow-y-auto"> --}}
-
                 <div class="text-lg text-white">Customer List</div>
 
             <form>
                 <div class="flex-1 min-h-0 w-full overflow-auto overscroll-contain">
                     <table class="w-full justify-start items-start border-collapse border bg-white ">
                         <thead class="bg-gray-400 p-4">
+                            <tr>
                             <th class="p-2">id</th>
                             <th class="p-2">users_id</th>
                             <th class="p-2">name</th>
@@ -71,7 +69,7 @@
                             <th class="p-2">Notification Update</th>
                             <th class="p-2">created_at</th>
                             <th class="p-2">updated_at</th>
-
+                            </tr>
                         </thead>
                         <tbody>
                             @foreach ($userList as $index =>$users )
