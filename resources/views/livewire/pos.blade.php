@@ -527,7 +527,7 @@
 
                                 $wire.set('nominalPembayaran', value);
                             "
-                            class="w-full rounded-lg p-2 text-right"
+                            class="w-full rounded-lg p-2 text-right shadow-lg"
                             placeholder="0"
                             value="{{ $totalTagihan }}"
                             >
