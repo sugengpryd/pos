@@ -307,7 +307,8 @@
                             </p>
 
                             <img
-                                src="{{ $menu_image->temporaryUrl() }}"
+                                {{-- src="{{ $menu_image->temporaryUrl() }}" --}}
+                                src="{!! $menu_image->temporaryUrl() !!}"
                                 alt="Preview file"
                                 class="max-w-full max-h-28 object-contain
                                     rounded-lg border p-1"
