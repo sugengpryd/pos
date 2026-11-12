@@ -40,7 +40,7 @@ return [
 
         'livewire' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/livewire-tmp'),
+            'root' => storage_path('app/private/livewire-tmp'),
             'url' => env('APP_URL').'/storage/livewire-tmp',
             'visibility' => 'public',
             'throw' => false,
