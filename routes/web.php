@@ -89,6 +89,19 @@ Route::get('/adminpage', App\Livewire\AdminPage::class)
     ->middleware(['auth'])
     ->name('adminPage');
 
+Route::get('/debug-signature', function (Request $request) {
+    return response()->json([
+        'valid_signature' => URL::hasValidSignature($request),
+        'valid_relative' => URL::hasValidSignature(
+            $request,
+            absolute: false
+        ),
+        'request_scheme' => $request->getScheme(),
+        'request_host' => $request->getHost(),
+        'app_url' => config('app.url'),
+    ]);
+});
+
 
 
 
