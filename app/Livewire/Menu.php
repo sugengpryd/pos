@@ -232,6 +232,7 @@ class Menu extends Component
         $this->editMode= false;
         $this->addMode= false;
         $this->upload_image($this->menuId);
+        $this->reset('menu_image');
     }
     public function resetform(){
 // dd("reset");
