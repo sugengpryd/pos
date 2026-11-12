@@ -194,7 +194,8 @@
 
                             {{-- Invoice --}}
                             <button
-                            onclick="window.open('{{ route('Struk', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid,'biayaKirim'=>$this->biayaKirim,'totalTagihan'=>$this->totalTagihan])}}','_self')"
+                            {{-- onclick="window.open('{{ route('Strukprint', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid,'biayaKirim'=>$this->biayaKirim,'totalTagihan'=>$this->totalTagihan])}}','_self')" --}}
+                                 wire:click="Strukprint()"
                                  @disabled($voidMode)
                                  @disabled(!$openTransaksi)
 
@@ -507,8 +508,17 @@
                         <span class="w-full">
                             {{-- <input type="text" class="text-xl w-full rounded-lg p-2"> --}}
                         <input
+                            {{-- wire:model="nominalPembayaran" --}}
                             type="text"
                             x-data
+                             x-init="
+                                let value = '{{ $totalTagihan }}'.replace(/\D/g, '');
+                                $el.value = value
+                                    ? new Intl.NumberFormat('id-ID').format(value)
+                                    : '0';
+
+                                $wire.set('nominalPembayaran', value);
+                            "
                             x-on:input="
                                 let value = $el.value.replace(/\D/g, '');
                                 $el.value = value
@@ -520,6 +530,29 @@
                             class="w-full rounded-lg p-2 text-right"
                             placeholder="0"
                             value="{{ $totalTagihan }}"
+                            >
+                        </span>
+                    </div>
+                    <div class="flex gap-4 py-2 border-b-red-400">
+                        <label class="w-[200px]">Nominal Kembalian</label><br>
+                        <span class="w-full">
+                            {{-- <input type="text" class="text-xl w-full rounded-lg p-2"> --}}
+                        <input
+
+                            type="text"
+                            x-data
+                            x-on:input="
+                                let value = $el.value.replace(/\D/g, '');
+                                $el.value = value
+                                    ? new Intl.NumberFormat('id-ID').format(value)
+                                    : '';
+
+                                $wire.set('nominalKembalian', value);
+                            "
+                            disabled
+                            class="w-full rounded-lg p-2 text-right "
+                            placeholder="0"
+                            value="{{ (integer) preg_replace('/\D/','',$this->nominalPembayaran) - (integer) preg_replace('/\D/','',$this->totalTagihan) }}"
                             >
                         </span>
                     </div>

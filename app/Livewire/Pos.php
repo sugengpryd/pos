@@ -59,6 +59,7 @@ class Pos extends Component
     public $batchId='';
     public $formBayar='';
     public $nominalPembayaran='';
+    public $nominalKembalian='';
     public $tipePembayaran='';
     public $flaqTransaksi='';
     public $createBatch=false;
@@ -93,6 +94,7 @@ class Pos extends Component
     public $selectedBatchId = '';
     public $openTransaksi=false;
     public $UsersId='';
+    public $bayarMode =false;
 
     // public $Resultcustomers= [];
 
@@ -100,6 +102,7 @@ class Pos extends Component
     {
     $this->UsersId = Auth::id();
     $this->createnewConnection();
+    // $this->nominalPembayaran = $this->totalTagihan;
     }
 
     public function createnewConnection(){
@@ -947,14 +950,21 @@ public function removeItem($index,$item_id)
 
     public function openformBayar(){
         $this->formBayar =true;
+        // $this->nominalPembayaran = $this->totalTagihan;
     }
 
     public function closeformBayar(){
+        // $this->bayarMode = false;
         $this->formBayar =false;
 
     }
     public function bayar(){
-        $this->createnewConnection();
+
+
+
+    $this->bayarMode=true;
+    // dd($this->bayarMode);
+    $this->createnewConnection();
         // dd("bayar");
             // $this->$transaksiBatchId;
             // $this->total;
@@ -1014,15 +1024,86 @@ public function removeItem($index,$item_id)
 
 
         // return redirect('Struk',['batch_Id'=>$this->transaksiBatchId,'customer_id'=>$this->customerid,'biayaKirim'=>$this->biayaKirim,'totalTagihan'=>$this->totalTagihan])}}','_blank'));
-
-        $url = route('Struk', [
+        $url = route('Struk');
+        $data = [
         'batch_Id'     => $this->transaksiBatchId,
         'customer_id'  => $this->customerid,
         'biayaKirim'   => $this->biayaKirim,
         'totalTagihan' => $this->totalTagihan,
-        ]);
+        'statusBayar' => $this->bayarMode,
+        ];
 
-            $this->js("window.open(" . json_encode($url) . ", '_blank')");
+            // $this->js("window.open(" . json_encode($url) . ", '_blank')");
+            $this->js("
+                    let form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = " . json_encode($url) . ";
+                    form.target = '_blank';
+
+                    let csrf = document.createElement('input');
+                    csrf.type = 'hidden';
+                    csrf.name = '_token';
+                    csrf.value = " . json_encode(csrf_token()) . ";
+                    form.appendChild(csrf);
+
+                    let data = " . json_encode($data) . ";
+
+                    Object.keys(data).forEach(key => {
+                        let input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = key;
+                        input.value = data[key];
+                        form.appendChild(input);
+                    });
+
+                    document.body.appendChild(form);
+                    form.submit();
+                    form.remove();
+                ");
+
+        $this->bayarMode= false;
+
+    }
+
+    public function Strukprint(){
+
+    $url = route('Struk');
+        $data = [
+        'batch_Id'     => $this->transaksiBatchId,
+        'customer_id'  => $this->customerid,
+        'biayaKirim'   => $this->biayaKirim,
+        'totalTagihan' => $this->totalTagihan,
+        'statusBayar' => $this->bayarMode,
+        ];
+
+            // $this->js("window.open(" . json_encode($url) . ", '_blank')");
+            $this->js("
+                    let form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = " . json_encode($url) . ";
+                    form.target = '_blank';
+
+                    let csrf = document.createElement('input');
+                    csrf.type = 'hidden';
+                    csrf.name = '_token';
+                    csrf.value = " . json_encode(csrf_token()) . ";
+                    form.appendChild(csrf);
+
+                    let data = " . json_encode($data) . ";
+
+                    Object.keys(data).forEach(key => {
+                        let input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = key;
+                        input.value = data[key];
+                        form.appendChild(input);
+                    });
+
+                    document.body.appendChild(form);
+                    form.submit();
+                    form.remove();
+                ");
+
 
     }
 
@@ -1047,11 +1128,10 @@ public function removeItem($index,$item_id)
     $this->discountnominalDiscount='0' ?? '';
     $this->discountAmount='0' ?? '';
     $this->showmodalDiscount= true;
-    $this->discountMode= true;
+    $this->bayarMode= false;
 
     }
     public function closemodalDiscount(){
-        $this->discountMode= false;
         $this->showmodalDiscount= false;
 
     }

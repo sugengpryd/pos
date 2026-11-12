@@ -91,8 +91,19 @@ class StrukController extends Controller
      if(!$request){
         // return;
      }else{
-        $batch_id = $request->query('batch_Id');
-        $customer_id = $request->query('customer_id');
+        //$batch_id = $request->query('batch_Id');
+        //$customer_id = $request->query('customer_id');
+        //$statusBayar = $request->query('statusBayar');
+
+        $batch_id = $request->input('batch_Id');
+        $customer_id = $request->input('customer_id');
+        $biayaKirim = $request->input('biayaKirim');
+        $totalTagihan = $request->input('totalTagihan');
+        $statusBayar = $request->boolean('statusBayar');
+
+
+        // dd($statusBayar);
+
 
         // dd([$batch_id,$customer_id]);
 

@@ -53,8 +53,11 @@ Route::get('/kategori', App\Livewire\Kategori::class)
     ->middleware(['auth'])
     ->name('Kategori');
 
-Route::get('struk/{batch_id?/customer_id?}', [StrukController::class,'show'])
+Route::get('strukprint/{batch_id?/customer_id?}', [StrukController::class,'show'])
     ->middleware(['auth'])
+    ->name('Strukprint');
+
+Route::post('/struk', [StrukController::class, 'show'])
     ->name('Struk');
 
 Route::get('deliveryOrder/{batch_id?/customer_id?}', [StrukController::class,'do'])
