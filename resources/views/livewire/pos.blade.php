@@ -491,7 +491,7 @@
                 {{-- style="left:50%; top:50%; transform:translate(-50%,-50%);" --}}
                 >
 
-            <div class="bg-white rounded-lg  shadow-lg w-1/2 min-w-[300px] max-w-[900px] p-4 overflow-y-auto">
+            <div class="bg-white rounded-lg  shadow-lg w-1/2 min-w-[350px] max-w-[900px] p-4 overflow-y-auto">
               <div class="text-xl text-center underline">Pembayaran</div>
                 <form wire:submit.prevent="bayar" enctype="multipart/form-data">
                 <div>
