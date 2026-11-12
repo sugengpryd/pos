@@ -496,15 +496,15 @@
                 <form wire:submit.prevent="bayar" enctype="multipart/form-data">
                 <div>
                     <div  class="flex gap-4 py-2 border-b-red-400">
-                        <Label class="w-[200px] mb-2">BatchID</Label><br>
+                        <Label class="w-[200px] mb-2 text-xs text-bold">BatchID</Label><br>
                         <span class="bg-gray-400 w-full text-right  p-2 mt-2">{{ $transaksiBatchId  }}</span>
                     </div>
                     <div class="flex gap-4 py-2 border-b-red-400">
-                        <label  class="w-[200px] mb-2">Total Tagihan:</label><br>
+                        <label  class="w-[200px] mb-2 text-xs text-bold">Total Tagihan:</label><br>
                         <span class="bg-gray-400 w-full text-right p-2 mt-2">Rp.{{ $totalTagihan }}</span>
                     </div>
                     <div class="flex gap-4 py-2 border-b-red-400">
-                        <label class="w-[200px]">Nominal Pembayaran</label><br>
+                        <label class="w-[200px] text-xs text-bold">Nominal Pembayaran</label><br>
                         <span class="w-full">
                             {{-- <input type="text" class="text-xl w-full rounded-lg p-2"> --}}
                         <input
@@ -534,7 +534,7 @@
                         </span>
                     </div>
                     <div class="flex gap-4 py-2 border-b-red-400">
-                        <label class="w-[200px]">Nominal Kembalian</label><br>
+                        <label class="w-[200px] text-xs text-bold">Nominal Kembalian</label><br>
                         <span class="w-full">
                             {{-- <input type="text" class="text-xl w-full rounded-lg p-2"> --}}
                         <input
@@ -557,7 +557,7 @@
                         </span>
                     </div>
                     <div class="flex gap-4 py-2 border-b-red-400">
-                        <label class="w-[200px]">Tipe Pembayaran</label><br>
+                        <label class="w-[200px] text-xs text-bold">Tipe Pembayaran</label><br>
                         <span class="w-full">
                             <select
                             wire:model.live='tipePembayaran'
