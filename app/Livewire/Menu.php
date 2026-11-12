@@ -51,6 +51,7 @@ class Menu extends Component
 
     public function mount()
     {
+    $this->reset('menu_image');
     $this->UsersId = Auth::id();
     $this->createnewConnection();
     }
