@@ -239,7 +239,8 @@
                         <table class="w-full top-0 mt-0">
                             <thead>
                                 <th class="bg-white top-0 sticky z-20 text-center p-2 border-b-2 border-gray-700">Id</th>
-                                <th class="bg-white top-0 sticky z-20 text-center p-2 border-b-2 border-gray-700">Menu Id </th>
+                                {{-- <th class="bg-white top-0 sticky z-20 text-center p-2 border-b-2 border-gray-700">Menu Id </th> --}}
+                                <th class="bg-white top-0 sticky z-20 text-center p-2 border-b-2 border-gray-700">Menu </th>
                                 <th class="bg-white top-0 sticky z-20 text-left p-2 border-b-2 border-gray-700">Description</th>
                                 <th class="bg-white top-0 sticky z-20 text-center p-2 border-b-2 border-gray-700">
                                     Qty<br>
@@ -257,7 +258,11 @@
                                 class="p-2"
                                 >
                                     <td class="text-center border-b border-gray-400 text-xs">{{ $index+1}}</td>
-                                    <td class="text-left border-b border-gray-400 text-xs">{{ $menu['menu_id'] }}</td>
+                                    {{-- <td class="text-left border-b border-gray-400 text-xs">{{ $menu['menu_id'] }}</td> --}}
+                                    <td class="text-center border-b border-gray-400 text-xs">
+                                        <img class="mx-auto rounded-lg" width="50px" height="50px" src="{{ asset('storage/' . $menu['image'])  }}">
+                                        {{ $menu['menu_id'] }}
+                                    </td>
                                     <td class="text-left border-b border-gray-400 text-xs">{{ $menu['description'] }}</td>
                                     <td class="text-center border-b border-gray-400 text-xs">{{ $menu['item_qty'] }}</td>
                                     <td class="text-right border-b border-gray-400 text-xs">{{ $menu['sellingPrice'] }}</td>

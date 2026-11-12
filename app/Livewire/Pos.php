@@ -596,6 +596,7 @@ class Pos extends Component
         $this->menustransaksi[]=[
         // $this->menustransaksi=[
              'menu_id'=>$menustransaksis->menu_id,
+             'image'=> $menustransaksis->image,
              'description'=>$menustransaksis->description,
              'kategori'=>$menustransaksis->kategori,
              'item_qty'=>$menustransaksis->item_qty,
@@ -717,6 +718,7 @@ class Pos extends Component
             ->select(
                 'transaksi.*',
                 'menu.menu_id',
+                'image',
                 'menu.description',
                 'menu.kategori',
                 'menu.item_qty',
@@ -746,6 +748,7 @@ class Pos extends Component
                         $this->menustransaksi = $cekTransaksi->map(function ($item) {
                             return [
                                 'menu_id'      => $item->menu_id,
+                                'image'        => $item->image ?? '',
                                 'description'  => $item->description,
                                 'kategori'     => $item->kategori,
                                 'item_qty'     => $item->qty,
