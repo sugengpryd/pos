@@ -102,6 +102,15 @@ Route::get('/debug-signature', function (Request $request) {
     ]);
 });
 
+Route::get('/test-query', function () {
+    return response()->json([
+        'url' => request()->fullUrl(),
+        'query' => request()->query(),
+        'query_string' => $_SERVER['QUERY_STRING'] ?? null,
+        'request_uri' => $_SERVER['REQUEST_URI'] ?? null,
+    ]);
+});
+
 
 
 
