@@ -745,7 +745,7 @@
 
     @if($showmodalDiscount)
     <div class="fixed inset-0 z-50 w-full h-full flex flex-col items-center justify-center bg-black bg-opacity-50 p-4">
-        <div class="bg-gray-400 flex flex-col justify-center max-h-[90vh] p-4 items-center w-full rounded-lg shadow-lg min-w-[300px] md:max-w-[400px] ">
+        <div class="bg-blue-400 flex flex-col justify-center max-h-[90vh] p-4 items-center w-full rounded-lg shadow-lg min-w-[300px] md:max-w-[400px] ">
                 <h3 class="w-full text-lg font-semibold">
                     {{ $discountMode ? 'Discount' : '' }}
                 </h3>
