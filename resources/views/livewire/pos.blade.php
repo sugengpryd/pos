@@ -744,13 +744,14 @@
     @endif
 
     @if($showmodalDiscount)
-    <div class="fixed inset-0 z-50 w-full h-screen flex items-center justify-center bg-black bg-opacity-50 py-4">
+    <div class="fixed inset-0 z-50 w-full h-screen flex flex-col items-center justify-center bg-black bg-opacity-50 py-4">
 
         <div class="bg-white w-full h-screen rounded-lg shadow-lg min-w-[300px] md:max-w-[400px] px-2 py-4 mt-4 mb-4">
 
             <h3 class="text-lg font-semibold">
                 {{ $discountMode ? 'Discount' : '' }}
             </h3>
+
             <div class="flex flex-row w-full h-[500px] bg-slate-400 mt-4 mb-4 px-4 py-4 rounded-lg justify-start items-center md:justify-between md:items-start ">
                 <form wire:submit.prevent="save_discount" enctype="multipart/form-data">
                         <div class="flex-col w-full h-full p-2 gap-2 text-xs">
