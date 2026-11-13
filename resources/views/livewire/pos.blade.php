@@ -746,15 +746,15 @@
     @if($showmodalDiscount)
     <div class="fixed inset-0 z-50 w-full h-screen flex items-center justify-center bg-black bg-opacity-50 py-4">
 
-        <div class="bg-white w-full rounded-lg shadow-lg min-w-[300px] md:max-w-[400px] px-2 py-8 h-full mt-2">
+        <div class="bg-white w-full rounded-lg shadow-lg min-w-[300px] md:max-w-[400px] px-2 py-2 h-full mt-4 mb-4">
 
             <h3 class="text-lg font-semibold">
                 {{ $discountMode ? 'Discount' : '' }}
             </h3>
-            <div class="flex flex-row w-full h-[450px] bg-slate-300 px-4 py-4 justify-start items-center md:justify-between md:items-start ">
+            <div class="flex flex-row w-full h-[500px] bg-slate-400 mt-4 mb-4 px-4 py-4 rounded-lg justify-start items-center md:justify-between md:items-start ">
                 <form wire:submit.prevent="save_discount" enctype="multipart/form-data">
-                        <div class="flex-col w-full h-full p-2 gap-1 text-xs">
-                                <label class="text-bold" for="batchId">BatchId</label>
+                        <div class="flex-col w-full h-full p-2 gap-2 text-xs">
+                                <label class="text-bold pt-4 pb-4" for="batchId">BatchId</label>
                                     <input
                                     wire:model.live="batchidDiscount"
                                     id="batchId" type="text"
@@ -762,7 +762,7 @@
                                     class="flex flex-col w-full flex-wrap rounded-lg text-xs text-gray-400 p-2"
                                     >
 
-                                <label class=" text-bold" for="customer">Customer</label>
+                                <label class="text-bold" pt-4 pb-4  for="customer">Customer</label>
                                     <input
                                     wire:model.live="customerDiscount"
                                     id="diskon" type="text"
@@ -771,7 +771,7 @@
                                     >
 
 
-                                <label class=" text-bold" for="totalTagihan">Total Belanja</label>
+                                <label class=" text-bold pt-4 pb-4" for="totalTagihan">Total Belanja</label>
                                     <input
                                     wire:model.live="totaltagihanDiscount"
                                     id="totalTagihan" type="text"
@@ -840,7 +840,7 @@
                                     <button
                                     type="button"
                                     wire:click="closemodalDiscount"
-                                    class="bg-slate-400 rounded-lg flex flex-col mt-2 w-1/4 text-xs text-center hover:bg-blue-700 p-2"
+                                    class="bg-slate-300 rounded-lg flex flex-col mt-2 w-1/4 text-xs text-center hover:bg-blue-700 p-2"
                                     >
                                         Exit
                                     </button>
