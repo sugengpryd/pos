@@ -71,9 +71,11 @@
 
                     <td
                     wire:model.live="menuImages"
-                    class="p-2 text-sm text-right">
+                    class="p-2 text-sm flex flex-col justify-center items-center text-blue-700"
+                    >
                     @if(!empty($menus->image))
-                     <a href ="{{ 'storage/'.$menus->image }}" target="_blank" >link</a>
+                    <img width="50px" height="50px" src="{{ 'storage/'.$menus->image }}">
+                     <a href ="{{ 'storage/'.$menus->image }}" target="_blank" >View</a>
                      @endif
                     </td>
 

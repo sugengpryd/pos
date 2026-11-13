@@ -1,4 +1,5 @@
-<div class="py-4">
+<div class="py-4 w-full" >
+    <div class="min-w-[1280px] px-6" >
     {{-- <div >
         <header>Customer List</header>
     </div> --}}
@@ -175,3 +176,5 @@
 
         </div>
     @endif
+    </div>
+</div>

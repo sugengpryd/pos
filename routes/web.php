@@ -111,6 +111,38 @@ Route::get('/test-query', function () {
     ]);
 });
 
+Route::get('/livewire/preview-file/{filename}', function ($filename) {
+    $path = storage_path('app/private/livewire-tmp/' . $filename);
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->file($path);
+})->name('livewire.preview-file');
+
+// Route::get('/debug-signature', function (Request $request) {
+//     return response()->json([
+//         'valid_signature' => URL::hasValidSignature($request),
+//         'valid_relative' => URL::hasValidSignature(
+//             $request,
+//             absolute: false
+//         ),
+//         'request_scheme' => $request->getScheme(),
+//         'request_host' => $request->getHost(),
+//         'app_url' => config('app.url'),
+//     ]);
+// });
+
+// Route::get('/test-query', function () {
+//     return response()->json([
+//         'url' => request()->fullUrl(),
+//         'query' => request()->query(),
+//         'query_string' => $_SERVER['QUERY_STRING'] ?? null,
+//         'request_uri' => $_SERVER['REQUEST_URI'] ?? null,
+//     ]);
+// });
+
 
 
 
