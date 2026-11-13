@@ -40,14 +40,14 @@
             <table class="w-full">
                 <thead class="sticky top-0 z-50 overflow-auto">
                 <tr>
-                    <th class="text-xs sticky top-0 bg-gray-400 w-80 mx-auto">Id</th>
-                    <th class="text-xs sticky top-0 bg-gray-400 w-80 mx-auto text-left">Nama</th>
-                    <th class="text-xs sticky top-0 bg-gray-400 w-80 mx-auto">Alamat </th>
-                    <th class="text-xs sticky top-0 bg-gray-400 w-80 mx-auto">Kota </th>
-                    <th class="text-xs sticky top-0 bg-gray-400 w-80 mx-auto">Telpon-1</th>
-                    <th class="text-xs sticky top-0 bg-gray-400 w-80 mx-auto">Telpon-2</th>
-                    <th class="text-xs sticky top-0 bg-gray-400 w-80 mx-auto">Status</th>
-                    <th class="text-xs sticky top-0 bg-gray-400 w-80 mx-auto">Action</th>
+                    <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Id</th>
+                    <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto text-left">Nama</th>
+                    <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Alamat </th>
+                    <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Kota </th>
+                    <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Telpon-1</th>
+                    <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Telpon-2</th>
+                    <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Status</th>
+                    <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Action</th>
                 </tr>
                 </thead>
                 <tbody>
