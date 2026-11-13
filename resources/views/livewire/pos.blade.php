@@ -533,7 +533,7 @@
                             >
                         </span>
                     </div>
-                    <div class="flex gap-4 py-2 border-b-red-400">
+                    <div class="flex gap-4 py-2">
                         <label class="w-[200px] text-xs text-bold">Nominal Kembalian</label><br>
                         <span class="w-full">
                             {{-- <input type="text" class="text-xl w-full rounded-lg p-2"> --}}
@@ -556,7 +556,7 @@
                             >
                         </span>
                     </div>
-                    <div class="flex gap-4 py-2 border-b-red-400">
+                    <div class="flex gap-4 py-2">
                         <label class="w-[200px] text-xs text-bold">Tipe Pembayaran</label><br>
                         <span class="w-full">
                             <select
@@ -597,73 +597,14 @@
         {{-- class="cursor-move select-none fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50" --}}
                 {{-- style="left:50%; top:50%; transform:translate(-50%,-50%);" --}}
                 >
-            <div class=" flex flex-col w-full justify-start items-start text-left bg-white rounded-lg h-screen shadow-lg min-w-[300px] md:max-w-full p-2 overflow-y-auto ">
+            <div class=" flex flex-col w-full justify-start items-start text-left bg-white rounded-lg h-full shadow-lg min-w-[300px] md:w-[600px] p-2 overflow-y-auto ">
                 <h3 class="text-lg font-semibold mb-4">Delivery</h3>
 
                 <div class="h-full w-full bg-slate-300 p-4 ">
 
-                {{-- <form wire:submit.prevent="bayar" enctype="multipart/form-data"> --}}
                 <form enctype="multipart/form-data">
-                {{-- <div class="flex flex-col">
-                    <select
-                    wire:model.live='pengirim'
-                    class="p-2 text-xs rounded px-8 mx-auto m-2"
 
-                    >
-                        <option value='default'>Pengirim Default</option>
-                        <option value='new'>Pengirim Custom</option>
-                    </select>
-
-                    @if ($this->pengirim == 'new')
-                            <div class="w-full space-y-4 rounded-xl border-2 border-gray-300 bg-white p-4">
-
-                                <div class="w-full">
-                                    <label for="namaPengirim"
-                                        class="mb-1 block text-sm font-semibold text-gray-700">
-                                        Nama Pengirim
-                                    </label>
-
-                                    <input
-                                        id="namaPengirim"
-                                        type="text"
-                                        wire:model.live="namaPengirim"
-                                        placeholder="Masukkan nama pengirim"
-                                        class="w-full rounded-lg text-xs border border-gray-300 px-3 py-2
-                                            focus:border-blue-500 focus:outline-none focus:ring-2
-                                            focus:ring-blue-200"
-                                    >
-                                </div>
-
-                                <div class="w-full">
-                                    <label for="alamatPengirim"
-                                        class="mb-1 block text-xs font-semibold text-gray-700">
-                                        Alamat Pengirim
-                                    </label>
-
-                                    <input
-                                        id="alamatPengirim"
-                                        type="text"
-                                        wire:model.live="alamatPengirim"
-                                        placeholder="Masukkan alamat pengirim"
-                                        class="w-full rounded-lg border border-gray-300 px-3 py-2
-                                            focus:border-blue-500 focus:outline-none focus:ring-2
-                                            focus:ring-blue-200 text-xs"
-                                    >
-                                </div>
-                                <div>
-                                    <button
-                                    type="button"
-                                    wire:click="simpanPengirim"
-                                    class="bg-blue-400 py-2 px-4 rounded">Save</button>
-                                </div>
-
-                            </div>
-                        @else
-                        @endif
-
-
-                </div> --}}
-                <div class="flex flex-col w-full h-screen justify-center items-center p-4">
+                <div class="flex flex-col w-full h-[400px] justify-center items-center p-2 mb-2">
                     <select
                     wire:model.live='penerima'
                     wire:change='Penerima()'
@@ -769,9 +710,9 @@
                         @endif
 
                 </div>
-                <div class="w-full">
+                <div class="w-full p-2">
                     <label for="BiayaKirim"
-                        class="mb-1 block font-semibold text-gray-700 text-xs">
+                        class="mb-1 block font-semibold text-gray-700 text-xs p-2">
                         Biaya Kirim
                     </label>
                     <input
@@ -784,14 +725,16 @@
                             focus:ring-blue-200 text-xs"
                     >
                 </div>
-
+                <div class="w-full text-center">
                     <button
                         type="button"
                         wire:click="closeopenDelivery()"
-                        class="bg-red-400 p-2 rounded mt-2 text-xs"
+                        class="bg-gray-400 px-4 py-2 rounded mt-2 text-xs"
                         >
                         Close
-                        </button>
+                    </button>
+                </div>
+
               </form>
               </div>
             </div>
