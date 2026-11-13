@@ -752,7 +752,7 @@
                 {{ $discountMode ? 'Discount' : '' }}
             </h3>
 
-            <div class="flex flex-row w-full h-[500px] bg-slate-400 mt-4 mb-4 px-4 py-4 rounded-lg justify-start items-center md:justify-between md:items-start ">
+            <div class="flex flex-row w-full h-screen bg-slate-400 mt-4 mb-4 px-4 py-4 rounded-lg justify-start items-center md:h-[550px] md:justify-between md:items-start ">
                 <form wire:submit.prevent="save_discount" enctype="multipart/form-data">
                         <div class="flex-col w-full h-full p-2 gap-2 text-xs">
                                 <label class="text-bold pt-4 pb-4" for="batchId">BatchId</label>
