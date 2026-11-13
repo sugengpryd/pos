@@ -37,7 +37,7 @@
         </div>
       <div class="w-full flex flex-row h-[90vh] px-2 pb-4 justify-center items-center overflow-y-auto">
         <div class="w-full flex flex-col h-screen px-2 pb-4 justify-center items-center">
-            <table class=" h-screen">
+            <table class="w-full">
                 <thead class="sticky top-0 z-50 overflow-auto">
                 <tr>
                     <th class="text-xs sticky top-0 bg-gray-400 w-80 mx-auto">Id</th>
