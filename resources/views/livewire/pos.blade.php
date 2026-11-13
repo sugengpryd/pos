@@ -836,6 +836,7 @@
                                         wire:model.live="discountAmount"
                                         id="discountAmount"
                                         type="text"
+                                        disabled
                                         class="rounded-lg text-right"
 
 
@@ -853,8 +854,11 @@
                                     </button>
                                     <button
                                     wire:click="applyDiscount"
+                                    wire:loading.attr="disabled"
+                                    wire:target="applyDiscount"
+
                                     type="button"
-                                    class="bg-blue-400 rounded-lg flex flex-col mt-2 w-1/4 text-xs text-center hover:bg-blue-700 p-2"
+                                    class="bg-blue-400 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed flex flex-col mt-2 w-1/4 text-xs text-center hover:bg-blue-700 p-2"
                                     >
                                         Apply
                                     </button>
