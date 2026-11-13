@@ -1,5 +1,5 @@
 <div class="py-4 w-full" >
-    <div class="w-[900px] md:max-w-[1280px] px-6" >
+    <div class="w-[900px] md:max-w-[1280px] px-12" >
     {{-- <div >
         <header>Customer List</header>
     </div> --}}
