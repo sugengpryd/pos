@@ -21,14 +21,37 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
          if (request()->is('livewire/preview-file/*')) {
-        Log::info('Livewire Preview Debug', [
-            'url' => request()->url(),
+        Log::info('LIVEWIRE PREVIEW DEBUG', [
+            'full_url' => request()->fullUrl(),
+            'query_string' => request()->server('QUERY_STRING'),
+            'raw_query' => request()->getQueryString(),
+
+            'expires' => request()->query('expires'),
+            'has_signature' => request()->query('signature') !== null,
+
+            'query_parameters' => array_keys(request()->query()),
+
             'host' => request()->getHost(),
             'scheme' => request()->getScheme(),
             'secure' => request()->isSecure(),
-            'forwarded_proto' => request()->header('x-forwarded-proto'),
-            'has_expires' => request()->has('expires'),
-            'has_signature' => request()->has('signature'),
+
+            'valid_signature' => request()->hasValidSignature(),
+        ]);
+    }if (request()->is('livewire/preview-file/*')) {
+        Log::info('LIVEWIRE PREVIEW DEBUG', [
+            'full_url' => request()->fullUrl(),
+            'query_string' => request()->server('QUERY_STRING'),
+            'raw_query' => request()->getQueryString(),
+
+            'expires' => request()->query('expires'),
+            'has_signature' => request()->query('signature') !== null,
+
+            'query_parameters' => array_keys(request()->query()),
+
+            'host' => request()->getHost(),
+            'scheme' => request()->getScheme(),
+            'secure' => request()->isSecure(),
+
             'valid_signature' => request()->hasValidSignature(),
         ]);
     }
