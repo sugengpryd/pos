@@ -305,7 +305,7 @@
                             <p class="text-xs font-semibold mb-2">
                                 Image Preview
                             </p>
-                                $text= "{!! $menu_image->temporaryUrl() !!};
+                                {{-- $text= "{!! $menu_image->temporaryUrl() !!}; --}}
 
                             <img
                                 {{-- src="{{ $menu_image->temporaryUrl() }}" --}}
