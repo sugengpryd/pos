@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
 
         if ($this->app->environment('production')) {
         URL::forceScheme('https');
-    }
+                }
 
          if (request()->is('livewire/preview-file/*')) {
         Log::info('LIVEWIRE PREVIEW DEBUG', [
@@ -43,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
 
             'valid_signature' => request()->hasValidSignature(),
         ]);
-    }
+                }
 
     }
 }
