@@ -592,12 +592,12 @@
     @endif
 
     @if($openDelivery)
-        <div class="py-8 fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50"
+        <div class="py-8 fixed inset-0 z-50 w-full h-full flex items-center justify-center bg-black bg-opacity-50"
         {{-- <div  wire:ignore id="dragDiv" --}}
         {{-- class="cursor-move select-none fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50" --}}
                 {{-- style="left:50%; top:50%; transform:translate(-50%,-50%);" --}}
                 >
-            <div class=" flex flex-col w-96 justify-start items-start text-left bg-white rounded-lg max-h-[90vh] shadow-lg min-w-[300px] max-w-[900px] p-2 overflow-y-auto ">
+            <div class=" flex flex-col w-full justify-start items-start text-left bg-white rounded-lg max-h-[90vh] shadow-lg min-w-[300px] md:max-w-full p-2 overflow-y-auto ">
                 <h3 class="text-lg font-semibold mb-4">Delivery</h3>
 
                 <div class="h-full w-full bg-slate-300 p-4 ">
@@ -663,7 +663,7 @@
 
 
                 </div> --}}
-                <div class="flex flex-col w-full justify-center items-center p-4">
+                <div class="flex flex-col w-full h-screen justify-center items-center p-4">
                     <select
                     wire:model.live='penerima'
                     wire:change='Penerima()'
