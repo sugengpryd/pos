@@ -829,7 +829,7 @@
 
                             </div>
 
-                                <div class="flex flex-col justify-start items-start">
+                                <div class="flex flex-col justify-start items-start p-2">
                                 <label for="discountAmount">Total Amount</label>
                                     <input
                                         wire:model.live="discountAmount"
