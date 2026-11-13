@@ -744,28 +744,30 @@
     @endif
 
     @if($showmodalDiscount)
-    <div class="fixed inset-0 z-50 w-full h-screen flex items-center justify-center bg-black bg-opacity-50">
+    <div class="fixed inset-0 z-50 w-full h-screen flex items-center justify-center bg-black bg-opacity-50 py-4">
 
-        <div class="bg-white w-full rounded-lg shadow-lg min-w-[350px] md:max-w-[400px] p-2 max-h-[600px]">
+        <div class="bg-white w-full rounded-lg shadow-lg min-w-[300px] md:max-w-[400px] px-2 py-8 h-full m-2">
 
             <h3 class="text-lg font-semibold mb-4">
                 {{ $discountMode ? 'Discount' : '' }}
             </h3>
-            <div class="flex flex-row w-full bg-slate-300 p-4 min-w-[350px] justify-start items-center md:justify-between md:items-start ">
+            <div class="flex flex-row w-full h-[500px] bg-slate-300 px-4 py-4 justify-start items-center md:justify-between md:items-start ">
                 <form wire:submit.prevent="save_discount" enctype="multipart/form-data">
-                        <div class="flex-col w-full p-2 gap-1 text-xs">
+                        <div class="flex-col w-full h-full p-2 gap-1 text-xs">
                                 <label class="text-bold" for="batchId">BatchId</label>
                                     <input
                                     wire:model.live="batchidDiscount"
                                     id="batchId" type="text"
-                                    class="flex flex-col w-full flex-wrap rounded-lg text-xs p-2"
+                                    disabled
+                                    class="flex flex-col w-full flex-wrap rounded-lg text-xs text-gray-400 p-2"
                                     >
 
                                 <label class=" text-bold" for="customer">Customer</label>
                                     <input
                                     wire:model.live="customerDiscount"
                                     id="diskon" type="text"
-                                    class="flex flex-col w-full flex-wrap rounded-lg text-xs p-2"
+                                    disabled
+                                    class="flex flex-col w-full flex-wrap rounded-lg text-xs text-gray-400 p-2"
                                     >
 
 
@@ -773,10 +775,11 @@
                                     <input
                                     wire:model.live="totaltagihanDiscount"
                                     id="totalTagihan" type="text"
-                                    class="flex flex-col w-full flex-wrap rounded-lg text-xs p-2"
+                                    disabled
+                                    class="flex flex-col w-full flex-wrap rounded-lg text-xs text-gray-400 p-2"
                                     >
                         </div>
-                            <div class="flex flex-col gap-2 mt-1 p-2 text-xs">
+                            <div class="flex flex-col w-full h-full gap-2 mt-1 p-2 text-xs">
                                 <label for="discountPersen">Discount %</label>
                                     <input
                                         {{-- wire:model.live="discountpersenDiscount" --}}
@@ -788,7 +791,7 @@
 
                                         >
                                 @if($divPersen)
-
+`
                                 <div wire:model.live="divPersen" class="">
                                 <input type="text"
                                     wire:model.live="discountPersen"
