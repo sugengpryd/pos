@@ -294,7 +294,7 @@
                     type="file"
                     wire:model.live="menu_image"
                     accept="image/*"
-                    class=" text-xs rounded-xl py-2 px-4 "
+                    class=" text-sm rounded-xl py-4 px-4 "
                     >
                     @error('file')
                         <p class="text-sm text-red-600">{{ $message }}</p>
