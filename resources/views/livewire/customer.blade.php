@@ -92,6 +92,7 @@
                         flex-col
                         w-full
                         md:h-[768px]
+                        md:mt-5
                         h-[600px]
                         bg-white
                         md:min-h-[400px]
