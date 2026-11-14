@@ -70,10 +70,10 @@ class Delivery extends Component
         $result = DbPengiriman::on('customer_sqlite')
         ->when($this->filterSearch, function($query){
             $query->where('batch_id', 'like', '%' . $this->filterSearch .'%')
-            ->where('fromName', 'like', '%' . $this->filterSearch .'%')
-            ->where('fromAlamat', 'like', '%' . $this->filterSearch .'%')
-            ->where('toName', 'like', '%' . $this->filterSearch .'%')
-            ->where('toNumber', 'like', '%' . $this->filterSearch .'%');
+            ->orwhere('fromName', 'like', '%' . $this->filterSearch .'%')
+            ->orwhere('fromAlamat', 'like', '%' . $this->filterSearch .'%')
+            ->orwhere('toName', 'like', '%' . $this->filterSearch .'%')
+            ->orwhere('toNumber', 'like', '%' . $this->filterSearch .'%');
             })
         ->when($this->filterDate,function($query){
         $query->where('created_at', 'like', '%' . $this->filterDate .'%');
