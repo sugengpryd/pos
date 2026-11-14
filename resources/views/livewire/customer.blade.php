@@ -38,7 +38,7 @@
                 <div class="w-full max-h-[100vh] overflow-y-auto px-4 py-2 border border-gray-200 rounded-lg shadow-sm">
     <!-- Explicit height wrapper to prevent webview collapse -->
                     <div style="height: 700px; max-height: 90vh;" class="w-full overflow-y-auto overflow-x-auto border border-gray-200 rounded-lg bg-white shadow-sm">
-                        <table class="w-full h-full border-collapse">
+                        <table class="w-full h-full">
                             <thead class="sticky top-0 z-50 bg-gray-700 text-white">
                                 <tr>
                                     <th class="py-3 px-3 text-xs font-semibold text-center">Id</th>
