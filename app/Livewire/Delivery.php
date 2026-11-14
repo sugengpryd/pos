@@ -28,6 +28,8 @@ class Delivery extends Component
     public $telepon1='';
     public $telepon2='';
     public $filterSearch='';
+    public $filterDate='';
+    public $dateSelect='';
     public $UsersId='';
     public $flaq = [];
 
@@ -35,6 +37,12 @@ class Delivery extends Component
     {
     $this->UsersId = Auth::id();
     $this->createnewConnection();
+    }
+
+    public function filterDatefunction(){
+        // dd($this->filterDate);
+
+
     }
     public function createnewConnection(){
     // dd($this->UsersId);
@@ -59,7 +67,11 @@ class Delivery extends Component
     {
         $this->createnewConnection();
 
-        $result = DbPengiriman::on('customer_sqlite')->get();
+        $result = DbPengiriman::on('customer_sqlite')
+        ->when($this->filterDate,function($query){
+        $query->where('created_at', 'like', '%' . $this->filterDate .'%');
+        })
+        ->get();
 
         return view('livewire.delivery',compact('result'));
     }

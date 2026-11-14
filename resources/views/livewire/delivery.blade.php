@@ -5,16 +5,21 @@
         </div>
         <div class="flex flex-col md:flex-row items-start justify-between md:items-end gap-4">
             <input
-            wire:model="FilterSearch"
+            wire:model="filterSearch"
             type="text"
             placeholder=" Search.."
             class="rounded-lg shadow-lg"
             >
             <select
+            wire:model="filterDate"
+            wire:change="filterDatefunction()"
             class="rounded-lg"
             >
             <option value="">Filter Date</option>
-            <option></option>
+            @foreach ($result as $index => $results )
+            <option value="{{ $results->created_at->format('Y-m-d') }}">{{ $results->created_at->format('d-m-Y') }}</option>
+
+            @endforeach
             </select>
 
         </div>
