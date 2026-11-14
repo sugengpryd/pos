@@ -54,13 +54,13 @@
                 @foreach ($customer as $index => $customers)
                     <tr class="border-b border-gray-300">
                         <td class="py-2 px-3 text-xs text-center">{{ $index + 1 }}</td>
-                        <td class="py-2 px-3 text-xs text-left">{{ $customers->nama }}</td>
-                        <td class="py-2 px-3 text-xs text-left">{{ $customers->Alamat }}</td>
-                        <td class="py-2 px-3 text-xs text-left">{{ $customers->kota }}</td>
-                        <td class="py-2 px-3 text-xs text-center">{{ $customers->telepon1 }}</td>
-                        <td class="py-2 px-3 text-xs text-center">{{ $customers->telepon2 }}</td>
-                        <td class="py-2 px-3 text-xs text-center">{{ $customers->flaq ? 'Show' : 'Hidden' }}</td>
-                        <td class="py-2 px-3 text-center">
+                        <td class="py-2 px-3 border-b text-xs text-left">{{ $customers->nama }}</td>
+                        <td class="py-2 px-3 border-b text-xs text-left">{{ $customers->Alamat }}</td>
+                        <td class="py-2 px-3 border-b text-xs text-left">{{ $customers->kota }}</td>
+                        <td class="py-2 px-3 border-b text-xs text-center">{{ $customers->telepon1 }}</td>
+                        <td class="py-2 px-3 border-b text-xs text-center">{{ $customers->telepon2 }}</td>
+                        <td class="py-2 px-3 border-b text-xs text-center">{{ $customers->flaq ? 'Show' : 'Hidden' }}</td>
+                        <td class="py-2 px-3 border-b text-center">
                             <button wire:click="editCustomer({{ $customers->id }})" class="bg-red-700 text-white shadow-lg px-3 py-1 rounded-lg text-xs">Edit</button>
                         </td>
                     </tr>
