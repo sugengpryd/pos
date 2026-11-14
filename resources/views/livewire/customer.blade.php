@@ -36,7 +36,7 @@
                     </div>
             </div>
         <div class="w-full max-h-[90vh] overflow-y-auto px-4 py-2 border border-gray-200 rounded-lg shadow-sm">
-    <div class="w-full overflow-x-auto">
+    <div class="w-full h-full overflow-x-auto">
         <table class="w-full border-collapse">
             <!-- Sticky Header -->
             <thead class="sticky top-0 z-50 bg-gray-700 text-white shadow-sm">
