@@ -41,14 +41,14 @@
                         <table class="w-full border-collapse">
                             <thead class="sticky top-0 z-50 bg-gray-700 text-white">
                                 <tr>
-                                    <th class="py-3 px-3 text-xs font-semibold text-center">Id</th>
-                                    <th class="py-3 px-3 text-xs font-semibold text-left">Nama</th>
-                                    <th class="py-3 px-3 text-xs font-semibold text-left">Alamat</th>
-                                    <th class="py-3 px-3 text-xs font-semibold text-left">Kota</th>
-                                    <th class="py-3 px-3 text-xs font-semibold text-center">Telpon-1</th>
-                                    <th class="py-3 px-3 text-xs font-semibold text-center">Telpon-2</th>
-                                    <th class="py-3 px-3 text-xs font-semibold text-center">Status</th>
-                                    <th class="py-3 px-3 text-xs font-semibold text-center">Action</th>
+                                    <th class="sticky py-3 px-3 text-xs font-semibold text-center">Id</th>
+                                    <th class="sticky py-3 px-3 text-xs font-semibold text-left">Nama</th>
+                                    <th class="sticky py-3 px-3 text-xs font-semibold text-left">Alamat</th>
+                                    <th class="sticky py-3 px-3 text-xs font-semibold text-left">Kota</th>
+                                    <th class="sticky py-3 px-3 text-xs font-semibold text-center">Telpon-1</th>
+                                    <th class="sticky py-3 px-3 text-xs font-semibold text-center">Telpon-2</th>
+                                    <th class="sticky py-3 px-3 text-xs font-semibold text-center">Status</th>
+                                    <th class="sticky py-3 px-3 text-xs font-semibold text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 bg-white">
