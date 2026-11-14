@@ -33,7 +33,7 @@
         <div class= "flex flex-col md:flex-row  justify-start items-start md:justify-center md:items-center gap-4 mb-2 p-4 mx-auto ">
              <button
                 wire:click='openModal'
-                class="bg-blue-400 py-2 px-4 rounded-lg"
+                class="bg-blue-400 py-2 px-4 rounded-lg text-xs"
                 >
             Add Category
 
@@ -43,12 +43,12 @@
              type="text"
              wire:model.live="filterSearch"
              placeholder="Search"
-             class="border hover:border-blue-400 p-2 rounded-xl"
+             class="border hover:border-blue-400 p-2 rounded-xl text-xs"
             >
 
             <select
              wire:model.live="filterFlaq"
-             class="border hover:border-blue-400 py-2 px-4 w-44 rounded-xl"
+             class="border hover:border-blue-400 py-2 px-4 w-44 rounded-xl text-xs"
             >
             <option value="">Filter Status</option>
             <option value="0">Hidden</option>
