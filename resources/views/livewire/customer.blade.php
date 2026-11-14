@@ -40,14 +40,14 @@
                 <table class="w-full border-collapse">
                     <thead class="sticky top-0 z-50 bg-gray-400">
                         <tr>
-                            <th class="text-xs py-2 px-3 text-center">Id</th>
-                            <th class="text-xs py-2 px-3 text-left">Nama</th>
-                            <th class="text-xs py-2 px-3 text-left">Alamat</th>
-                            <th class="text-xs py-2 px-3 text-left">Kota</th>
-                            <th class="text-xs py-2 px-3 text-center">Telpon-1</th>
-                            <th class="text-xs py-2 px-3 text-center">Telpon-2</th>
-                            <th class="text-xs py-2 px-3 text-center">Status</th>
-                            <th class="text-xs py-2 px-3 text-center">Action</th>
+                            <th class="sticky text-xs py-2 px-3 text-center">Id</th>
+                            <th class="sticky text-xs py-2 px-3 text-left">Nama</th>
+                            <th class="sticky text-xs py-2 px-3 text-left">Alamat</th>
+                            <th class="sticky text-xs py-2 px-3 text-left">Kota</th>
+                            <th class="sticky text-xs py-2 px-3 text-center">Telpon-1</th>
+                            <th class="sticky text-xs py-2 px-3 text-center">Telpon-2</th>
+                            <th class="sticky text-xs py-2 px-3 text-center">Status</th>
+                            <th class="sticky text-xs py-2 px-3 text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
