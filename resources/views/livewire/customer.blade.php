@@ -3,7 +3,7 @@
     {{-- <div >
         <header>Customer List</header>
     </div> --}}
-            <div class="flex justify-between items-center p-2 gap-2 ">
+            <div class="flex justify-between items-center p-2 gap-2 mb-2 ">
                 <div>
                     <button
                     {{-- wire:modal='modalOpen' --}}
