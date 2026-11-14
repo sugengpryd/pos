@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="w-full top-0 min-h-screen mx-auto mt-2 px-2 bg-gray-300 rounded-xl justify-start overflow-auto">
-        <table class=" px-4 py-2 w-full">
+        <table class=" px-4 py-2 w-full border-collapse">
             <p>Total: {{ $menu?->count() ?? '0' }}</p>
                 <thead class="sticky py-0 top-0 bg-gray-400 z-55">
                     <tr>
@@ -46,7 +46,10 @@
 
                     <td
                     wire:model.live="description"
-                    class="p-2 text-sm ">{{ $menus->description}}</td>
+                    class="p-2 flex-col text-sm justify-center items-center">
+                    {{ $menus->menu_id}}<br>
+                    {{ $menus->description}}
+                    </td>
 
                     {{-- <td
                     wire:model.live="uom"
