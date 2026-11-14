@@ -15,7 +15,8 @@
             wire:change="filterDatefunction()"
             class="rounded-lg"
             >
-            <option value="">Filter Date</option>
+            <option>Filter Date</option>
+            <option value="">All</option>
             @foreach ($result as $index => $results )
             <option value="{{ $results->created_at->format('Y-m-d') }}">{{ $results->created_at->format('d-m-Y') }}</option>
 
