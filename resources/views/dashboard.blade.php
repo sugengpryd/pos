@@ -81,6 +81,17 @@
             {{-- </div> --}}
 
             {{-- <div class="flex flex-row justify-between items-center gap-2"> --}}
+                <a href="{{ route('Delivery') }}">
+
+                <div class="flex flex-col md:flex-col py-4 px-2 justify-center items-center hover:shadow-teal-700 bg-slate-400 shadow-xl shadow-teal-400  rounded-xl">
+                    <div class="bg-teal-400  rounded-xl flex flex-row min-w-20 min-h-20 md:w-52 md:h-52 sm:w-32 sm:h-32 ">
+                        <img class="px-2 py-2 object-contain w-full h-full" src="storage/logo/delivery.png">
+
+                    </div>
+                    <span class="font_card text-center text-xs p-2">Delivery</span>
+
+                </div>
+                </a>
 
                 <a href="{{ route('Discount') }}">
 

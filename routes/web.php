@@ -29,10 +29,17 @@ Route::get('/transaksi', App\Livewire\Transaksi::class)
     // ->middleware(['auth','role:admin'])
     ->middleware(['auth'])
     ->name('Transaksi');
+
+Route::get('/delivery', App\Livewire\Delivery::class)
+    // ->middleware(['auth','role:admin'])
+    ->middleware(['auth'])
+    ->name('Delivery');
+
 Route::get('/discount', App\Livewire\Discount::class)
     // ->middleware(['auth','role:admin'])
     ->middleware(['auth'])
     ->name('Discount');
+
 Route::get('/ppn', App\Livewire\Ppn::class)
     // ->middleware(['auth','role:admin'])
     ->middleware(['auth'])
