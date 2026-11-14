@@ -128,8 +128,8 @@
                     <td class="p-2 text-xs text-center ">
                         <button
                             wire:click="editProduk({{ $produks->id }})"
-                            class=" rounded-lg py-2  px-4 bg-blue-300 text-xs">Edit</button>
-                        <button class=" rounded-lg py-2 px-4 bg-red-400 text-xs">Delete</button>
+                            class=" rounded-lg py-2  px-4 bg-red-400 text-xs">Edit</button>
+                        {{-- <button class=" rounded-lg py-2 px-4 bg-red-400 text-xs">Delete</button> --}}
 
                     </td>
 

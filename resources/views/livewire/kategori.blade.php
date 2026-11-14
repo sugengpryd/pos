@@ -29,8 +29,8 @@
     <div class="w-full flex justify-center items-center text-lg text-bold">
         <header>Kategori Menu</header>
     </div>
-    <div class= "w-full " >
-        <div class= "flex flex-col md:flex-row  justify-center items-center gap-4 mb-2 p-4 mx-auto ">
+    <div class= "w-full" >
+        <div class= "flex flex-col md:flex-row  justify-start items-start md:justify-center md:items-center gap-4 mb-2 p-4 mx-auto ">
              <button
                 wire:click='openModal'
                 class="bg-blue-400 py-2 px-4 rounded-lg"
@@ -48,7 +48,7 @@
 
             <select
              wire:model.live="filterFlaq"
-             class="border hover:border-blue-400 py-2 px-4 w-44 rounded-xl mr-10"
+             class="border hover:border-blue-400 py-2 px-4 w-44 rounded-xl"
             >
             <option value="">Filter Status</option>
             <option value="0">Hidden</option>
@@ -64,9 +64,9 @@
 
         </div>
         <div class="flex  w-full h-screen mt-0 mx-auto py-0 px-4 ">
-            <div class="w-full mx-auto h-[400px] md:w-[600px] bg-white rounded-lg justify-center items-center overflow-auto">
+            <div class="w-full mx-auto h-[400px] md:w-[800px] bg-white rounded-lg justify-center items-center overflow-auto">
               <div class="h-[600px] w-full" >
-                <table class="w-full border mx-auto ">
+                <table class="w-full border mx-auto border-collapse ">
                     <thead class="sticky top-0 z-50 p-6">
                         <th class="top-0 text-white bg-gray-600 sticky py-2 px-2  text-left">Id</th>
                         <th class="top-0 text-white bg-gray-600 sticky py-2 px-2  text-left">Description</th>
@@ -84,9 +84,11 @@
                             <td class="py-2 px-2 text-xs">{{ $kategories->flaq == 1 ? 'Show' : 'Hidden' }}</td>
                             <td
                                 wire:model.live="menuImages"
-                                class="p-2 text-sm text-left"
+                                class=" flex flex-col justify-center items-center p-2 text-sm text-left text-blue-400"
                             >
                                 @if(!empty($kategories->image))
+                                <img width="50px" height="50px" src="{{ 'storage/'.$kategories->image }}">
+
                                 <a href ="{{ 'storage/'.$kategories->image }}" target="_blank" >link</a>
                                 @endif
 
@@ -95,13 +97,13 @@
                             <td class="py-2 px-2 text-xs text-center">
                                 <button
                                 wire:click="editKategori('{{ $kategories->id }}')"
-                                class="bg-blue-400 py-2 px-4 rounded-xl text-xs"
+                                class="bg-red-400 py-2 px-4 rounded-xl text-xs"
                                 >Edit</button>
 
-                                <button
+                                {{-- <button
                                 wire:click="deleteKategori('{{ $kategories->id }}')"
                                 class="bg-red-400 p-2 px-4 rounded-xl text-xs"
-                                >Delete</button>
+                                >Delete</button> --}}
                             </td>
 
                         </tr>
