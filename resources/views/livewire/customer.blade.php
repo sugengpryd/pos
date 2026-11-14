@@ -77,7 +77,7 @@
     @if($showModal)
         <div class="fixed inset-0 z-50 w-full h-auto bg-black bg-opacity-50">
                     <div class="w-full h-auto p-2 md:p-4 flex items-center justify-center bg-transparent">
-                        <div class="flex flex-col w-full h-[768px] bg-white min-h-[400px] rounded-lg justify-center items-center shadow-lg min-w-[400px] max-w-[600px] px-4 py-2 overflow-y-auto ">
+                        <div class="flex flex-col w-full h-[768px] bg-white min-h-[400px] rounded-lg justify-center items-center shadow-lg min-w-[400px] max-w-[400px] px-4 py-2 overflow-y-auto ">
 
                                 <h3 class="text-lg font-semibold mb-4">
                                     {{ $editMode ? 'Edit Customer' : 'Create New Customer' }}
