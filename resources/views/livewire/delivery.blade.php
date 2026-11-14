@@ -16,7 +16,7 @@
                         <th class="p-4 w-14">Created At</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="divide-y divide-gray-400 bg-white">
                     @foreach ($result as $index => $results )
                     <tr>
                         <td
@@ -28,7 +28,7 @@
                         {{$results->batch_Id}}
                         </td>
                         <td
-                        class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
+                        class="sticky py-3 px-3 w-14 text-xs font-semibold text-left">
                         {{$results->fromName}}
                         </td>
                         <td
