@@ -91,9 +91,10 @@
                         class="flex
                         flex-col
                         w-full
-                        h-[768px]
+                        md:h-[768px]
+                        h-[400px]
                         bg-white
-                        min-h-[400px]
+                        md:min-h-[400px]
                         rounded-lg
                         justify-center
                         items-center
