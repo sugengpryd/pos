@@ -72,7 +72,7 @@ class Delivery extends Component
         $query->where(function ($q) {
             $search = '%' . $this->filterSearch . '%';
 
-            $q->where('fromName', 'like', $search)
+            $q->where('batch_Id', 'like', $search)
                 ->orWhere('fromName', 'like', $search)
                 ->orWhere('fromAlamat', 'like', $search)
                 ->orWhere('toName', 'like', $search)
