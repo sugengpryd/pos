@@ -75,108 +75,108 @@
                     </div>
                 </div>
     @if($showModal)
-        <div class="fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50">
+        <div class="fixed inset-0 z-50 w-full h-auto bg-black bg-opacity-50">
+                    <div class="w-full h-auto p-2 md:p-4 flex items-center justify-center bg-transparent">
+                        <div class="flex flex-col w-full h-[768px] bg-white min-h-[400px] rounded-lg justify-center items-center shadow-lg min-w-[400px] max-w-[600px] px-4 py-2 overflow-y-auto ">
 
-            <div class="flex flex-col w-full bg-white min-h-screen rounded-lg justify-center items-center shadow-lg min-w-[400px] max-w-[600px] p-6 overflow-y-auto ">
+                                <h3 class="text-lg font-semibold mb-4">
+                                    {{ $editMode ? 'Edit Customer' : 'Create New Customer' }}
+                                </h3>
 
-                    <h3 class="text-lg font-semibold mb-4">
-                        {{ $editMode ? 'Edit Customer' : 'Create New Customer' }}
-                    </h3>
+                                <form wire:submit.prevent="save" enctype="multipart/form-data">
+                                    <div class=" w-80 flex flex-wrap justify-start items-start mt-2 gap-2 text-xs">
+                                            <label class="text-left" for="name">Nama Customer</label>
+                                            <input
+                                            id="name"
+                                            wire:model='namaCustomer'
+                                            placeholder="Input nama Customer"
+                                            type="text"
+                                            class="w-full px-2 rounded"
+                                            >
+                                    </div>
+                                    <div class="w-80 flex flex-wrap justify-start items-start mt-2  gap-2 text-xs">
+                                            <label class="text-left" for="alamat">Alamat</label>
+                                            <input
+                                            id="alamat"
+                                            wire:model='alamatCustomer'
+                                            placeholder="Input Alamat Customer"
+                                            type="text"
+                                            class="w-full px-2 rounded"
+                                            >
+                                    </div>
 
-                    <form wire:submit.prevent="save" enctype="multipart/form-data">
-                        <div class=" w-80 flex flex-wrap justify-start items-start mt-2 gap-2 text-xs">
-                                <label class="text-left" for="name">Nama Customer</label>
-                                <input
-                                id="name"
-                                wire:model='namaCustomer'
-                                placeholder="Input nama Customer"
-                                type="text"
-                                class="w-full px-2 rounded"
-                                >
+                                    <div class="w-80  flex flex-wrap justify-start items-start mt-2  gap-2 text-xs">
+                                            <label class="text-left" for="kota">Kota</label>
+                                            <select
+                                            id="kota"
+                                            wire:model='pilihKota'
+                                            wire:change='selectKota'
+                                            class="w-full py-2  rounded"
+                                            >
+                                            <option value="">Pilih Kota</option>
+                                            <option value="JakSel">Jakarta Selatan</option>
+                                            <option value="JakTim">Jakarta Timur</option>
+                                            <option value="JakBar">Jakarta Barat</option>
+                                            <option value="JakUt">Jakarta Utara</option>
+                                            <option value="Bogor">Bogor</option>
+                                            <option value="Depok">Depok</option>
+                                            <option value="Tanggerang">Tanggerang</option>
+                                            <option value="Bekasi">Bekasi</option>
+
+                                            </select>
+                                    </div>
+                                    <div class="w-80  flex flex-wrap justify-start items-start mt-2  gap-2 text-xs">
+                                            <label class="text-left" for="telepon-1">Telepon-1</label>
+                                            <input
+                                            id="telepon-1"
+                                            wire:Model='telepon1'
+                                            placeholder=""
+                                            type="text"
+                                            class="w-full px-2   rounded"
+                                            >
+                                    </div>
+                                    <div class="w-80  flex flex-wrap justify-start items-start mt-2  gap-2 text-xs">
+                                            <label class="text-left" for="telepon-2">Telepon-2</label>
+                                            <input
+                                            id="telepon-2"
+                                            wire:Model='telepon2'
+                                            placeholder=""
+                                            type="text"
+                                            class="w-full px-2  rounded"
+                                            >
+                                    </div>
+                                    <div class="w-80  flex flex-wrap justify-start items-start mt-2  gap-2 text-xs">
+                                            <label class="text-left" for="flaq">Status</label>
+                                            <select
+                                                id="flaq"
+                                                wire:Model='flaq'
+                                                placeholder=""
+                                                class="w-full px-2 rounded"
+                                            >
+                                            <option value="1">Show</option>
+                                            <option value="0">Hidden</option>
+                                            </select>
+
+                                    </div>
+
+
+
+                                    <div class= "flex flex-row justify-end item-start ml-20 gap-3 mt-2 text-xs">
+                                        <button
+                                        type="button"
+                                        wire:click='closeOpenModal'
+                                        class="bg-gray-300 py-2 px-4 rounded-xl"
+                                        >Cancel</button>
+
+                                        <button
+                                        type="button"
+                                        wire:click='save'
+                                        class="bg-blue-400 py-2 px-4 rounded-xl"
+                                        >Save</button>
+                                    </div>
+                                </form>
                         </div>
-                        <div class="w-80 flex flex-wrap justify-start items-start mt-2  gap-2 text-xs">
-                                <label class="text-left" for="alamat">Alamat</label>
-                                <input
-                                id="alamat"
-                                wire:model='alamatCustomer'
-                                placeholder="Input Alamat Customer"
-                                type="text"
-                                class="w-full px-2 rounded"
-                                >
-                        </div>
-
-                        <div class="w-80  flex flex-wrap justify-start items-start mt-2  gap-2 text-xs">
-                                <label class="text-left" for="kota">Kota</label>
-                                <select
-                                id="kota"
-                                wire:model='pilihKota'
-                                wire:change='selectKota'
-                                class="w-full py-2  rounded"
-                                >
-                                <option value="">Pilih Kota</option>
-                                <option value="JakSel">Jakarta Selatan</option>
-                                <option value="JakTim">Jakarta Timur</option>
-                                <option value="JakBar">Jakarta Barat</option>
-                                <option value="JakUt">Jakarta Utara</option>
-                                <option value="Bogor">Bogor</option>
-                                <option value="Depok">Depok</option>
-                                <option value="Tanggerang">Tanggerang</option>
-                                <option value="Bekasi">Bekasi</option>
-
-                                </select>
-                        </div>
-                        <div class="w-80  flex flex-wrap justify-start items-start mt-2  gap-2 text-xs">
-                                <label class="text-left" for="telepon-1">Telepon-1</label>
-                                <input
-                                id="telepon-1"
-                                wire:Model='telepon1'
-                                placeholder=""
-                                type="text"
-                                class="w-full px-2   rounded"
-                                >
-                        </div>
-                        <div class="w-80  flex flex-wrap justify-start items-start mt-2  gap-2 text-xs">
-                                <label class="text-left" for="telepon-2">Telepon-2</label>
-                                <input
-                                id="telepon-2"
-                                wire:Model='telepon2'
-                                placeholder=""
-                                type="text"
-                                class="w-full px-2  rounded"
-                                >
-                        </div>
-                        <div class="w-80  flex flex-wrap justify-start items-start mt-2  gap-2 text-xs">
-                                <label class="text-left" for="flaq">Status</label>
-                                <select
-                                    id="flaq"
-                                    wire:Model='flaq'
-                                    placeholder=""
-                                    class="w-full px-2 rounded"
-                                >
-                                <option value="1">Show</option>
-                                <option value="0">Hidden</option>
-                                </select>
-
-                        </div>
-
-
-
-                        <div class= "flex flex-row justify-end item-start ml-20 gap-3 mt-2 text-xs">
-                            <button
-                            type="button"
-                            wire:click='closeOpenModal'
-                            class="bg-gray-300 py-2 px-4 rounded-xl"
-                            >Cancel</button>
-
-                            <button
-                            type="button"
-                            wire:click='save'
-                            class="bg-blue-400 py-2 px-4 rounded-xl"
-                            >Save</button>
-                        </div>
-                    </form>
-            </div>
-
+                    </div>
         </div>
     @endif
     </div>
