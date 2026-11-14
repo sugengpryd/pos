@@ -92,7 +92,7 @@
                         flex-col
                         w-full
                         md:h-[768px]
-                        h-[400px]
+                        h-[600px]
                         bg-white
                         md:min-h-[400px]
                         rounded-lg
@@ -101,6 +101,7 @@
                         shadow-lg
                         max-w-[400px]
                         px-4
+                        py-2
                         {{-- py-2 --}}
                         overflow-y-auto "
                         >
