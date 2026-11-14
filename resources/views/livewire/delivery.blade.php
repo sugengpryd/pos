@@ -21,7 +21,7 @@
     </div>
     <div class="w-full max-w-[full] top-0  min-h-screen mx-auto mt-2 justify-start overflow-auto bg-slate-600">
 
-        <div class="flex flex-row justify-start items-center p-2 ">
+        <div class="flex flex-row justify-start items-center ">
             <table class="w-full flex-col border-collapse bg-white">
                 <thead class="bg-gray-400 text-white z-50 sticky top-0">
                     <tr>
