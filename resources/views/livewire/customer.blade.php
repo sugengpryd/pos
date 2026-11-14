@@ -35,7 +35,7 @@
                         <span x-text="message"></span>
                     </div>
             </div>
-                <div class="w-full h-[500px] overflow-y-auto px-2 py-2 border border-gray-200 rounded-lg shadow-sm">
+                <div class="w-full h-[500px] overflow-y-auto px-2 py-2 border border-gray-200 bg-gray-400 rounded-lg shadow-sm">
     <!-- Explicit height wrapper to prevent webview collapse -->
                     <div class="w-full h-[600px] overflow-auto overflow-x-auto border border-gray-200 rounded-lg bg-white shadow-sm">
                         <table class="w-full border-collapse">
