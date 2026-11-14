@@ -37,37 +37,37 @@
         </div>
       <div class="w-full flex flex-row h-[90vh] px-2 pb-4 justify-center items-center overflow-y-auto">
         <div class="w-full flex flex-col h-screen px-2 pb-4 justify-center items-center">
-            <table class="w-full">
+            <table class="w-full h-full">
                 <thead class="sticky top-0 z-50 overflow-auto">
-                <tr>
-                    <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Id</th>
-                    <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto text-left">Nama</th>
-                    <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Alamat </th>
-                    <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Kota </th>
-                    <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Telpon-1</th>
-                    <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Telpon-2</th>
-                    <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Status</th>
-                    <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Action</th>
-                </tr>
+                    <tr>
+                        <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Id</th>
+                        <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto text-left">Nama</th>
+                        <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Alamat </th>
+                        <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Kota </th>
+                        <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Telpon-1</th>
+                        <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Telpon-2</th>
+                        <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Status</th>
+                        <th class="text-xs py-2 sticky top-0 bg-gray-400 w-80 mx-auto">Action</th>
+                    </tr>
                 </thead>
                 <tbody>
                     @foreach ($customer as $index => $customers )
 
-                    <tr class="border-b-black border">
-                        <td class="py-2 text-xs text-center">{{ $index+1 }}</td>
-                        <td class="py-2 text-xs text-left border-b-black ">{{ $customers->nama }}</td>
-                        <td class="py-2 text-xs">{{ $customers->Alamat }}</td>
-                        <td class="py-2 text-xs">{{ $customers->kota }}</td>
-                        <td class="py-2 text-xs">{{ $customers->telepon1 }}</td>
-                        <td class="py-2 text-xs">{{ $customers->telepon2 }}</td>
-                        <td class="py-2 text-xs">{{ $customers->flaq ? 'Show':'hidden' }}
-                        <td
-                        wire:click='editCustomer({{$customers->id}})'
-                        class="p-2"
+                        <tr class="border-b-black border">
+                            <td class="py-2 text-xs text-center">{{ $index+1 }}</td>
+                            <td class="py-2 text-xs text-left border-b-black ">{{ $customers->nama }}</td>
+                            <td class="py-2 text-xs">{{ $customers->Alamat }}</td>
+                            <td class="py-2 text-xs">{{ $customers->kota }}</td>
+                            <td class="py-2 text-xs">{{ $customers->telepon1 }}</td>
+                            <td class="py-2 text-xs">{{ $customers->telepon2 }}</td>
+                            <td class="py-2 text-xs">{{ $customers->flaq ? 'Show':'hidden' }}
+                            <td
+                            wire:click='editCustomer({{$customers->id}})'
+                            class="p-2"
 
-                        >
-                        <button class=" bg-red-700 shadow-lg px-4 py-2 rounded-lg">Edit</button></td>
-                    </tr>
+                            >
+                            <button class=" bg-red-700 shadow-lg px-4 py-2 rounded-lg">Edit</button></td>
+                        </tr>
                     @endforeach
 
                 </tbody>
