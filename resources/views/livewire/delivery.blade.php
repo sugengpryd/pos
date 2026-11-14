@@ -1,5 +1,26 @@
 <div class="w-full p-4">
+    <div class="flex flex-col md:flex-row">
+        <div class=" flex-1 justify-start items-start top-1 text-lg p-2 text-gray-700 text-bold">
+             <h3>Delivery History</h3>
+        </div>
+        <div class="flex flex-col md:flex-row items-start justify-between md:items-end gap-4">
+            <input
+            wire:model="FilterSearch"
+            type="text"
+            placeholder=" Search.."
+            class="rounded-lg shadow-lg"
+            >
+            <select
+            class="rounded-lg"
+            >
+            <option value="">Filter Date</option>
+            <option></option>
+            </select>
+
+        </div>
+    </div>
     <div class="w-full max-w-[full] top-0  min-h-screen mx-auto mt-2 justify-start overflow-auto bg-slate-600">
+
         <div class="flex flex-row justify-start items-center p-2 ">
             <table class="w-full flex-col border-collapse bg-white">
                 <thead class="bg-gray-400 text-white z-50 sticky top-0">
