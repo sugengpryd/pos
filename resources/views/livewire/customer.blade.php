@@ -36,44 +36,43 @@
                     </div>
             </div>
         <div class="w-full max-h-[90vh] overflow-y-auto px-4 py-2 border border-gray-200 rounded-lg shadow-sm">
-    <div class="w-full h-full overflow-x-auto">
-        <table class="w-full border-collapse">
-            <!-- Sticky Header -->
-            <thead class="sticky top-0 z-50 bg-gray-700 text-white shadow-sm">
-                <tr>
-                    <th class="py-3 px-3 text-xs font-semibold text-center">Id</th>
-                    <th class="py-3 px-3 text-xs font-semibold text-left">Nama</th>
-                    <th class="py-3 px-3 text-xs font-semibold text-left">Alamat</th>
-                    <th class="py-3 px-3 text-xs font-semibold text-left">Kota</th>
-                    <th class="py-3 px-3 text-xs font-semibold text-center">Telpon-1</th>
-                    <th class="py-3 px-3 text-xs font-semibold text-center">Telpon-2</th>
-                    <th class="py-3 px-3 text-xs font-semibold text-center">Status</th>
-                    <th class="py-3 px-3 text-xs font-semibold text-center">Action</th>
+    <!-- Explicit height wrapper to prevent webview collapse -->
+<div style="height: 500px; max-height: 80vh;" class="w-full overflow-y-auto overflow-x-auto border border-gray-200 rounded-lg bg-white shadow-sm">
+    <table class="w-full border-collapse">
+        <thead class="sticky top-0 z-50 bg-gray-700 text-white">
+            <tr>
+                <th class="py-3 px-3 text-xs font-semibold text-center">Id</th>
+                <th class="py-3 px-3 text-xs font-semibold text-left">Nama</th>
+                <th class="py-3 px-3 text-xs font-semibold text-left">Alamat</th>
+                <th class="py-3 px-3 text-xs font-semibold text-left">Kota</th>
+                <th class="py-3 px-3 text-xs font-semibold text-center">Telpon-1</th>
+                <th class="py-3 px-3 text-xs font-semibold text-center">Telpon-2</th>
+                <th class="py-3 px-3 text-xs font-semibold text-center">Status</th>
+                <th class="py-3 px-3 text-xs font-semibold text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 bg-white">
+            @foreach ($customer as $index => $customers)
+                <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="py-2.5 px-3 text-xs text-center text-gray-700">{{ $index + 1 }}</td>
+                    <td class="py-2.5 px-3 text-xs text-left text-gray-900 font-medium">{{ $customers->nama }}</td>
+                    <td class="py-2.5 px-3 text-xs text-left text-gray-700">{{ $customers->Alamat }}</td>
+                    <td class="py-2.5 px-3 text-xs text-left text-gray-700">{{ $customers->kota }}</td>
+                    <td class="py-2.5 px-3 text-xs text-center text-gray-700">{{ $customers->telepon1 }}</td>
+                    <td class="py-2.5 px-3 text-xs text-center text-gray-700">{{ $customers->telepon2 }}</td>
+                    <td class="py-2.5 px-3 text-xs text-center">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold {{ $customers->flaq ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800' }}">
+                            {{ $customers->flaq ? 'Show' : 'Hidden' }}
+                        </span>
+                    </td>
+                    <td class="py-2.5 px-3 text-center">
+                        <button wire:click="editCustomer({{ $customers->id }})" class="bg-red-600 hover:bg-red-700 text-white shadow px-3 py-1 rounded-md text-xs transition">Edit</button>
+                    </td>
                 </tr>
-            </thead>
-            <!-- Scrollable Body -->
-            <tbody class="divide-y divide-gray-200 bg-white">
-                @foreach ($customer as $index => $customers)
-                    <tr class="hover:bg-gray-50 transition-colors">
-                        <td class="py-2.5 px-3 text-xs text-center text-gray-700">{{ $index + 1 }}</td>
-                        <td class="py-2.5 px-3 text-xs text-left text-gray-900 font-medium">{{ $customers->nama }}</td>
-                        <td class="py-2.5 px-3 text-xs text-left text-gray-700">{{ $customers->Alamat }}</td>
-                        <td class="py-2.5 px-3 text-xs text-left text-gray-700">{{ $customers->kota }}</td>
-                        <td class="py-2.5 px-3 text-xs text-center text-gray-700">{{ $customers->telepon1 }}</td>
-                        <td class="py-2.5 px-3 text-xs text-center text-gray-700">{{ $customers->telepon2 }}</td>
-                        <td class="py-2.5 px-3 text-xs text-center">
-                            <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold {{ $customers->flaq ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800' }}">
-                                {{ $customers->flaq ? 'Show' : 'Hidden' }}
-                            </span>
-                        </td>
-                        <td class="py-2.5 px-3 text-center">
-                            <button wire:click="editCustomer({{ $customers->id }})" class="bg-red-600 hover:bg-red-700 text-white shadow px-3 py-1 rounded-md text-xs transition">Edit</button>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 </div>
     @if($showModal)
         <div class="fixed inset-0 z-50 w-full h-auto flex items-center justify-center bg-black bg-opacity-50">
