@@ -92,7 +92,6 @@
                         flex-col
                         w-full
                         md:h-[768px]
-                        md:mt-20
                         h-[600px]
                         bg-white
                         md:min-h-[400px]
@@ -103,6 +102,7 @@
                         max-w-[400px]
                         px-4
                         py-2
+                        md:pt-20
                         {{-- py-2 --}}
                         overflow-y-auto "
                         >
