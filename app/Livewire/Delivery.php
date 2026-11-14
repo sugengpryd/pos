@@ -18,9 +18,48 @@ use Livewire\Attributes\Layout;
 
 class Delivery extends Component
 {
+    public $showModal=false;
+    public $modalOpen='';
+    public $editMode='';
+    public $customerId = '';
+    public $namaCustomer='';
+    public $alamatCustomer='';
+    public $pilihKota='';
+    public $telepon1='';
+    public $telepon2='';
+    public $filterSearch='';
+    public $UsersId='';
+    public $flaq = [];
+
+    public function mount()
+    {
+    $this->UsersId = Auth::id();
+    $this->createnewConnection();
+    }
+    public function createnewConnection(){
+    // dd($this->UsersId);
+        $this->dbconnection = 'customer_sqlite';
+        $result = Dbcreated::where('users_id', $this->UsersId)->first();
+        // dd($result);
+        $path = $result->path;
+        $dbname = $result->db_name;
+            // Register connection dynamically
+        Config::set('database.connections.customer_sqlite', [
+        'driver' => 'sqlite',
+        'database' => $path,
+        'prefix' => '',
+        'foreign_key_constraints' => true,
+        ]);
+        // Connect to the new database
+        DB::purge('customer_sqlite');
+        DB::connection('customer_sqlite')->getPdo();
+    }
+
     public function render()
     {
-        $result = DbPengiriman::all();
+        $this->createnewConnection();
+
+        $result = DbPengiriman::on('customer_sqlite')->get();
 
         return view('livewire.delivery',compact('result'));
     }
