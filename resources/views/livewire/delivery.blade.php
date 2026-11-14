@@ -1,7 +1,7 @@
 <div class="w-full py-4">
     <div class="w-full h-[90vh]">
         <div class="w-full flex flex-col justify-center items-center  min-w-[1080px] px-8" >
-            <table class="w-full flex-col justify-center items-center border-collapse">
+            <table class="w-full flex-col justify-center items-center border-collapse bg-white">
                 <thead class="bg-gray-400 text-white z-50 sticky top-0">
                     <tr>
                         <th class="p-4 w-14">id</th>
