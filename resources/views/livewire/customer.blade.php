@@ -85,7 +85,7 @@
         bg-opacity-50"
         >
                     <div
-                    class="w-full h-auto p-2 md:p-4 flex items-center justify-center bg-transparent"
+                    class="w-full h-auto py-2 md:p-4 flex items-center justify-center bg-transparent"
                        >
                         <div
                         class="flex
