@@ -70,13 +70,14 @@ class Delivery extends Component
         $result = DbPengiriman::on('customer_sqlite')
         ->when($this->filterSearch, function ($query) {
         $query->where(function ($q) {
-            $search = '%' . 'Arfasya' . '%';
+            $search = '%' . $this->filterSearch . '%';
 
-            $q->where('fromName', 'like', $search);
-                // ->orWhere('fromName', 'like', $search)
-                // ->orWhere('fromAlamat', 'like', $search)
-                // ->orWhere('toName', 'like', $search)
-                // ->orWhere('toNumber', 'like', $search);
+            $q->where('fromName', 'like', $search)
+                ->orWhere('fromName', 'like', $search)
+                ->orWhere('fromAlamat', 'like', $search)
+                ->orWhere('toName', 'like', $search)
+                ->orWhere('toAlamat', 'like', $search)
+                ->orWhere('toNumber', 'like', $search);
         });
     })
     ->when($this->filterDate, function ($query) {
