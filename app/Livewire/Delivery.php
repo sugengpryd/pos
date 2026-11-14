@@ -68,17 +68,24 @@ class Delivery extends Component
         $this->createnewConnection();
 
         $result = DbPengiriman::on('customer_sqlite')
-        ->when($this->filterSearch, function($query){
-            $query->where('batch_id', 'like', '%' . $this->filterSearch .'%')
-            ->orWhere('fromName', 'like', '%' . $this->filterSearch .'%')
-            ->orWhere('fromAlamat', 'like', '%' . $this->filterSearch .'%')
-            ->orWhere('toName', 'like', '%' . $this->filterSearch .'%')
-            ->orWhere('toNumber', 'like', '%' . $this->filterSearch .'%');
-            })
-        ->when($this->filterDate,function($query){
-        $query->whereDate('created_at', 'like', '%' . $this->filterDate .'%');
-        })
-        ->get();
+        ->when($this->filterSearch, function ($query) {
+        $query->where(function ($q) {
+            $search = '%' . 'Arfasya' . '%';
+
+            $q->where('fromName', 'like', $search);
+                // ->orWhere('fromName', 'like', $search)
+                // ->orWhere('fromAlamat', 'like', $search)
+                // ->orWhere('toName', 'like', $search)
+                // ->orWhere('toNumber', 'like', $search);
+        });
+    })
+    ->when($this->filterDate, function ($query) {
+        $query->whereDate('created_at', $this->filterDate);
+    })
+    ->latest('created_at')
+    ->get();
+
+    // dd($result);
 
         return view('livewire.delivery',compact('result'));
     }

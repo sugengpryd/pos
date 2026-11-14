@@ -5,7 +5,7 @@
         </div>
         <div class="flex flex-col md:flex-row items-start justify-between md:items-end gap-4">
             <input
-            wire:model="filterSearch"
+            wire:model.live="filterSearch"
             type="text"
             placeholder=" Search.."
             class="rounded-lg shadow-lg"
