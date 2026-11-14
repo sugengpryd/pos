@@ -19,7 +19,7 @@
 
         </div>
     </div>
-    <div class="w-full max-w-[full] top-0  min-h-screen mx-auto mt-2 justify-start overflow-auto bg-slate-600">
+    <div class="w-full max-w-[full] top-0  min-h-screen mx-auto mt-2 justify-start pr-2 overflow-auto bg-slate-600">
 
         <div class="flex flex-row justify-start items-center p-2 ">
             <table class="w-full flex-col border-collapse bg-white">
