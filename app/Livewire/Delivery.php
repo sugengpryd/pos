@@ -68,6 +68,13 @@ class Delivery extends Component
         $this->createnewConnection();
 
         $result = DbPengiriman::on('customer_sqlite')
+        ->when($this->filterSearch, function($query){
+            $query->where('batch_id', 'like', '%' . $this->filterSearch .'%')
+            ->where('fromName', 'like', '%' . $this->filterSearch .'%')
+            ->where('fromAlamat', 'like', '%' . $this->filterSearch .'%')
+            ->where('toName', 'like', '%' . $this->filterSearch .'%')
+            ->where('toNumber', 'like', '%' . $this->filterSearch .'%');
+            })
         ->when($this->filterDate,function($query){
         $query->where('created_at', 'like', '%' . $this->filterDate .'%');
         })
