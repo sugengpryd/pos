@@ -6,28 +6,35 @@
                     <button
                     type="button"
                     wire:click="btnCustomer"
+                    wire:loading.target="btnCustomer"
                     class="bg-lime-300 w-auto p-2 px-4 rounded-lg text-xs"
 
-
                     >Customer List</button>
+                    {{-- <span class="text-white text-xs text-center" wire:loading>Opening...</span> --}}
             </div>
 
             <div class="bg-transparent md:flex-col flex flex-row md:p-2 p-1">
                      <button
                     type="button"
                     wire:click="btnDatabaseUpdate"
+                    wire:loading.target="btnCustomer"
                     class="bg-lime-300 w-auto p-2 px-4 rounded-lg text-xs"
 
-
                     >Database Update</button>
+                    {{-- <span class="text-white text-xs text-center" wire:loading>Opening...</span> --}}
+
 
             </div>
             <div class="bg-transparent md:flex-col flex flex-row md:p-2 p-1">
                     <span class="bg-lime-300 w-auto p-2 px-4 rounded-lg text-xs">Database list</span>
+                    {{-- <span class="text-white text-xs text-center" wire:loading>Opening...</span> --}}
+
 
             </div>
             <div class="bg-transparent md:flex-col flex flex-row md:p-2 p-1">
                     <span class="bg-lime-300 w-auto p-2 px-4 rounded-lg text-xs">User Admin</span>
+                    {{-- <span class="text-white text-xs text-center" wire:loading>Opening...</span> --}}
+
 
             </div>
             @if (session()->has('success'))
@@ -47,7 +54,7 @@
 
 
         @if($showCustomer)
-        <div class="fixed flex flex-col inset-0 w-full h-[95vh] items-center mt-40 md:mt-20 justify-center bg-black bg-opacity-50 overflow-auto">
+        <div class="fixed flex flex-col inset-0 w-full h-[90vh] items-center mt-5 md:mt-20 justify-center bg-black bg-opacity-50 overflow-auto">
             <div class="w-full h-screen bg-gray-300 rounded-lg justify-center z-50 items-center shadow-lg px-2 ">
                 <div class="text-lg text-white">Customer List</div>
 
