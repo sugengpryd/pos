@@ -60,9 +60,7 @@
 
 
         </div>
-        <div class="flex flex-col px-3 ml-[415px] w-44">
-
-        </div>
+idem
         <div class="flex  w-full h-screen mt-0 mx-auto py-0 px-4 ">
             <div class="w-full mx-auto h-[400px] md:w-[800px] bg-white rounded-lg justify-center items-center overflow-auto">
               <div class="h-[600px] w-full" >
