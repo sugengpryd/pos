@@ -86,9 +86,13 @@
     <div class="px-6 mt-4" >
        Total: {{ $produk->count() }}
     </div>
-    <div class="w-full max-w-[full] top-0 min-h-screen mx-auto mt-2 px-4 justify-start overflow-auto">
+    {{-- <div class="w-full max-w-[full] top-0 h-[600px] mx-auto mt-2 px-4 justify-start overflow-auto bg-white"> --}}
 
-        <div class="flex flex-row justify-start items-center p-2">
+        <div id="printArea" class="w-full p-2 bg-white">
+
+        <div class="flex flex-col h-[600px] px-2 min-w-[350px] top-0 overflow-auto">
+
+        {{-- <div class="flex flex-row h-full justify-start items-center p-2"> --}}
 
         <table class=" py-2 w-full">
                 <thead class="sticky py-0 top-0 bg-gray-400 z-55">
