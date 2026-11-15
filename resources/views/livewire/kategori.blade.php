@@ -26,7 +26,7 @@
                 <span x-text="message"></span>
             </div>
         </div>
-    <div class="w-full flex justify-left items-center text-lg text-bold">
+    <div class="w-full flex justify-left items-left text-lg text-bold">
         <header>Kategori Menu</header>
     </div>
     <div class= "w-full" >
