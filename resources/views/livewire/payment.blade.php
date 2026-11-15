@@ -34,7 +34,8 @@
             </select>
         </div>
         <div class="w-full h-[600px] top-0 overflow-auto px-4 ">
-                <div class="flex w-full flex-row h-screen justify-start items-center">
+            <div class="w-full flex-row justify-start">
+                <div class="flex w-full flex-col h-screen justify-start">
                     <table class="w-full border-collapse" >
                         <thead class="sticky top-0 z-55 bg-gray-800 text-white" >
                             <th class="sticky py-2">Id</th>
@@ -42,8 +43,8 @@
                             <th class="sticky py-2">Total </th>
                             <th class="sticky py-2">Discount</th>
                             <th class="sticky py-2">Tax</th>
-                            <th class="sticky py-2">Grand Total</th>
-                            <th class="sticky py-2">Payment Type</th>
+                            <th class="sticky py-2">Total</th>
+                            <th class="sticky py-2">Payment</th>
                             <th class="sticky py-2">Invoice</th>
                             <th class="sticky py-2">flaq</th>
                             <th>Created At</th>
@@ -77,7 +78,6 @@
                         </tbody>
                     </table>
                 </div>
-
             </div>
      </div>
 
