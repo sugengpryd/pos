@@ -68,11 +68,16 @@ class Payment extends Component
             ->selectRaw('DATE(created_at) as date')
             ->distinct()
              ->pluck('date');
+
+        $total = $payment->where('batch_id', '!=','')->sum('grandtotal');
+
+
+
         // dd($createdAt);
         // dd($tipePayment);
         // $this->selectPayment = $tipePayment;
 
-        return view('livewire.payment',compact('payment','tipePayment','createdAt'));
+        return view('livewire.payment',compact('payment','tipePayment','createdAt','total' ));
     }
 
     public function updatedSelectPayment(){

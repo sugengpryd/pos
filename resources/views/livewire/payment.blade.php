@@ -43,7 +43,10 @@
                             <th class="sticky py-2">Total </th>
                             <th class="sticky py-2">Discount</th>
                             <th class="sticky py-2">Tax</th>
-                            <th class="sticky py-2">Total</th>
+                            <th class="sticky py-2 text-center">
+                                Total<br>
+                                {{ number_format($total, 0, ',', '.') }}
+                            </th>
                             <th class="sticky py-2">Payment</th>
                             <th class="sticky py-2">Invoice</th>
                             <th class="sticky py-2">flaq</th>
