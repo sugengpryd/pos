@@ -26,7 +26,7 @@
                 <span x-text="message"></span>
             </div>
         </div>
-    <div class="w-full flex justify-center items-center text-lg text-bold">
+    <div class="w-full flex justify-left items-center text-lg text-bold">
         <header>Kategori Menu</header>
     </div>
     <div class= "w-full" >
@@ -66,13 +66,15 @@
         <div class="flex  w-full h-screen mt-0 mx-auto py-0 px-4 ">
             <div class="w-full mx-auto h-[400px] md:w-[800px] bg-white rounded-lg justify-center items-center overflow-auto">
               <div class="h-[600px] w-full" >
-                <table class="w-full border mx-auto border-collapse ">
+                <table class="w-full mx-auto border-collapse ">
                     <thead class="sticky top-0 z-50 p-6">
+                    <tr>
                         <th class="top-0 text-white bg-gray-600 sticky py-2 px-2  text-left">Id</th>
                         <th class="top-0 text-white bg-gray-600 sticky py-2 px-2  text-left">Description</th>
                         <th class="top-0 text-white bg-gray-600 sticky py-2 px-2 text-left">Flag</th>
                         <th class="top-0 text-white bg-gray-600 sticky py-2 px-2 text-left">Image</th>
                         <th class="top-0 text-white bg-gray-600 sticky py-2 px-2 text-center">Action</th>
+                    </tr>
                     </thead>
                     <tbody>
                         @foreach ($kategories as $index =>$kategories )
