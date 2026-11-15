@@ -1,5 +1,5 @@
 <div class="py-8">
-    <div class="w-full flex-col px-2 bg-white">
+    <div class="w-full flex-col px-2">
         <div class=" w-full text-lg text-lime-700 pl-4 text-bold py-4">
             <h3>Transaction History</h3>
         </div>
