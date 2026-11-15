@@ -3,5 +3,5 @@
 {{-- </svg> --}}
 <img
     src="storage/logo/pointlogo.jpeg" width="50" height="50"
-    class="rounded-full mt-2 opacity-35 shadow-md shadow-gray-700 object-cover"
+    class="rounded-full m-2 opacity-35 shadow-md shadow-gray-700 object-cover"
     >
