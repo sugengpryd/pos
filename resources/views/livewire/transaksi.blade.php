@@ -74,7 +74,7 @@
 
     <div id="printArea" class="w-full p-2">
                 {{-- <div class="flex flex-col min-w-[350px] top-0 md:flex-col h-screen justify-start items-start md:justify-center md:items-center px-2 mt-2 pb-10 overflow-auto"> --}}
-                <div class="flex flex-col h-[600px] px-8 min-w-[350px] top-0 overflow-auto">
+                <div class="flex flex-col h-[600px] px-2 min-w-[350px] top-0 overflow-auto">
                     <table class="w-full ">
                         <thead class="sticky py-0 top-0 bg-gray-400 z-55">
                             <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Id</th>
