@@ -1,5 +1,8 @@
-<div class="py-4">
-    <div class="w-full flex-col p-2 ">
+<div class="py-8">
+    <div class="w-full flex-col px-2 bg-white">
+        <div class=" w-full text-lg text-lime-700 pl-4 text-bold py-4">
+            <h3>Transaction History</h3>
+        </div>
         <div class="flex flex-col md:flex-row w-full justify-center items-start gap-2 ">
 
             <div class="flex flex-col w-25 justify-center items-center">
@@ -72,7 +75,7 @@
 
     </div>
 
-    <div id="printArea" class="w-full p-2">
+    <div id="printArea" class="w-full p-2 bg-white">
                 {{-- <div class="flex flex-col min-w-[350px] top-0 md:flex-col h-screen justify-start items-start md:justify-center md:items-center px-2 mt-2 pb-10 overflow-auto"> --}}
                 <div class="flex flex-col h-[600px] px-2 min-w-[350px] top-0 overflow-auto">
                     <table class="w-full ">
