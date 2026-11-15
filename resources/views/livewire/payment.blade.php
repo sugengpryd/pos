@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="flex flex-col justify-start items-start px-4  ">
-        <div class="flex flex-row justify-start items-start mb-2 gap-4">
+        <div class="flex flex-col md:flex-row justify-start items-start mb-2 gap-4">
             <input type="text"
              wire:model.live="searchFilter"
              class="rounded-lg text-xs"
@@ -33,8 +33,8 @@
                 @endforeach
             </select>
         </div>
-        <div class="w-full h-[600px] top-0 overflow-auto ">
-                <div class="flex w-full flex-col h-screen justify-start items-center">
+        <div class="w-full h-[600px] top-0 overflow-auto px-4 ">
+                <div class="flex w-full flex-row h-screen justify-start items-center">
                     <table class="w-full border-collapse" >
                         <thead class="sticky top-0 z-55 bg-gray-800 text-white" >
                             <th class="sticky py-2">Id</th>
