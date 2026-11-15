@@ -25,22 +25,22 @@
 
         </div>
     </div>
-    <div class="w-full max-w-[full] top-0  min-h-screen mx-auto mt-2 justify-start overflow-auto bg-slate-600">
+    <div class="w-full max-w-[full] top-0  min-h-[600px] mx-auto mt-2 justify-start overflow-auto bg-slate-600">
 
-        <div class="flex flex-row justify-start items-center ">
+        <div class="flex flex-row h-full justify-stasticky rt items-center ">
             <table class="w-full flex-col border-collapse bg-white">
                 <thead class="bg-gray-400 text-white z-50 sticky top-0">
                     <tr>
-                        <th class="p-4 w-14">id</th>
-                        <th class="p-4 w-14">Batch Id</th>
-                        <th class="p-4 w-14">From</th>
-                        <th class="p-4 w-14">Alamat</th>
-                        <th class="p-4 w-14">To</th>
-                        <th class="p-4 w-14">Alamat Tujuan</th>
-                        <th class="p-4 w-14">No tujuan</th>
-                        <th class="p-4 w-14">Biaya Kirim</th>
-                        <th class="p-4 w-14">Flaq</th>
-                        <th class="p-4 w-14">Created At</th>
+                        <th class="sticky p-4 w-14">id</th>
+                        <th class="sticky p-4 w-14">Batch Id</th>
+                        <th class="sticky p-4 w-14">From</th>
+                        <th class="sticky p-4 w-14">Alamat</th>
+                        <th class="sticky p-4 w-14">To</th>
+                        <th class="sticky p-4 w-14">Alamat Tujuan</th>
+                        <th class="sticky p-4 w-14">No tujuan</th>
+                        <th class="sticky p-4 w-14">Biaya Kirim</th>
+                        <th class="sticky p-4 w-14">Flaq</th>
+                        <th class="sticky p-4 w-14">Created At</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-400 bg-white">
