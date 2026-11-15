@@ -14,96 +14,97 @@
             </div>
         </div>
     </div>
-    <div class="w-full top-0 min-h-screen mx-auto mt-2 px-2 bg-gray-300 rounded-xl justify-start overflow-auto">
-        <table class=" px-4 py-2 w-full border-collapse">
-            <p>Total: {{ $menu?->count() ?? '0' }}</p>
-                <thead class="sticky py-0 top-0 bg-gray-400 z-55">
-                    <tr>
-                        <th class=" sticky top-0 z-50 p-4 text-left">Id</th>
-                        {{-- <th class=" sticky top-0 z-50 p-4 text-left">Menu Id</th> --}}
-                        <th class=" sticky top-0 z-50 p-4 text-left">Description</th>
-                        {{-- <th class=" sticky top-0 z-50 p-4 text-left">Product name</th> --}}
-                        <th class=" sticky top-0 z-50 p-4 text-left">Qty</th>
-                        <th class=" sticky top-0 z-50  text-center">Uom</th>
-                        <th class=" sticky top-0 z-50  text-center">Kategori</th>
-                        <th class=" sticky top-0 z-50 p-4 text-right">Selling Price</th>
-                        <th class=" sticky top-0 z-50 p-4 text-center">Image</th>
-                        <th class=" sticky top-0 z-50 p-4 text-center">flaq</th>
-                        <th class=" sticky top-0 z-50 p-4 text-center">Action</th>
+    <div class="w-full top-0 h-[600px] mx-auto mt-2 px-2 bg-gray-300 rounded-xl justify-start overflow-auto">
+        <div class="w-full min-h-full">
+            <table class=" px-4 py-2 w-full border-collapse">
+                <p>Total: {{ $menu?->count() ?? '0' }}</p>
+                    <thead class="sticky py-0 top-0 bg-gray-400 z-55">
+                        <tr>
+                            <th class=" sticky top-0 z-50 p-4 text-left">Id</th>
+                            {{-- <th class=" sticky top-0 z-50 p-4 text-left">Menu Id</th> --}}
+                            <th class=" sticky top-0 z-50 p-4 text-left">Description</th>
+                            {{-- <th class=" sticky top-0 z-50 p-4 text-left">Product name</th> --}}
+                            <th class=" sticky top-0 z-50 p-4 text-left">Qty</th>
+                            <th class=" sticky top-0 z-50  text-center">Uom</th>
+                            <th class=" sticky top-0 z-50  text-center">Kategori</th>
+                            <th class=" sticky top-0 z-50 p-4 text-right">Selling Price</th>
+                            <th class=" sticky top-0 z-50 p-4 text-center">Image</th>
+                            <th class=" sticky top-0 z-50 p-4 text-center">flaq</th>
+                            <th class=" sticky top-0 z-50 p-4 text-center">Action</th>
+                        </tr>
+
+                    </thead>
+                <tbody class="bg-white">
+                    <?php
+                    $flaq='';
+                    ?>
+                    @foreach ($menu as $menus )
+
+                    <tr class="border-b-black border">
+                        <td
+                        wire:model.live="id"
+                        class="p-2 text-sm ">{{ $menus->id }}</td>
+
+                        <td
+                        wire:model.live="description"
+                        class="p-2 flex-col text-sm justify-center items-center">
+                        {{ $menus->menu_id}}<br>
+                        {{ $menus->description}}
+                        </td>
+
+                        {{-- <td
+                        wire:model.live="uom"
+                        class="p-2 text-sm ">{{ App\Models\Produk::getprodukName($menus->produk_id)}}</td> --}}
+
+                        <td
+                        wire:model.live="item_qty"
+                        class="p-2 text-sm  text-center ">{{ $menus->item_qty}}</td>
+
+                        <td
+                        wire:model.live="uom"
+                        class="p-2 text-sm  text-xl-center ">{{ $menus->uom}}</td>
+
+                        <td
+                        wire:model.live="kategori"
+                        class="p-2 text-sm text-xl-center ">{{ $menus->kategori}}</td>
+
+                        <td
+                        wire:model.live="harga"
+                        class="p-2 text-sm text-right">{{ $menus->sellingPrice}}
+                        </td>
+
+                        <td
+                        wire:model.live="menuImages"
+                        class="p-2 text-sm flex flex-col justify-center items-center text-blue-700"
+                        >
+                        @if(!empty($menus->image))
+                        <img width="50px" height="50px" src="{{ 'storage/'.$menus->image }}">
+                        <a href ="{{ 'storage/'.$menus->image }}" target="_blank" >View</a>
+                        @endif
+                        </td>
+
+                        <td
+                        wire:model="menu_visibility"
+                        class="p-2 text-sm text-center "
+                        >
+                        {{ $menus->flaq == '1' ? 'Show' : 'Hidden' }}
+
+                    </td>
+                        <td class="p-2 text-sm text-center ">
+                            <button
+                                wire:click="editMenu({{ $menus->id }})"
+                                class=" rounded-xl py-2  px-4 bg-blue-300">Edit</button>
+                            <button class=" rounded-xl py-2 px-4 bg-red-300">Delete</button>
+
+                        </td>
+
                     </tr>
+                    @endforeach
 
-                </thead>
-            <tbody class="bg-white">
-                <?php
-                $flaq='';
-                ?>
-                @foreach ($menu as $menus )
+                </tbody>
 
-                <tr class="border-b-black border">
-                    <td
-                    wire:model.live="id"
-                    class="p-2 text-sm ">{{ $menus->id }}</td>
-
-                    <td
-                    wire:model.live="description"
-                    class="p-2 flex-col text-sm justify-center items-center">
-                    {{ $menus->menu_id}}<br>
-                    {{ $menus->description}}
-                    </td>
-
-                    {{-- <td
-                    wire:model.live="uom"
-                    class="p-2 text-sm ">{{ App\Models\Produk::getprodukName($menus->produk_id)}}</td> --}}
-
-                    <td
-                    wire:model.live="item_qty"
-                    class="p-2 text-sm  text-center ">{{ $menus->item_qty}}</td>
-
-                    <td
-                    wire:model.live="uom"
-                    class="p-2 text-sm  text-xl-center ">{{ $menus->uom}}</td>
-
-                    <td
-                    wire:model.live="kategori"
-                    class="p-2 text-sm text-xl-center ">{{ $menus->kategori}}</td>
-
-                    <td
-                    wire:model.live="harga"
-                    class="p-2 text-sm text-right">{{ $menus->sellingPrice}}
-                    </td>
-
-                    <td
-                    wire:model.live="menuImages"
-                    class="p-2 text-sm flex flex-col justify-center items-center text-blue-700"
-                    >
-                    @if(!empty($menus->image))
-                    <img width="50px" height="50px" src="{{ 'storage/'.$menus->image }}">
-                     <a href ="{{ 'storage/'.$menus->image }}" target="_blank" >View</a>
-                     @endif
-                    </td>
-
-                    <td
-                    wire:model="menu_visibility"
-                    class="p-2 text-sm text-center "
-                    >
-                    {{ $menus->flaq == '1' ? 'Show' : 'Hidden' }}
-
-                   </td>
-                    <td class="p-2 text-sm text-center ">
-                        <button
-                            wire:click="editMenu({{ $menus->id }})"
-                            class=" rounded-xl py-2  px-4 bg-blue-300">Edit</button>
-                        <button class=" rounded-xl py-2 px-4 bg-red-300">Delete</button>
-
-                    </td>
-
-                </tr>
-                 @endforeach
-
-            </tbody>
-
-        </table>
-
+            </table>
+        </div>
 
     </div>
 
