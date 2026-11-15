@@ -75,7 +75,7 @@
 
     </div>
 
-    <div id="printArea" class="w-full p-2 bg-white">
+    <div id="printArea" class="w-full p-2 mt-2 bg-white">
                 {{-- <div class="flex flex-col min-w-[350px] top-0 md:flex-col h-screen justify-start items-start md:justify-center md:items-center px-2 mt-2 pb-10 overflow-auto"> --}}
                 <div class="flex flex-col h-[600px] px-2 min-w-[350px] top-0 overflow-auto">
                     <table class="w-full ">
