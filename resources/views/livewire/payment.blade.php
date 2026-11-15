@@ -1,13 +1,13 @@
-<div class="py-4">
-    <div class="w-full px-4">
-        <div class="mb-4 " >
+<div class="py-8 px-4">
+    <div class="w-full px-4 bg-white">
+        <div class="w-full text-lg text-lime-700 pl-4 text-bold py-4 " >
             <header>
                 <h3 class="text-xl font-bold text-gray-800">Payment</h3>
             </header>
 
         </div>
     </div>
-    <div class="flex flex-col justify-start items-start px-4  ">
+    <div class="flex flex-col justify-start items-start px-4 bg-white  ">
         <div class="flex flex-col md:flex-row justify-start items-start mb-2 gap-4">
             <input type="text"
              wire:model.live="searchFilter"
@@ -33,7 +33,7 @@
                 @endforeach
             </select>
         </div>
-        <div class="w-full h-[600px] top-0 overflow-auto px-2 ">
+        <div class="w-full h-[600px] top-0 overflow-auto px-2 bg-white">
             <div class="w-full flex-row justify-start">
                 <div class="flex w-full flex-col h-screen justify-start">
                     <table class="w-full border-collapse" >
