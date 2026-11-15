@@ -66,7 +66,7 @@
             <div class="flex flex-col w-20 justify-end items-wrap" >
                     <button
                     onclick="printDiv('printArea')"
-                    class="bg-blue-400  p-2 text-xs px-4 rounded-lg shadow-lg shadow-blue-400"
+                    class="bg-blue-400  p-2 text-sm px-4 rounded-lg shadow-lg shadow-blue-400"
                     >Print
                 </button>
             </div>
