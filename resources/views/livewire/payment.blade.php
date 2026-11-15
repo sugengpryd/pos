@@ -33,7 +33,7 @@
                 @endforeach
             </select>
         </div>
-        <div class="w-full h-[600px] top-0 overflow-auto px-4 ">
+        <div class="w-full h-[600px] top-0 overflow-auto px-2 ">
             <div class="w-full flex-row justify-start">
                 <div class="flex w-full flex-col h-screen justify-start">
                     <table class="w-full border-collapse" >
