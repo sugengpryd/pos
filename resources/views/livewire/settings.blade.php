@@ -1,6 +1,35 @@
 <div class="py-4">
+    <div
+            x-data="{ show: false, message: '',type:'success',timer:null }"
+
+            x-on:notify.window="
+                console.log('Notify event received:', $event.detail);
+                message = $event.detail.message;
+                type = $event.detail.type || 'success';
+                {{-- bgColor = $event.detail.color ?? 'bg-green-500'; --}}
+                show = true;
+                clearTimeout(timer);
+                timer = setTimeout(() => show = false, 2000);
+                {{-- setTimeout(() => show = false, 2000); --}}
+            "
+            >
+            <div
+                x-show="show"
+                x-transition
+                :class="{
+                    'bg-green-500': type === 'success',
+                    'bg-red-600': type === 'error',
+                    'bg-yellow-500': type === 'warning',
+                    'bg-blue-500': type === 'info'
+                }"
+                class="fixed top-5 right-5 z-50 bg-green-500 text-white px-5 py-3 rounded-lg shadow-lg"
+            >
+                <span x-text="message"></span>
+            </div>
+        </div>
 <div class="w-full h-[600px] p-6">
     {{-- <div class="flex flex-start justify-between items-center"> --}}
+
         <div class="flex flex-row justify-center items-center p-2">
             <form class="bg-slate-300">
 
