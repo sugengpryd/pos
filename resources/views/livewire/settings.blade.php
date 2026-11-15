@@ -1,19 +1,31 @@
 <div class="py-4">
-    <div
-            x-data="{ show: false, message: '',type:'success',timer:null }"
 
+    <div class="w-full h-[600px] p-6">
+        {{-- <div class="flex flex-start justify-between items-center"> --}}
+
+        {{-- notifikasi --}}
+        <div
+            x-data="{
+                show: false,
+                message: '',
+                type: 'success',
+                timer: null
+            }"
             x-on:notify.window="
-                console.log('Notify event received:', $event.detail);
                 message = $event.detail.message;
                 type = $event.detail.type || 'success';
-                {{-- bgColor = $event.detail.color ?? 'bg-green-500'; --}}
+
                 show = true;
+
                 clearTimeout(timer);
-                timer = setTimeout(() => show = false, 2000);
-                {{-- setTimeout(() => show = false, 2000); --}}
+
+                timer = setTimeout(() => {
+                    show = false;
+                }, 2000);
             "
-            >
+        >
             <div
+                x-cloak
                 x-show="show"
                 x-transition
                 :class="{
@@ -22,14 +34,11 @@
                     'bg-yellow-500': type === 'warning',
                     'bg-blue-500': type === 'info'
                 }"
-                class="fixed top-5 right-5 z-50 bg-green-500 text-white px-5 py-3 rounded-lg shadow-lg"
+                class="fixed top-5 right-5 z-[9999] text-white px-5 py-3 rounded-lg shadow-lg"
             >
                 <span x-text="message"></span>
             </div>
         </div>
-<div class="w-full h-[600px] p-6">
-    {{-- <div class="flex flex-start justify-between items-center"> --}}
-
         <div class="flex flex-row justify-center items-center p-2">
             <form class="bg-slate-300">
 
@@ -42,12 +51,10 @@
                 <div class="flex flex-col mb-4 justify-between items-center bg-gray-400 py-4 px-4 rounded-lg hover:shadow-xl hover:underline underline-offset-8 shadow-gray-700">
                     <label
 
-                    wire:model="inputTimezone"
-                    class="p-4"
                     >TimeZone</label>
                     <select
-                        wire:model="timezone"
-                        wire:change="getTimezone()"
+                        wire:model.live="timezone"
+                        wire:change="getTimezone"
                         class="rounded-lg"
                     >
                         <option value="">Select Time Zone</option>
@@ -102,8 +109,8 @@
             </form>
         </div>
 
-    {{-- </div> --}}
+        {{-- </div> --}}
 
-</div>
+    </div>
 
 </div>

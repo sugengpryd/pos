@@ -12,44 +12,47 @@ use Livewire\Attributes\Layout;
 class Settings extends Component
 {
     public $notif ='';
-    public $inputTimezone ='';
     public $timezone='';
+    public $settimezone='';
 
     public function mount(){
          $notification = dbUser::where('id',Auth::id())->value('updateFlaq');
         $this->notif = $notification;
+
+        $this->timezone = Auth()->user()->timezone ;
 
         // dd($this->notif);
 
 
     }
     public function getTimezone(){
-        $this->inputTimezone=$this->timezone;
 
-        if(empty($this->inputTimezone)){
+        if(empty($this->timezone)){
             // dd($this->inputTimezone);
-
-            $this->dispatch('notify',[
-            'type'=>'error',
-            'message'=> 'Please Select TimeZone !!!']);
-            // dd($this->inputTimezone);
-
+            // error
+            $this->dispatch('notify',
+                message: 'Please Select Timezone !',
+                type: 'error'
+            );
             return;
 
         }
-             $setTmezone = dbUser::where('id',Auth::id())->update([
+
+        $setTmezone = dbUser::where('id',Auth::id())->update([
                 'timezone' => $this->timezone,
                 'updated_at' => now(),
             ]);
 
-            $this->dispatch('notify',[
-                'type'=>'success',
-                'message'=> 'TimeZone updated To GMT' . $this->timezone,
-            ]);
+            // Success
+            $this->dispatch('notify',
+                message: "Timezone GMT {$this->timezone} Saved !",
+                type: 'success'
+            );
+
             // dd($this->inputTimezone);
 
 
-
+            // $this->timezone = $this->inputTimezone;
 
 
     }
@@ -59,7 +62,7 @@ class Settings extends Component
     public function render()
     {
         // dd(Auth()->user()->timezone);
-        $this->timezone = Auth()->user()->timezone ;
+
 
 
         return view('livewire.settings');
