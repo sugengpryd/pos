@@ -6,11 +6,14 @@ use App\Models\User as dbUser;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 
+
 #[Layout('layouts.app')]
 
 class Settings extends Component
 {
     public $notif ='';
+    public $inputTimezone ='';
+    public $timezone='';
 
     public function mount(){
          $notification = dbUser::where('id',Auth::id())->value('updateFlaq');
@@ -18,6 +21,10 @@ class Settings extends Component
 
         // dd($this->notif);
 
+
+    }
+    public function getTimezone(){
+        $this->inputTimezone=$this->timezone;
 
     }
 
