@@ -40,12 +40,21 @@
                         <thead class="sticky top-0 z-55 bg-gray-800 text-white" >
                             <th class="sticky py-2">Id</th>
                             <th class="sticky py-2">BatchId</th>
-                            <th class="sticky py-2">Total </th>
-                            <th class="sticky py-2">Discount</th>
-                            <th class="sticky py-2">Tax</th>
-                            <th class="sticky py-2 text-center">
+                            <th class="sticky py-2 text-right">
                                 Total<br>
                                 {{ number_format($total, 0, ',', '.') }}
+
+                            </th>
+                            <th class="sticky py-2 text-right">
+                                Discount<br>
+                                 {{number_format( $discount,0,',','.') }}
+                            </th>
+                            <th class="sticky py-2 text-right">
+                                SalesTax<br>
+                            </th>
+                            <th class="sticky py-2 text-right">
+                                GrandTotal<br>
+                                {{ number_format($grandtotal, 0, ',', '.') }}
                             </th>
                             <th class="sticky py-2">Payment</th>
                             <th class="sticky py-2">Invoice</th>
@@ -58,10 +67,10 @@
                             <tr class="border border-b-gray-400 text-xs">
                                 <td class="px-2 py-2 text-center">{{ $index+1 }}</td>
                                 <td class="px-2 py-2 text-center">{{ $payments->batch_id }}</td>
-                                <td class="px-2 py-2 text-center">{{ $payments->total}}</td>
-                                <td class="px-2 py-2 text-center">{{ $payments->discount }}</td>
-                                <td class="px-2 py-2 text-center">{{ $payments->pph }}</td>
-                                <td class="px-2 py-2 text-center">{{ $payments->grandtotal }}</td>
+                                <td class="px-2 py-2 text-right">{{ $payments->total}}</td>
+                                <td class="px-2 py-2 text-right">{{ $payments->discount }}</td>
+                                <td class="px-2 py-2 text-right">{{ $payments->pph }}</td>
+                                <td class="px-2 py-2 text-right">{{ $payments->grandtotal }}</td>
                                 <td class="px-2 py-2 text-center">{{ $payments->tipe_payment }}</td>
                                 <td class="px-2 py-2 text-center">
                                 @if(!empty($payments->invoice_path))

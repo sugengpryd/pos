@@ -70,6 +70,10 @@ class Payment extends Component
              ->pluck('date');
 
         $total = $payment->where('batch_id', '!=','')->sum('total');
+        $discount = $payment->where('batch_id', '!=','')->sum('discount');
+        $tax = $payment->where('batch_id', '!=','')->sum('tax');
+        $grandtotal = $payment->where('batch_id', '!=','')->sum('grandtotal');
+        // dd($total);
 
 
 
@@ -77,7 +81,7 @@ class Payment extends Component
         // dd($tipePayment);
         // $this->selectPayment = $tipePayment;
 
-        return view('livewire.payment',compact('payment','tipePayment','createdAt','total' ));
+        return view('livewire.payment',compact('payment','tipePayment','createdAt','total','discount','grandtotal' ));
     }
 
     public function updatedSelectPayment(){

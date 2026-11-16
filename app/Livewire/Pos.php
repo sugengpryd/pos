@@ -999,10 +999,10 @@ public function removeItem($index,$item_id)
             ['batch_id' => $this->transaksiBatchId],
             [
             'batch_id' => $this->transaksiBatchId,
-            'total'=> $this->total,
-            'discount' => '0',
+            'total'=> preg_replace('/\D/','',$this->total),
+            'discount' => $this->diskon ?? '0',
             'grandtotal' => preg_replace('/\D/','',$this->totalTagihan),
-            'nominal' => $this->nominalPembayaran,
+            'nominal' => preg_replace('/\D/','',$this->nominalPembayaran),
             'tipe_payment' => $this->tipePembayaran,
             'flaq'=>'1',
         ]);
