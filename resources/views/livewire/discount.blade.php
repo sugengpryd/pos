@@ -35,7 +35,10 @@
                             <th class="border p-3">Id</th>
                             <th class="border p-3">Batch Id</th>
                             <th class="border p-3 text-right">Total</th>
-                            <th class="border p-3 text-right">Discount</th>
+                            <th class="border p-3 text-right">
+                                Discount<br>
+                            {{number_Format($total,0,'.','.') }}
+                            </th>
                             <th class="border p-3">Flaq</th>
                             <th class="border p-3">Created At</th>
                         </tr>

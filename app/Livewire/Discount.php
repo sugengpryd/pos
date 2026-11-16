@@ -44,8 +44,11 @@ public function mount()
         $this->createnewConnection();
         $Discount = Dbdiscount::on('customer_sqlite')->get();
 
+        $total = $Discount->where('batch_id', '!=','')->sum('discount');
 
 
-        return view('livewire.discount',compact('Discount'));
+
+
+        return view('livewire.discount',compact('Discount','total'));
     }
 }
