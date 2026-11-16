@@ -86,8 +86,14 @@ class Delivery extends Component
     ->latest('created_at')
     ->get();
 
-    // dd($result);
+    // $biayakirim =$result->sum('BiayaKirim')
+        $biayakirim = $result->where('batch_Id', '!=','')
+                             ->where('flaq', '==', '1')
+                             ->sum('BiayaKirim');
 
-        return view('livewire.delivery',compact('result'));
+
+    // dd($biayakirim);
+
+        return view('livewire.delivery',compact('result','biayakirim'));
     }
 }

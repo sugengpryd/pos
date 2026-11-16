@@ -69,7 +69,7 @@ class Payment extends Component
             ->distinct()
              ->pluck('date');
 
-        $total = $payment->where('batch_id', '!=','')->sum('grandtotal');
+        $total = $payment->where('batch_id', '!=','')->sum('total');
 
 
 

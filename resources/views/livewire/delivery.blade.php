@@ -31,14 +31,17 @@
             <table class="w-full flex-col border-collapse bg-white">
                 <thead class="bg-gray-400 text-white z-50 sticky top-0">
                     <tr>
-                        <th class="sticky p-4 w-14">id</th>
-                        <th class="sticky p-4 w-14">Batch Id</th>
-                        <th class="sticky p-4 w-14">From</th>
-                        <th class="sticky p-4 w-14">Alamat</th>
-                        <th class="sticky p-4 w-14">To</th>
-                        <th class="sticky p-4 w-14">Alamat Tujuan</th>
-                        <th class="sticky p-4 w-14">No tujuan</th>
-                        <th class="sticky p-4 w-14">Biaya Kirim</th>
+                        <th class="sticky p-2 w-14">id</th>
+                        <th class="sticky p-2 w-14">Batch Id</th>
+                        <th class="sticky p-2 w-14">From</th>
+                        <th class="sticky p-2 w-14">Alamat</th>
+                        <th class="sticky p-2 w-14">To</th>
+                        <th class="sticky p-2 w-14">Alamat Tujuan</th>
+                        <th class="sticky p-2 w-14">No tujuan</th>
+                        <th class=" text-right sticky p-2 w-14">
+                            Biaya Kirim
+                            {{ number_format($biayakirim,0,'.','.') }}
+                        </th>
                         <th class="sticky p-4 w-14">Flaq</th>
                         <th class="sticky p-4 w-14">Created At</th>
                     </tr>
@@ -75,7 +78,7 @@
                         {{$results->toNumber}}
                         </td>
                         <td
-                        class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
+                        class="sticky py-3 px-3 w-14 text-xs font-semibold text-right">
                         {{$results->BiayaKirim}}
                         </td>
                         <td
