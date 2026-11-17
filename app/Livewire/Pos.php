@@ -671,7 +671,7 @@ class Pos extends Component
 
     }
     public function pilihCustomer(){
-        dd($this->batch_id);
+        // dd($this->batch_id);
         $this->createnewConnection();
         $this->openTransaksi=true;
 
