@@ -610,12 +610,13 @@
                     wire:change='Penerima()'
                     class=" rounded px-8 mx-auto m-2 text-xs"
                     >
+                        <option value="">Pilih Penerima</option>
                         <option value='default' class="px-2">Penerima Default</option>
                         <option value='new' class="px-2">Penerima Custom</option>
                     </select>
 
 
-                        @if ($this->penerima == 'new')
+                        @if (!empty($this->penerima))
                             <div class="w-full space-y-4 rounded-xl border-2 border-gray-300 bg-white p-4">
 
                                         <div class="w-full">

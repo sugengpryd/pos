@@ -65,6 +65,7 @@ class Pos extends Component
     public $createBatch=false;
     public $openDelivery='';
     public $penerima='';
+    public $namapenerima='';
     public $pengirim='';
     public $biayaKirim='0';
     public $biayakirim='0';
@@ -102,6 +103,7 @@ class Pos extends Component
     {
     $this->UsersId = Auth::id();
     $this->createnewConnection();
+    $this->namapenerima ='default';
     // $this->nominalPembayaran = $this->totalTagihan;
     }
 
@@ -417,12 +419,20 @@ class Pos extends Component
     }
     public function Penerima(){
         $param =$this->penerima;
+        // dd($param);
         if($param == "default"){
+
+            $this->namaPenerima = $this->selectCustomer;
+            $this->alamatPenerima = $this->alamat;
+            $this->KotaPenerima = $this->kota;
+            $this->teleponPenerima = $this->telepon1;
+
+
+        }else{
             $this->namaPenerima = '';
             $this->alamatPenerima = '';
             $this->KotaPenerima = '';
             $this->teleponPenerima = '';
-
 
         }
 
@@ -963,6 +973,7 @@ public function removeItem($index,$item_id)
 
 
     $this->bayarMode=true;
+    // dd($this->diskon ?? '0');
     // dd($this->bayarMode);
     $this->createnewConnection();
         // dd("bayar");
@@ -1000,7 +1011,7 @@ public function removeItem($index,$item_id)
             [
             'batch_id' => $this->transaksiBatchId,
             'total'=> preg_replace('/\D/','',$this->total),
-            'discount' => $this->diskon ?? '0',
+            'discount' => preg_replace('/\D/','',$this->diskon) ?? '0',
             'grandtotal' => preg_replace('/\D/','',$this->totalTagihan),
             'nominal' => preg_replace('/\D/','',$this->nominalPembayaran),
             'tipe_payment' => $this->tipePembayaran,

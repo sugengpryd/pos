@@ -71,9 +71,10 @@ class Payment extends Component
 
         $total = $payment->where('batch_id', '!=','')->sum('total');
         $discount = $payment->where('batch_id', '!=','')->sum('discount');
+
         $tax = $payment->where('batch_id', '!=','')->sum('tax');
         $grandtotal = $payment->where('batch_id', '!=','')->sum('grandtotal');
-        // dd($total);
+        // dd($discount);
 
 
 
