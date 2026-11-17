@@ -743,8 +743,8 @@ class Pos extends Component
 
          $cekTransaksi = dbTransaksi::on('customer_sqlite')
          ->join('menu', function ($join) {
-            $join->on('transaksi.menu_Id', '=', 'menu.menu_id')
-                 ->on('transaksi.batch_id', '=', 'menu.batch_id');
+            $join->on('transaksi.menu_Id', '=', 'menu.menu_id');
+                //  ->on('transaksi.batch_id', '=', 'menu.batch_id');
             })->distinct()->get();
 
 
