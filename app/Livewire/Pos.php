@@ -721,29 +721,35 @@ class Pos extends Component
 
         // $this->createbatchId();
 
-        $cekTransaksi = dbTransaksi::on('customer_sqlite')->rightJoin(
-                'menu',
-                'transaksi.menu_Id',
-                '=',
-                'menu.menu_id'
-            )->where('transaksi.flaq','=', 'basket')
-            ->where('transaksi.customer_Id',$this->customerid)
-            ->select(
-                'transaksi.*',
-                'menu.menu_id',
-                'image',
-                'menu.description',
-                'menu.kategori',
-                'menu.item_qty',
-                'menu.uom',
-                'menu.sellingPrice',
-                // 'menu.flaq',
-                // 'customer.nama as customer_nama',
-                // 'customer.Alamat',
-                // 'customer.telepon1',
-                // 'customer.telepon2'
-            )
-            ->distinct()->get();
+        // $cekTransaksi = dbTransaksi::on('customer_sqlite')->rightJoin(
+        //         'menu',
+        //         'transaksi.menu_Id',
+        //         '=',
+        //         'menu.menu_id'
+        //     )->where('transaksi.flaq','=', 'basket')
+        //     ->where('transaksi.customer_Id',$this->customerid)
+        //     ->select(
+        //         'transaksi.*',
+        //         'menu.menu_id',
+        //         'image',
+        //         'menu.description',
+        //         'menu.kategori',
+        //         'menu.item_qty',
+        //         'menu.uom',
+        //         'menu.sellingPrice',
+
+        //     )
+        //     ->distinct()->get();
+
+         $cekTransaksi = dbTransaksi::on('customer_sqlite')
+         ->join('menu', function ($join) {
+            $join->on('transaksi.menu_Id', '=', 'menu.menu_id')
+                 ->on('transaksi.batch_id', '=', 'menu.batch_id');
+            })->distinct()->get();
+
+
+
+
             // dd($this->menustransaksi);
             // dd($cekTransaksi);
 
