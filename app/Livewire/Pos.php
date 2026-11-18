@@ -106,7 +106,7 @@ class Pos extends Component
 
         foreach ($this->menustransaksi as $index => $menu) {
         if ($menu['menu_id'] == $menu_id) {
-            if ($this->menustransaksi[$index]['item_qty'] > 0) {
+            if ($this->menustransaksi[$index]['item_qty'] > 1) {
                 $this->menustransaksi[$index]['item_qty']--;
                 $this->totals = $this->menustransaksi[$index]['item_qty'] * $this->menustransaksi[$index]['sellingPrice'];
                 $this->menustransaksi[$index]['total']=$this->totals;
