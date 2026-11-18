@@ -273,7 +273,7 @@
                                                 type="button"
                                                 wire:click="minqty('{{ $menu['menu_id'] }}')"
                                                 wire:loading.attr="disabled"
-                                                class="bg-gray-100 hover:bg-gray-200 h-9 w-9 rounded-lg font-bold text-lg"
+                                                class="bg-gray-100 hover:bg-gray-200 h-9 w-9 px-4 rounded-lg font-bold text-lg"
                                             >
                                                 -
                                             </button>
@@ -286,7 +286,7 @@
                                                 type="button"
                                                 wire:click="addqty('{{ $menu['menu_id'] }}')"
                                                 wire:loading.attr="disabled"
-                                                class="bg-gray-100 hover:bg-gray-200 h-9 w-9 rounded-lg font-bold text-lg"
+                                                class="bg-gray-100 hover:bg-gray-200 h-9 w-9 px-4 rounded-lg font-bold text-lg"
                                             >
                                                 +
                                             </button>
