@@ -261,11 +261,29 @@
                                     <td class="text-center border-b border-gray-400 text-xs">{{ $index+1}}</td>
                                     {{-- <td class="text-left border-b border-gray-400 text-xs">{{ $menu['menu_id'] }}</td> --}}
                                     <td class="text-center border-b border-gray-400 text-xs">
-                                        <img class="mx-auto rounded-lg" width="50px" height="50px" src="{{ asset('storage/' . $menu['image'])  }}">
+                                        {{-- <img class="mx-auto rounded-lg" width="50px" height="50px" src="{{ asset('storage/' . $menu['image'])  }}"> --}}
+                                        <img class="mx-auto rounded-lg" width="50px" height="50px" src="{{ asset('storage/' . App\Models\menu::get_image($menu['menu_id']))  }}">
                                         {{ $menu['menu_id'] }}
                                     </td>
                                     <td class="text-left border-b border-gray-400 text-xs">{{ $menu['description'] }}</td>
-                                    <td class="text-center border-b border-gray-400 text-xs">{{ $menu['item_qty'] }}</td>
+                                    <td class="text-center border-b border-gray-400 text-xs">
+                                        <button
+                                        wire:click="minqty('{{$menu['menu_id']}}')"
+                                        wire:loading.attr="disabled"
+                                        class="bg-white py-2 px-4 text-bold text-sm rounded-lg"
+
+                                         >-</button>
+                                        <span
+                                        class="px-2">{{ $menu['item_qty'] }}</span>
+                                        <button
+                                        wire:click="addqty('{{$menu['menu_id']}}')"
+                                        wire:loading.attr="disabled"
+                                        class="bg-white py-2 px-4 text-bold text-sm rounded-lg"
+
+                                        >+</button>
+                                        </td>
+
+
                                     <td class="text-right border-b border-gray-400 text-xs">{{ $menu['sellingPrice'] }}</td>
                                     <td class="text-right border-b border-gray-400 text-xs">{{ $menu['total']}}</td>
                                     {{-- <td class="text-right">{{ $menu['item_qty'] * $menu['sellingPrice']}}</td> --}}
@@ -880,6 +898,16 @@
             <div class="flex flex-row w-full min-w-[350px] justify-between items-center md:justify-between md:items-start ">
                 <form wire:submit.prevent="" enctype="multipart/form-data">
                     <div class="flex flex-col w-full h-1/2">
+                        <select
+                        wire:model.live='created'
+                        >
+                            <option>Pilih Tanggal Transaksi </option>
+                                @foreach ($created as $index =>$createds )
+                                {{-- <option>{{ $createds->created_at->format('Y-m-d') }}</option> --}}
+                                <option value="{{ $createds->tanggal }}">  {{ $createds->tanggal }}</option>
+
+                                @endforeach
+                        </select>
                         <select
                         wire:change="select_voidBatchId()"
                         wire:model="selectedBatchId"

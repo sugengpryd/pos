@@ -54,4 +54,11 @@ class Menu extends Model
         return $name[0];
 
     }
+    static function get_image($value){
+    // dd($value);
+
+    $image= menu::on('customer_sqlite')->select('image')->where('menu_id','=',$value)->pluck('image');
+    // dd($image);
+    return $image[0];
+    }
 }

@@ -39,6 +39,7 @@ class Pos extends Component
     public $menustransaksi=[];
     public $items = [];
     public $total = 0;
+    public $totals =0;
     public $totalSementara = 0;
     public $ppn = 0;
     public $diskon = 0;
@@ -92,13 +93,67 @@ class Pos extends Component
     public $showmodalVoid=false;
     public $voidMode = false;
     public $voidBatchId = [];
+    public $created = [];
     public $selectedBatchId = '';
     public $openTransaksi=false;
     public $UsersId='';
     public $bayarMode =false;
 
-    // public $Resultcustomers= [];
 
+    // public $Resultcustomers= [];
+    public function minqty($menu_id){
+        // dd($this->menustransaksi);
+
+        foreach ($this->menustransaksi as $index => $menu) {
+        if ($menu['menu_id'] == $menu_id) {
+            if ($this->menustransaksi[$index]['item_qty'] > 0) {
+                $this->menustransaksi[$index]['item_qty']--;
+                $this->totals = $this->menustransaksi[$index]['item_qty'] * $this->menustransaksi[$index]['sellingPrice'];
+                $this->menustransaksi[$index]['total']=$this->totals;
+
+
+
+
+                }
+
+
+            if ($this->menustransaksi[$index]['item_qty'] < 1) {
+                // session()->flash('warning', 'quantity 0 ');
+                $this->dispatch('notify',message: 'quantity 0',type:'warning');
+
+
+            }
+            $this->calculateTotal();
+
+            break;
+           }
+        }
+
+    }
+
+    public function addqty($menu_id){
+    // dd($this->menustransaksi);
+    foreach ($this->menustransaksi as $index => $menu) {
+        if ($menu['menu_id'] == $menu_id) {
+            $this->menustransaksi[$index]['item_qty']++;
+
+            $this->totals = $this->menustransaksi[$index]['item_qty'] * $this->menustransaksi[$index]['sellingPrice'];
+            $this->menustransaksi[$index]['total']=$this->totals;
+            // $this->totalSementara += $this->menustransaksi[$index]['total'];
+
+            // $this->total = $this->totalSementara;
+            // $this->total = number_format($this->totalSementara,0,'.'.'.');
+            $this->itemQty += 1;
+            $biayaKirim = (integer) preg_replace('/\D/','',$this->biayaKirim);
+            // dd($biayaKirim);
+            // $this->totalTagihan = number_format(($this->totalSementara +  $this->ppn + $biayaKirim) - $this->diskon,0,'.'.'.');
+            // calculateTotal;
+            $this->calculateTotal();
+            break;
+
+            }
+        }
+    }
     public function mount()
     {
     $this->UsersId = Auth::id();
@@ -135,10 +190,21 @@ class Pos extends Component
         $today = now();
         // dd($today)->format('Y-m-d');
 
+        $created = dbTransaksi::on('customer_sqlite')
+        ->selectRaw('DATE(created_at) as tanggal')
+        ->where('flaq', 'paid')
+        ->distinct()
+        ->orderBy('tanggal', 'desc')
+        ->get();
+
+        // ->select('created_at')->where('flaq', 'paid')->distinct()->get();
+        // dd($created);
+
         $batchId = dbTransaksi::on('customer_sqlite')->select('batch_id')->where('flaq', 'paid')
         ->whereDate('created_at',$today)->distinct()->orderBy('batch_id','desc')->get();
         // dd($batchId);
 
+        $this->created = $created;
         $this->voidBatchId = $batchId;
         $this->voidMode=true;
         $this->openTransaksi=false;
@@ -166,6 +232,7 @@ class Pos extends Component
             ->where('transaksi.flaq', 'paid')
             // ->where('transaksi.batch_id','like', '%' . $this->selectedBatchId . '%')
              ->where('transaksi.batch_id', $batchId)
+             ->where('menu.flaq','1')
             ->select(
                 'transaksi.*',
                 'menu.menu_id',
@@ -174,6 +241,7 @@ class Pos extends Component
                 'menu.item_qty',
                 'menu.uom',
                 'menu.sellingPrice',
+                'menu.image',
 
             )
             ->distinct()->get();
@@ -569,7 +637,8 @@ class Pos extends Component
             return;
 
             }
-        $menustransaksi = Menu::on('customer_sqlite')->where('menu_id', $id)->get();
+        $menustransaksi = Menu::on('customer_sqlite')->where('menu_id', $id)
+                                                     ->where('flaq','1')->get();
 
         // dd([$menustransaksi,$this->menustransaksi]);
 
@@ -728,6 +797,7 @@ class Pos extends Component
                 'menu.menu_id'
             )->where('transaksi.flaq','=', 'basket')
             ->where('transaksi.customer_Id',$this->customerid)
+            ->where('menu.flaq','1')
             ->select(
                 'transaksi.*',
                 'menu.menu_id',
@@ -846,9 +916,11 @@ public function removeItem($index,$item_id)
     public function calculateTotal()
     {
             $this->total = collect($this->menustransaksi)->sum(function ($item) {
-                return (float) $item['item_qty'] * (float) $item['sellingPrice'];
+                return (integer) $item['item_qty'] * (integer) $item['sellingPrice'];
             });
-            $this->totalTagihan = ($this->total - $this->diskon) + $this->ppn + (float) preg_replace('/\D/','',$this->biayaKirim);
+            $diskon = preg_replace('/\D/','',$this->diskon);
+            $ppn = preg_replace('/\D/','',$this->ppn);
+            $this->totalTagihan = ($this->total - $diskon) + $ppn + (integer) preg_replace('/\D/','',$this->biayaKirim);
             $this->totalSementara =$this->total;
     }
 
@@ -910,6 +982,7 @@ public function removeItem($index,$item_id)
             'sellingPrice'=>$itemTransaksi['sellingPrice'],
             'total'=>$itemTransaksi['total'],
             'customer_Id'=>$this->customerid,
+            // 'image'=>$itemTransaksi['image'],
             'flaq'=> "basket",
 
 
