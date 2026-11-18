@@ -266,28 +266,59 @@
                                         {{ $menu['menu_id'] }}
                                     </td>
                                     <td class="text-left border-b border-gray-400 text-xs">{{ $menu['description'] }}</td>
-                                    <td class=" flex justify-center gap-2 items-center py-4 text-center border-b border-gray-400 text-xs">
+                                    <td class="border-b border-gray-400 text-xs text-center">
+                                        <div class="flex flex-row w-full justify-center items-center gap-2">
+
+                                            <button
+                                                type="button"
+                                                wire:click="minqty('{{ $menu['menu_id'] }}')"
+                                                wire:loading.attr="disabled"
+                                                class="bg-gray-100 hover:bg-gray-200 h-9 w-9 rounded-lg font-bold text-lg"
+                                            >
+                                                -
+                                            </button>
+
+                                            <span class="min-w-8 text-center font-semibold">
+                                                {{ $menu['item_qty'] }}
+                                            </span>
+
+                                            <button
+                                                type="button"
+                                                wire:click="addqty('{{ $menu['menu_id'] }}')"
+                                                wire:loading.attr="disabled"
+                                                class="bg-gray-100 hover:bg-gray-200 h-9 w-9 rounded-lg font-bold text-lg"
+                                            >
+                                                +
+                                            </button>
+
+                                        </div>
+                                    </td>
+                                    {{-- <td class=" flex flex-row w-full h-auto justify-center gap-2 items-center text-center border-b border-gray-400 text-xs">
                                         <button
                                         wire:click="minqty('{{$menu['menu_id']}}')"
                                         wire:loading.attr="disabled"
-                                        class="bg-white py-2 px-4 text-bold text-sm rounded-lg"
+                                        class="bg-white h-full py-2 px-4 text-bold text-sm rounded-lg"
+                                         >
+                                         -
+                                        </button>
 
-                                         >-</button>
-                                        <span
+                                         <span
                                         class="px-2">{{ $menu['item_qty'] }}</span>
+
                                         <button
                                         wire:click="addqty('{{$menu['menu_id']}}')"
                                         wire:loading.attr="disabled"
-                                        class="bg-white py-2 px-4 text-bold text-sm rounded-lg"
-
-                                        >+</button>
-                                    </td>
+                                        class="bg-white h-full py-2 px-4 text-bold text-sm rounded-lg"
+                                        >
+                                        +
+                                        </button>
+                                    </td> --}}
 
 
                                     <td class="text-right border-b border-gray-400 text-xs">{{ $menu['sellingPrice'] }}</td>
                                     <td class="text-right border-b border-gray-400 text-xs">{{ $menu['total']}}</td>
                                     {{-- <td class="text-right">{{ $menu['item_qty'] * $menu['sellingPrice']}}</td> --}}
-                                    <td class="text-center py-2">
+                                    <td class="text-center py-4">
                                     @if(!$voidMode)
                                     <button
                                         wire:click="removeItem({{ $index }},'{{ $menu['menu_id'] }}')"
