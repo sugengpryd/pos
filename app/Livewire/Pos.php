@@ -117,9 +117,9 @@ class Pos extends Component
                 }
 
 
-            if ($this->menustransaksi[$index]['item_qty'] < 1) {
+            if ($this->menustransaksi[$index]['item_qty'] <= 1) {
                 // session()->flash('warning', 'quantity 0 ');
-                $this->dispatch('notify',message: 'quantity 0',type:'warning');
+                $this->dispatch('notify',message: 'Minimun quantity 1',type:'warning');
 
 
             }
