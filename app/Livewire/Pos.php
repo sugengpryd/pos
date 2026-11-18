@@ -110,14 +110,16 @@ class Pos extends Component
                 $this->menustransaksi[$index]['item_qty']--;
                 $this->totals = $this->menustransaksi[$index]['item_qty'] * $this->menustransaksi[$index]['sellingPrice'];
                 $this->menustransaksi[$index]['total']=$this->totals;
+                $this->itemQty -= 1;
+                $biayaKirim = (integer) preg_replace('/\D/','',$this->biayaKirim);
 
 
 
 
-                }
+            }else{
 
 
-            if ($this->menustransaksi[$index]['item_qty'] = 1) {
+            // if ($this->menustransaksi[$index]['item_qty'] = 1) {
                 // session()->flash('warning', 'quantity 0 ');
                 $this->dispatch('notify',message: 'Minimun quantity 1',type:'warning');
 
