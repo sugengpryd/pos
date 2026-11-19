@@ -928,7 +928,7 @@
             </h3>
             <div class="flex flex-row w-full min-w-[350px] justify-between items-center md:justify-between md:items-start ">
                 <form wire:submit.prevent="" enctype="multipart/form-data">
-                    <div class="flex flex-col w-full h-1/2">
+                    <div class="flex flex-col w-full h-full">
                         <select
                         wire:model.live='created'
                         >
