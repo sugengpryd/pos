@@ -927,10 +927,12 @@ public function removeItem($index,$item_id)
     }
 
     public function createbatchId(){
+        $this->createnewConnection();
+
         $this->createBatch = true;
         $this->namaPenerima ='';
         // $count = dbTransaksi::whereDate('created_at', today())->count();
-        $count = dbbatch::whereMonth('created_at', now()->month)
+        $count = dbbatch::on('customer_sqlite')->whereMonth('created_at', now()->month)
             ->whereYear('created_at', now()->year)
             ->count();
             // dd($count);
