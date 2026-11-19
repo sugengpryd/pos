@@ -1029,7 +1029,7 @@ public function removeItem($index,$item_id)
                 if($findBatch){
                     $findBatch->delete();
                 }
-                $addtoBatch_sequences=dbbatch::create([
+                $addtoBatch_sequences=dbbatch::on('customer_sqlite')->create([
                     'batch_id'=>$this->transaksiBatchId
                 ]);
 
