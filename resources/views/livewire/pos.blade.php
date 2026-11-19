@@ -926,7 +926,7 @@
             <h3 class="text-lg font-semibold mb-4">
                 {{ $voidMode ? 'Void Paid Transaksi' : '' }}
             </h3>
-            <div class="flex flex-row w-full min-w-[350px] justify-between items-center md:justify-between md:items-start ">
+            <div class="flex flex-row w-full min-h-[90vh]  min-w-[350px] justify-between items-center md:justify-between md:items-start ">
                 <form wire:submit.prevent="" enctype="multipart/form-data">
                     <div class="flex flex-col w-full h-full">
                         <select
