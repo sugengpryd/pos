@@ -48,6 +48,8 @@ class Menu extends Component
     public $filterSearch='';
     public $UsersId = '';
     public $dbconnection = '';
+    public $selectedText= '';
+
 
     public function mount()
     {
@@ -342,5 +344,10 @@ class Menu extends Component
         $idRandom = strtoupper(Str::random(3)) . random_int(100000, 999999);
         // dd($idRandom);
         $this->menuId = $idRandom;
+    }
+
+    public function copyDescriptions(){
+        // dd($this->selectedText);
+        $this->menu_description = $this->selectedText;
     }
 }

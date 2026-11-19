@@ -138,8 +138,9 @@
                 <div class=" flex flex-row py-2 w-full min-w-16">
                     <label  class="w-full text-xs">Menu Description</label>
                     <input
-                    wire:model="menu_description"
+                    wire:model.live="menu_description"
                     type="text"
+                    placeholder="Masukan deskripsi menu"
                     class="w-full text-xs
                      rounded-xl p-2"
                     >
@@ -212,8 +213,11 @@
                 <div class="w-full ">
                     <div class="flex pb-1 flex-row min-w-[340px] justify-start items-start">
                         <select
+                         x-data
                         wire:model.live="selectProduk"
                         wire:change="selectedProduk"
+                        @change="$wire.set('selectedText', $event.target.options[$event.target.selectedIndex].text)"
+
                         class="p-2 text-xs border-blue-400 rounded-xl"
                         >
                             <option value=""> Pilih Produk</option>
@@ -222,6 +226,14 @@
 
                             @endforeach
                         </select>
+
+                            <span
+                            wire:click="copyDescriptions"
+
+                            class="text-blue-700 px-4 pt-4 underline link-info text-xs cursor-pointer"
+                            >
+                            Set as Menu Descriptions
+                        </span>
 
                     </div>
                     <div class="flex flex-row w-full p-4 h-auto justify-center items-center">
