@@ -19,4 +19,12 @@ class pengiriman extends Model
     'flaq',
     ];
 
+    static function get_pengiriman($batchId){
+        // dd($batchId);
+    $pengiriman = pengiriman::on('customer_sqlite')->where('batch_Id',$batchId)->value('BiayaKirim');
+
+    // dd($pengiriman);
+    return $pengiriman;
+    }
+
 }

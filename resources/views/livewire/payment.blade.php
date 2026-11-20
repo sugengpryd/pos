@@ -53,6 +53,10 @@
                                 SalesTax<br>
                             </th>
                             <th class="sticky py-2 text-right">
+                                Delivery<br>
+                            </th>
+
+                            <th class="sticky py-2 text-right">
                                 GrandTotal<br>
                                 {{ number_format($grandtotal, 0, ',', '.') }}
                             </th>
@@ -70,6 +74,7 @@
                                 <td class="px-2 py-2 text-right">{{ $payments->total}}</td>
                                 <td class="px-2 py-2 text-right">{{ $payments->discount }}</td>
                                 <td class="px-2 py-2 text-right">{{ $payments->pph }}</td>
+                                <td class="px-2 py-2 text-right">{{ App\Models\pengiriman::get_pengiriman($payments->batch_id) ?? '0' }}</td>
                                 <td class="px-2 py-2 text-right">{{ $payments->grandtotal }}</td>
                                 <td class="px-2 py-2 text-center">{{ $payments->tipe_payment }}</td>
                                 <td class="px-2 py-2 text-center">
