@@ -62,15 +62,15 @@
                                 GrandTotal<br>
                                 <span class="text-xs ">{{ number_format($grandtotal, 0, ',', '.') }}</span>
                             </th>
-                            <th class="sticky py-2">
+                            <th class="sticky ">
                                 Payment
                             <span></span>
                             </th>
-                            <th class="sticky py-2">
+                            <th class="sticky">
                                 Invoice
                             <span></span>
                             </th>
-                            <th class="sticky py-2">flaq</th>
+                            <th class="sticky">flaq</th>
                             <th>Created At</th>
                         </thead>
                         <tbody>
