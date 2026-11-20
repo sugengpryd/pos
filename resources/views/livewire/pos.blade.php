@@ -930,9 +930,10 @@
                 <form wire:submit.prevent="" enctype="multipart/form-data">
                     <div class="flex flex-col w-full h-full">
                         <select
-                        wire:model.live='created'
+                        wire:model.live='tglTransaksi'
+                        {{-- wire:change='setTanggal' --}}
                         >
-                            <option>Pilih Tanggal Transaksi </option>
+                            <option value="">Pilih Tanggal Transaksi </option>
                                 @foreach ($created as $index =>$createds )
                                 {{-- <option>{{ $createds->created_at->format('Y-m-d') }}</option> --}}
                                 <option value="{{ $createds->tanggal }}">  {{ $createds->tanggal }}</option>

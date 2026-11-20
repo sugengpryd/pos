@@ -98,6 +98,42 @@ class Pos extends Component
     public $openTransaksi=false;
     public $UsersId='';
     public $bayarMode =false;
+    public $tglTransaksi='';
+    public $tgl=[];
+
+    public function setTanggal(){
+    $this->createnewConnection();
+        // dd($this->tglTransaksi);
+        $tanggal =$this->tglTransaksi;
+
+
+        $batchId = dbTransaksi::on('customer_sqlite')
+        ->whereDate('created_at', $this->tglTransaksi)
+        ->select('batch_id')
+        ->distinct()
+        ->get();
+
+        $this->voidBatchId = $batchId;
+
+
+
+    }
+    public function updatedTglTransaksi($value)
+    {
+        $this->createnewConnection();
+
+        // dd($value);
+        $this->tglTransaksi = $value;
+
+        $batchId = dbTransaksi::on('customer_sqlite')
+        ->whereDate('created_at', $this->tglTransaksi)
+        ->select('batch_id')
+        ->distinct()
+        ->get();
+
+        $this->voidBatchId = $batchId;
+
+    }
 
 
     // public $Resultcustomers= [];
