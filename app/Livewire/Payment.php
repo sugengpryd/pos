@@ -52,6 +52,11 @@ class Payment extends Component
 
         // $payment= Dbpayment::on('customer_sqlite')->get();
          $payment = Dbpayment::on('customer_sqlite')
+         ->leftJoin('pengiriman', 'payment.batch_id', '=', 'pengiriman.batch_Id')
+    ->select(
+        'payment.*',
+        'pengiriman.BiayaKirim'
+    )
         ->when($this->searchFilter, function ($query) {
         $query->where('batch_id', "like", "%" . $this->searchFilter. "%");
     })
@@ -62,7 +67,12 @@ class Payment extends Component
         $query->where('created_at', "like", "%" . $this->dateFilter. "%");
      }) ->get();
 
-        $tipePayment = Dbpayment::on('customer_sqlite')->select('tipe_payment')->distinct()->get();
+    //  dd($payment);
+
+
+
+
+     $tipePayment = Dbpayment::on('customer_sqlite')->select('tipe_payment')->distinct()->get();
         // $createdAt = Dbpayment::on('customer_sqlite')->select('created_at')->distinct()->get();
         $createdAt = Dbpayment::on('customer_sqlite')
             ->selectRaw('DATE(created_at) as date')
@@ -71,10 +81,13 @@ class Payment extends Component
 
         $total = $payment->where('batch_id', '!=','')->sum('total');
         $discount = $payment->where('batch_id', '!=','')->sum('discount');
+        // $BiayaKirim
 
         $tax = $payment->where('batch_id', '!=','')->sum('tax');
         $grandtotal = $payment->where('batch_id', '!=','')->sum('grandtotal');
         // dd($discount);
+        $totalDelivery = $payment->where('batch_id','!=','')->sum('BiayaKirim');
+        // dd($delivery);
 
 
 
@@ -82,7 +95,7 @@ class Payment extends Component
         // dd($tipePayment);
         // $this->selectPayment = $tipePayment;
 
-        return view('livewire.payment',compact('payment','tipePayment','createdAt','total','discount','grandtotal' ));
+        return view('livewire.payment',compact('payment','tipePayment','createdAt','total','discount','grandtotal','totalDelivery' ));
     }
 
     public function updatedSelectPayment(){

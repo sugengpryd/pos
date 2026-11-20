@@ -42,23 +42,25 @@
                             <th class="sticky py-2">BatchId</th>
                             <th class="sticky py-2 text-right">
                                 Total<br>
-                                {{ number_format($total, 0, ',', '.') }}
+                                <span class="text-xs ">{{ number_format($total, 0, ',', '.') }}</span>
 
                             </th>
                             <th class="sticky py-2 text-right">
                                 Discount<br>
-                                 {{number_format( $discount,0,',','.') }}
+                                 <span class="text-xs ">{{number_format( $discount,0,',','.') }}</span>
                             </th>
                             <th class="sticky py-2 text-right">
                                 SalesTax<br>
+                                <span class="text-xs ">0</span>
                             </th>
                             <th class="sticky py-2 text-right">
                                 Delivery<br>
+                                <span class="text-xs ">{{number_format( $totalDelivery,0,',','.') }}</span>
                             </th>
 
                             <th class="sticky py-2 text-right">
                                 GrandTotal<br>
-                                {{ number_format($grandtotal, 0, ',', '.') }}
+                                <span class="text-xs ">{{ number_format($grandtotal, 0, ',', '.') }}</span>
                             </th>
                             <th class="sticky py-2">Payment</th>
                             <th class="sticky py-2">Invoice</th>
