@@ -64,7 +64,7 @@ class Payment extends Component
         $query->where('tipe_payment', $this->selectPayment);
     })
         ->when($this->dateFilter, function ($query) {
-        $query->where('created_at', "like", "%" . $this->dateFilter. "%");
+        $query->where('payment.created_at', "like", "%" . $this->dateFilter. "%");
      }) ->get();
 
     //  dd($payment);
