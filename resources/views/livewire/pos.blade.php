@@ -932,6 +932,7 @@
                          {{-- Count: {{ count($createdAt) }} --}}
                         <select
                         wire:model.live='tglTransaksi'
+                        class="rounded-lg"
                         {{-- wire:change='setTanggal' --}}
                         >
                             <option value="">Pilih Tanggal Transaksi </option>
@@ -946,6 +947,8 @@
                         <select
                         wire:change="select_voidBatchId()"
                         wire:model="selectedBatchId"
+                        class="rounded-lg"
+
                         >
                             <option value="">Pilih Batch Id</option>
                             @foreach($this->voidBatchId as $batchid)
