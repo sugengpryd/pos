@@ -93,7 +93,7 @@ class Pos extends Component
     public $showmodalVoid=false;
     public $voidMode = false;
     public $voidBatchId = [];
-    public $created = [];
+    // public $createdAt = [];
     public $selectedBatchId = '';
     public $openTransaksi=false;
     public $UsersId='';
@@ -102,18 +102,18 @@ class Pos extends Component
     public $tgl=[];
 
     public function setTanggal(){
-    $this->createnewConnection();
+    // $this->createnewConnection();
         // dd($this->tglTransaksi);
-        $tanggal =$this->tglTransaksi;
+        // $tanggal =$this->tglTransaksi;
 
 
-        $batchId = dbTransaksi::on('customer_sqlite')
-        ->whereDate('created_at', $this->tglTransaksi)
-        ->select('batch_id')
-        ->distinct()
-        ->get();
+        // $batchId = dbTransaksi::on('customer_sqlite')
+        // ->whereDate('created_at', $this->tglTransaksi)
+        // ->select('batch_id')
+        // ->distinct()
+        // ->get();
 
-        $this->voidBatchId = $batchId;
+        // $this->voidBatchId = $batchId;
 
 
 
@@ -123,7 +123,7 @@ class Pos extends Component
         $this->createnewConnection();
 
         // dd($value);
-        $this->tglTransaksi = $value;
+        // $this->tglTransaksi = $value;
 
         $batchId = dbTransaksi::on('customer_sqlite')
         ->whereDate('created_at', $this->tglTransaksi)
@@ -228,21 +228,19 @@ class Pos extends Component
         $today = now();
         // dd($today)->format('Y-m-d');
 
-        $created = dbTransaksi::on('customer_sqlite')
-        ->selectRaw('DATE(created_at) as tanggal')
-        ->where('flaq', 'paid')
-        ->distinct()
-        ->orderBy('tanggal', 'desc')
-        ->get();
+        // $created = dbTransaksi::on('customer_sqlite')
+        // ->selectRaw('DATE(created_at) as tanggal')
+        // ->where('flaq', 'paid')
+        // ->distinct()
+        // ->orderBy('tanggal', 'desc')
+        // ->get();
 
-        // ->select('created_at')->where('flaq', 'paid')->distinct()->get();
-        // dd($created);
 
         $batchId = dbTransaksi::on('customer_sqlite')->select('batch_id')->where('flaq', 'paid')
         ->whereDate('created_at',$today)->distinct()->orderBy('batch_id','desc')->get();
         // dd($batchId);
 
-        $this->created = $created;
+        // $this->created = $created;
         $this->voidBatchId = $batchId;
         $this->voidMode=true;
         $this->openTransaksi=false;
@@ -579,37 +577,37 @@ class Pos extends Component
             )
             ->distinct()->get();
 
-            // $this->menustransaksi=$cekTransaksi;
-            // dd($cekTransaksi->distinct()->pluck('customer_nama' ));
-            //  dd($cekTransaksi
-            //     ->pluck('customer_nama','batch_id')
-            //     ->unique()
-            //     ->values());
-            // dd(
-            //     $cekTransaksi
-            //     ->unique('batch_id')
-            //     ->mapWithKeys(fn ($item) => [
-            //      $item->batch_id => $item->customer_nama
-            //     ])
-            // );
-            // $batches = $cekTransaksi
-            //     ->unique('batch_id')
-            //     ->map(function ($item) {
-            //         return [
-            //             'id' => $item->customer_Id,
-            //             'batch_id' => $item->batch_id,
-            //             'nama' => $item->customer_nama,
+            //  $result = dbTransaksi::on('customer_sqlite')
+            //     ->selectRaw('DATE(created_at) as tanggal')
+            //     ->where('flaq', 'paid')
+            //     ->distinct()
+            //     ->orderBy('tanggal', 'desc')
+            //     ->get();
+            $resultDate = dbTransaksi::on('customer_sqlite')
+                ->selectRaw('DATE(created_at) as tanggal')
+                ->where('flaq', 'paid')
+                ->distinct()
+                ->orderBy('tanggal', 'desc')
+                ->get();
 
-            //         ];
-            //     })
-            //     ->values()
-            //     ->toArray();
+            // dd($resultDate);
 
-            // dd($batches);
+            return view('livewire.pos', [
+                'menu' => $menu,
+                'kategori' => $kategori,
+                'Resultcustomers' => $Resultcustomers,
+                'cekTransaksi' => $cekTransaksi,
+                'createdAt' => $resultDate,
+            ]);
+
+            // dd($created[0]['tanggal']);
+            // dd($createdAt->toArray());
+
 
 
         // dd($menu);
-        return view('livewire.pos', compact('menu','kategori', 'Resultcustomers','cekTransaksi'));
+        // return view('livewire.pos', compact('menu','kategori', 'Resultcustomers','cekTransaksi','createdAt'));
+        // return view('livewire.pos', ['menu'=>$menu,'kategori'=>$kategori, 'Resultcustomers' =>$Resultcustomers,'cekTransaksi' =>$cekTransaksi,'createdAt'=>$result]);
 
     }
 

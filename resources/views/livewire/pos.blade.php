@@ -921,43 +921,43 @@
 @if($showmodalVoid)
     <div class="fixed inset-0 z-50 p-3 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
 
-        <div class="bg-white rounded-lg shadow-lg w-1/2 min-w-[300px] max-w-[900px] p-6 max-h-[90vh] overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-lg w-1/2 min-w-[300px] max-w-[900px] mx-auto p-6 max-h-[90vh] overflow-y-auto">
 
             <h3 class="text-lg font-semibold mb-4">
                 {{ $voidMode ? 'Void Paid Transaksi' : '' }}
             </h3>
-            <div class="flex flex-row w-full min-h-[90vh]  min-w-[350px] justify-between items-center md:justify-between md:items-start ">
+            <div class="flex flex-row w-full bg-gray-300 min-h-[40vh] md:pt-10 md:min-w-full justify-between rounded-lg items-center md:justify-center md:items-start shadow-lg shadow-gray-300 ">
                 <form wire:submit.prevent="" enctype="multipart/form-data">
-                    <div class="flex flex-col w-full h-full">
+                    <div class="flex flex-col gap-2 p-4 w-full h-full justify-center items-center">
+                         {{-- Count: {{ count($createdAt) }} --}}
                         <select
                         wire:model.live='tglTransaksi'
                         {{-- wire:change='setTanggal' --}}
                         >
                             <option value="">Pilih Tanggal Transaksi </option>
-                                @foreach ($created as $index =>$createds )
+                                @foreach ($createdAt as $date )
                                 {{-- <option>{{ $createds->created_at->format('Y-m-d') }}</option> --}}
-                                <option value="{{ $createds->tanggal }}">  {{ $createds->tanggal }}</option>
+                            <option value="{{$date->tanggal}}">{{$date->tanggal}}</option>
 
                                 @endforeach
                         </select>
+                    </div>
+                    <div class="mt-4 flex flex-col gap-2 w-full h-full justify-center items-center">
                         <select
                         wire:change="select_voidBatchId()"
                         wire:model="selectedBatchId"
                         >
                             <option value="">Pilih Batch Id</option>
                             @foreach($this->voidBatchId as $batchid)
-                            <option value="{{ trim($batchid->batch_id) }}">{{ trim($batchid->batch_id) }}</option>
+                                <option value="{{ trim($batchid->batch_id) }}">{{ trim($batchid->batch_id) }}</option>
                             @endforeach
                         </select>
-
-
-
                     </div>
-                    <div class="flex flex-1">
+                    <div class="flex flex-1 justify-center items-center" >
                         <button
                         type="button"
                         wire:click="closeformVoid()"
-                        class="bg-blue-300 rounded-lg mt-2 p-2"
+                        class="bg-blue-300 rounded-lg mt-4 py-2 px-4  flex justify-center items-center"
                         > Exit</button>
                     </div>
 
