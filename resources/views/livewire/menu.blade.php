@@ -314,7 +314,7 @@
                     accept="image/*"
                     class=" text-sm rounded-xl py-4 px-4 "
                     >
-                    @error('file')
+                    @error('menu_image')
                         <p class="text-sm text-red-600">{{ $message }}</p>
                     @enderror
                     {{-- Preview gambar --}}

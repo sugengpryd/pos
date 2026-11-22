@@ -164,7 +164,7 @@
                                         accept="image/*"
                                         class=" w-full text-sm rounded-xl py-2 px-4 "
                                         >
-                                        @error('file')
+                                        @error('kategori_image')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
                                         {{-- Preview gambar --}}

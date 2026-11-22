@@ -113,7 +113,9 @@ class Menu extends Component
             // dd($produk_id);
             // $produkId =
         $this->validate([
-            'menu_image' => 'required|file|max:20480',
+            // 'menu_image' => 'required|file|max:20480',
+            'menu_image' => 'required|image|mimetypes:image/jpeg,image/png,image/webp,image/gif|max:2048',
+
         ]);
 
         $path=$this->menu_image->store('image', 'public');

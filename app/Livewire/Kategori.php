@@ -93,7 +93,8 @@ class Kategori extends Component
             // dd($produk_id);
             // $produkId =
         $this->validate([
-            'kategori_image' => 'required|file|max:20480',
+            // 'kategori_image' => 'required|file|max:20480',
+            'kategori_image' => 'required|image|mimetypes:image/jpeg,image/png,image/webp,image/gif|max:2048',
         ]);
 
         $path=$this->kategori_image->store('image', 'public');
