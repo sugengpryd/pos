@@ -150,7 +150,7 @@
 
     {{-- Create / Edit Modal --}}
     @if($showModal)
-    <div class="fixed inset-0 z-50 w-full min-h-full md:h-screen flex items-center justify-center bg-black bg-opacity-50">
+    <div class="fixed inset-0 z-50 w-full min-h-full md:h-full flex items-center justify-center bg-black bg-opacity-50">
 
         <div class="bg-white rounded-lg shadow-lg w-full max-w-[700px] p-6 h-full md:max-h-screen overflow-y-auto">
 
