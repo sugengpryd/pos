@@ -62,8 +62,8 @@
         </div>
 
         <div class="flex  w-full h-screen mt-0 mx-auto py-0 px-4 ">
-            <div class="w-full mx-auto h-[400px] md:w-[800px] bg-white rounded-lg justify-center items-center overflow-auto">
-              <div class="h-[screen] w-full" >
+            <div class="w-full mx-auto h-[400px] md:w-[800px] p-4 bg-gray-400 rounded-lg justify-center items-center overflow-auto">
+              <div class="h-[screen] w-full bg-white" >
                 <table class="w-full mx-auto border-collapse ">
                     <thead class="sticky top-0 z-50 p-6">
                     <tr>
