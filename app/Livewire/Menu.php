@@ -49,6 +49,8 @@ class Menu extends Component
     public $UsersId = '';
     public $dbconnection = '';
     public $selectedText= '';
+    public $sortBy= '';
+    public $sortDirection='desc';
 
 
     public function mount()
@@ -56,6 +58,15 @@ class Menu extends Component
     $this->reset('menu_image');
     $this->UsersId = Auth::id();
     $this->createnewConnection();
+    }
+
+    public function sortByField($field)    {
+        if ($this->sortBy === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortBy = $field;
+            $this->sortDirection = 'asc';
+        }
     }
 
     public function createnewConnection(){
@@ -83,13 +94,17 @@ class Menu extends Component
         // $menu= Menus::query()
         $menu=Menus::on('customer_sqlite')
         ->when($this->filterSearch, function($query){
-        $query->where('description', 'like', '%' . $this->filterSearch .'%');
-        })->get();
+        $query
+        ->where('description', 'like', '%' . $this->filterSearch .'%')
+        ->orwhere('kategori', 'like', '%' . $this->filterSearch .'%');
+        })
+        ->orderBy($this->sortBy,$this->sortDirection)
+        ->get();
 
         $produk= Produk::on('customer_sqlite')
-        ->where('flaq','!=','0')->get();
-        $master_uom = Uoms::on('customer_sqlite')->get();
-        $kategori = kategoris::on('customer_sqlite')->get();
+        ->where('flaq','!=','0')->orderBy('description')->get();
+        $master_uom = Uoms::on('customer_sqlite')->orderBy('oumkode','asc')->get();
+        $kategori = kategoris::on('customer_sqlite')->orderby('description')->get();
         // dd($menu);
 
         return view('livewire.menu',compact('menu','produk','master_uom','kategori'));

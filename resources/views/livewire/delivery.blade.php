@@ -15,7 +15,7 @@
             wire:change="filterDatefunction()"
             class="rounded-lg"
             >
-            <option value="" disabled selected>Filter Date</option>
+            <option value="" disabled selected>Filter By Date</option>
             <option value="">All</option>
             @foreach ($result as $index => $results )
             <option value="{{ $results->created_at->format('Y-m-d') }}">{{ $results->created_at->format('d-m-Y') }}</option>
@@ -39,7 +39,7 @@
                         <th class="sticky p-2 w-14">Alamat Tujuan</th>
                         <th class="sticky p-2 w-14">No tujuan</th>
                         <th class=" text-right sticky p-2 w-14">
-                            Biaya Kirim
+                            Biaya Kirim<br>
                             {{ number_format($biayakirim,0,'.','.') }}
                         </th>
                         <th class="sticky p-4 w-14">Flaq</th>

@@ -31,7 +31,17 @@ class Kategori extends Component
     public $kategori_image='';
     public $UsersId='';
     public $path='';
+    public $sortBy='created_at';
+    public $sortDirection='desc';
 
+     public function sortByField($field)    {
+        if ($this->sortBy === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortBy = $field;
+            $this->sortDirection = 'asc';
+        }
+    }
     public function mount()
     {
     $this->UsersId = Auth::id();
@@ -68,6 +78,7 @@ class Kategori extends Component
             ->when($this->filterFlaq!=='', function($query){
                 $query->where('flaq',$this->filterFlaq);
             })
+            ->orderBy($this->sortBy, $this->sortDirection)
             ->get();
         // dd($kategories);
         return view('livewire.kategori',compact('kategories'));

@@ -63,12 +63,27 @@
 
         <div class="flex  w-full h-screen mt-0 mx-auto py-0 px-4 ">
             <div class="w-full mx-auto h-[400px] md:w-[800px] px-4 pb-4 bg-gray-400 rounded-lg justify-center items-center overflow-auto">
-              <div class="h-[screen] w-full bg-white pb-4" >
+              <div class="h-[screen] w-full bg-white pb-4 mt-4" >
                 <table class="w-full mx-auto border-collapse ">
                     <thead class="sticky top-0 z-50 p-6">
                     <tr>
-                        <th class="top-0 text-white bg-gray-600 sticky py-2 px-2  text-left">Id</th>
-                        <th class="top-0 text-white bg-gray-600 sticky py-2 px-2  text-left">Description</th>
+                        <th
+                        wire:click="sortByField('id')"
+                        class="cursor-pointer top-0 text-white bg-gray-600 sticky py-2 px-2  text-left"
+                         >Id
+                          @if($sortBy === 'id')
+                                    <span class="ml-1">{{ $sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                          @endif
+                        </th>
+                        <th
+                        wire:click="sortByField('description')"
+                         class="top-0 cursor-pointer text-white bg-gray-600 sticky py-2 px-2  text-left"
+                         >
+                         Description
+                        @if($sortBy ==='description')
+                                    <span class="ml-1">{{ $sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                        @endif
+                        </th>
                         <th class="top-0 text-white bg-gray-600 sticky py-2 px-2 text-left">Flag</th>
                         <th class="top-0 text-white bg-gray-600 sticky py-2 px-2 text-left">Image</th>
                         <th class="top-0 text-white bg-gray-600 sticky py-2 px-2 text-center">Action</th>

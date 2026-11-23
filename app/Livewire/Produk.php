@@ -42,8 +42,19 @@ class Produk extends Component
     public $modalImport=false;
     public $file;
     public $message ='';
+    public $sortBy = 'created_at';
+    public $sortDirection = 'desc';
 
      use WithFileUploads;
+
+    public function sortByField($field)    {
+        if ($this->sortBy === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortBy = $field;
+            $this->sortDirection = 'asc';
+        }
+    }
 
     public function openModalImport(){
     // dd("ModalImport");
@@ -135,7 +146,7 @@ public function createnewConnection(){
         ->when($this->filterFlaq != '', function ($query){
         $query->where('flaq', $this->filterFlaq);
     })
-
+        ->orderBy($this->sortBy, $this->sortDirection)
         ->get();
 
         // dd($produk);

@@ -62,6 +62,12 @@
                                 GrandTotal<br>
                                 <span class="text-xs ">{{ number_format($grandtotal, 0, ',', '.') }}</span>
                             </th>
+                            <th class="sticky py-2 text-right">
+                                Nominal Payment<br>
+                                {{-- <span class="text-xs ">{{ number_format($nominal, 0, ',', '.') }}</span> --}}
+                            </th>
+
+
                             <th class="sticky ">
                                 Payment
                             <span></span>
@@ -84,6 +90,7 @@
                                 <td class="px-2 py-2 text-right">{{ $payments->pph }}</td>
                                 <td class="px-2 py-2 text-right">{{ App\Models\pengiriman::get_pengiriman($payments->batch_id) ?? '0' }}</td>
                                 <td class="px-2 py-2 text-right">{{ $payments->grandtotal }}</td>
+                                <td class="px-2 py-2 text-right">{{ $payments->nominal }}</td>
                                 <td class="px-2 py-2 text-center">{{ $payments->tipe_payment }}</td>
                                 <td class="px-2 py-2 text-center">
                                 @if(!empty($payments->invoice_path))

@@ -22,6 +22,8 @@ class Transaksi extends Component
     public $FilterStatus = '';
     public $FilterDate = '';
     public $UsersId='';
+    // public $countBatch_Id='';
+    // public $query = '';
 
 
 
@@ -54,6 +56,8 @@ class Transaksi extends Component
         $this->createnewConnection();
         // $batchId = Transaksis::select('batch_id')->distinct()->get();
         $batchId = Transaksis::on('customer_sqlite')->distinct()->pluck('batch_id');
+        // $countBatch_Id =Transaksis::on('customer_sqlite')->distinct()->count('batch_id');
+
         $menuId = Transaksis::on('customer_sqlite')->distinct()->pluck('menu_id');
         $customerId = Transaksis::on('customer_sqlite')->distinct()->pluck('customer_Id');
         $status = Transaksis::on('customer_sqlite')->distinct()->pluck('flaq');
@@ -88,15 +92,37 @@ class Transaksi extends Component
             $query->whereDate('created_at', $this->FilterDate );
 
         })
-        ->get();
-        // dd($this->FilterDate);
 
-        // $total = $transaksi->where('batch_id', '!=','')->where('flaq','paid')->sum('total');
+
+        ->get();
+
+        // $countBatch_Id = $transaksi->distinct()->count('batch_id');
+
+        $countBatch_Id = Transaksis::on('customer_sqlite')
+            ->when($this->FilterBatchId, function ($q) {
+                $q->where('batch_id', 'like', '%' . $this->FilterBatchId . '%');
+            })
+            ->when($this->FilterMenu, function ($q) {
+                $q->where('menu_id', 'like', '%' . $this->FilterMenu . '%');
+            })
+            ->when($this->FilterCustomer, function ($q) {
+                $q->where('customer_Id', $this->FilterCustomer);
+            })
+            ->when($this->FilterStatus !== null && $this->FilterStatus !== '', function ($q) {
+                $q->where('flaq', $this->FilterStatus);
+            })
+            ->when($this->FilterDate, function ($q) {
+                $q->whereDate('created_at', $this->FilterDate);
+            })
+            ->distinct()
+            ->count('batch_id');
+
         $total = $transaksi->where('batch_id', '!=','')->sum('total');
-        // $total = $transaksi->sum('total');
         $qty = $transaksi->sum('qty');
 
-        return view('livewire.transaksi',compact('transaksi','batchId','menuId','customerId','total','qty','status','created_at'));
+        // dd($countBatch_Id);
+
+        return view('livewire.transaksi',compact('transaksi','batchId','countBatch_Id','menuId','customerId','total','qty','status','created_at'));
     }
 
     public function updatedFilterDate(){

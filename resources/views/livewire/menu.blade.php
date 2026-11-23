@@ -7,7 +7,7 @@
         </div>
         <div class="flex w-full gap-4">
             <div class="flex flex-row w-full justify-end items-end">
-                <input type="text" placeholder="Search Produk"
+                <input type="text" placeholder="Search Produk or Category"
                     wire:model.live="filterSearch"
                     class="rounded-xl"
                     >
@@ -20,13 +20,25 @@
                 <p>Total: {{ $menu?->count() ?? '0' }}</p>
                     <thead class="sticky py-0 top-0 bg-gray-400 z-55">
                         <tr>
-                            <th class=" sticky top-0 z-50 p-4 text-left">Id</th>
+                            <th
+                            wire:click="sortByField('id')"
+                            class="cursor-pointer sticky top-0 z-50 p-4 text-left"
+                            >Id
+                            </th>
                             {{-- <th class=" sticky top-0 z-50 p-4 text-left">Menu Id</th> --}}
-                            <th class=" sticky top-0 z-50 p-4 text-left">Description</th>
+                            <th
+                            class=" cursor-pointer sticky top-0 z-50 p-4 text-left"
+                            wire:click="sortByField('description')"
+                            >Description
+                            </th>
                             {{-- <th class=" sticky top-0 z-50 p-4 text-left">Product name</th> --}}
                             <th class=" sticky top-0 z-50 p-4 text-left">Qty</th>
                             <th class=" sticky top-0 z-50  text-center">Uom</th>
-                            <th class=" sticky top-0 z-50  text-center">Kategori</th>
+                            <th
+                            wire:click="sortByField('kategori')"
+                            class=" cursor-pointer sticky top-0 z-50  text-center"
+                            >Kategori
+                            </th>
                             <th class=" sticky top-0 z-50 p-4 text-right">Selling Price</th>
                             <th class=" sticky top-0 z-50 p-4 text-center">Image</th>
                             <th class=" sticky top-0 z-50 p-4 text-center">flaq</th>
@@ -43,7 +55,9 @@
                     <tr class="border-b-black border">
                         <td
                         wire:model.live="id"
-                        class="p-2 text-sm ">{{ $menus->id }}</td>
+                        class=" p-2 text-sm "
+                        >{{ $menus->id }}
+                        </td>
 
                         <td
                         wire:model.live="description"

@@ -58,7 +58,7 @@ class Payment extends Component
         'pengiriman.BiayaKirim'
     )
         ->when($this->searchFilter, function ($query) {
-        $query->where('batch_id', "like", "%" . $this->searchFilter. "%");
+        $query->where('payment.batch_id', "like", "%" . $this->searchFilter. "%");
     })
         ->when($this->selectPayment, function ($query){
         $query->where('tipe_payment', $this->selectPayment);

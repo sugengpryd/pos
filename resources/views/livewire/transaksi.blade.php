@@ -81,7 +81,12 @@
                     <table class="w-full ">
                         <thead class="sticky py-0 top-0 bg-gray-400 z-55">
                             <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Id</th>
-                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Batch_id</th>
+                            <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm text-left"
+                                >
+                                Batch_id<br>
+                                <span class="text-sm text-gray-500">count#{{ $countBatch_Id }}</span>
+
+                            </th>
                             <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm text-left">Menu Description</th>
                             <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm text-center">Qty
                                 <br>
@@ -100,7 +105,7 @@
                             @foreach($transaksi as $index => $transaksis)
                             <tr class="border border-b-black">
                                 <td class="py-2 px-2 text-xs">{{ $index+1 }}</td>
-                                <td class="py-2 px-2 text-xs">{{ $transaksis->batch_id }}</td>
+                                <td class="py-2 px-2 text-xs text-left">{{ $transaksis->batch_id }}</td>
                                 <td class="py-2 px-2 text-xs">{{ App\Models\Menu::get_name($transaksis->menu_id) }}</td>
                                 <td class="py-2 px-2 text-xs text-center">{{ $transaksis->qty }}</td>
                                 <td class="py-2 px-2 text-xs text-right">{{ $transaksis->sellingPrice }}</td>

@@ -97,9 +97,32 @@
         <table class=" py-2 w-full">
                 <thead class="sticky py-0 top-0 bg-gray-400 z-55">
                     <tr>
-                        <th class="text-xs sticky top-0 z-50 p-4 text-left">Id</th>
-                        <th class="text-xs sticky top-0 z-50 p-4 text-left">Description</th>
-                        <th class="text-xs sticky top-0 z-50 p-4 text-left">Uom</th>
+                        <th
+                        wire:click="sortByField('id')"
+                        class="cursor-pointer text-xs sticky top-0 z-50 p-4 text-left">
+                        Id
+                            @if($sortBy === 'id')
+                                    <span class="ml-1">{{ $sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                            @endif
+                    </th>
+                        <th
+                        wire:click="sortByField('description')"
+                        class="cursor-pointer text-xs sticky top-0 z-50 p-4 text-left">
+                        Description
+                             @if($sortBy === 'description')
+                                    <span class="ml-1">{{ $sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                            @endif
+                        </th>
+                        <th
+                        wire:click="sortByField('uom')"
+                        class=" cursor-pointer text-xs sticky top-0 z-50 p-4 text-left"
+                        >
+                        Uom
+                             @if($sortBy === 'uom')
+                                    <span class="ml-1">{{ $sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                            @endif
+
+                        </th>
                         <th class="text-xs sticky top-0 z-50 p-4 text-left">Base Price</th>
                         <th class="text-xs sticky top-0 z-50 p-4 text-center">Flaq</th>
                         <th class="text-xs sticky top-0 z-50 p-4 text-center">Action</th>

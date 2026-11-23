@@ -58,7 +58,11 @@ class Customer extends Component
         // $customer= Customers::all()
         $customer = Customers::on('customer_sqlite')
         ->when($this->filterSearch, function ($query) {
-        $query->where('nama', "like", "%" . $this->filterSearch. "%");
+        $query->where('nama', "like", "%" . $this->filterSearch. "%")
+        ->orwhere('alamat', "like", "%" . $this->filterSearch. "%")
+        ->orwhere('kota', "like", "%" . $this->filterSearch. "%")
+        ->orwhere('telepon1', "like", "%" . $this->filterSearch. "%")
+        ->orwhere('telepon2', "like", "%" . $this->filterSearch. "%");
         })->get();
         return view('livewire.customer',compact('customer'));
     }
