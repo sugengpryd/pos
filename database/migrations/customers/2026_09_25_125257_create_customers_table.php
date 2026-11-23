@@ -12,9 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+
     }
 
     /**
@@ -23,5 +21,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('customers');
+    // Schema::connection('customer_sqlite')->table('menus', function (Blueprint $table) {
+
     }
 };

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('menu', function (Blueprint $table) {
+        Schema::::connection('customer_sqlite')->table('menu', function (Blueprint $table) {
             $table->unique('menu_id');
         });
     }
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('menu', function (Blueprint $table) {
+        Schema::::connection('customer_sqlite')->table('menu', function (Blueprint $table) {
             $table->dropUnique(['menu_id']);
         });
     }
