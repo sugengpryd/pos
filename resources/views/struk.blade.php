@@ -12,6 +12,19 @@
         }
     }
 
+     .watermark {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 28px;
+    font-weight: bold;
+    font-width:20px;
+    color: gray;
+    white-space: nowrap;
+    z-index: -1;
+}
+
     </style>
 </head>
 {{-- <div id="divId" class="w-full flex flex-col justify-center items-center bg-white py-2 "> --}}
@@ -21,7 +34,7 @@
 
                 <span class="text-2xl text-center">Payment Receipt</span>
             </div>
-            <div class="text-center border-b-2 text-sm py-2  mx-auto">
+            <div class=" text-center border-b-2 text-sm py-2  mx-auto">
 
                 <div class="text-2xl text-center text-lime-600">{{ $toko->namaToko }}</div>
                 <div class="text-sm text-center text-lime-600">{{ $toko->alamattoko }}</div>
@@ -70,6 +83,13 @@
         <div class="flex flex-col w-full">
 
             <div class="flex flex-col bg-white  justify-center items-center border-b-2">
+                <div
+                @if($statusBayar=='0')
+                class='watermark'
+                @endif
+                >
+                Paid
+                </div>
                 <table class="border-0" >
                     <thead>
                         {{-- <th class="px-4 py-2 text-sm">id.</th> --}}
@@ -129,6 +149,20 @@
                             {{-- <td></td> --}}
                             <td class="text-xs">Total Tagihan:</td>
                             <td class="px-2 text-right text-xs underline decoration-2 underline-offset-4"> {{ $totalTagihan }}</td>
+                        </tr>
+                        <tr class="text-right">
+                            {{-- <td></td> --}}
+                            {{-- <td></td> --}}
+                            {{-- <td></td> --}}
+                            <td class="text-xs">Pembayaran:</td>
+                            <td class="px-2 text-right text-xs underline decoration-2 underline-offset-4"> {{ $nominalBayar ?? '0' }}</td>
+                        </tr>
+                        <tr class="text-right">
+                            {{-- <td></td> --}}
+                            {{-- <td></td> --}}
+                            {{-- <td></td> --}}
+                            <td class="text-xs">Kembalian:</td>
+                            <td class="px-2 text-right text-xs underline decoration-2 underline-offset-4"> {{ (integer) $nominalBayar - (integer) $totalTagihan  }}</td>
                         </tr>
 
 

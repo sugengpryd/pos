@@ -100,6 +100,7 @@ class StrukController extends Controller
         $biayaKirim = $request->input('biayaKirim');
         $totalTagihan = $request->input('totalTagihan');
         $statusBayar = $request->boolean('statusBayar');
+        $nominalBayar =  preg_replace('/\D/','',$request->input('nominalPembayaran'));
 
 
         // dd($statusBayar);
@@ -118,7 +119,7 @@ class StrukController extends Controller
             );
         $totalQty = Transaksi::on('customer_sqlite')->where('batch_id',$batch_id)->sum('qty');
         $biayaKirim = $request->biayaKirim;
-        $totalTagihan = $request->totalTagihan;
+        $totalTagihan =  preg_replace('/\D/','',$request->totalTagihan);
         $Ppn= ($sumtotal * 0.11)*0;
     // dd($Ppn);
 
@@ -137,7 +138,7 @@ class StrukController extends Controller
         $toko =  Compro::on('customer_sqlite')->where('userId',Auth::user()->id)->first();
         // batch_Id=20261106-025&customer_id=2&biayaKirim=0&totalTagihan=
 
-             return view('struk',compact('toko','customer','transaksi','menu','sumtotal','totalQty','biayaKirim','totalTagihan','Ppn','diskon'));
+             return view('struk',compact('toko','customer','transaksi','menu','sumtotal','totalQty','biayaKirim','totalTagihan','Ppn','diskon','statusBayar','nominalBayar'));
             }
 
     }

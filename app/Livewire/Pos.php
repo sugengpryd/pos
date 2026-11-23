@@ -1159,6 +1159,7 @@ public function removeItem($index,$item_id)
         'biayaKirim'   => $this->biayaKirim,
         'totalTagihan' => $this->totalTagihan,
         'statusBayar' => $this->bayarMode,
+        'nominalBayar' => $this->nominalPembayaran
         ];
 
             // $this->js("window.open(" . json_encode($url) . ", '_blank')");
@@ -1202,6 +1203,8 @@ public function removeItem($index,$item_id)
         'biayaKirim'   => $this->biayaKirim,
         'totalTagihan' => $this->totalTagihan,
         'statusBayar' => $this->bayarMode,
+        'nominalBayar' => $this->nominalPembayaran
+
         ];
 
             // $this->js("window.open(" . json_encode($url) . ", '_blank')");
