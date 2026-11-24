@@ -516,9 +516,9 @@ class Pos extends Component
         // ]);
         $totalTagihan= '0';
         // dd([$this->totalTagihan,$this->biayakirim,$this->biayaKirim]);
-        $totalTagihan = number_format(($this->totalSementara + $this->ppn) - (float) preg_replace('/\D/','',$this->diskon));
+        $totalTagihan = number_format(($this->totalSementara + $this->ppn) - (integer) preg_replace('/\D/','',$this->diskon));
 
-        $formattotalTagihan= (float) preg_replace('/\D/','',$this->biayaKirim) + (float) preg_replace('/\D/','',$totalTagihan);
+        $formattotalTagihan= (float) preg_replace('/\D/','',$this->biayaKirim) + (integer) preg_replace('/\D/','',$totalTagihan);
         $this->totalTagihan = number_format($formattotalTagihan,0,".",".");
     }
     public function Penerima(){
@@ -952,13 +952,33 @@ public function removeItem($index,$item_id)
     }
     public function calculateTotal()
     {
-            $this->total = collect($this->menustransaksi)->sum(function ($item) {
-                return (integer) $item['item_qty'] * (integer) $item['sellingPrice'];
+            // dd($this->ppn);
+            $total = collect($this->menustransaksi)->sum(function ($item) {
+                return (int) $item['item_qty'] * (int) $item['sellingPrice'];
             });
+            // dd($total);
+            $this->total =number_format($total,0,'.'.'.');
+
             $diskon = preg_replace('/\D/','',$this->diskon);
-            $ppn = preg_replace('/\D/','',$this->ppn);
-            $this->totalTagihan = ($this->total - $diskon) + $ppn + (integer) preg_replace('/\D/','',$this->biayaKirim);
+            $totDiskon = (int) $diskon;
+            $ppn = (int)preg_replace('/\D/','', $this->ppn);
+            $biayaKirim = (int)($this->biayaKirim);
+            // dd($ppn);
+            // dd((int) $this->biayakirim);
+            // $this->totalTagihan = ($this->total - $diskon) + $ppn + (integer) preg_replace('/\D/','',$this->biayaKirim);
             $this->totalSementara =$this->total;
+            // dd([
+            //     $total,
+            //     $this->totalSementara,
+            //     $ppn,
+            //     $this->biayaKirim,
+            //     $biayaKirim,
+            //     $diskon,
+            //     $totDiskon,
+
+            // ]);
+            $this->totalTagihan = number_format(($total + $ppn + $biayaKirim) - $totDiskon ,0,'.'.'.');
+            // dd($this->totalTagihan);
     }
 
     public function createbatchId(){
