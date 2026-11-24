@@ -46,7 +46,7 @@
 
 
                         <table class="w-full border-collapse">
-                            <thead class="sticky top-0 z-50 bg-gray-700 text-white">
+                            <thead class="md:sticky top-0 z-50 bg-gray-700 text-white">
                                 <tr>
                                     <th class="sticky top-0 py-3 px-3 text-xs font-semibold text-center">Id</th>
                                     <th class="sticky top-0 py-3 px-3 text-xs font-semibold text-left">Nama</th>
