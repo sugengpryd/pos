@@ -149,6 +149,7 @@ class Pos extends Component
                 $this->itemQty -= 1;
                 $biayaKirim = (integer) preg_replace('/\D/','',$this->biayaKirim);
 
+            $this->dispatch('notify', message: 'Remove Item',type:'success');
 
 
 
@@ -191,6 +192,7 @@ class Pos extends Component
 
             }
         }
+        $this->dispatch('notify', message: 'Item added',type:'success');
     }
     public function mount()
     {
