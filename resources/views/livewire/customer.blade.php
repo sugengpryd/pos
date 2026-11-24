@@ -40,7 +40,7 @@
             <div class="py-4">
                 {{-- <div class="w-full h-[700px] bg-gray-200 p-4 " > --}}
                     {{-- <div class="w-full h-full border overflow-auto border-gray-200 rounded-lg bg-white shadow-sm "> --}}
-                <div class="w-full h-[700px] bg-gray-200 p-4 box-border">
+                <div class="w-full h-[400px] bg-gray-200 p-4 box-border">
 
                     <div class="w-full h-full border border-gray-200 rounded-lg bg-white shadow-sm overflow-y-auto overflow-x-auto">
 
