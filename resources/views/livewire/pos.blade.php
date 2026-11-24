@@ -921,12 +921,12 @@
 @if($showmodalVoid)
     <div class="fixed inset-0 z-50 p-3 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
 
-        <div class="bg-white rounded-lg h-auto shadow-lg w-1/2 min-w-[300px] max-w-[900px] mx-auto p-6 max-h-[90vh] overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-lg w-1/2 min-w-[300px] max-w-[900px] mx-auto p-6 max-h-[90vh] overflow-y-auto">
 
             <h3 class="text-lg font-semibold mb-4">
                 {{ $voidMode ? 'Void Paid Transaksi' : '' }}
             </h3>
-            <div class="flex flex-row w-full bg-gray-300 min-h-[40vh] md:pt-10 md:min-w-full justify-between rounded-lg items-center md:justify-center md:items-start shadow-lg shadow-gray-300 ">
+            <div class="flex flex-row w-full h-auto bg-gray-300 min-h-[40vh] md:pt-10 md:min-w-full justify-between rounded-lg items-center md:justify-center md:items-start shadow-lg shadow-gray-300 ">
                 <form wire:submit.prevent="" enctype="multipart/form-data">
                     <div class="flex flex-col gap-2 p-4 w-full h-full justify-center items-center">
                          {{-- Count: {{ count($createdAt) }} --}}
