@@ -80,6 +80,7 @@
                 <div class="flex flex-col h-[600px] px-2 min-w-[350px] top-0 overflow-auto">
                     <table class="w-full ">
                         <thead class="sticky py-0 top-0 bg-gray-400 z-55">
+                          <tr>
                             <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Id</th>
                             <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm text-left"
                                 >
@@ -100,6 +101,7 @@
                             <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm text-left">Customer</th>
                             <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm text-center">Status</th>
                             <th class="sticky top-0 bg-gray-400 py-1 px-4 text-sm">Created At</th>
+                          </tr>
                         </thead>
                         <tbody>
                             @foreach($transaksi as $index => $transaksis)
