@@ -921,7 +921,7 @@
 @if($showmodalVoid)
     <div class="fixed inset-0 z-50 p-3 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
 
-        <div class="bg-white rounded-lg shadow-lg w-1/2 min-w-[300px] max-w-[900px] mx-auto p-6 h-full overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-lg w-1/2 min-w-[300px] max-w-[900px] mx-auto p-6 h-[400px] overflow-y-auto">
 
             <h3 class="text-lg font-semibold mb-4">
                 {{ $voidMode ? 'Void Paid Transaksi' : '' }}
