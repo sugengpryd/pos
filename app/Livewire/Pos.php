@@ -724,8 +724,10 @@ class Pos extends Component
 
             ];
             }
-        $totalSementara += $menustransaksis->item_qty * $menustransaksis->sellingPrice;
-        $this->totalSementara = $totalSementara;
+        $this->totalSementara = (int) preg_replace('/\D/','',$this->totalSementara);
+        $this->totalSementara += $menustransaksis->item_qty * $menustransaksis->sellingPrice;
+        // $this->totalSementara += $menustransaksis->item_qty * $menustransaksis->sellingPrice;
+        // $this->totalSementara = $totalSementara;
         $this->total = number_format($this->totalSementara,0,'.'.'.');
         $this->itemQty += 1;
         $biayaKirim = (float) preg_replace('/\D/','',$this->biayaKirim);
