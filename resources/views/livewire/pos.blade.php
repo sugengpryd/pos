@@ -558,6 +558,7 @@
                             {{-- <input type="text" class="text-xl w-full rounded-lg p-2"> --}}
                         <input
                             {{-- wire:model="nominalPembayaran" --}}
+                            required
                             type="text"
                             x-data
                              x-init="
@@ -575,11 +576,19 @@
                                     : '';
 
                                 $wire.set('nominalPembayaran', value);
+                                if (value === '' || Number(value) === 0) {
+
+                                   $wire.dispatch('notify', {
+                                    message: 'Nominal pembayaran tidak boleh kosong atau 0'
+                                    });
+                                    return;
+                                }
                             "
                             class="w-full rounded-lg p-2 text-right shadow-lg"
                             placeholder="0"
                             value="{{ $totalTagihan }}"
                             >
+
                         </span>
                     </div>
                     <div class="flex gap-4 py-2">
@@ -627,9 +636,11 @@
                             >
                             Close
                         </button>
+
                         <button
                          {{-- wire:click="bayar" --}}
-                         class="bg-blue-400 rounded-lg p-4">
+                         @disabled(empty($nominalPembayaran) || $nominalPembayaran <= 0)
+                         class="bg-blue-400 rounded-lg p-4 disabled:opacity-50 disabled:cursor-not-allowed">
                          Bayar
                         </button>
                     </div>

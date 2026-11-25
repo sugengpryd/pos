@@ -123,8 +123,13 @@ class StrukController extends Controller
         $Ppn= ($sumtotal * 0.11)*0;
     // dd($Ppn);
 
+        $kembalian = ((int)$nominalBayar - (int)$totalTagihan);
 
-        // dd($biayaKirim);
+        if($kembalian<0){
+            $kembalian = 0;
+        }
+
+        // dd($kembalian);
 
         // dd(this->biayaKirim);
 
@@ -137,7 +142,7 @@ class StrukController extends Controller
                 ->get();
         $toko =  Compro::on('customer_sqlite')->where('userId',Auth::user()->id)->first();
 
-             return view('struk',compact('toko','customer','transaksi','menu','sumtotal','totalQty','biayaKirim','totalTagihan','Ppn','diskon','statusBayar','nominalBayar'));
+             return view('struk',compact('toko','customer','transaksi','menu','sumtotal','totalQty','biayaKirim','totalTagihan','Ppn','diskon','statusBayar','nominalBayar','kembalian'));
             }
 
     }

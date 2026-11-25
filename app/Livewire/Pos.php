@@ -1111,9 +1111,6 @@ public function removeItem($index,$item_id)
 
     }
     public function bayar(){
-
-
-
     $this->bayarMode=true;
     // dd($this->diskon ?? '0');
     // dd($this->bayarMode);

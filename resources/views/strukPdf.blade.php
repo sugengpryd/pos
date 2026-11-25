@@ -130,7 +130,12 @@
         </thead>
 
         <tbody>
-            <div class="watermark">Invoice</div>
+            @if(!empty($nominalBayar))
+                <div class="watermark">Invoice Paid</div>
+            @else
+                <div class="watermark">Invoice</div>
+            @endif
+
             @foreach ($menu as $menus)
                 <tr">
                     <td class=" text-xs straight-line" style="text-align: left">
@@ -185,10 +190,32 @@
                     Total Tagihan:
                 </td>
                 <td class="text-xs" style="text-align: right">
-                    {{ $totalTagihan }}
+                    {{ $totalTagihan  }}
                 </td>
 
             </tr>
+            @if(!empty($nominalBayar) && $nominalBayar!='0')
+            <tr>
+                <td class="text-xs" style="text-align: right">
+                    Pembayaran:
+                </td>
+                <td class="text-xs" style="text-align: right">
+                    {{ empty($nominalBayar) ? '0' : $nominalBayar }}
+                </td>
+
+            </tr>
+            @endif
+            @if(!empty($kembalian) && $kembalian!='0')
+            <tr>
+                <td class="text-xs" style="text-align: right">
+                    Kembalian:
+                </td>
+                <td class="text-xs" style="text-align: right">
+                    {{ $kembalian }}
+                </td>
+
+            </tr>
+            @endif
         </tbody>
         </table>
     </div>

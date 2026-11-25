@@ -110,6 +110,8 @@ class downloadPdfController extends Controller
         $totalQty = Transaksi::on('customer_sqlite')->where('batch_id',$batch_id)->sum('qty');
         $biayaKirim = $request->query('biayaKirim');
         $totalTagihan = $request->query('totalTagihan');
+        $nominalBayar = $request->query('nominalBayar');
+        $kembalian = $request->query('kembalian');
         $Ppn= ($sumtotal * 0.11)*0;
 
 
@@ -128,7 +130,7 @@ class downloadPdfController extends Controller
 
         $height = 500 + ($menu->count() * 50);
 
-        $pdf = Pdf::loadView('strukPdf',compact('toko','customer','transaksi','menu','sumtotal','totalQty','biayaKirim','totalTagihan','Ppn','diskon'))
+        $pdf = Pdf::loadView('strukPdf',compact('toko','customer','transaksi','menu','sumtotal','totalQty','biayaKirim','totalTagihan','Ppn','diskon','nominalBayar','kembalian'))
         // [lower-left X, lower-left Y, upper-right X, uppser-right Y]
         // ->setPaper([0, 0, 164.4, 1000], 'portrait');
         ->setPaper([0, 0, 400, $height], 'portrait');

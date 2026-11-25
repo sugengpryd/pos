@@ -162,7 +162,8 @@
                             {{-- <td></td> --}}
                             {{-- <td></td> --}}
                             <td class="text-xs">Kembalian:</td>
-                            <td class="px-2 text-right text-xs underline decoration-2 underline-offset-4"> {{ (integer) $nominalBayar - (integer) $totalTagihan  }}</td>
+                            <td class="px-2 text-right text-xs underline decoration-2 underline-offset-4">
+                                {{$kembalian}}</td>
                         </tr>
 
 
@@ -177,7 +178,14 @@
 
                 </button>
                 <a
-                    href="{{ route('downloadPdf', ['batch_Id' => $transaksi->batch_id,'customer_id'=>$customer->id,'totalTagihan'=>$totalTagihan,'biayaKirim'=>$biayaKirim]) }}"
+                    href="{{ route('downloadPdf',
+                    ['batch_Id' => $transaksi->batch_id,
+                    'customer_id'=>$customer->id,
+                    'totalTagihan'=>$totalTagihan,
+                    'biayaKirim'=>$biayaKirim,
+                    'nominalBayar'=>$nominalBayar,
+                    'kembalian'=>$kembalian,
+                    ]) }}"
                     class="no-print inline-block bg-blue-500 px-6 py-2 rounded-lg">
                     Download pdf
                 </a>
