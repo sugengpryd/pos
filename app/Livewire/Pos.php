@@ -1220,7 +1220,7 @@ public function removeItem($index,$item_id)
     }
 
     public function Strukprint(){
-        dd($this->nominalPembayaran);
+        // dd($this->nominalPembayaran);
 
     $url = route('Struk');
         $data = [
