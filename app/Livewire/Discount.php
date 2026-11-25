@@ -49,7 +49,8 @@ public function mount()
             ->when($this->filterSearch, function($query){
 
             $query ->where('batch_id', 'like', '%' . $this->filterSearch . '%')
-                   ->orwhere('created_at', 'like', '%' . $this->filterSearch . '%');
+                   ->orwhere('created_at', 'like', '%' . $this->filterSearch . '%')
+                   ->orwhere('discount', 'like', '%' . $this->filterSearch . '%');
         })
         ->orderBy('batch_id')
         ->get();
