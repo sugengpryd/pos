@@ -14,16 +14,17 @@
 
             <div class="flex flex-col sm:flex-row w-full gap-4">
                 <input
+                    wire:model.live="filterSearch"
                     type="text"
-                    class=" min-w-0 rounded-lg border border-gray-300 p-2"
-                    placeholder="Search Batch ID..."
+                    class=" min-w-0 rounded-lg border border-gray-300 p-2 text-xs w-[200px]"
+                    placeholder="Search Batch ID or Created date"
                 >
 
-                <select class="w-full sm:w-48 shrink-0 rounded-lg border border-gray-300 p-2">
+                {{-- <select class="w-full sm:w-48 shrink-0 rounded-lg border border-gray-300 p-2">
                     <option value="">Select Status</option>
                     <option value="1">Active</option>
                     <option value="0">Inactive</option>
-                </select>
+                </select> --}}
             </div>
 
             <!-- Discount Table -->

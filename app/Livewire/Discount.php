@@ -14,6 +14,9 @@ use Livewire\Attributes\Layout;
 
 class Discount extends Component
 {
+public $filterSearch='';
+public $created_at='';
+public $UsersId='';
 
 public function mount()
     {
@@ -42,9 +45,18 @@ public function mount()
     public function render()
     {
         $this->createnewConnection();
-        $Discount = Dbdiscount::on('customer_sqlite')->get();
+        $Discount = Dbdiscount::on('customer_sqlite')
+            ->when($this->filterSearch, function($query){
+
+            $query ->where('batch_id', 'like', '%' . $this->filterSearch . '%')
+                   ->orwhere('created_at', 'like', '%' . $this->filterSearch . '%');
+        })
+        ->orderBy('batch_id')
+        ->get();
 
         $total = $Discount->where('batch_id', '!=','')->sum('discount');
+
+
 
 
 
