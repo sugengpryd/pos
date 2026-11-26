@@ -390,7 +390,7 @@
                                 class="md:p-2 text-right"
                                     >
                                 Total.
-                                    <span class="p-2 py-4 text-right"> {{'Rp.' . $total}}</span>
+                                    <span class="p-2 py-4 text-right"> {{ $total}}</span>
                                 </span><br>
 
                                 <span
@@ -398,7 +398,7 @@
                                 class="md:p-2 text-right"
                                 >
                                 Tax.
-                                <span class="p-2 text-right" > {{'Rp.' . $ppn }} </span>
+                                <span class="p-2 text-right" > {{ $ppn }} </span>
                                 </span><br>
 
                                 <span
@@ -406,7 +406,7 @@
                                 class="md:p-2 text-right"
                                 >
                                 Discount.
-                                <span class="p-2 text-right">  {{'Rp.' . $diskon }}</span>
+                                <span class="p-2 text-right">  {{ $diskon }}</span>
                                 </span><br>
 
                                 <span
@@ -416,7 +416,7 @@
                                     <span
                                         class="p-2 text-right"
                                         >
-                                         {{ 'Rp.' . number_format( (float) $biayaKirim,0,',','.') ?? '' }}
+                                         {{ number_format( (float) $biayaKirim,0,',','.') ?? '' }}
 
                                             <span
                                                 wire:model="totaTagihan"
@@ -427,7 +427,7 @@
                                                 <span class="md:p-2 text-right">
                                                 Total Tagihan.
                                                     {{-- Rp. {{ number_format( (float) $totalTagihan,0,',','.') ?? '' }} --}}
-                                                    {{ 'Rp '. $totalTagihan ?? '0' }}
+                                                    {{  $totalTagihan ?? '0' }}
                                                 </span>
                                             </span>
                                         </span><br>
@@ -550,7 +550,7 @@
                     </div>
                     <div class="flex gap-4 py-2 border-b-red-400">
                         <label  class="w-[200px] mb-2 text-xs text-bold">Total Tagihan:</label><br>
-                        <span class="bg-gray-400 w-full text-right p-2 mt-2">Rp.{{ $totalTagihan }}</span>
+                        <span class="bg-gray-400 w-full text-right p-2 mt-2">{{ $totalTagihan }}</span>
                     </div>
                     <div class="flex gap-4 py-2 border-b-red-400">
                         <label class="w-[200px] text-xs text-bold">Nominal Pembayaran</label><br>
@@ -869,7 +869,7 @@
                                     >&nbsp%
                                 </div>
                                 @endif
-                                <label for="discountNominal">Discount Rp</label>
+                                <label for="discountNominal">Discount</label>
                                     <input
                                     {{-- wire:model.live="discountnominalDiscount" --}}
                                     {{-- wire:click="discount({{$this->discountnominalDiscount}})" --}}
@@ -885,7 +885,7 @@
                                     class=" p-2 rounded-lg text-xs"
                                     @focus="$el.select()"
                                     placeholder="Masukan Nominal Discount"
-                                    >&nbsprupiah
+                                    >&nbsp
                                 </div>
                                 @endif
 

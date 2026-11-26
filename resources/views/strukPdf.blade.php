@@ -200,7 +200,7 @@
                     Pembayaran:
                 </td>
                 <td class="text-xs" style="text-align: right">
-                    {{ empty($nominalBayar) ? '0' : $nominalBayar }}
+                    {{ empty($nominalBayar) ? '0' : number_format($nominalBayar,0,',','.') }}
                 </td>
 
             </tr>
@@ -211,7 +211,8 @@
                     Kembalian:
                 </td>
                 <td class="text-xs" style="text-align: right">
-                    {{ $kembalian }}
+                    {{ empty($kembalian) ? '0' : number_format($kembalian,0,',','.') }}
+
                 </td>
 
             </tr>

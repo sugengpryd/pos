@@ -327,7 +327,7 @@ class Pos extends Component
                 $this->findpenerima();
                 $this->cekDiskon();
                 $this->cekbiayaKirim();
-                $this->total = number_format($this->totalSementara,0,'.'.'.');
+                $this->total = number_format($this->totalSementara,0,'.','.');
                 $total = (float)  preg_replace('/\D/','', $this->totalSementara);
                 $ppn=(float)  preg_replace('/\D/','', $this->ppn);
                 $diskon = (float) preg_replace('/\D/','', $this->diskon);
@@ -730,7 +730,7 @@ class Pos extends Component
         $this->totalSementara += $menustransaksis->item_qty * $menustransaksis->sellingPrice;
         // $this->totalSementara += $menustransaksis->item_qty * $menustransaksis->sellingPrice;
         // $this->totalSementara = $totalSementara;
-        $this->total = number_format($this->totalSementara,0,'.'.'.');
+        $this->total = number_format($this->totalSementara,0,'.','.');
         $this->itemQty += 1;
         $biayaKirim = (float) preg_replace('/\D/','',$this->biayaKirim);
         // dd($biayaKirim);
@@ -911,7 +911,7 @@ class Pos extends Component
                 $this->findpenerima();
                 $this->cekDiskon();
                 $this->cekbiayaKirim();
-                $this->total = number_format($this->totalSementara,0,'.'.'.');
+                $this->total = number_format($this->totalSementara,0,'.','.');
                 $total = (float)  preg_replace('/\D/','', $this->totalSementara);
                 $ppn=(float)  preg_replace('/\D/','', $this->ppn);
                 $diskon = (float) preg_replace('/\D/','', $this->diskon);
@@ -961,7 +961,7 @@ public function removeItem($index,$item_id)
                 return (int) $item['item_qty'] * (int) $item['sellingPrice'];
             });
             // dd($total);
-            $this->total =number_format($total,0,'.'.'.');
+            $this->total =number_format($total,0,'.','.');
 
             $diskon = preg_replace('/\D/','',$this->diskon);
             $totDiskon = (int) $diskon;
@@ -981,7 +981,7 @@ public function removeItem($index,$item_id)
             //     $totDiskon,
 
             // ]);
-            $this->totalTagihan = number_format(($total + $ppn + $biayaKirim) - $totDiskon ,0,'.'.'.');
+            $this->totalTagihan = number_format(($total + $ppn + $biayaKirim) - $totDiskon ,0,'.','.');
             // dd($this->totalTagihan);
     }
 
