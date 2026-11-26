@@ -735,7 +735,7 @@ class Pos extends Component
         $biayaKirim = (float) preg_replace('/\D/','',$this->biayaKirim);
         // dd($biayaKirim);
 
-        $this->totalTagihan = number_format(($this->totalSementara +  $this->ppn + $biayaKirim) - preg_replace('/\D/','',$this->diskon),0,'.'.'.');
+        $this->totalTagihan = number_format(($this->totalSementara +  $this->ppn + $biayaKirim) - preg_replace('/\D/','',$this->diskon),0,'.','.');
         // dd($this->totalTagihan);
         // $this->totalTagihan = ($this->totalTagihan + $biayaKirim);
         }
