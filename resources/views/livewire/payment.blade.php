@@ -100,7 +100,12 @@
                                 @endif
                                 </td>
                                 <td class="px-2 py-2 text-center">{{ $payments->flaq }}</td>
-                                <td class="px-2 py-2 text-center">{{ $payments->created_at }}</td>
+                                <td class="px-2 py-2 text-center">
+                                    {{-- {{ $payments->created_at }} --}}
+                                     {{ \Carbon\Carbon::parse($payments->created_at)
+                                    ->timezone(auth()->user()->timezone ?? 'Asia/Jakarta')
+                                    ->format('d-m-Y H:i:s') }}
+                                </td>
 
                             </tr>
 

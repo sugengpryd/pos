@@ -87,7 +87,10 @@
                         </td>
                         <td
                         class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
-                        {{$results->created_at}}
+                        {{-- {{$results->created_at}} --}}
+                        {{ \Carbon\Carbon::parse($results->created_at)
+                                    ->timezone(auth()->user()->timezone ?? 'Asia/Jakarta')
+                                    ->format('d-m-Y H:i:s') }}
                         </td>
                     </tr>
                     @endforeach

@@ -1048,6 +1048,18 @@ public function removeItem($index,$item_id)
             // 'image'=>$itemTransaksi['image'],
             'flaq'=> "basket",
 
+            // \Carbon\Carbon::parse(dbTransaksi->created_at)
+            //  ->timezone(auth()->user()->timezone ?? 'Asia/Jakarta')
+            //  ->format('d-m-Y H:i:s'),
+
+            // \Carbon\Carbon::parse(dbTransaksi->updated_at)
+            // ->timezone(auth()->user()->timezone ?? 'Asia/Jakarta')
+            // ->format('d-m-Y H:i:s'),
+
+            // 'created_at'->timezone(auth()->user()->timezone),
+            // 'updated_at'->timezone(auth()->user()->timezone),
+
+
 
                 ]);
             }
@@ -1067,6 +1079,16 @@ public function removeItem($index,$item_id)
                     'total'=>$itemTransaksi['total'],
                     'customer_Id'=>$this->customerid,
                     'flaq'=> "basket",
+                    // 'created_at'->timezone(auth()->user()->timezone),
+                    // 'updated_at'->timezone(auth()->user()->timezone),
+                    // \Carbon\Carbon::parse(dbTransaksi->created_at)
+                    // ->timezone(auth()->user()->timezone ?? 'Asia/Jakarta')
+                    // ->format('d-m-Y H:i:s'),
+
+                    // \Carbon\Carbon::parse(dbTransaksi->updated_at)
+                    // ->timezone(auth()->user()->timezone ?? 'Asia/Jakarta')
+                    // ->format('d-m-Y H:i:s'),
+
 
 
                     ]);
@@ -1155,12 +1177,16 @@ public function removeItem($index,$item_id)
             'nominal' => preg_replace('/\D/','',$this->nominalPembayaran),
             'tipe_payment' => $this->tipePembayaran,
             'flaq'=>'1',
+            // 'created_at'->timezone(auth()->user()->timezone),
+            // 'updated_at'->timezone(auth()->user()->timezone),
+
         ]);
         // dd($createBayar);
         if($createBayar){
             $ubahflaq= dbTransaksi::on('customer_sqlite')->where('batch_id','=', $this->transaksiBatchId)
             ->update([
                 'flaq'=>'paid',
+                'updated_at' => now(),
             ]);
         }
         $this->flaqTransaksi = 'paid';

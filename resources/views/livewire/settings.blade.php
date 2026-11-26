@@ -50,40 +50,30 @@
 
                 <div class="flex flex-col mb-4 justify-between items-center bg-gray-400 py-4 px-4 rounded-lg hover:shadow-xl hover:underline underline-offset-8 shadow-gray-700">
                     <label
-
-                    >TimeZone</label>
+                    >TimeZone
+                    </label>
+                    <div id="currentTime" class="p-2 mb-4 rounded-xl shadow-lg shadow-white text-white bg-black">
+                         Current Time:
+                        <span id="current-time"
+                        wire:model="currentime"
+                        >
+                         {{ \Carbon\Carbon::now()
+                                    ->timezone(auth()->user()->timezone ?? 'Asia/Jakarta')
+                                    ->format('d-m-Y H:i:s') }}
+                        </span>
+                    </div>
                     <select
                         wire:model.live="timezone"
                         wire:change="getTimezone"
-                        class="rounded-lg"
+                        class="rounded-lg text-center"
                     >
-                        <option value="">Select Time Zone</option>
-                        <option value="+1">GMT +1</option>
-                        <option value="+2">GMT +2</option>
-                        <option value="+3">GMT +3</option>
-                        <option value="+4">GMT +4</option>
-                        <option value="+5">GMT +5</option>
-                        <option value="+6">GMT +6</option>
-                        <option value="+7">GMT +7</option>
-                        <option value="+8">GMT +8</option>
-                        <option value="+9">GMT +9</option>
-                        <option value="+10">GMT +10</option>
-                        <option value="+11">GMT +11</option>
-                        <option value="+12">GMT +12</option>
-                        <option value="+13">GMT +13</option>
-                        <option value="+14">GMT +14</option>
-                        <option value="-1">GMT -1</option>
-                        <option value="-2">GMT -2</option>
-                        <option value="-3">GMT -3</option>
-                        <option value="-4">GMT -4</option>
-                        <option value="-5">GMT -5</option>
-                        <option value="-6">GMT -6</option>
-                        <option value="-7">GMT -7</option>
-                        <option value="-8">GMT -8</option>
-                        <option value="-9">GMT -9</option>
-                        <option value="-10">GMT -10</option>
-                        <option value="-11">GMT -11</option>
-                        <option value="-12">GMT -12</option>
+                        <option>Select TimeZone</option>
+                         {{-- @foreach($timezones as $index =>$tz)
+                            <option value="{{ $tz }}">{{ $tz }}</option>
+                        @endforeach --}}
+                        @foreach($timezones as $index => $values)
+                           <option class="text-center" value="{{ $index }}"> {{ $values }} </option>
+                         @endforeach
 
                     </select>
                 </div>
@@ -107,6 +97,41 @@
                 </div>
 
             </form>
+            @script
+            <script>
+                    let timezone = @js(auth()->user()->timezone ?? 'Asia/Jakarta');
+                    function updateClock() {
+                        // const timezone = @js(auth()->user()->timezone ?? 'Asia/Jakarta');
+
+                        const now = new Date();
+
+                        document.getElementById('current-time').textContent =
+                            new Intl.DateTimeFormat('en-GB', {
+                                timeZone: timezone,
+                                day: '2-digit',
+                                month: '2-digit',
+                                year: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                second: '2-digit',
+                                hourCycle: 'h23',
+                            }).format(now);
+                    }
+
+                    updateClock();
+                    setInterval(updateClock, 1000);
+
+                    // Listen for Livewire timezone changes
+                        Livewire.on('timezone-updated', (event) => {
+                            timezone = event.timezone;
+                            // console.log('New timezone:', event.timezone);
+
+                            updateClock();
+                        });
+
+
+            </script>
+            @endscript
         </div>
 
         {{-- </div> --}}

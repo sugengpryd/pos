@@ -5,15 +5,17 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User as dbUser;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
-
+use DateTimeZone;
 
 #[Layout('layouts.app')]
 
 class Settings extends Component
 {
     public $notif ='';
-    public $timezone='';
+    public $timezone = 'Asia/Jakarta';
     public $settimezone='';
+    public $todayTime ='';
+    public $currentTime = '';
 
     public function mount(){
          $notification = dbUser::where('id',Auth::id())->value('updateFlaq');
@@ -42,6 +44,8 @@ class Settings extends Component
                 'timezone' => $this->timezone,
                 'updated_at' => now(),
             ]);
+            // console.log($this->timezone);
+            $this->dispatch('timezone-updated', timezone: $this->timezone);
 
             // Success
             $this->dispatch('notify',
@@ -57,14 +61,31 @@ class Settings extends Component
 
     }
 
+public function updatedTimezone($value){
+    // dd("updated currentTime");
+    //  $this->dispatch('timezone-updated', timezone: $value);
 
+}
 
     public function render()
     {
-        // dd(Auth()->user()->timezone);
+
+        // $timezones = timezone_identifiers_list(
+        //   \DateTimeZone::ALL
+        // );
+        $timezones = collect(
+            timezone_identifiers_list(DateTimeZone::ASIA)
+            )->mapWithKeys(function ($tz) {
+            $offset = now($tz)->format('P');
+
+            return [
+                $tz => "(UTC{$offset}) {$tz}"
+            ];
+        });
+        $todaytime =now();
 
 
 
-        return view('livewire.settings');
+        return view('livewire.settings',['timezones' => $timezones,'todaytime'=>$todaytime]);
     }
 }

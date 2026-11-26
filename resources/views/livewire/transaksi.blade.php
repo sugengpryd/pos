@@ -117,7 +117,15 @@
 
                                 </td>
                                 <td class="py-2 px-2 text-xs text-center">{{ $transaksis->flaq }}</td>
-                                <td class="py-2 px-2 text-xs text-center">{{ $transaksis->created_at }}</td>
+                                <td
+                                class="py-2 px-2 text-xs text-center"
+                                >
+                                 {{ \Carbon\Carbon::parse($transaksis->created_at)
+                                    ->timezone(auth()->user()->timezone ?? 'Asia/Jakarta')
+                                    ->format('d-m-Y H:i:s') }}
+                                {{-- {{ $transaksis->created_at }} --}}
+
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

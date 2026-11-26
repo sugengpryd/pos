@@ -69,7 +69,10 @@
                                 </td>
 
                                 <td class="border p-3 whitespace-nowrap">
-                                    {{ $diskon->created_at }}
+                                    {{-- {{ $diskon->created_at }} --}}
+                                     {{ \Carbon\Carbon::parse($diskon->created_at)
+                                    ->timezone(auth()->user()->timezone ?? 'Asia/Jakarta')
+                                    ->format('d-m-Y H:i:s') }}
                                 </td>
                             </tr>
                         @empty
