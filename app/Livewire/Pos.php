@@ -1243,7 +1243,13 @@ public function removeItem($index,$item_id)
     }
 
     public function Strukprint(){
-        // dd($this->nominalPembayaran);
+        // dd($this->menustransaksi);
+
+    if(empty($this->menustransaksi)){
+            $this->dispatch('notify', message: 'No transaction exist',type:'error');
+
+        return;
+    }
 
     $url = route('Struk');
         $data = [
