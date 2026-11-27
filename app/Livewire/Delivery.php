@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\pengiriman as DbPengiriman;
 use App\Models\Dbcreated as Dbcreated;
+use App\Models\Customer as Dbcustomer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -67,29 +68,53 @@ class Delivery extends Component
     {
         $this->createnewConnection();
 
-        $result = DbPengiriman::on('customer_sqlite')
-        ->when($this->filterSearch, function ($query) {
+    //     $result = DbPengiriman::on('customer_sqlite')
+    //     ->when($this->filterSearch, function ($query) {
+    //     $query->where(function ($q) {
+    //         $search = '%' . $this->filterSearch . '%';
+
+    //         $q->where('batch_Id', 'like', $search)
+    //             ->orWhere('fromName', 'like', $search)
+    //             ->orWhere('fromAlamat', 'like', $search)
+    //             ->orWhere('toName', 'like', $search)
+    //             ->orWhere('toAlamat', 'like', $search)
+    //             ->orWhere('toNumber', 'like', $search);
+    //     });
+    // })
+    // ->when($this->filterDate, function ($query) {
+    //     $query->whereDate('created_at', $this->filterDate);
+    // })
+    // ->latest('created_at')
+    // ->get();
+    $result = DbPengiriman::on('customer_sqlite')
+    ->leftjoin('transaksi', 'pengiriman.batch_Id', '=', 'transaksi.batch_id')
+    ->select('pengiriman.*', 'transaksi.customer_Id')
+    ->distinct()
+    ->when($this->filterSearch, function ($query) {
         $query->where(function ($q) {
             $search = '%' . $this->filterSearch . '%';
 
-            $q->where('batch_Id', 'like', $search)
-                ->orWhere('fromName', 'like', $search)
-                ->orWhere('fromAlamat', 'like', $search)
-                ->orWhere('toName', 'like', $search)
-                ->orWhere('toAlamat', 'like', $search)
-                ->orWhere('toNumber', 'like', $search);
+            $q->where('pengiriman.batch_Id', 'like', $search)
+                ->orWhere('pengiriman.fromName', 'like', $search)
+                ->orWhere('pengiriman.fromAlamat', 'like', $search)
+                ->orWhere('pengiriman.toName', 'like', $search)
+                ->orWhere('pengiriman.toAlamat', 'like', $search)
+                ->orWhere('pengiriman.toNumber', 'like', $search);
         });
     })
     ->when($this->filterDate, function ($query) {
-        $query->whereDate('created_at', $this->filterDate);
+        $query->whereDate('pengiriman.created_at', $this->filterDate);
     })
-    ->latest('created_at')
+    ->latest('pengiriman.created_at')
     ->get();
+
+    // dd($result);
 
     // $biayakirim =$result->sum('BiayaKirim')
         $biayakirim = $result->where('batch_Id', '!=','')
                              ->where('flaq', '==', '1')
                              ->sum('BiayaKirim');
+
 
 
     // dd($biayakirim);

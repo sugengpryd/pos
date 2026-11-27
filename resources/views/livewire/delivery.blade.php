@@ -25,78 +25,85 @@
 
         </div>
     </div>
-    <div class="w-full max-w-[full] top-0  min-h-[600px] mx-auto mt-2 justify-start overflow-auto bg-slate-600">
+    <div class="w-full max-w-[full] top-0 h-[full] mx-auto mt-2 p-4 justify-start bg-slate-600">
+        <div class="w-full flex flex-row h-[600px] pb-8 bg-white overflow-auto">
+            <div class=" w-full flex flex-col h-screen justify-center items-center ">
+                <table class="w-full h-full flex-col border-collapse bg-white">
+                    <thead class="bg-gray-400 text-white z-50 sticky top-0">
+                        <tr>
+                            <th class="sticky p-2 w-14">id</th>
+                            <th></th>
+                            <th class="sticky p-2 w-14">Batch Id</th>
+                            <th class="sticky p-2 w-14">From</th>
+                            <th class="sticky p-2 w-14">Alamat</th>
+                            <th class="sticky p-2 w-14">To</th>
+                            <th class="sticky p-2 w-14">Alamat Tujuan</th>
+                            <th class="sticky p-2 w-14">No tujuan</th>
+                            <th class=" text-right sticky p-2 w-14">
+                                Biaya Kirim<br>
+                                {{ number_format($biayakirim,0,'.','.') }}
+                            </th>
+                            <th class="sticky p-4 w-14">Flaq</th>
+                            <th class="sticky p-4 w-14">Created At</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-400 bg-white">
+                        @foreach ($result as $index => $results )
+                        <tr>
+                            <td
+                            class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
+                            {{$index+1}}
+                            </td>
+                            <td
+                            class="sticky py-3 px-3 w-14 text-xs font-semibold text-center text-blue-700 hover:text-blue-400">
+                            <button onclick="window.open('{{ route('Do', ['batch_Id'=>$results->batch_Id,'customer_id'=>$results->customer_Id]) }}','_blank')" >Print Delivery Order</button>
+                            {{-- onclick="window.open('{{ route('Do', ['batch_Id'=>$transaksiBatchId,'customer_id'=>$customerid]) }}','_blank')" --}}
+                            </td>
+                            <td
+                            class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
+                            {{$results->batch_Id}}
+                            </td>
+                            <td
+                            class="sticky py-3 px-3 w-14 text-xs font-semibold text-left">
+                            {{$results->fromName}}
+                            </td>
+                            <td
+                            class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
+                            {{$results->fromAlamat}}
+                            </td>
+                            <td
+                            class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
+                            {{$results->toName}}
+                            </td>
+                            <td
+                            class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
+                            {{$results->toAlamat}}
+                            </td>
+                            <td
+                            class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
+                            {{$results->toNumber}}
+                            </td>
+                            <td
+                            class="sticky py-3 px-3 w-14 text-xs font-semibold text-right">
+                            {{$results->BiayaKirim}}
+                            </td>
+                            <td
+                            class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
+                            {{$results->flaq}}
+                            </td>
+                            <td
+                            class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
+                            {{-- {{$results->created_at}} --}}
+                            {{ \Carbon\Carbon::parse($results->created_at)
+                                        ->timezone(auth()->user()->timezone ?? 'Asia/Jakarta')
+                                        ->format('d-m-Y H:i:s') }}
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
 
-        <div class="flex flex-row h-full justify-stasticky rt items-center ">
-            <table class="w-full flex-col border-collapse bg-white">
-                <thead class="bg-gray-400 text-white z-50 sticky top-0">
-                    <tr>
-                        <th class="sticky p-2 w-14">id</th>
-                        <th class="sticky p-2 w-14">Batch Id</th>
-                        <th class="sticky p-2 w-14">From</th>
-                        <th class="sticky p-2 w-14">Alamat</th>
-                        <th class="sticky p-2 w-14">To</th>
-                        <th class="sticky p-2 w-14">Alamat Tujuan</th>
-                        <th class="sticky p-2 w-14">No tujuan</th>
-                        <th class=" text-right sticky p-2 w-14">
-                            Biaya Kirim<br>
-                            {{ number_format($biayakirim,0,'.','.') }}
-                        </th>
-                        <th class="sticky p-4 w-14">Flaq</th>
-                        <th class="sticky p-4 w-14">Created At</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-400 bg-white">
-                    @foreach ($result as $index => $results )
-                    <tr>
-                        <td
-                        class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
-                        {{$index+1}}
-                        </td>
-                        <td
-                        class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
-                        {{$results->batch_Id}}
-                        </td>
-                        <td
-                        class="sticky py-3 px-3 w-14 text-xs font-semibold text-left">
-                        {{$results->fromName}}
-                        </td>
-                        <td
-                        class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
-                        {{$results->fromAlamat}}
-                        </td>
-                        <td
-                        class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
-                        {{$results->toName}}
-                        </td>
-                        <td
-                        class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
-                        {{$results->toAlamat}}
-                        </td>
-                        <td
-                        class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
-                        {{$results->toNumber}}
-                        </td>
-                        <td
-                        class="sticky py-3 px-3 w-14 text-xs font-semibold text-right">
-                        {{$results->BiayaKirim}}
-                        </td>
-                        <td
-                        class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
-                        {{$results->flaq}}
-                        </td>
-                        <td
-                        class="sticky py-3 px-3 w-14 text-xs font-semibold text-center">
-                        {{-- {{$results->created_at}} --}}
-                        {{ \Carbon\Carbon::parse($results->created_at)
-                                    ->timezone(auth()->user()->timezone ?? 'Asia/Jakarta')
-                                    ->format('d-m-Y H:i:s') }}
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-
-            </table>
+                </table>
+            </div>
         </div>
     </div>
 </div>

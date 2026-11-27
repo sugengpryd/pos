@@ -1243,10 +1243,19 @@ public function removeItem($index,$item_id)
     }
 
     public function Strukprint(){
-        // dd($this->menustransaksi);
+    $this->createnewConnection();
 
-    if(empty($this->menustransaksi)){
-            $this->dispatch('notify', message: 'No transaction exist',type:'error');
+
+        // dd($this->menustransaksi);
+        // dd($this->transaksiBatchId);
+
+        $checktransaksi = dbTransaksi::on('customer_sqlite')->where('batch_id', $this->transaksiBatchId)->exists();
+        // dd($checktransaksi);
+
+        // dd("CEK->" . $checktransaksi, "BATCH_ID->" .$this->transaksiBatchId);
+        // console.log("LIST MENU->". $this->menustransaksi . "cek->". $checktransaksi);
+        if(empty($this->transaksiBatchId) || empty($checktransaksi)){
+            $this->dispatch('notify', message: 'No transaction exist, Please Add item from menu and Save transaction',type:'error');
 
         return;
     }

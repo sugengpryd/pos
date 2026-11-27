@@ -28,7 +28,7 @@
                     'bg-yellow-500': type === 'warning',
                     'bg-blue-500': type === 'info'
                 }"
-                class="fixed top-5 right-5 z-50 bg-green-500 text-white px-5 py-3 rounded-lg shadow-lg"
+                class="fixed top-5 right-5 z-[9999] bg-green-500 text-white px-5 py-3 rounded-lg shadow-lg"
             >
                 <span x-text="message"></span>
             </div>
