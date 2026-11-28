@@ -23,6 +23,9 @@ class User extends Authenticatable
         'email',
         'dbconnection',
         'password',
+        'company_id',
+        'flaq',
+
     ];
 
     /**

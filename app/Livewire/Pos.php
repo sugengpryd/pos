@@ -197,6 +197,7 @@ class Pos extends Component
     public function mount()
     {
     $this->UsersId = Auth::id();
+    $this->company_id = Auth::user()->company_id;
     $this->createnewConnection();
     $this->namapenerima ='default';
     // $this->nominalPembayaran = $this->totalTagihan;
@@ -205,7 +206,9 @@ class Pos extends Component
     public function createnewConnection(){
     // dd($this->UsersId);
         $this->dbconnection = 'customer_sqlite';
-        $result = Dbcreated::where('users_id', $this->UsersId)->first();
+        $result = Dbcreated::where('users_id', $this->UsersId)
+        // ->where('company_id',$this->company_id)
+        ->first();
         // dd($result);
         $path = $result->path;
         $dbname = $result->db_name;

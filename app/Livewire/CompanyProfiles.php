@@ -143,6 +143,14 @@ public function save()
                 'telepon'      => $this->telepon,
             ]);
 
+        $user = Auth::user();
+        // dd($user);
+         if ($user){
+             $user->update([
+                'company_id' => $this->companyId,
+             ]);
+         }
+
             $this->dispatch(
                 'notify',
                 type: 'success',
@@ -161,6 +169,16 @@ public function save()
                     'alamattoko'   => $this->alamatToko,
                     'telepon'      => $this->telepon,
                 ]);
+
+                $user = Auth::user();
+                // dd($this->companyId);
+
+                if ($user){
+                    $user->update([
+                        'company_id' => $this->companyId,
+                    ]);
+                }
+                // dd($user);
 
             if ($updated > 0) {
                 $this->dispatch(

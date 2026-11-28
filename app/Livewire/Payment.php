@@ -79,14 +79,14 @@ class Payment extends Component
             ->distinct()
              ->pluck('date');
 
-        $total = $payment->where('batch_id', '!=','')->sum('total');
-        $discount = $payment->where('batch_id', '!=','')->sum('discount');
+        $total = $payment->where('batch_id', '!=','')->sum('total') ?? '0';
+        $discount = $payment->where('batch_id', '!=','')->sum('discount') ?? '0';
         // $BiayaKirim
 
-        $tax = $payment->where('batch_id', '!=','')->sum('tax');
-        $grandtotal = $payment->where('batch_id', '!=','')->sum('grandtotal');
+        $tax = $payment->where('batch_id', '!=','')->sum('tax') ?? '0';
+        $grandtotal = $payment->where('batch_id', '!=','')->sum('grandtotal') ?? '0';
         // dd($discount);
-        $totalDelivery = $payment->where('batch_id','!=','')->sum('BiayaKirim');
+        $totalDelivery = $payment->where('batch_id','!=','')->sum('BiayaKirim') ?? '0';
         // dd($delivery);
 
 

@@ -125,12 +125,12 @@
                                     type="text"
                                     >
                             </div>
-                            <div class="p-2">
+                            <div class="py-4 text-center">
                                 <button
                                     type="button"
                                     wire:click="exitcompro"
-                                    class="rounded-lg bg-gray-600 p-2 px-4 hover:shadow-lg"
-                                >exit
+                                    class="rounded-lg bg-gray-400 p-2 px-4 hover:shadow-lg"
+                                >Exit
                                 </button>
                                 <button
                                     type="button"
@@ -149,9 +149,6 @@
                                      'rounded-lg',
                                      'bg-blue-300',
                                      'p-2','px-4','hover:shadow-lg'])
-
-
-
                                 >Save
                                 </button>
                             </div>

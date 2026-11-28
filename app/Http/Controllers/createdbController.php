@@ -33,7 +33,9 @@ class createdbController extends Controller
         $prefix="database_";
         // $dbid = (string) random_int(100000, 999999);
         $dbid = Auth::user()->id;
-        $dbname = $prefix . $dbid;
+        $company_id = Auth::user()->company_id;
+        $dbname = $prefix . $company_id;
+        //master database
         $finddata=Dbcreated::where('users_id',$dbid)->first();
         if($finddata){
             $status = '1';
@@ -59,22 +61,39 @@ class createdbController extends Controller
         $path = database_path($dbname .'.sqlite');
 
         $finddata=Dbcreated::where('users_id',$userId)->first();
-        if(!$finddata){
-        $create = Dbcreated::create([
-            'users_id' => $userId,
+        // dd($path);
+
+        // if(!$finddata){
+        $create = Dbcreated::UpdateOrCreate(
+            ['users_id' => $userId],
+            [
             'db_name' => $dbname,
             'path' => $path,
             'flaq' =>'1',
             'update_at' => now(),
             ]);
-        };
+
+        // };
+        // dd($create);
 
         $updateUsers= User::where('id',$userId)->update([
             'dbconnection' =>"customer_sqlite",
             'dbcreated' => "1",
         ]);
+        //==========rename old table name =============================
+            $oldDbname = "database_" . $userId;
+            // dd([$oldDbname,$dbname]);
+        //    $oldPath= '/home/u627403332/domains/pos.ngegus.com/public_html/database/database"."_".1.sqlite';
+            $oldPath = database_path($oldDbname.".sqlite");
+            // dd($oldPath);
+        if(File::exists($oldPath))
+            // if (File::exists($path))
+        {
+            $newPath = dirname($oldPath) . '/' . $dbname . ".sqlite";
+            // dd($newPath);
 
-
+            File::move($oldPath, $newPath);
+        }
 
         if (!File::exists($path)) {
                 File::put($path, '');

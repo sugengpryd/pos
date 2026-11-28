@@ -48,6 +48,13 @@
                     </a>
                 </div>
 
+                <div class="flex flex-col mb-4 justify-between items-center bg-gray-400 py-4 px-4 rounded-lg hover:shadow-xl hover:underline underline-offset-8 shadow-gray-700" >
+                    <a href="{{ route('companyProfile', ['status' => 1]) }}">
+                       👉 Create New User
+                    </a>
+                </div>
+
+
                 <div class="flex flex-col mb-4 justify-between items-center bg-gray-400 py-4 px-4 rounded-lg hover:shadow-xl hover:underline underline-offset-8 shadow-gray-700">
                     <label
                     >TimeZone
